@@ -1,0 +1,20 @@
+.card-secondary:not(.card-outline)>.card-header, .card-secondary:not(.card-outline)>.card-header a{
+    color:black !important;
+}
+.card-title{
+    color:white;
+}
+
+.mynavbar-badge {
+    font-size: 14px !important;
+    font-weight: 00 !important;
+    padding: 2px 5px !important;
+    position: absolute !important;
+    right: 7px;
+    top: 4px;
+}
+
+.notification-icon{
+    font-size: 19px !important;
+}
+
