@@ -3,7 +3,11 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <meta property="og:url"           content="https://www.your-domain.com/your-page.html" />
+        <meta property="og:type"          content="website" />
+        <meta property="og:title"         content="Your Website Title" />
+        <meta property="og:description"   content="Your description" />
+        <meta property="og:image"         content="https://www.your-domain.com/path/image.jpg" />
         <title>Laravel</title>
 
         <!-- Fonts -->
@@ -64,6 +68,8 @@
         </style>
     </head>
     <body>
+        <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v8.0&appId=1302610216739853&autoLogAppEvents=1" nonce="VKOEbsPZ"></script>
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
@@ -93,6 +99,7 @@
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://vapor.laravel.com">Vapor</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <div class="fb-share-button" data-href="http://sigma-surveying.com/fyrouz/single-product.php?prod_id=119" data-layout="button" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
                 </div>
             </div>
         </div>

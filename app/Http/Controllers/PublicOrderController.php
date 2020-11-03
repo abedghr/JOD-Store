@@ -9,8 +9,10 @@ use App\Models\ProductsOfOrders;
 use App\Models\Provider;
 use App\Notifications\OrderNotification;
 use App\User;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Session as FacadesSession;
 
 class PublicOrderController extends Controller
 {
@@ -142,7 +144,8 @@ class PublicOrderController extends Controller
         $cart= session()->has('cart') ? session()->get('cart') : [];
         $providers= session()->has('providers') ? session()->get('providers') : [];
         $total = session()->get('total_price');
-        
+        $your_orders=array();
+        $i=0;
         foreach($providers as $provider){
             $prov_total = session()->get('providers_total_'.$provider['provider_id']);
             $del_price = City::where('city',$request->city)->select('delivery_price')->get();
@@ -162,6 +165,8 @@ class PublicOrderController extends Controller
             ]);
 
             $new_order = Order::latest()->first();
+            $your_orders[$i] =$new_order->id;
+            $i++;
             $prov = Provider::where('id',$provider['provider_id'])->get();
             Notification::send($prov, new OrderNotification($new_order));
             $data  = [
@@ -198,6 +203,8 @@ class PublicOrderController extends Controller
             
         }
 
+        
+
 
         foreach($providers as $provider){
             session()->forget('providers_total_'.$provider['provider_id']);
@@ -215,9 +222,131 @@ class PublicOrderController extends Controller
            session()->forget('user');
            $user_data[0] = [];
         }
-        return view('public_views.order_done',[
-            'user'=>$user
-        ]);
+
+        return redirect()->route('orders.done')->with(['your_orders'=>$your_orders , 'email'=>$request->email]);
+        /* return view('public_views.order_done',[
+            
+            'your_orders'=>$your_orders
+            
+        ]); */
         
+    }
+
+    public function orderDone (Request $request){
+        if(session()->has('user') && session('user') != []){
+            $user = session()->get('user');
+            $user_data = User::where('id',$user['user_id'])->get();
+        }else{
+            $the_user = session(['user'=>['user_id'=>'','userName'=>'']]);
+           $user = $the_user;
+           session()->forget('user');
+           $user_data[0] = [];
+        }
+        $your_orders = FacadesSession::get('your_orders');
+        $your_email = FacadesSession::get('email');
+
+        if(session()->has('your_orders') && session()->has('email')){
+        return view('public_views.order_done',[
+            'user'=>$user,
+            'your_orders'=>$your_orders,
+            'email'=>$your_email
+        ]);
+        }else{
+            return redirect()->route('home');
+        }
+    }
+
+    public function show_tracking(Request $request){
+        $order = Order::where('id',$request->order_id)->get();
+        $output = '';
+        if(!empty($order[0])){
+            if($order[0]->order_status == 0){
+                $output = '<article class="card">
+                <header class="card-header"><h6>Order ID: OD45345345435</h6></header>
+                <div class="card-body">
+                    <div class="track">
+                        <div class="step active"> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text">Order Pending</span> </div>
+                        <div class="step"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text"> Order confirmed</span> </div>
+                        <div class="step"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text"> On Delivery</span> </div>
+                        <div class="step"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Order Done</span> </div>
+                    </div>
+                    <hr>
+                    <a href="#" class="btn submit_btn" data-abc="true"> <i class="fa fa-eye"></i> Show The order</a>
+                </div>
+            </article>';
+            }elseif($order[0]->order_status == 1){
+                $output = '<article class="card">
+                <header class="card-header"><h6>Order ID: OD45345345435</h6></header>
+                <div class="card-body">
+                    <div class="track">
+                        <div class="step active"> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text">Order Pending</span> </div>
+                        <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text"> Order confirmed</span> </div>
+                        <div class="step active"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text"> On Delivery</span> </div>
+                        <div class="step"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Order Done</span> </div>
+                    </div>
+                    <hr>
+                    <a href="#" class="btn submit_btn" data-abc="true"> <i class="fa fa-eye"></i> Show The order</a>
+                </div>
+            </article>';
+            }elseif($order[0]->order_status == 3 || $order[0]->order_status == 2){
+                $output = '<article class="card">
+                <header class="card-header"><h6>Order ID: OD45345345435</h6></header>
+                <div class="card-body">
+                    <div class="track">
+                        <div class="step active"> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text">Order Pending</span> </div>
+                        <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text"> Order confirmed</span> </div>
+                        <div class="step active"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text"> On Delivery</span> </div>
+                        <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Order Done</span> </div>
+                    </div>
+                    <hr>
+                    <a href="#" class="btn submit_btn" data-abc="true"> <i class="fa fa-eye"></i> Show The order</a>
+                </div>
+            </article>';
+            }elseif($order[0]->order_status == -1 ){
+                $output = '<article class="card">
+                <header class="card-header"><h6>Order ID: OD45345345435</h6></header>
+                <div class="card-body">
+                    <div class="track">
+                        <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Order Pending</span> </div>
+                        <div class="step active-failed"> <span class="icon"> <i class="fa fa-times"></i> </span> <span class="text"> Order declined</span> </div>
+                        <div class="step "> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text"> On Delivery</span> </div>
+                        <div class="step "> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Order Done</span> </div>
+                    </div>
+                    <hr>
+                    <a href="#" class="btn submit_btn" data-abc="true"> <i class="fa fa-eye"></i> Show The order</a>
+                </div>
+            </article>';
+            }elseif($order[0]->order_status == -2){
+                $output = '<article class="card">
+                <header class="card-header"><h6>Order ID: OD45345345435</h6></header>
+                <div class="card-body">
+                    <div class="track">
+                        <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Order Pending</span> </div>
+                        <div class="step active"> <span class="icon"> <i class="fa fa-times"></i> </span> <span class="text"> Order declined</span> </div>
+                        <div class="step active"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text"> On Delivery</span> </div>
+                        <div class="step active-failed"> <span class="icon"> <i class="fa fa-times"></i> </span> <span class="text">Un-received Order</span> </div>
+                    </div>
+                    <hr>
+                    <a href="#" class="btn submit_btn" data-abc="true"> <i class="fa fa-eye"></i> Show The order</a>
+                </div>
+            </article>';
+            }
+        }else{
+            $output = "Not Exist!";
+        }
+        return $output;
+    }
+
+    public function show_orders(Request $request){
+        $orders = Order::where('phone',$request->user_phone)->select('id','created_at')->get();
+        if(!empty($orders[0])){
+            $output = '';
+            foreach($orders as $order){
+                $output.='<li class="list-group-item">('.$order->created_at->format('Y-m-d').') &nbsp;Order ID : '.$order->id.'  &nbsp;<a href="">View Order</a></li>';
+            }
+        }else{
+            $output = "Not Exist!";
+        }
+        return $output;
     }
 }

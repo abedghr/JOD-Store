@@ -15,7 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect()->route('home');
+    /* return redirect()->route('home'); */
+    return view('welcome');
 });
 
 Auth::routes();
@@ -261,7 +262,8 @@ Route::get('/singe-product/{id}','PublicProductController@show')->name('product.
 Route::get('/tracking-order','PublicOrderController@tracking')->name('order.tracking')->middleware('preventbackbutton');
 Route::post('/checkout-process','PublicOrderController@checkout_process')->name('order.payment')->middleware('preventbackbutton');
 Route::get('/order_done','PublicOrderController@orderDone')->name('orders.done')->middleware('preventbackbutton');
-
+Route::get('/tracking','PublicOrderController@show_tracking')->name('show.tracking')->middleware('preventbackbutton');
+Route::get('/show_user_orders','PublicOrderController@show_orders')->name('show.user.orders')->middleware('preventbackbutton');
 
 // User Login & Logout Routes
 

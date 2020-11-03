@@ -105,21 +105,24 @@
                             @endforeach --}}
 							
 							<tr class="bottom_button">
-								<td>
-									<div class="checkout_btn_inner">
-										<a class="btn btn-secondary p-2" href="{{route('product.all')}}">Continue Shopping</a>
-										<a class="main_btn" href="{{route('checkout')}}">Proceed to checkout</a>
+								<td colspan="2">
+									<div class="row">
+										<div class="col-md-8">
+											<div class="checkout_btn_inner">
+												<a class="btn btn-secondary p-2" href="{{route('product.all')}}">Continue Shopping</a>
+												<a class="main_btn" href="{{route('checkout')}}" style="display:inline-block; margin-top:4px;">Proceed to checkout</a>
+											</div>
+										</div>
 									</div>
-								</td>
-								<td>
-
+									
 								</td>
 								
-								<td>
-                                    <h5><strong>SubTotal:</strong></h5>
-								</td>
-								<td>
-									<h5><strong>JD-{{number_format($total,2)}}</strong></h5>
+								<td colspan="2">
+									<div class="row">
+										<div class="col-sm-12">
+											<h5><strong>SubTotal: &nbsp;JD-{{number_format($total,2)}}</strong></h5>
+										</div>
+                                    
 								</td>
 								<td></td>
 							</tr>
