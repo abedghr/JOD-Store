@@ -19,7 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(['verify'=>true]);
 
 
 
@@ -151,7 +151,7 @@ Route::group(['prefix' => 'provider'], function () {
     Route::post('/logout','Auth\ProviderLoginController@providerLogout')->name('provider.logout');
 
     // Dashboard Route
-    Route::get('/','ProviderController@index')->name('provider.dashboard')->middleware('preventbackbutton');
+    Route::get('/','ProviderController@index')->name('provider.dashboard')->middleware('preventbackbutton','verified');
     
     // Register Route
     Route::get('/register','Auth\ProviderRegisterController@showRegisterForm')->name('provider.register');
@@ -264,6 +264,11 @@ Route::post('/checkout-process','PublicOrderController@checkout_process')->name(
 Route::get('/order_done','PublicOrderController@orderDone')->name('orders.done')->middleware('preventbackbutton');
 Route::get('/tracking','PublicOrderController@show_tracking')->name('show.tracking')->middleware('preventbackbutton');
 Route::get('/show_user_orders','PublicOrderController@show_orders')->name('show.user.orders')->middleware('preventbackbutton');
+Route::post('/comment','PublicCommentController@store')->name('comment.store');
+Route::get('/comment_delete','PublicCommentController@destroy')->name('comment.destroy');
+
+Route::get('/product_rating','PublicProductController@rating_store')->name('rating.store');
+
 
 // User Login & Logout Routes
 
@@ -272,3 +277,5 @@ Route::get('/user/login','Auth\UserLoginController@user_login_view')->name('view
 Route::get('user_logout','Auth\UserLoginController@user_logout')->name('user.logout');
 Route::get('register','Auth\UserLoginController@user_register_view')->name('view.register');
 Route::post('user-register','Auth\UserLoginController@user_register')->name('user.register');
+Route::get('/user_profile','Auth\UserLoginController@profile')->name('user.profile');
+Route::put('/user_update/{id}','Auth\UserLoginController@update')->name('user.update');

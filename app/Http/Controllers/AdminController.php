@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\AdminFeedback;
+use App\Models\City;
+use App\Models\Order;
+use App\Models\Product;
+use App\Models\Provider;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -34,7 +40,20 @@ class AdminController extends Controller
     
     public function index()
     {
-        return view('Admin.admin');
+        $orders_number = Order::all()->count();
+        $sum_order_sales = Order::where('order_status',3)->get()->sum('total_price');
+        $providers_number = Provider::all()->count();
+        $all_users = User::all()->count();
+        $users_messages = AdminFeedback::all()->count();
+        $cities = City::all()->count();
+        return view('Admin.admin',[
+            'orders_number' => $orders_number,
+            'sum_order_sales' => $sum_order_sales,
+            'providers_number' => $providers_number,
+            'all_users' => $all_users,
+            'users_messages' => $users_messages,
+            'cities' => $cities
+        ]);
     }
 
     public function create(){

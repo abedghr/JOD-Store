@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\NewNotification;
 use App\Models\City;
 use App\Models\Order;
+use App\Models\Product;
 use App\Models\ProductsOfOrders;
 use App\Models\Provider;
 use App\Notifications\OrderNotification;
@@ -196,6 +197,13 @@ class PublicOrderController extends Controller
                         'main_image'=>$car['image'],
                         'order_id'=>$last->id
                         ]);
+                        
+                        $the_prod = Product::where('id',$car['id'])->get();
+                        
+                        Product::where('id',$car['id'])->update([
+                            'inventory' => $the_prod[0]->inventory - $car['quantity'],
+                            'number_of_bought' => $the_prod[0]->number_of_bought + 1
+                        ]);
                     }
                 }
             }
@@ -262,7 +270,7 @@ class PublicOrderController extends Controller
         if(!empty($order[0])){
             if($order[0]->order_status == 0){
                 $output = '<article class="card">
-                <header class="card-header"><h6>Order ID: OD45345345435</h6></header>
+                <header class="card-header"><h6>Order ID: '.$request->order_id.'</h6></header>
                 <div class="card-body">
                     <div class="track">
                         <div class="step active"> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text">Order Pending</span> </div>
@@ -276,7 +284,7 @@ class PublicOrderController extends Controller
             </article>';
             }elseif($order[0]->order_status == 1){
                 $output = '<article class="card">
-                <header class="card-header"><h6>Order ID: OD45345345435</h6></header>
+                <header class="card-header"><h6>Order ID: '.$request->order_id.'</h6></header>
                 <div class="card-body">
                     <div class="track">
                         <div class="step active"> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text">Order Pending</span> </div>
@@ -290,7 +298,7 @@ class PublicOrderController extends Controller
             </article>';
             }elseif($order[0]->order_status == 3 || $order[0]->order_status == 2){
                 $output = '<article class="card">
-                <header class="card-header"><h6>Order ID: OD45345345435</h6></header>
+                <header class="card-header"><h6>Order ID: '.$request->order_id.'</h6></header>
                 <div class="card-body">
                     <div class="track">
                         <div class="step active"> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text">Order Pending</span> </div>
@@ -304,7 +312,7 @@ class PublicOrderController extends Controller
             </article>';
             }elseif($order[0]->order_status == -1 ){
                 $output = '<article class="card">
-                <header class="card-header"><h6>Order ID: OD45345345435</h6></header>
+                <header class="card-header"><h6>Order ID: '.$request->order_id.'</h6></header>
                 <div class="card-body">
                     <div class="track">
                         <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Order Pending</span> </div>
@@ -318,7 +326,7 @@ class PublicOrderController extends Controller
             </article>';
             }elseif($order[0]->order_status == -2){
                 $output = '<article class="card">
-                <header class="card-header"><h6>Order ID: OD45345345435</h6></header>
+                <header class="card-header"><h6>Order ID: '.$request->order_id.'</h6></header>
                 <div class="card-body">
                     <div class="track">
                         <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Order Pending</span> </div>

@@ -3,7 +3,9 @@
 
 	<!--================Home Banner Area =================-->
 	<section class="text-center" style="margin-top: 160px;">
-        <h3><span class="bg-light welcome_header">Welcome To Jordan Store</span></h3>
+		<div class="main_title">
+			<h2>Welcome To Jordan Store</h2>
+		</div>
 	</section>
 	<!--================End Home Banner Area =================-->
 
@@ -54,7 +56,7 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div class="main_title">
-						<h2>Featured Products</h2>
+						<h2>Best Sellers</h2>
 						<p>Who are in extremely love with eco friendly system.</p>
 					</div>
 				</div>

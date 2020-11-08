@@ -25,6 +25,8 @@ class ProviderRegisterController extends Controller
             'password'=>['required','string','min:8']
         ]);
     
+        
+
 
         try{
             $provider = Provider::create([

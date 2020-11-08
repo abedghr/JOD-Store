@@ -27,7 +27,6 @@ class CreateProductsTable extends Migration
             $table->string('prod_status')->nullable();
             $table->string('country_made')->nullable();
             $table->bigInteger('number_of_bought')->nullable()->default(0);
-            $table->text('colors')->nullable()->default('');
             $table->integer('inventory')->default(100);
             $table->bigInteger('prod_related')->unsigned()->nullable();
             $table->foreign('category')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');

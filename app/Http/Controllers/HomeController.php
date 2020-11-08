@@ -29,7 +29,7 @@ class HomeController extends Controller
         $user = session()->get('user');
         $category = Category::all()->all();
         $providers_logo = Provider::all();
-        $featured_products = Product::select()->limit(10)->get();
+        $featured_products = Product::select()->orderBy('number_of_bought','desc')->limit(10)->get();
         return view('home',[
             'categories' => $category,
             'providers_logo'=>$providers_logo,

@@ -142,9 +142,19 @@
                     </div>
                     
                   </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Product Status <span class="text-danger"> Optional</span></label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" value="{{$product->prod_status}}" name="prod_status" placeholder="Enter Product Status">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Product Status <span class="text-danger"> Optional</span></label>
+                      <input type="text" class="form-control" id="exampleInputEmail1" value="{{$product->prod_status}}" name="prod_status" placeholder="Enter Product Status">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="exampleInputEmail1">Product Colors <span class="text-danger"> Optional</span></label>
+                    <input type="text" id="color" class="form-control" style="width:80%; display:inline">
+                    <input type="hidden" name="colors" id="colors" value="{{$product->colors}}">
+                    <a class="btn btn-warning" onclick="addColor()" style="margin-bottom:5px">+</a>
+                  </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
@@ -196,6 +206,21 @@
                             </select>
                         </div>
                     </div>
+                </div>
+                <div class="form-group">
+                  <label>The COLORS :</label>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <p id="the_colors">{{$product->colors}}</p>
+                    </div>
+                    <div class="col-md-3">
+                      <input type="text" class="form-control" placeholder="Color name to delete" id="color_text_remove">
+                    </div>
+                    <div class="col-md-3">
+                      <a class="btn btn-danger text-light" onclick="remove_color()">remove color</a>
+                    </div>
+                  </div>
+                  
                 </div>
                 
                 
@@ -264,3 +289,29 @@
 </div>
 
 @include('Admin.includes.admin_footer')
+<script>
+
+  let color = $('#colors').val();
+  let colorArr = color.split(',');
+  var i=colorArr.length;
+
+  function addColor(){
+    colorArr[i] = $("#color").val();
+    $("#color").val("");
+    $('#colors').val(colorArr);
+    $("#the_colors").html($('#colors').val());
+    i++;
+  }
+
+  function remove_color(){
+    for(var i=0; i<colorArr.length; i++){
+      if(colorArr[i] == $('#color_text_remove').val()){
+        colorArr.splice(i, 1);
+        $('#colors').val(colorArr);
+        $("#the_colors").html($('#colors').val());
+        $('#color_text_remove').val('');
+      }
+    }
+  }
+  
+</script>

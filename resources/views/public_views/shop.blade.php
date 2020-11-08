@@ -3,13 +3,28 @@
 @include('public_views.includes.public_header')
 <br>
 	<!--================Home Banner Area =================-->
-	<section class="container"  style="margin-top: 160px;">
+	{{-- <section class="container"  style="margin-top: 160px;">
         <h2>LETS SHOPPING...</h2>
-	</section>
+	</section> --}}
 	<!--================End Home Banner Area =================-->
-
+	<!--================Clients Logo Area =================-->
+	<section class="clients_logo_area"  style="margin-top: 110px;">
+		<div class="container-fluid">
+			<div class="clients_slider owl-carousel">
+                @foreach ($providers_logo as $logo)
+                    <div class="item">
+                        <a href="{{route('public_provider.profile',['id'=>$logo->id])}}">
+                            <img src="../storage/Provider_images/{{$logo->image}}" width="120" height="75" class="rounded-circle" alt="">
+                            <label class="text-secondary">{{$logo->name}}</label>
+                        </a>
+                    </div>
+                @endforeach
+			</div>
+		</div>
+	</section>
+	<!--================End Clients Logo Area =================-->
 	<!--================Category Product Area =================-->
-	<section class="cat_product_area mt-5">
+	<section class="cat_product_area mt-4">
 		<div class="container-fluid">
 			<div class="row flex-row-reverse">
 				<div class="col-lg-9">

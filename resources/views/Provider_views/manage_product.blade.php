@@ -225,7 +225,7 @@
               <th>New Price</th>
               <th>Category</th>
               <th>Gender</th>
-              <th>Availability</th>
+              <th>Inventory</th>
               <th style="width: 40px">Actions</th>
             </tr>
           </thead>
@@ -242,11 +242,7 @@
                 <td class="text-success"><strong>JD{{$product->new_price}}</strong></td>
                 <td>{{$product->cat->cat_name}}</td>
                 <td>{{$product->gender}}</td>
-                <td>@if ($product->availability == 1)
-                   <span class="text-success"><strong>Available</strong></span>
-                @else
-                   <span class="text-danger"><strong>Un-Available</strong></span>
-                @endif </td>  
+                <td>{{$product->inventory}} Item</td>  
                 <td style="width:200px;">
                 <a href="{{route('product_provider.show',['id'=> $product->id])}}" class="btn btn-warning"><i class="fa fa-eye"></i></a>
                 <a href="{{route('product_provider.edit',['id'=> $product->id])}}" class="btn btn-info"><i class="fa fa-edit"></i></a>

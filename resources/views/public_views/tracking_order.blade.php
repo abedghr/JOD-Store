@@ -84,7 +84,7 @@ $pageTitle = "Tracking Order";
     }
     function show_orders(){
         var phone = $('#user_phone').val();
-        alert(phone);
+
         $.ajax({
             type : "GET",
             url : "{{route('show.user.orders')}}",

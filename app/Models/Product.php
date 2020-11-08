@@ -12,7 +12,7 @@ class Product extends Model
     
 
     protected $fillable=[
-        'prod_name','description','old_price','new_price','category','gender','provider','main_image','availability','prod_status','country_made','prod_related'
+        'prod_name','description','old_price','new_price','category','gender','provider','main_image','availability','prod_status','country_made','prod_related','number_of_bought','inventory'
     ];
 
     public function cat()
@@ -27,6 +27,10 @@ class Product extends Model
     public function prov()
     {
         return $this->belongsTo('App\Models\Provider','provider','id');    
+    }
+
+    public function comment(){
+        return $this->hasMany(Comment::class);
     }
     
 }

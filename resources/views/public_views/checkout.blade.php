@@ -41,7 +41,7 @@
 								<select class="country_select target city" onchange="changeCity()" id="city" name="city">
 									<option></option>
 									@foreach ($cities as $city)
-										<option class='single-city{{$city->city}}' data-price='{{$city->delivery_price}}' value="{{$city->city}}">{{$city->city}}</option>
+										<option class='single-city{{$city->city}}' data-price='{{$city->delivery_price}}' value="{{$city->city}}" @if($user_data != [] && $user_data[0]->city == $city->city) selected clicked @endif>{{$city->city}}</option>
 									@endforeach
 								</select>
 								@error('city')
@@ -153,7 +153,14 @@
 	@include('public_views.includes.public_footer')
 	
 	<script>
-			
+		var city_name = $('#city').val();
+		if(city_name != ""){
+		var city = $('.single-city'+city_name).attr('data-price');
+		var total =  $('#totalPrice').attr('data');
+		var totalWithDel = (parseFloat(city)* "{{$count_provider}}") + parseFloat(total);
+		$("#totalPrice").text(totalWithDel);
+		$('.delivery').html(' + '+ city);
+		}
 		function changeCity(){
 			var city_name = $('#city').val();
 			var city = $('.single-city'+city_name).attr('data-price');

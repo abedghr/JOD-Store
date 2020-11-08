@@ -102,9 +102,16 @@
 
 									<hr>
                                     <li class="nav-item">
-										<a href="#" class="icons">
+										@if ($user != null)
+										<a href="{{route('user.profile')}}" class="icons">
 											<i class="fa fa-user" aria-hidden="true"></i>
 										</a>
+										@else
+										<a href="" class="icons">
+											<i class="fa fa-user" aria-hidden="true"></i>
+										</a>
+										@endif
+										
 									</li>
                                     <hr>
 

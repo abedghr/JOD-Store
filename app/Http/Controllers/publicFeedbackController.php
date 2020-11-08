@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NewFeedbackNotification;
 use App\Models\AdminFeedback;
 use App\Models\Feedback;
 use App\Models\Provider;
@@ -18,6 +19,13 @@ class publicFeedbackController extends Controller
             'provider_id'=>$request->provider_id
         ]);
         $new_feedback = Feedback::latest()->first();
+        $data = [
+            'feedback_id' => $new_feedback->id,
+            'feedback'=>$new_feedback->feedback,
+            'feedback_userID'=>$new_feedback->user_id,
+            'feedback_provID'=>$new_feedback->provider_id
+        ];
+        event(new NewFeedbackNotification($data));
         $prov = Provider::where('id',$request->provider_id)->get();
         Notification::send($prov, new ProviderFeedbackNotification($new_feedback));
         return $text="";

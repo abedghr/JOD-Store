@@ -19,12 +19,11 @@
               <!-- small box -->
               <div class="small-box bg-info">
                 <div class="inner">
-                  <h3>150</h3>
-  
-                  <p>Total Orders</p>
+                  <h3>{{$users_messages}}</h3>
+                  <p>Users Messages</p>
                 </div>
                 <div class="icon">
-                  <i class="ion ion-bag"></i>
+                  <i class="fa fa-envelope"></i>
                 </div>
                 <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
@@ -34,12 +33,12 @@
               <!-- small box -->
               <div class="small-box bg-secondary">
                 <div class="inner">
-                  <h3>53<sup style="font-size: 20px">%</sup></h3>
+                  <h3>{{$cities}}</h3>
   
-                  <p>Total Sales</p>
+                  <p>Cities Involved</p>
                 </div>
                 <div class="icon">
-                  <i class="ion fa fa-money"></i>
+                  <i class="ion fa fa-globe"></i>
                 </div>
                 <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
@@ -49,7 +48,7 @@
               <!-- small box -->
               <div class="small-box bg-warning">
                 <div class="inner">
-                  <h3>44</h3>
+                  <h3>{{$providers_number}}</h3>
   
                   <p>Provider Registrations</p>
                 </div>
@@ -77,14 +76,14 @@
             <!-- ./col -->
             <div class="col-lg-3 col-6">
               <!-- small box -->
-              <div class="small-box bg-info">
+              <div class="small-box bg-warning">
                 <div class="inner">
-                  <h3>150</h3>
+                  <h3>{{$all_users}}</h3>
   
-                  <p>Orders</p>
+                  <p>Total Users</p>
                 </div>
                 <div class="icon">
-                  <i class="ion ion-bag"></i>
+                  <i class="ion fa fa-user"></i>
                 </div>
                 <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
@@ -107,14 +106,14 @@
             <!-- ./col -->
             <div class="col-lg-3 col-6">
               <!-- small box -->
-              <div class="small-box bg-warning">
+              <div class="small-box bg-danger">
                 <div class="inner">
-                  <h3>53<sup style="font-size: 20px">%</sup></h3>
+                  <h3>65</h3>
   
-                  <p>Total Users</p>
+                  <p>Pending Providers</p>
                 </div>
                 <div class="icon">
-                  <i class="ion fa fa-user"></i>
+                  <i class="ion fa fa-users"></i>
                 </div>
                 <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
               </div>

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Product;
 use App\Models\ProductsImages;
 use App\Models\Provider;
+use App\Models\Rating;
 use Illuminate\Http\Request;
 
 class PublicProductController extends Controller
@@ -13,10 +15,12 @@ class PublicProductController extends Controller
     public function all(){
         $user = session()->get('user');
         $products = Product::select()->orderBy('id','desc')->paginate(12);
+        $providers_logo = Provider::all();
         $categories = Category::all();
         return view('public_views.shop',[
             'products'=>$products,
             'categories'=>$categories,
+            'providers_logo'=>$providers_logo,
             'user'=>$user
         ]);
     }
@@ -25,11 +29,45 @@ class PublicProductController extends Controller
         $user = session()->get('user');
         $single_product = Product::findorfail($id);
         $product_images = ProductsImages::where('product_id',$id)->get();
+        $comments = Comment::where('prod_id',$id)->orderBy('created_at','desc')->get();
+        $rate = Rating::where('user_id',$user["user_id"])->where('prod_id',$id)->get();
+        $star1 = Rating::where('rating',1)->where('prod_id',$id)->select('rating')->get();
+        $star2 = Rating::where('rating',2)->where('prod_id',$id)->select('rating')->get();
+        $star3 = Rating::where('rating',3)->where('prod_id',$id)->select('rating')->get();
+        $star4 = Rating::where('rating',4)->where('prod_id',$id)->select('rating')->get();
+        $star5 = Rating::where('rating',5)->where('prod_id',$id)->select('rating')->get();
+        $maxRate ="";
+
+        if($star5->count() >= $star4->count() && $star5->count() >= $star3->count() && $star5->count() >= $star2->count() && $star5->count() >= $star1->count()){
+            $maxRate = $star5;
+        }elseif($star4->count() > $star5->count() && $star4->count() >= $star3->count() && $star4->count() >= $star2->count() && $star4->count() >= $star1->count()){
+            $maxRate = $star4;
+        }elseif($star3->count() > $star5->count() && $star3->count() > $star4->count() && $star3->count() >= $star2->count() && $star3->count() >= $star1->count()){
+            $maxRate = $star3;
+        }elseif($star2->count() > $star5->count() && $star2->count() > $star4->count() && $star2->count() > $star3->count() && $star2->count() >= $star1->count()){
+            $maxRate = $star2;
+        }elseif($star1->count() > $star5->count() && $star1->count() > $star4->count() && $star1->count() > $star3->count() && $star1->count() > $star2->count()){
+            $maxRate = $star1;
+        }
         
+        if(!isset($maxRate[0])){
+            return view('public_views.single_product',[
+                'product'=>$single_product,
+                'images'=>$product_images,
+                'user'=>$user,
+                'comments'=>$comments,
+                'rating'=>$rate,
+                'product_rate'=>3
+            ]);
+        }
+
         return view('public_views.single_product',[
             'product'=>$single_product,
             'images'=>$product_images,
-            'user'=>$user
+            'user'=>$user,
+            'comments'=>$comments,
+            'rating'=>$rate,
+            'product_rate'=>$maxRate[0]->rating
         ]);
     }
 
@@ -52,7 +90,7 @@ class PublicProductController extends Controller
             'products'=>$products,
             'categories'=>$cat_arr,
             'category_active'=>'all',
-            'user'=>$user
+            'user'=>$user,
         ]);
     }
 
@@ -304,5 +342,34 @@ class PublicProductController extends Controller
         }
 
         return $data = array('arr'=>$output);
+    }
+
+    public function rating_store(Request $request){
+        
+        Rating::where('user_id',$request->user_id)->where('prod_id',$request->prod_id)->delete();
+        Rating::create([
+            'rating'=>$request->rating,
+            'user_id'=>$request->user_id,
+            'prod_id'=>$request->prod_id
+        ]);
+
+        $rate = Rating::latest()->first();
+        $output = "";
+            if (isset($rate)){
+                $output.='<div class="rating_list">
+                        <h3>Your Rate:</h3>
+                        <ul class="list" style="color:#fbd600">
+                            <li>	
+                                <a href="#">'.$rate->rating.' STAR.';
+                        for ($i = 0; $i < $rate->rating; $i++){
+                        $output.='<i class="fa fa-star"></i>';
+                        }	
+                        $output.='</a>	
+                            </li>
+                        </ul>
+                    </div>';
+            }
+        $arr = array('rating'=>$request->rating , 'yourRate' => $output);
+        return $arr;
     }
 }

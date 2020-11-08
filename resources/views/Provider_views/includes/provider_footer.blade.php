@@ -57,16 +57,26 @@
   var old_content = $('.notify-box').html();
   var channel = pusher.subscribe('new-notification');
   channel.bind('App\\Events\\NewNotification', function(data) {
+    if(data['provider_id'] == "{{Auth::user()->id}}"){
     notifyCount +=1;
     $('#notifyCount').attr('data-count',notifyCount);
-    $('.notify-box').html('<a href="provider/order_details/'+data['order_id']+'" class="dropdown-item"><i class="fa fa-first-order mr-2"></i> There is a new Order from '+data['name']+'<span class="float-right text-muted text-sm">'+data['time']+'</span></a>'+old_content);
+    $('.notify-box').html('<a href="/provider/order_details/'+data['order_id']+'" class="dropdown-item"><i class="fa fa-first-order mr-2"></i> There is a new Order from '+data['name']+'<span class="float-right text-muted text-sm">'+data['time']+'</span></a>'+old_content);
     $('#notifyCount').html(notifyCount);
+    }
   });
   channel.bind('App\\Events\\NewCategoryNotification',function(data){
     notifyCount +=1;
     $('#notifyCount').attr('data-count',notifyCount);
     $('.notify-box').html('<a href="" class="dropdown-item"><i class="fa fa-list-alt mr-2"></i> There is a new Category on store '+data['cat_name']+' <span class="float-right text-muted text-sm">'+data['time']+'</span></a>'+old_content);
     $('#notifyCount').html(notifyCount);
+  });
+  channel.bind('App\\Events\\NewFeedbackNotification',function(data){
+    if(data['feedback_provID'] == "{{Auth::user()->id}}"){
+    notifyCount +=1;
+    $('#notifyCount').attr('data-count',notifyCount);
+    $('.notify-box').html('<a href="" class="dropdown-item"><i class="fa fa-list-alt mr-2"></i>There is a new Feedback<span class="float-right text-muted text-sm">'+data['time']+'</span></a>'+old_content);
+    $('#notifyCount').html(notifyCount);
+    }
   });
 </script>
 

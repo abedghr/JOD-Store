@@ -240,3 +240,8 @@ p {
     border-color: blue;
     border-radius: 1px
 }
+
+.comments-box{
+    height:300px; 
+    overflow-y:scroll;
+}

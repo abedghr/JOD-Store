@@ -59,26 +59,6 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm password">
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label for="phone" class="col-md-4 col-form-label text-md-right">Mobile Number</label>
-
-                            <div class="col-md-6">
-                                <input id="phone" type="text" class="form-control" name="phone" placeholder="Enter Your Mobile number">
-                                @error('phone')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="address" class="col-md-4 col-form-label text-md-right">Address</label>
-
-                            <div class="col-md-6">
-                                <input id="address" type="text" class="form-control" name="address" placeholder="Enter Your Address">
-                            </div>
-                        </div>
-
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
