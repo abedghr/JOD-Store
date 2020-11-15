@@ -32,7 +32,12 @@
                             <p><strong>Provider Email :</strong> {{$provider->email}}</p>
                             <p><strong>Provider Phone 1 :</strong> {{$provider->phone1}}</p>
                             <p><strong>Provider Phone 2 :</strong> {{$provider->phone2 ? $provider->phone2 : "000-000-0000"}}</p>
-                            <p><strong> Number :</strong> {{$provider->visitors}}</p>
+                            <p><strong>Verified  :</strong> 
+                              @if ($provider->email_verified_at != null)
+                                <span class="text-success"><strong>Verified at : {{$provider->email_verified_at}}</strong></span>
+                              @else
+                                <span class="text-danger"><strong>Not Verified</strong></span>
+                              @endif</p>
                             <p><strong>Subscribe :</strong> {{$provider->subscribe}}</p>
                             <p></p>
                         </div>

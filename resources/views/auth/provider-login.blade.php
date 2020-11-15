@@ -52,19 +52,7 @@
                                 @enderror
                             </div>
                         </div>
-
-                        <div class="form-group">
-                            <div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
+                        <br>
                         <div class="form-group">
                             <div>
                                 <button type="submit" class="btn btn-primary btn-block">
@@ -72,7 +60,7 @@
                                 </button>
 
                                 @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    <a class="btn btn-link" href="{{ route('provider.password.request') }}">
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                 @endif

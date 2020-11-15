@@ -162,7 +162,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Type of store :<span class="text-danger"> Optional</span></label>
-                  <select name="store_type" id="" class="form-control">
+                  <select name="store_type" id="" class="form-control mt-3">
                     <option value=""></option>
                     <option value="Online-store" @if (Auth::user()->store_type == 'Online-store') selected @endif >Online Store</option>
                     <option value="Real-store" @if (Auth::user()->store_type == 'Real-store') selected @endif >Real Store</option>
@@ -172,7 +172,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Address :<span class="text-danger"> Optional</span></label>
-                  <input type="text" class="form-control" id="exampleInputEmail1" value="{{Auth::user()->address}}" name="address" placeholder="Send your instagram page url">
+                  <input type="text" class="form-control" id="exampleInputEmail1" value="{{Auth::user()->address}}" name="address" placeholder="Send your Address">
                 </div>
               </div>
             </div>

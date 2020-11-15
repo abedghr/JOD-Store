@@ -124,28 +124,20 @@
       </li>
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
+        <a class="nav-link notification-icon" data-toggle="dropdown" href="#">
           <i class="far fa-bell"></i>
-          <span class="badge badge-warning navbar-badge">15</span>
+          <span class="badge badge-warning rounded-circle mynavbar-badge" style="font-size: 14px !important;" id="notifyCount" data-count="{{count(auth()->user()->unreadNotifications)}}">{{count(auth()->user()->unreadNotifications)}}</span>
         </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">15 Notifications</span>
+        <div class="dropdown-menu dropdown-menu-right notify-box" style="width:460px !important;">
+          @foreach (auth()->user()->unreadNotifications as $notify)
+         
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> 4 new messages
-            <span class="float-right text-muted text-sm">3 mins</span>
+          <a href="/admin/show_provider/{{$notify->data['provider_id']}}" class="dropdown-item">
+            <i class="fas fa-users mr-2"></i>New Provider on your store '{{$notify->data['provider_name']}}'
+            <span class="float-right text-muted text-sm">{{$notify->data['date']}}</span>
           </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-users mr-2"></i> 8 friend requests
-            <span class="float-right text-muted text-sm">12 hours</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
-          </a>
-          <div class="dropdown-divider"></div>
+         
+          @endforeach
           <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
       </li>

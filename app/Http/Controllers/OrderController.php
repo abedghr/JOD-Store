@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\ProductsOfOrders;
 use App\Models\Provider;
 use App\Models\Notification;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -101,6 +102,9 @@ class OrderController extends Controller
     {
         $products_order = ProductsOfOrders::where('order_id',$id)->get();
         $count_products = count($products_order);
+
+        
+
         return view('Provider_views.orders_view',[
             'orders'=>$products_order,
             'count_products'=>$count_products
@@ -109,7 +113,8 @@ class OrderController extends Controller
 
     public function show_details($id){
         $the_order = Order::findorfail($id);
-        $products_of_order = ProductsOfOrders::where('order_id',$id)->get();
+        $products_of_order = ProductsOfOrders::where('order_id',$id)->where('provider',Auth::user()->id)->get();
+        Notification::where('type','App\Notifications\OrderNotification')->where('data->id',$id)->update(['read_at'=>Carbon::now()]);
         return view('Provider_views.show_order',[
             'order'=>$the_order,
             'products'=>$products_of_order

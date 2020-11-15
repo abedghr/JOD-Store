@@ -23,7 +23,11 @@ class UserLoginController extends Controller
                 return redirect()->route('home');
             }
             else{
-                return redirect(url()->previous());
+                return redirect()->back()->withInput()
+                ->withErrors([
+                    'password' => 'Incorrect password!'
+                ]);
+    
             }
     }
 

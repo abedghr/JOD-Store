@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NewMessage;
 use App\Events\VendorProfileVisitor;
 use App\Models\Category;
 use App\Models\Feedback;
+use App\Models\Message;
 use App\Models\Product;
 use App\Models\Provider;
 use Illuminate\Http\Request;
+use Pusher\Pusher;
+
+use function Symfony\Component\String\b;
 
 class PublicProviderController extends Controller
 {
@@ -92,5 +97,64 @@ class PublicProviderController extends Controller
 
     }
 
+    public function chat_show($provider_id){
+        $user = session()->get('user');
+        $my_id = $user["user_id"];
+        $provider = Provider::findorFail($provider_id);
+        $messages = Message::Where(function($query) use ($provider_id , $my_id) {
+            $query->where('from_user',$my_id)->where('to_provider',$provider_id);
+        })->orWhere(function($query) use ($provider_id , $my_id) {
+            $query->where('from_provider',$provider_id)->where('to_user',$my_id);
+        })->get();
+        return view('messages.chat_view',[
+            'provider'=>$provider,
+            'messages'=>$messages,
+            'user'=>$user
+        ]);
+    }
+
+    public function getMessage(Request $request){
+        $provider_id =  $request->receiver_id;
+        $user = session()->get('user');
+        $my_id = $user["user_id"];
+        
+        
+
+
+        $messages = Message::Where(function($query) use ($provider_id , $my_id) {
+            $query->where('from_user',$my_id)->where('to_provider',$provider_id);
+        })->orWhere(function($query) use ($provider_id , $my_id) {
+            $query->where('from_provider',$provider_id)->where('to_user',$my_id);
+        })->get();
+        
+        return view('messages.messages',[
+            'messages'=>$messages,
+            'user'=>$user
+        ]);
+    }
+    
+
+    public function sendMessage(Request $request){
+        $user = session()->get('user');
+        $from = $user['user_id'];
+        $to = $request->receiver_id;
+        $message = $request->message;
+
+        Message::create([
+            'from_user' =>$from,
+            'to_provider'=>$to,
+            'message'=>$message,
+            'is_read'=>0
+        ]);
+        
+        
+
+        $data = [
+            'from_user' => $from,
+            'to_provider'=>$to,
+        ];
+        event(new NewMessage($data));
+
+    }
     
 }

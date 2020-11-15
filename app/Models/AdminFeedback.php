@@ -10,3 +10,4 @@ class AdminFeedback extends Model
         'name','email','phone','feedback'
     ];
 }
+

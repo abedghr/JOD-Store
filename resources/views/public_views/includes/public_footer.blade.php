@@ -95,6 +95,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="{{asset('js/app.js')}}"></script>
 <script src="{{asset('public_libraries/js/jquery-3.2.1.min.js')}}"></script>
 <script src="{{asset('public_libraries/js/popper.js')}}"></script>
 <script src="{{asset('public_libraries/js/bootstrap.min.js')}}"></script>
@@ -127,8 +128,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         });
         
     </script>
-	<script src="https://js.pusher.com/7.0/pusher.min.js"></script>
-	<script>
+	{{-- <script src="https://js.pusher.com/7.0/pusher.min.js"></script> --}}
+
+	{{-- <script>
 		// Enable pusher logging - don't include this in production
 		Pusher.logToConsole = true;
 
@@ -137,7 +139,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		});
 		var channel = pusher.subscribe('new-notification');
 		
-	</script>
+	</script> --}}
 </body>
 
 </html>

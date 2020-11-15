@@ -38,7 +38,7 @@
   <link href="{{asset('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700')}}" rel="stylesheet">
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -128,13 +128,13 @@
       <li class="nav-item dropdown">
         <a class="nav-link notification-icon" data-toggle="dropdown" href="#">
           <i class="far fa-bell"></i>
-          <span class="badge badge-warning rounded-circle mynavbar-badge" style=" font-size: 14px !important;" id="notifyCount" data-count="{{count(auth()->user()->notifications)}}">{{count(auth()->user()->notifications)}}</span>
+          <span class="badge badge-warning rounded-circle mynavbar-badge" style=" font-size: 14px !important;" id="notifyCount" data-count="{{count(auth()->user()->unreadNotifications)}}">{{count(auth()->user()->unreadNotifications)}}</span>
         </a>
         <div class="dropdown-menu dropdown-menu-right notify-box" id="" style="width:460px !important;">
-          @foreach (auth()->user()->notifications as $notify)
+          @foreach (auth()->user()->unreadNotifications as $notify)
           @if ($notify->type == 'App\Notifications\CategoryNotification')
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
+          <a href="{{route('provider_category.show',['id'=>$notify->data['id']])}}" class="dropdown-item">
             <i class="fa fa-list-alt mr-2"></i> There is a new Category on store '{{$notify->data['cat_name']}}'
             <span class="float-right text-muted text-sm">{{$notify->data['date']}}</span>
           </a>
@@ -148,8 +148,8 @@
           @endif
           @if ($notify->type == 'App\Notifications\ProviderFeedbackNotification')
           <div class="dropdown-divider"></div>
-          <a href="{{route('provider_feedback.index')}}" class="dropdown-item">
-            <i class="fa fa-envelope-square mr-2"></i> There is a new Feedback from '{{$notify->data['user_id'] ? $notify->data['user_id'] : 'Unkown'}}'
+          <a href="{{route('provider_feedback.show',['id'=>$notify->data['id']])}}" class="dropdown-item">
+            <i class="fa fa-envelope-square mr-2"></i> There is a new Feedback
             <span class="float-right text-muted text-sm">{{$notify->data['created_at']}}</span>
           </a>
           @endif
@@ -202,7 +202,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="{{route('provider.dashboard')}}" class="brand-link">
+    <a href="{{route('admin.dashboard')}}" class="brand-link">
       <h5 class="ml-1">Provider Dashboard</h5>
     </a>
 
@@ -211,7 +211,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="ml-3">
-            <img src="{{asset('img/default_user.png')}}" class="img-circle" style="width:40px !important; height:40px !important;" alt="User Image">
+            <img src="../../storage/provider_images/{{Auth::user()->image}}" class="img-circle" style="width:40px !important; height:40px !important;" alt="User Image">
         </div>
         <div class="info">
         <a href="{{route('provider.profile')}}" class="d-block">{{Auth::user()->name}}</a>
@@ -264,10 +264,26 @@
             </a>
           </li>
           <li class="nav-item">
+          <a href="{{route('provider_category.index')}}" class="nav-link">
+              <i class="nav-icon fa fa-list" aria-hidden="true"></i>
+              <p>
+                Show Categories
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="{{route('provider_feedback.index')}}" class="nav-link">
                 <i class="nav-icon fa fa-user-circle" aria-hidden="true"></i>
                 <p>
                   Feedbacks
+                </p>
+              </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{route('messages.index')}}" class="nav-link">
+                <i class="nav-icon fa fa-comments" aria-hidden="true"></i>
+                <p>
+                  <strong>Users Chat</strong>
                 </p>
               </a>
           </li>

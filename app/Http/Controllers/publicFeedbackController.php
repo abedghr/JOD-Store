@@ -14,10 +14,19 @@ use Illuminate\Support\Facades\Notification;
 class publicFeedbackController extends Controller
 {
     public function Provider_feedback(Request $request){
-        Feedback::create([
-            'feedback'=>$request->feedback,
-            'provider_id'=>$request->provider_id
-        ]);
+        $user = session()->get('user');
+        if($user != null || $user != []){
+            Feedback::create([
+                'feedback'=>$request->feedback,
+                'provider_id'=>$request->provider_id,
+                'user_id'=>$user['user_id']
+            ]);
+        }else{
+            Feedback::create([
+                'feedback'=>$request->feedback,
+                'provider_id'=>$request->provider_id
+            ]);
+        }
         $new_feedback = Feedback::latest()->first();
         $data = [
             'feedback_id' => $new_feedback->id,

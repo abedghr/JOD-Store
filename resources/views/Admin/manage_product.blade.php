@@ -142,17 +142,11 @@
                   
                 </div>
                 <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-md-12">
                     <div class="form-group">
                       <label for="exampleInputEmail1">Product Status <span class="text-danger"> Optional</span></label>
                       <input type="text" class="form-control" id="exampleInputEmail1" name="prod_status" placeholder="Enter Product Status">
                     </div>
-                  </div>
-                  <div class="col-md-6">
-                    <label for="exampleInputEmail1">Product Colors <span class="text-danger"> Optional</span></label>
-                    <input type="text" id="color" class="form-control" style="width:80%; display:inline">
-                    <input type="hidden" name="colors" id="colors">
-                    <a class="btn btn-warning" onclick="addColor()" style="margin-bottom:5px">+</a>
                   </div>
                 </div>
                 
@@ -209,21 +203,6 @@
                             </select>
                         </div>
                     </div>
-                  </div>
-                  <div class="form-group">
-                    <label>The COLORS :</label>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <p id="the_colors"></p>
-                      </div>
-                      <div class="col-md-3">
-                        <input type="text" class="form-control" placeholder="Color name to delete" id="color_text_remove">
-                      </div>
-                      <div class="col-md-3">
-                        <a class="btn btn-danger text-light" onclick="remove_color()">remove color</a>
-                      </div>
-                    </div>
-                    
                   </div>
                 
                 </div>
@@ -312,25 +291,3 @@
   <!-- /.col -->
 </div>
 @include('Admin.includes.admin_footer')
-<script>
-  var i=0;
-  let color =new Array();
-  function addColor(){
-    color[i] = $("#color").val();
-    $("#color").val("");
-    $('#colors').val(color);
-    $("#the_colors").html($('#colors').val());
-    i++;
-  }
-
-  function remove_color(){
-    for(var i=0; i<color.length; i++){
-      if(color[i] == $('#color_text_remove').val()){
-        color.splice(i, 1);
-        $('#colors').val(color);
-        $("#the_colors").html($('#colors').val());
-      }
-    }
-  }
-  
-</script>

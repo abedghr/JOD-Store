@@ -45,16 +45,24 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('dist/js/demo.js')}}"></script>
 
-<script src="https://js.pusher.com/7.0/pusher.min.js"></script>
-	<script>
-		// Enable pusher logging - don't include this in production
-		Pusher.logToConsole = true;
 
-		var pusher = new Pusher('e9e4a073342959254078', {
-		cluster: 'mt1'
-		});
-    var channel = pusher.subscribe('new-notification');
-		
+<script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+<script>
+  // Enable pusher logging - don't include this in production
+  Pusher.logToConsole = true;
+
+  var pusher = new Pusher('e9e4a073342959254078', {
+    cluster: 'mt1'
+  });
+  var notifyCount = parseInt($("#notifyCount").attr('data-count'));
+  var old_content = $('.notify-box').html();
+  var channel = pusher.subscribe('new-notification');
+  channel.bind('App\\Events\\NewProviderNotification', function(data) {
+    notifyCount +=1;
+    $('#notifyCount').attr('data-count',notifyCount);
+    $('.notify-box').html('<a href="/admin/show_provider/'+data['provider_id']+'" class="dropdown-item"><i class="fa fa-users mr-2"></i>New Provider on your store "'+data['provider_name']+'"<span class="float-right text-muted text-sm">'+data['time']+'</span></a>'+old_content);
+    $('#notifyCount').html(notifyCount);
+  });
 	</script>
 </body>
 </html>

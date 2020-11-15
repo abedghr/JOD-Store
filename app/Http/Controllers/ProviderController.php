@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NewMessage;
+use App\Models\Message;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Provider;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class ProviderController extends Controller
@@ -130,5 +134,53 @@ class ProviderController extends Controller
             }
             
         }
+    }
+
+    public function chat(){
+        
+        $users = DB::select("select users.id, users.name, users.email, count(is_read) as unread 
+        from users LEFT JOIN messages ON users.id = messages.from_user and is_read = 0 and messages.to_provider = ".Auth::id()." group by users.id,users.name,users.email");
+
+        return view('Provider_views.chat_view',[
+            'users'=>$users
+        ]);
+    }
+
+    public function getMessage($user_id){
+        $my_id = Auth::id();
+
+
+        Message::where(['from_user'=> $user_id,'to_provider'=>$my_id])->update(['is_read'=>1]);
+
+        $messages = Message::Where(function($query) use ($user_id , $my_id) {
+            $query->where('from_provider',$my_id)->where('to_user',$user_id);
+        })->orWhere(function($query) use ($user_id , $my_id) {
+            $query->where('from_user',$user_id)->where('to_provider',$my_id);
+        })->get();
+
+        return view('Provider_views.messages',[
+            'messages'=>$messages
+        ]);
+    }
+
+    public function sendMessage(Request $request){
+        
+        $from = Auth::id();
+        $to = $request->receiver_id;
+        $message = $request->message;
+
+        Message::create([
+            'from_provider' =>$from,
+            'to_user'=>$to,
+            'message'=>$message,
+            'is_read'=>0
+        ]);
+
+        $data = [
+            'from_user' => $from,
+            'to_provider'=>$to,
+        ];
+        event(new NewMessage($data));
+        
     }
 }

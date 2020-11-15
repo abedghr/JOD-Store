@@ -28,7 +28,12 @@
                 <p style="margin-top: -15px "><strong>Phone (2) : </strong>{{$provider->phone2}}</p>
                 <p style="margin-top: -15px "><strong>Email : </strong>{{$provider->email}}</p>
                 <p style="margin-top: -15px "><strong>Address : </strong>{{$provider->address}}</p>
-                <button class="btn btn-secondary  btn-block mt-2">Chat Us</button>
+                @if ($user['user_id'] != null || $user['user_id'] != [])
+                <a href="{{route('chat.show',['id'=>$provider->id])}}" class="btn btn-secondary  btn-block mt-2">Chat Us</a>
+                @else
+                <button class="btn btn-secondary  btn-block mt-2 text-light" disabled>Chat Us</button>
+                <small class="text-danger"><strong>you sould be Login to Chat us</strong></small>
+                @endif
                 
             </div>
         </div>

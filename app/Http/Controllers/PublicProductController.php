@@ -15,7 +15,7 @@ class PublicProductController extends Controller
     public function all(){
         $user = session()->get('user');
         $products = Product::select()->orderBy('id','desc')->paginate(12);
-        $providers_logo = Provider::all();
+        $providers_logo = Provider::where('email_verified_at','<>',null)->get();
         $categories = Category::all();
         return view('public_views.shop',[
             'products'=>$products,

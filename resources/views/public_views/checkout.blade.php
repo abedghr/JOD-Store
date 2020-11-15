@@ -7,8 +7,8 @@
 			
 			<div class="billing_details">
 				<div class="row">
-					<div class="col-lg-7">
-						<h3>Billing Details</h3>
+					<div class="col-lg-7" style="background-color: #f3f3f3;">
+						<h3 class="mt-4">Billing Details</h3>
 						<form class="row contact_form" action="{{route('order.payment')}}" method="post" novalidate="novalidate">
 							@csrf
 							<div class="col-md-6 form-group">
@@ -39,7 +39,6 @@
 							<div class="col-md-6 form-group">
 								<label for="">City Location <span class="text-danger">*</span> :</label>
 								<select class="country_select target city" onchange="changeCity()" id="city" name="city">
-									<option></option>
 									@foreach ($cities as $city)
 										<option class='single-city{{$city->city}}' data-price='{{$city->delivery_price}}' value="{{$city->city}}" @if($user_data != [] && $user_data[0]->city == $city->city) selected clicked @endif>{{$city->city}}</option>
 									@endforeach
@@ -120,29 +119,6 @@
                                     </a>
 								</li>
 							</ul>
-							{{-- <div class="payment_item">
-								<div class="radion_btn">
-									<input type="radio" id="f-option5" name="selector">
-									<label for="f-option5">Check payments</label>
-									<div class="check"></div>
-								</div>
-								<p>Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
-							</div>
-							<div class="payment_item active">
-								<div class="radion_btn">
-									<input type="radio" id="f-option6" name="selector">
-									<label for="f-option6">Paypal </label>
-									<img src="{{asset('public_libraries/img/product/single-product/card.jpg')}}" alt="">
-									<div class="check"></div>
-								</div>
-								<p>Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
-							</div>
-							<div class="creat_account">
-								<input type="checkbox" id="f-option4" name="selector">
-								<label for="f-option4">I’ve read and accept the </label>
-								<a href="#">terms & conditions*</a>
-							</div> 
-							<a class="main_btn mt-5" href="#">Proceed to Paypal</a>--}}
 						</div>
 					</div>
 				</div>

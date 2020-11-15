@@ -6,6 +6,7 @@ use App\Models\Provider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Notification;
+use Carbon\Carbon;
 
 class ManageProviderController extends Controller
 {
@@ -103,6 +104,9 @@ class ManageProviderController extends Controller
     public function show($id)
     {
         $provider = Provider::find($id);
+        Notification::where('type','App\Notifications\NewProviderNotification')->where('data->provider_id',$id)->update(['read_at'=>Carbon::now()]);
+        
+        auth()->user()->unreadNotifications->markAsRead();
         return view('Admin.show_provider',[
             'provider'=>$provider
         ]);

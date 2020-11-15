@@ -20,6 +20,16 @@
                         @csrf
                         <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('click here to request another') }}</button>.
                     </form>
+                    <br>
+                    <a class="btn btn-primary mt-4" href="{{ route('provider.logout') }}"
+                    onclick="event.preventDefault();
+                                    document.getElementById('provider-logout-form').submit();">
+                    {{ __('Logout Provider') }}
+                    </a>
+                    <form id="provider-logout-form" action="{{ route('provider.logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                    <a href="{{route('provider.dashboard')}}" class="btn btn-primary mt-4 ml-3">Go to dashboard If Verified</a>
                 </div>
             </div>
         </div>

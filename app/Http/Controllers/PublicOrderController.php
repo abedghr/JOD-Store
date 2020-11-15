@@ -211,10 +211,14 @@ class PublicOrderController extends Controller
             
         }
 
+
+        $delivery = City::where('city',$request->input('city'))->get();
         
+        $your_total_price = session()->get('total_price');
 
 
         foreach($providers as $provider){
+            $your_total_price += $delivery[0]->delivery_price;
             session()->forget('providers_total_'.$provider['provider_id']);
         }
         session()->forget('cart');
@@ -231,7 +235,7 @@ class PublicOrderController extends Controller
            $user_data[0] = [];
         }
 
-        return redirect()->route('orders.done')->with(['your_orders'=>$your_orders , 'email'=>$request->email]);
+        return redirect()->route('orders.done')->with(['your_orders'=>$your_orders , 'email'=>$request->email , 'city'=>$request->city , 'address'=>$request->address , 'total_price' => $your_total_price]);
         /* return view('public_views.order_done',[
             
             'your_orders'=>$your_orders
@@ -245,19 +249,24 @@ class PublicOrderController extends Controller
             $user = session()->get('user');
             $user_data = User::where('id',$user['user_id'])->get();
         }else{
-            $the_user = session(['user'=>['user_id'=>'','userName'=>'']]);
+           $the_user = session(['user'=>['user_id'=>'','userName'=>'']]);
            $user = $the_user;
            session()->forget('user');
            $user_data[0] = [];
         }
         $your_orders = FacadesSession::get('your_orders');
         $your_email = FacadesSession::get('email');
-
+        $your_city = FacadesSession::get('city');
+        $your_address = FacadesSession::get('address');
+        $your_total_price = FacadesSession::get('total_price');
         if(session()->has('your_orders') && session()->has('email')){
         return view('public_views.order_done',[
             'user'=>$user,
             'your_orders'=>$your_orders,
-            'email'=>$your_email
+            'email'=>$your_email,
+            'city'=>$your_city,
+            'address'=>$your_address,
+            'total_price'=>$your_total_price
         ]);
         }else{
             return redirect()->route('home');

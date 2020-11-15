@@ -40,16 +40,19 @@
                     <table class="table text-center">
                     <thead>
                         <tr>
-                        <th style="width: 80%">Feedback</th>
-                        <th>Created At</th>
+                          <th>View</th>
+                          <th style="width: 80%">Feedback</th>
+                          <th>Created At</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php $i=1;?>
                         @foreach ($feedbacks as $feedback)
                         <tr>
-                            <td>{{$feedback->feedback}}</td>
-                            <td>{{$feedback->created_at->format('Y-m-d')}}</td>
+                          <td><a href="{{route('provider_feedback.show',['id'=>$feedback->id])}}" class="btn btn-warning">Show</a></td>
+                          </td>
+                          <td>{{$feedback->feedback}}</td>
+                          <td>{{$feedback->created_at->format('Y-m-d')}}</td>
                         </tr>
                         @endforeach
                         

@@ -36,7 +36,6 @@
                                 @enderror
                             </div>
                         </div>
-
                         <div class="form-group">
                             <label for="password" class="col-form-label text-md-right">{{ __('Password') }}</label>
 
@@ -51,19 +50,8 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
+                        <div class="form-group mt-5">
                             <div>
                                 <button type="submit" class="btn btn-primary btn-block">
                                     {{ __('Login') }}

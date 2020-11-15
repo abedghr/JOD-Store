@@ -32,7 +32,10 @@ class ProviderLoginController extends Controller
 
         // if Unsuccess then back to admin-login
 
-        return redirect()->back()->with($request->only('email','remember'));
+        return redirect()->back()->withInput()
+        ->withErrors([
+            'password' => 'Incorrect password!'
+        ]);
     }
 
     public function providerLogout(Request $request){

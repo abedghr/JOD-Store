@@ -30,6 +30,11 @@ class RedirectIfAuthenticated
                         return redirect()->route('provider.dashboard');
                     }
                     break;
+                case 'admin_provider':
+                    if(Auth::guard($guard)->check()){
+                        return redirect()->route('provAdmin.dashboard');
+                    }
+                    break;
                 default :
                     if(Auth::guard($guard)->check()){
                         return redirect()->route('home');
