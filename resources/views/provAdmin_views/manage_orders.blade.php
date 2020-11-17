@@ -1,5 +1,5 @@
-<?php $guard="provider" ?>
-@include('Provider_views.includes.provider_header')
+<?php $guard="admin_provider" ?>
+@include('provAdmin_views.includes.provAdmin_header')
 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -14,11 +14,11 @@
                 <h3 class="card-title mt-2"><strong>Orders</strong></h3>
             </div>
             <div class="col-sm-5">
-                <a class="btn btn-light" href="{{route('order.filters',['status'=>0])}}">All</a>
-                <a class="btn btn-light" href="{{route('order.filters',['status'=>1])}}"> In Delivery</a>
-                <a class="btn btn-light" href="{{route('order.filters',['status'=>3])}}"> Done</a>
-                <a class="btn btn-light" href="{{route('order.filters',['status'=>-1])}}"> Declined</a>
-                <a class="btn btn-light" href="{{route('order.filters',['status'=>-2])}}"> Failed</a>
+                <a class="btn btn-light" href="{{route('provAdmin.order.filters',['status'=>0])}}">All</a>
+                <a class="btn btn-light" href="{{route('provAdmin.order.filters',['status'=>1])}}"> In Delivery</a>
+                <a class="btn btn-light" href="{{route('provAdmin.order.filters',['status'=>3])}}"> Done</a>
+                <a class="btn btn-light" href="{{route('provAdmin.order.filters',['status'=>-1])}}"> Declined</a>
+                <a class="btn btn-light" href="{{route('provAdmin.order.filters',['status'=>-2])}}"> Failed</a>
             </div>
             <div class="col-sm-6">
                 <div class="card-tools">
@@ -65,8 +65,8 @@
                 <?php $del = $order->total_With_Delivery - $order->total_price; ?>
                 <tr>
                   <td>
-                      <a href="{{route('order.showDetails',['order_id'=> $order->id])}}" class="btn btn-warning mb-1"><i class="fa fa-eye"></i></a>
-                      <form method="post" action="{{route('order.destroy',['id'=>$order->id])}}" style="display: inline">
+                      <a href="{{route('provAdmin.order.showDetails',['order_id'=> $order->id])}}" class="btn btn-warning mb-1"><i class="fa fa-eye"></i></a>
+                      <form method="post" action="{{route('provAdmin.order.destroy',['id'=>$order->id])}}" style="display: inline">
                           @csrf
                           @method('delete')
                           <button onclick="return confirm('Are you sure ?')" type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
@@ -77,7 +77,7 @@
                   <td>{{$order->phone}}</td>
                   <td>{{$order->city}}</td>
                   <td>{{$order->Address}}</td>
-                  <td><a href="{{route('order.show',['order_id'=>$order->id])}}" class="badge badge-secondary text-light">({{$count_products[$order->id]}}) View Orders</a></td>
+                  <td><a href="{{route('provAdmin.order.show',['order_id'=>$order->id])}}" class="badge badge-secondary text-light">({{$count_products[$order->id]}}) View Orders</a></td>
                   <td>JD-{{$order->total_price}}</td>
                   <td>JD-{{$del}}</td>
                   <td>{{$order->created_at->format('Y-m-d')}}</td>
@@ -186,7 +186,7 @@
   <!-- /.col -->
 </div>
 
-@include('Provider_views.includes.provider_footer')
+@include('provAdmin_views.includes.provAdmin_footer')
 {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  --}}
 <script>
     $(document).ready(function () {
@@ -197,7 +197,7 @@
         var order_id = id;  
             $.ajax({
                 type: "GET",
-                url: "{{route('orders.accept')}}",
+                url: "{{route('provAdmin.orders.accept')}}",
                 data:{
                     "id": order_id
                 },
@@ -216,7 +216,7 @@
         var order_id = id;  
             $.ajax({
                 type: "GET",
-                url: "{{route('orders.decline')}}",
+                url: "{{route('provAdmin.orders.decline')}}",
                 data:{
                     "id": order_id
                 },
@@ -236,7 +236,7 @@
         var order_id = id;  
             $.ajax({
                 type: "GET",
-                url: "{{route('orders.delivery_process')}}",
+                url: "{{route('provAdmin.orders.delivery_process')}}",
                 data:{
                     "id": order_id
                 },
@@ -254,7 +254,7 @@
         var order_id =id;  
             $.ajax({
                 type: "GET",
-                url: "{{route('orders.received')}}",
+                url: "{{route('provAdmin.orders.received')}}",
                 data:{
                     "id": order_id
                 },
@@ -272,7 +272,7 @@
         var order_id = id;  
             $.ajax({
                 type: "GET",
-                url: "{{route('orders.unreceived')}}",
+                url: "{{route('provAdmin.orders.unreceived')}}",
                 data:{
                     "id": order_id
                 },

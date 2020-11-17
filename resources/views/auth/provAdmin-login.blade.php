@@ -2,18 +2,17 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center" style="height: 500px !important;">
+    <div class="row justify-content-center" style="height: 450px !important;">
         <div class="col-md-10">
-            <div class="card" style="height: 100%">
+            <div class="card bg-light" style="height: 100%">
                 {{-- <div class="card-header bg-primary text-light">
                     {{ __('Admin Login') }}
                 </div> --}}
             <div class="row">
                 <div class="col-lg-7">
-                    <div style="background-image: url(https://img.freepik.com/free-photo/woman-typing-keyboard-laptop-account-login-screen-working-office-table-background-safety-concepts-about-internet-use_2034-1339.jpg?size=626&ext=jpg); background-size: 100% 100%; height: 500px; background-repeat: no-repeat;">
-                        <div style="background-color:rgba(0,0,0,0.6); height:100%">
-                            <h1 class="text-light" style="font-family:Arial, Helvetica, sans-serif; position: relative; top: 35%; margin-left:25px;">JOD-Store</h1>
-                            <p class="text-light ml-2 mr-2" style="font-size: 16px; position:relative; top:37%; margin-right: 25px !important; margin-left: 25px !important;">Admin dashboard for manage providers, products and other things that relation in this store, also tracking payments .</p>
+                    <div style="background-image: url({{asset('../img/providerBackgroundLogin.jpg')}}); background-size: 100% 100%; height: 450px; background-repeat: no-repeat;">
+                        <div style="background-color:rgba(0,0,0,0.3); height:100%">
+                            
                         </div>
                         
                         

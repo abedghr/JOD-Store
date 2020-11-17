@@ -1,5 +1,5 @@
-<?php $guard = "provider"; ?>
-@include('provider_views.includes.provider_header')
+<?php $guard = "admin_provider"; ?>
+@include('provAdmin_views.includes.provAdmin_header')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -9,7 +9,7 @@
                 <div class="card-header">FeedBack</div>
                 
                 <div class="card-body">
-                    <strong>From : {{$feedback->user_id ?  $feedback->theusers->name :  "Unknown"}}</strong><br>
+                    <strong>From : {{-- {{$feedback->user_id ?  $feedback->users->name :  "Unknown"}} --}}</strong><br>
                     <p class="mt-2">{{$feedback->feedback}}</p>
                 </div>
             </div>
@@ -18,4 +18,4 @@
     </section>
 </div>
 
-@include('provider_views.includes.provider_footer')
+@include('provAdmin_views.includes.provAdmin_footer')

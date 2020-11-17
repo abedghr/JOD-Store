@@ -47,7 +47,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="exampleInputFile">City Price<span class="text-danger">*</span></label>
-                                <input type="number" class="form-control" name="delivery_price" placeholder="Enter City Price">
+                                <input type="text" class="form-control" name="delivery_price" placeholder="Enter City Price">
                                 @error('delivery_price')
                                     <small class="text-danger"><strong>{{$message}}</strong></small>
                                 @enderror

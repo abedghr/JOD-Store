@@ -130,13 +130,20 @@
         </a>
         <div class="dropdown-menu dropdown-menu-right notify-box" style="width:460px !important;">
           @foreach (auth()->user()->unreadNotifications as $notify)
-         
-          <div class="dropdown-divider"></div>
-          <a href="/admin/show_provider/{{$notify->data['provider_id']}}" class="dropdown-item">
-            <i class="fas fa-users mr-2"></i>New Provider on your store '{{$notify->data['provider_name']}}'
-            <span class="float-right text-muted text-sm">{{$notify->data['date']}}</span>
-          </a>
-         
+          @if ($notify->type == 'App\Notifications\NewProviderNotification')
+            <div class="dropdown-divider"></div>
+            <a href="/admin/show_provider/{{$notify->data['provider_id']}}" class="dropdown-item">
+              <i class="fas fa-users mr-2"></i>New Provider on your store '{{$notify->data['provider_name']}}'
+              <span class="float-right text-muted text-sm">{{$notify->data['date']}}</span>
+            </a>
+          @endif
+          @if ($notify->type == 'App\Notifications\AdminFeedbackNotification')
+            <div class="dropdown-divider"></div>
+            <a href="{{-- /admin/show_provider/{{$notify->data['provider_id']}} --}}" class="dropdown-item">
+              <i class="fas fa-users mr-2"></i>New Feedback from user &nbsp;'{{$notify->data['name']}}'
+              <span class="float-right text-muted text-sm">{{$notify->data['created_at']}}</span>
+            </a>
+          @endif
           @endforeach
           <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>

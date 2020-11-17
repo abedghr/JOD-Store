@@ -262,7 +262,7 @@ Route::group(['prefix' => 'provider'], function () {
 
 Route::group(['prefix' => 'adminsOfProvider'], function () {
     // Login Routes
-    Route::get('/login','Auth\ProvAdminLoginController@showLoginFrom')->name('provAdmin.login');
+    Route::get('/login','Auth\ProvAdminLoginController@showLoginFrom')->name('provAdmin.login')->middleware('preventbackbutton');
     Route::post('/login','Auth\ProvAdminLoginController@login')->name('provAdmin.login.submit');
 
     // Logout Route 
@@ -270,7 +270,37 @@ Route::group(['prefix' => 'adminsOfProvider'], function () {
 
 
     // Dashboard Route
-    Route::get('/','ProvAdminController@index')->name('provAdmin.dashboard');
+    Route::get('/','ProvAdminController@index')->name('provAdmin.dashboard')->middleware('preventbackbutton');
+    
+    // Show Feedbacks Routes
+    Route::get('/feedback','ProvAdminFeedbackController@index')->name('provAdmin_feedback.index')->middleware('preventbackbutton','verified');
+    Route::get('/show_feedback/{id}','ProvAdminFeedbackController@show')->name('provAdmin_feedback.show')->middleware('preventbackbutton','verified');
+
+    // Profile Route
+    Route::get('/profile','ProvAdminController@profile')->name('provAdmin.profile')->middleware('preventbackbutton','verified');
+    Route::put('/update_provAdmin/{id}','ProvAdminController@update')->name('provAdmin.profile.update');
+    // Category Routes
+    Route::get('/categories_show','ProvAdminCategoryController@index')->name('provAdmin_category.index');
+    Route::get('/show_category/{id}','ProvAdminCategoryController@show')->name('provAdmin_category.show');
+
+    // Order Routes
+    Route::get('/orders','ProvAdminOrderController@index')->name('provAdmin.order.index')->middleware('preventbackbutton','verified');
+    Route::get('/orders/{order_id}','ProvAdminOrderController@show')->name('provAdmin.order.show')->middleware('preventbackbutton','verified');
+    Route::get('/order_details/{order_id}','ProvAdminOrderController@show_details')->name('provAdmin.order.showDetails')->middleware('preventbackbutton','verified');
+    Route::get('/orders-filter/{status}','ProvAdminOrderController@order_filter')->name('provAdmin.order.filters');
+    Route::delete('/delete_order/{id}','ProvAdminOrderController@destroy')->name('provAdmin.order.destroy');
+    Route::get('/accept_order','ProvAdminOrderController@accept')->name('provAdmin.orders.accept');
+    Route::get('/decline_order','ProvAdminOrderController@decline')->name('provAdmin.orders.decline');
+    Route::get('/delivery_process_order','ProvAdminOrderController@delivery_process')->name('provAdmin.orders.delivery_process');
+    Route::get('/received_order','ProvAdminOrderController@received_order')->name('provAdmin.orders.received');
+    Route::get('/unreceived_order','ProvAdminOrderController@unreceived_order')->name('provAdmin.orders.unreceived');
+    
+
+    // Messages Routes 
+
+    Route::get('messages','provAdminController@chat')->name('provAdmin.messages.index');
+    Route::get('message/{id}','provAdminController@getMessage')->name('provAdmin.message');
+    Route::post('message','provAdminController@sendMessage');
 });
 
 

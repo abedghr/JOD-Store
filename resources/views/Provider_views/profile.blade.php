@@ -25,8 +25,7 @@
                         <div class="col-md-8 mt-2">
                             <h4><strong>Name :</strong> {{Auth::user()->name}}</h4>
                             <h4><strong>Email :</strong> {{Auth::user()->email}}</h4>
-                            <h4><strong>Email :</strong> {{Auth::user()->phone1}}</h4>
-                            <h4><strong>Mobile Number (1) :</strong> {{Auth::user()->phone2}}</h4>
+                            <h4><strong>Mobile Number (1) :</strong> {{Auth::user()->phone1}}</h4>
                             <h4><strong>Mobile Number (2) :</strong> {{Auth::user()->phone2}}</h4>
                             <h4><strong>Subscribe :</strong> {{Auth::user()->subscribe}}</h4>
                             <h4><strong>Created At :</strong> {{Auth::user()->created_at->format('Y-m-d')}}</h4>

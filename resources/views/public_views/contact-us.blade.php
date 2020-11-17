@@ -9,7 +9,7 @@
                     <div class="info_item">
                         <i class="lnr lnr-home"></i>
                         <h6>Amman , Jordan</h6>
-                        <p>Online store</p>
+                        <p>Mutli stores</p>
                     </div>
                     <div class="info_item">
                         <i class="lnr lnr-phone-handset"></i>
@@ -21,7 +21,7 @@
                     <div class="info_item">
                         <i class="lnr lnr-envelope"></i>
                         <h6>
-                            <a href="#">lookalikestore@gmail.com</a>
+                            <a href="#">jordan.store@gmail.com</a>
                         </h6>
                         <p>Send us your query anytime!</p>
                     </div>

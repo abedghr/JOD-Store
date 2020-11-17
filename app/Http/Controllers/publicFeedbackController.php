@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NewAdminFeedbackNotification;
 use App\Events\NewFeedbackNotification;
+use App\Models\Admin;
 use App\Models\AdminFeedback;
 use App\Models\Feedback;
 use App\Models\Provider;
+use App\Notifications\AdminFeedbackNotification;
 use App\Notifications\ProviderFeedbackNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -54,7 +57,17 @@ class publicFeedbackController extends Controller
             'phone'=>$request->input('phone'),
             'feedback'=>$request->input('message')
         ]);
-
+        
+        $data = [
+            'name'=>$request->input('name'),
+            'email'=>$request->input('email'),
+            'phone'=>$request->input('phone'),
+            'feedback'=>$request->input('message')
+        ];
+        event(new NewAdminFeedbackNotification($data));
+        $new_feedback = AdminFeedback::latest()->first();
+        $admins = Admin::get();
+        Notification::send($admins, new AdminFeedbackNotification($new_feedback));
         return redirect(url()->previous());
     }
 

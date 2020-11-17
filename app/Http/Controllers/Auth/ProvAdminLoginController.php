@@ -10,7 +10,7 @@ class ProvAdminLoginController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('guest:admin_provider');
+        $this->middleware('guest:admin_provider')->except('providerLogout');;
     }
 
     public function showLoginFrom(){
@@ -35,5 +35,10 @@ class ProvAdminLoginController extends Controller
         ->withErrors([
             'password' => 'Incorrect password!'
         ]);
+    }
+
+    public function providerLogout(Request $request){
+        Auth::guard('admin_provider')->logout();
+        return redirect()->route('provAdmin.login');
     }
 }

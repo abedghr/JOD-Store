@@ -63,6 +63,12 @@
     $('.notify-box').html('<a href="/admin/show_provider/'+data['provider_id']+'" class="dropdown-item"><i class="fa fa-users mr-2"></i>New Provider on your store "'+data['provider_name']+'"<span class="float-right text-muted text-sm">'+data['time']+'</span></a>'+old_content);
     $('#notifyCount').html(notifyCount);
   });
+  channel.bind('App\\Events\\NewAdminFeedbackNotification', function(data) {
+    notifyCount +=1;
+    $('#notifyCount').attr('data-count',notifyCount);
+    $('.notify-box').html('<a href="" class="dropdown-item"><i class="fa fa-user mr-2"></i>New Feedback from user "'+data['name']+'"<span class="float-right text-muted text-sm">'+data['time']+'</span></a>'+old_content);
+    $('#notifyCount').html(notifyCount);
+  });
 	</script>
 </body>
 </html>

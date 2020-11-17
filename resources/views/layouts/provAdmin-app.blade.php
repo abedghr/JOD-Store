@@ -23,6 +23,7 @@
 <body>
 
 <div class="container mt-5">
+    <h3 class="text-center"><strong><a href="/home">Visite Store</a> / <a href="/provider/login">Provider Login</a></strong></h3>
     @yield('content')
 </div>
 

@@ -40,10 +40,12 @@
 <script src="{{asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('dist/js/adminlte.js')}}"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-{{-- <script src="{{asset('dist/js/pages/dashboard.js')}}"></script> --}}
+
+  
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
 
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+{{-- <script src="{{asset('dist/js/pages/dashboard.js')}}"></script> --}}
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('dist/js/demo.js')}}"></script>
 
@@ -51,7 +53,7 @@
 
 <script>
   var receiver_id = '';
-  var my_id = "{{ Auth::id() }}";
+  var my_id = "{{ Auth::user()->provider }}";
  $(document).ready(function () {
 
   $.ajaxSetup({
@@ -128,7 +130,7 @@
 
   var channel = pusher.subscribe('new-notification');
   channel.bind('App\\Events\\NewNotification', function(data) {
-    if(data['provider_id'] == "{{Auth::user()->id}}"){
+    if(data['provider_id'] == "{{Auth::user()->provider}}"){
     notifyCount +=1;
     $('#notifyCount').attr('data-count',notifyCount);
     $('.notify-box').html('<a href="/provider/order_details/'+data['order_id']+'" class="dropdown-item"><i class="fa fa-first-order mr-2"></i> There is a new Order from '+data['name']+'<span class="float-right text-muted text-sm">'+data['time']+'</span></a>'+old_content);
@@ -142,7 +144,7 @@
     $('#notifyCount').html(notifyCount);
   });
   channel.bind('App\\Events\\NewFeedbackNotification',function(data){
-    if(data['feedback_provID'] == "{{Auth::user()->id}}"){
+    if(data['feedback_provID'] == "{{Auth::user()->provider}}"){
       notifyCount +=1;
     $('#notifyCount').attr('data-count',notifyCount);
     $('.notify-box').html('<a href="/provider/show_feedback/'+data['feedback_id']+'" class="dropdown-item"><i class="fa fa-list-alt mr-2"></i>There is a new Feedback<span class="float-right text-muted text-sm">'+data['time']+'</span></a>'+old_content);

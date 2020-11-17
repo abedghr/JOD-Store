@@ -34,8 +34,10 @@
   <link rel="stylesheet" href="{{asset('plugins/daterangepicker/daterangepicker.css')}}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{asset('plugins/summernote/summernote-bs4.css')}}">
-  <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+  
+  
+  <!-- Google Font: Source Sans Pro -->
   <link href="{{asset('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700')}}" rel="stylesheet">
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -52,7 +54,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
     </ul>
-
+    
     <!-- SEARCH FORM -->
     {{-- <form class="form-inline ml-3">
       <div class="input-group input-group-sm">
@@ -132,24 +134,25 @@
           <span class="badge badge-warning rounded-circle mynavbar-badge" style=" font-size: 14px !important;" id="notifyCount" data-count="{{count(auth()->user()->unreadNotifications)}}">{{count(auth()->user()->unreadNotifications)}}</span>
         </a>
         <div class="dropdown-menu dropdown-menu-right notify-box" id="" style="width:460px !important;">
-          @foreach (auth()->user()->unreadNotifications as $notify)
+          
+          @foreach (Auth::user()->unreadNotifications as $notify)
           @if ($notify->type == 'App\Notifications\CategoryNotification')
           <div class="dropdown-divider"></div>
-          <a href="{{route('provider_category.show',['id'=>$notify->data['id']])}}" class="dropdown-item">
+          <a href="{{route('provAdmin_category.show',['id'=>$notify->data['id']])}}" class="dropdown-item">
             <i class="fa fa-list-alt mr-2"></i> There is a new Category on store '{{$notify->data['cat_name']}}'
             <span class="float-right text-muted text-sm">{{$notify->data['date']}}</span>
           </a>
           @endif
           @if ($notify->type == 'App\Notifications\OrderNotification')
           <div class="dropdown-divider"></div>
-          <a href="{{route('order.showDetails',['order_id'=> $notify->data['id']])}}" class="dropdown-item">
+          <a href="{{route('provAdmin.order.showDetails',['order_id'=> $notify->data['id']])}}" class="dropdown-item">
             <i class="fa fa-first-order mr-2"></i> There is a new Order from '{{$notify->data['fname']}}'
             <span class="float-right text-muted text-sm">{{$notify->data['date']}}</span>
           </a>
           @endif
           @if ($notify->type == 'App\Notifications\ProviderFeedbackNotification')
           <div class="dropdown-divider"></div>
-          <a href="{{route('provider_feedback.show',['id'=>$notify->data['id']])}}" class="dropdown-item">
+          <a href="{{route('provAdmin_feedback.show',['id'=>$notify->data['id']])}}" class="dropdown-item">
             <i class="fa fa-envelope-square mr-2"></i> There is a new Feedback
             <span class="float-right text-muted text-sm">{{$notify->data['created_at']}}</span>
           </a>
@@ -174,17 +177,17 @@
               <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                   {{ Auth::user()->name }}
               </a>
-              @if (Auth::guard('provider')->check() && $guard == 'provider')
+              @if (Auth::guard('admin_provider')->check() && $guard == 'admin_provider')
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="{{route('provider.profile')}}">
                   Profile
                 </a>
-                <a class="dropdown-item" href="{{ route('provider.logout') }}"
+                <a class="dropdown-item" href="{{ route('provAdmin.logout') }}"
                     onclick="event.preventDefault();
-                                    document.getElementById('provider-logout-form').submit();">
-                    {{ __('Logout Provider') }}
+                                    document.getElementById('provAdmin-logout-form').submit();">
+                    {{ __('Logout') }}
                 </a>
-                <form id="provider-logout-form" action="{{ route('provider.logout') }}" method="POST" class="d-none">
+                <form id="provAdmin-logout-form" action="{{ route('provAdmin.logout') }}" method="POST" class="d-none">
                     @csrf
                 </form>
             </div>
@@ -212,7 +215,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="ml-3">
-            <img src="../../storage/provider_images/{{Auth::user()->image}}" class="img-circle" style="width:40px !important; height:40px !important;" alt="User Image">
+            <img src="../../img/default_user.png" class="img-circle" style="width:40px !important; height:40px !important;" alt="User Image">
         </div>
         <div class="info">
         <a href="{{route('provider.profile')}}" class="d-block">{{Auth::user()->name}}</a>
@@ -225,39 +228,15 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-          <a href="{{route('provider.dashboard')}}" class="nav-link">
+          <a href="{{route('provAdmin.dashboard')}}" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
               </p>
             </a>
           </li>
-          {{-- <li class="nav-item">
-          <a href="{{route('admin_provider.create')}}" class="nav-link">
-              <i class="nav-icon fas fa-user-circle"></i>
-              <p>
-                Manage Admins
-              </p>
-            </a>
-          </li> --}}
           <li class="nav-item">
-          <a href="{{route('product_provider.create')}}" class="nav-link">
-              <i class="nav-icon fa fa-product-hunt"></i>
-              <p>
-                Manage Products
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-          <a href="{{route('related_provider.create')}}" class="nav-link">
-              <i class="nav-icon fa fa-asterisk" aria-hidden="true"></i>
-              <p>
-                Related Products
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-          <a href="{{route('order.index')}}" class="nav-link">
+          <a href="{{route('provAdmin.order.index')}}" class="nav-link">
               <i class="nav-icon fa fa-first-order" aria-hidden="true"></i>
               <p>
                 Manage Orders
@@ -265,7 +244,7 @@
             </a>
           </li>
           <li class="nav-item">
-          <a href="{{route('provider_category.index')}}" class="nav-link">
+          <a href="{{route('provAdmin_category.index')}}" class="nav-link">
               <i class="nav-icon fa fa-list" aria-hidden="true"></i>
               <p>
                 Show Categories
@@ -273,7 +252,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{route('provider_feedback.index')}}" class="nav-link">
+            <a href="{{route('provAdmin_feedback.index')}}" class="nav-link">
                 <i class="nav-icon fa fa-user-circle" aria-hidden="true"></i>
                 <p>
                   Feedbacks
@@ -281,7 +260,7 @@
               </a>
           </li>
           <li class="nav-item">
-            <a href="{{route('messages.index')}}" class="nav-link">
+            <a href="{{route('provAdmin.messages.index')}}" class="nav-link">
                 <i class="nav-icon fa fa-comments" aria-hidden="true"></i>
                 <p>
                   <strong>Users Chat</strong>
@@ -289,7 +268,7 @@
               </a>
           </li>
           <li class="nav-item">
-            <a href="{{route('provider.profile')}}" class="nav-link">
+            <a href="{{route('provAdmin.profile')}}" class="nav-link">
                 <i class="nav-icon fa fa-user-circle" aria-hidden="true"></i>
                 <p>
                   Profile

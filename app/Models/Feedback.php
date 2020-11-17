@@ -10,7 +10,7 @@ class Feedback extends Model
         'feedback','user_id','provider_id'
     ];
 
-    public function users(){
-        $this->belongsTo('App\User');
+    public function theusers(){
+      return  $this->belongsTo('App\User','user_id','id');
     }
 }

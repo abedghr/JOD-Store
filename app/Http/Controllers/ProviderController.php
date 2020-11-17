@@ -22,7 +22,7 @@ class ProviderController extends Controller
 
     public function index()
     {
-        $products_number = Product::all()->count();
+        $products_number = Product::where('provider',Auth::user()->id)->count();
         $orders_data = Order::where('provider',Auth::user()->id)->where('order_status',3)->select()->get();
         $total = 0;
         foreach($orders_data as $ord){
@@ -67,6 +67,8 @@ class ProviderController extends Controller
             if($request->hasFile('cover_image')){
                 $coverImage = time(). '.' . $request->file('cover_image')->getClientOriginalName();
                 $request->file('cover_image')->storeAs('public/Provider_coverImages',$coverImage);
+                
+                if(isset($request->password) || !empty($request->password)){
                 $provider = Provider::where('id',$id)->update([
                     'name'=>$request->prov_name,
                     'email'=>$request->email,
@@ -81,21 +83,51 @@ class ProviderController extends Controller
                     'facebook'=>$request->facebook,
                     'instagram'=>$request->instagram
                 ]);
+                }else{
+                    $provider = Provider::where('id',$id)->update([
+                        'name'=>$request->prov_name,
+                        'email'=>$request->email,
+                        'phone1'=>$request->phone1,
+                        'phone2'=>$request->phone2,
+                        'store_type'=>$request->store_type,
+                        'address'=>$request->address,
+                        'image'=>$fileImage,
+                        'cover_image'=>$coverImage,
+                        'description'=>$request->description,
+                        'facebook'=>$request->facebook,
+                        'instagram'=>$request->instagram
+                    ]);
+                }
                 return redirect()->route('provider.profile');
             }else{
-            $provider = Provider::where('id',$id)->update([
-                'name'=>$request->prov_name,
-                'email'=>$request->email,
-                'password'=>Hash::make($request->password),
-                'phone1'=>$request->phone1,
-                'phone2'=>$request->phone2,
-                'store_type'=>$request->store_type,
-                'address'=>$request->address,
-                'image'=>$fileImage,
-                'description'=>$request->description,
-                'facebook'=>$request->facebook,
-                'instagram'=>$request->instagram
-            ]);
+                if(isset($request->password) || !empty($request->password)){
+                    $provider = Provider::where('id',$id)->update([
+                        'name'=>$request->prov_name,
+                        'email'=>$request->email,
+                        'password'=>Hash::make($request->password),
+                        'phone1'=>$request->phone1,
+                        'phone2'=>$request->phone2,
+                        'store_type'=>$request->store_type,
+                        'address'=>$request->address,
+                        'image'=>$fileImage,
+                        'description'=>$request->description,
+                        'facebook'=>$request->facebook,
+                        'instagram'=>$request->instagram
+                    ]);
+                }else{
+                    $provider = Provider::where('id',$id)->update([
+                        'name'=>$request->prov_name,
+                        'email'=>$request->email,
+                        'phone1'=>$request->phone1,
+                        'phone2'=>$request->phone2,
+                        'store_type'=>$request->store_type,
+                        'address'=>$request->address,
+                        'image'=>$fileImage,
+                        'description'=>$request->description,
+                        'facebook'=>$request->facebook,
+                        'instagram'=>$request->instagram
+                    ]);
+                }
 
             return redirect()->route('provider.profile');
             }
@@ -103,33 +135,63 @@ class ProviderController extends Controller
             if($request->hasFile('cover_image')){
                 $coverImage = time(). '.' . $request->file('cover_image')->getClientOriginalName();
                 $request->file('cover_image')->storeAs('public/Provider_coverImages',$coverImage);
-                $provider = Provider::where('id',$id)->update([
-                    'name'=>$request->prov_name,
-                    'email'=>$request->email,
-                    'password'=>Hash::make($request->password),
-                    'phone1'=>$request->phone1,
-                    'phone2'=>$request->phone2,
-                    'store_type'=>$request->store_type,
-                    'address'=>$request->address,
-                    'cover_image'=>$coverImage,
-                    'description'=>$request->description,
-                    'facebook'=>$request->facebook,
-                    'instagram'=>$request->instagram
-                ]);
+                
+                if(isset($request->password) || !empty($request->password)){
+                    $provider = Provider::where('id',$id)->update([
+                        'name'=>$request->prov_name,
+                        'email'=>$request->email,
+                        'password'=>Hash::make($request->password),
+                        'phone1'=>$request->phone1,
+                        'phone2'=>$request->phone2,
+                        'store_type'=>$request->store_type,
+                        'address'=>$request->address,
+                        'cover_image'=>$coverImage,
+                        'description'=>$request->description,
+                        'facebook'=>$request->facebook,
+                        'instagram'=>$request->instagram
+                    ]);
+                }else{
+                    $provider = Provider::where('id',$id)->update([
+                        'name'=>$request->prov_name,
+                        'email'=>$request->email,
+                        'phone1'=>$request->phone1,
+                        'phone2'=>$request->phone2,
+                        'store_type'=>$request->store_type,
+                        'address'=>$request->address,
+                        'cover_image'=>$coverImage,
+                        'description'=>$request->description,
+                        'facebook'=>$request->facebook,
+                        'instagram'=>$request->instagram
+                    ]);
+                }
                 return redirect()->route('provider.profile');
             }else{
-                $provider = Provider::where('id',$id)->update([
-                    'name'=>$request->prov_name,
-                    'email'=>$request->email,
-                    'password'=>Hash::make($request->password),
-                    'phone1'=>$request->phone1,
-                    'phone2'=>$request->phone2,
-                    'store_type'=>$request->store_type,
-                    'address'=>$request->address,
-                    'description'=>$request->description,
-                    'facebook'=>$request->facebook,
-                    'instagram'=>$request->instagram
-                ]);
+                if(isset($request->password) || !empty($request->password)){
+                    $provider = Provider::where('id',$id)->update([
+                        'name'=>$request->prov_name,
+                        'email'=>$request->email,
+                        'password'=>Hash::make($request->password),
+                        'phone1'=>$request->phone1,
+                        'phone2'=>$request->phone2,
+                        'store_type'=>$request->store_type,
+                        'address'=>$request->address,
+                        'description'=>$request->description,
+                        'facebook'=>$request->facebook,
+                        'instagram'=>$request->instagram
+                    ]);
+                }else{
+                    $provider = Provider::where('id',$id)->update([
+                        'name'=>$request->prov_name,
+                        'email'=>$request->email,
+                        'phone1'=>$request->phone1,
+                        'phone2'=>$request->phone2,
+                        'store_type'=>$request->store_type,
+                        'address'=>$request->address,
+                        'description'=>$request->description,
+                        'facebook'=>$request->facebook,
+                        'instagram'=>$request->instagram
+                    ]);
+                }
                 return redirect()->route('provider.profile');
             }
             
