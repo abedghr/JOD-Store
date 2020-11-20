@@ -24,8 +24,8 @@ class CreateProductsOfOrdersTable extends Migration
             $table->text('main_image')->default('product_default.jpg');
             $table->bigInteger('order_id')->unsigned();
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('category')->references('id')->on('categories')->onUpdate('cascade');
-            $table->foreign('provider')->references('id')->on('providers')->onUpdate('cascade');
+            $table->foreign('category')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('provider')->references('id')->on('providers')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

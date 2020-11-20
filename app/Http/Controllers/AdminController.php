@@ -8,6 +8,7 @@ use App\Models\City;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Provider;
+use App\Models\Notification;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -107,4 +108,17 @@ class AdminController extends Controller
         Admin::where('id',$id)->delete();
         return redirect()->route('admin.create');
     }
+
+    public function all_notifications(){
+        $notifications = Auth::user()->notifications()->orderBy('created_at','desc')->get();
+        return view('Admin.all_notifications',[
+            'notifications'=>$notifications
+        ]);
+    }
+
+    public function delete_notification($id){
+        Notification::where('id',$id)->delete();
+        return redirect(url()->previous());
+    }
+
 }

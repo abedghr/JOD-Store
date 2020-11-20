@@ -339,7 +339,7 @@ class PublicOrderController extends Controller
                 <div class="card-body">
                     <div class="track">
                         <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Order Pending</span> </div>
-                        <div class="step active"> <span class="icon"> <i class="fa fa-times"></i> </span> <span class="text"> Order declined</span> </div>
+                        <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text"> Order Confirmed</span> </div>
                         <div class="step active"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text"> On Delivery</span> </div>
                         <div class="step active-failed"> <span class="icon"> <i class="fa fa-times"></i> </span> <span class="text">Un-received Order</span> </div>
                     </div>

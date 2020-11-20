@@ -83,7 +83,7 @@ class ProvAdminController extends Controller
     public function chat(){
         
         $users = DB::select("select users.id, users.name, users.email, count(is_read) as unread 
-        from users LEFT JOIN messages ON users.id = messages.from_user and is_read = 0 and messages.to_provider = ".Auth::user()->provider." group by users.id,users.name,users.email");
+        from users LEFT JOIN messages ON users.id = messages.from_user and is_read = 0 and messages.to_provider = ".Auth::user()->provider." group by users.id,users.name,users.email ORDER BY messages.is_read desc");
 
         return view('provAdmin_views.chat_view',[
             'users'=>$users
@@ -126,6 +126,19 @@ class ProvAdminController extends Controller
         ];
         event(new NewMessage($data));
         
+    }
+
+    public function all_notifications(){
+        $provider = Provider::find(Auth::user()->provider);
+        $notifications = $provider->notifications()->orderBy('created_at','desc')->get();
+        return view('provAdmin_views.all_notifications',[
+            'notifications'=>$notifications
+        ]);
+    }
+
+    public function delete_notification($id){
+        Notification::where('id',$id)->delete();
+        return redirect(url()->previous());
     }
 
 }

@@ -41,6 +41,9 @@
 <!-- AdminLTE App -->
 <script src="{{asset('dist/js/adminlte.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+
 <script src="{{asset('dist/js/pages/dashboard.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('dist/js/demo.js')}}"></script>
@@ -66,7 +69,7 @@
   channel.bind('App\\Events\\NewAdminFeedbackNotification', function(data) {
     notifyCount +=1;
     $('#notifyCount').attr('data-count',notifyCount);
-    $('.notify-box').html('<a href="" class="dropdown-item"><i class="fa fa-user mr-2"></i>New Feedback from user "'+data['name']+'"<span class="float-right text-muted text-sm">'+data['time']+'</span></a>'+old_content);
+    $('.notify-box').html('<a href="/admin/Messages" class="dropdown-item"><i class="fas fa-envelope mr-2"></i>New Feedback from user "'+data['name']+'"<span class="float-right text-muted text-sm">'+data['time']+'</span></a>'+old_content);
     $('#notifyCount').html(notifyCount);
   });
 	</script>

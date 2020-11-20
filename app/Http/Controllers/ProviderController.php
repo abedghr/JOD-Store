@@ -7,6 +7,7 @@ use App\Models\Message;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Provider;
+use App\Models\Notification;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -201,7 +202,7 @@ class ProviderController extends Controller
     public function chat(){
         
         $users = DB::select("select users.id, users.name, users.email, count(is_read) as unread 
-        from users LEFT JOIN messages ON users.id = messages.from_user and is_read = 0 and messages.to_provider = ".Auth::id()." group by users.id,users.name,users.email");
+        from users LEFT JOIN messages ON users.id = messages.from_user and is_read = 0 and messages.to_provider = ".Auth::id()." group by users.id,users.name,users.email ORDER BY messages.is_read desc");
 
         return view('Provider_views.chat_view',[
             'users'=>$users
@@ -244,5 +245,17 @@ class ProviderController extends Controller
         ];
         event(new NewMessage($data));
         
+    }
+
+    public function all_notifications(){
+        $notifications = Auth::user()->notifications()->orderBy('id', 'DESC')->get();
+        return view('provider_views.all_notifications',[
+            'notifications'=>$notifications
+        ]);
+    }
+
+    public function delete_notification($id){
+        Notification::where('id',$id)->delete();
+        return redirect(url()->previous());
     }
 }

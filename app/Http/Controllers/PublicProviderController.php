@@ -9,7 +9,9 @@ use App\Models\Feedback;
 use App\Models\Message;
 use App\Models\Product;
 use App\Models\Provider;
+use App\Notifications\ProviderMessageNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 use Pusher\Pusher;
 
 use function Symfony\Component\String\b;
@@ -147,8 +149,6 @@ class PublicProviderController extends Controller
             'is_read'=>0
         ]);
         
-        
-
         $data = [
             'from_user' => $from,
             'to_provider'=>$to,

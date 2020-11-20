@@ -17,8 +17,8 @@ class CategoryNotification extends Notification
      *
      * @return void
      */
-
-     public $new_notify;
+    
+    public $new_notify;
     public function __construct(Category $notify)
     {
         

@@ -1,7 +1,7 @@
 <?php $pageTitle = "Contact Us" ?>
 @include('public_views.includes.public_header')
 <br>
-<section class="contact_area p_120"  style="margin-top: 110px;">
+<section class="contact_area p_120 bg-light"  style="margin-top: 110px;">
     <div class="container">
         <div class="row">
             <div class="col-lg-3">

@@ -109,6 +109,9 @@ Route::group(['prefix' => 'admin'], function () {
     //Show Product Route 
     Route::get('/show_product/{id}','ProductController@show')->name('admin_product.show');
 
+    // Orders Route
+    Route::get('/all-orders','AdminOrdersController@allOrders')->name('admin.allOrders');
+
     // Manage City Delivery Price Route
     Route::get('/manage_delivery','CityController@create')->name('delivery.price');
 
@@ -145,7 +148,10 @@ Route::group(['prefix' => 'admin'], function () {
     // Profile Route
     Route::get('/profile','AdminController@profile')->name('admin.profile');
 
-    
+    // Notification Route 
+    Route::get('/notifications','AdminController@all_notifications')->name('admin.allNotifications');
+    Route::delete('/delete_notification/{id}','AdminController@delete_notification')->name('admin.notification.destroy');
+
 });
 
 Route::group(['prefix' => 'provider'], function () {
@@ -250,6 +256,9 @@ Route::group(['prefix' => 'provider'], function () {
     Route::get('/unreceived_order','OrderController@unreceived_order')->name('orders.unreceived');
     
 
+    // Notifications Route
+    Route::get('/notifications','ProviderController@all_notifications')->name('provider.allNotifications');
+    Route::delete('/delete_notification/{id}','ProviderController@delete_notification')->name('notification.destroy');
 
     // Messages Routes 
 
@@ -295,6 +304,11 @@ Route::group(['prefix' => 'adminsOfProvider'], function () {
     Route::get('/received_order','ProvAdminOrderController@received_order')->name('provAdmin.orders.received');
     Route::get('/unreceived_order','ProvAdminOrderController@unreceived_order')->name('provAdmin.orders.unreceived');
     
+
+    // Notifications Route
+    Route::get('/notifications','ProvAdminController@all_notifications')->name('provAdmin.allNotifications');
+    Route::delete('/delete_notification/{id}','ProvAdminController@delete_notification')->name('notification.destroy');
+
 
     // Messages Routes 
 
