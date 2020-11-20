@@ -150,7 +150,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="ml-3">
-            <img src="../../storage/provider_images/{{Auth::user()->image}}" class="img-circle" style="width:40px !important; height:40px !important;" alt="User Image">
+            <img src="../../img/provider_images/{{Auth::user()->image}}" class="img-circle" style="width:40px !important; height:40px !important;" alt="User Image">
         </div>
         <div class="info">
         <a href="{{route('provider.profile')}}" class="d-block">{{Auth::user()->name}}</a>

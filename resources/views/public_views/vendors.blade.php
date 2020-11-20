@@ -35,7 +35,7 @@
                 <a href="{{route('public_provider.profile',['id'=>$provider->id])}}">
                     <div class="col-lg-4 mb-3">
                         <div class="hot_deal_box"  style="height:300px;">
-                            <img src="../storage/Provider_images/{{$provider->image}}" height="100%" width="100%"  alt="">
+                            <img src="../img/Provider_images/{{$provider->image}}" height="100%" width="100%"  alt="">
                             <div class="content">
                                 <h2>{{$provider->name}}</h2>
                                 <p>shop now</p>

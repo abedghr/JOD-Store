@@ -3,7 +3,7 @@
 
 
 <!--================Home Banner Area =================-->
-    <section class="bg-profile" style="margin-top: 122px; background-image: url('../../storage/Provider_coverImages/{{$provider->cover_image}}')">
+    <section class="bg-profile" style="margin-top: 122px; background-image: url('../../img/Provider_coverImages/{{$provider->cover_image}}')">
         <div class="d-flex align-items-center">
             <div class="container">
             </div>
@@ -12,7 +12,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-3 text-center">
-                <img src="../../storage/provider_images/{{$provider->image}}" class="rounded-circle" width="250" height="250" style="margin-top:-80px; padding:10px; border:1px solid silver" alt="">
+                <img src="../../img/provider_images/{{$provider->image}}" class="rounded-circle" width="250" height="250" style="margin-top:-80px; padding:10px; border:1px solid silver" alt="">
             </div>
             <div class="col-lg-6">
                 <small>{{$provider->store_type}}</small>
@@ -59,7 +59,7 @@
                         <div class="col-lg-3 col-md-3 col-sm-6">
                             <div class="f_p_item">
                                 <div class="f_p_img">
-                                    <img class="img-fluid rounded" src="../../storage/Product_images/{{$product->main_image}}" alt="">
+                                    <img class="img-fluid rounded" src="../../img/Product_images/{{$product->main_image}}" alt="">
                                     <div class="p_icon">
                                         <a href="{{route('product.show',['id'=>$product->id])}}">
                                             <i class="lnr lnr-eye"></i>

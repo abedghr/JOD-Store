@@ -235,7 +235,7 @@
               @foreach ($products as $product)
               <tr>
                 <td>
-                <img src="../../storage/Product_images/{{$product->main_image}}" width="60" height="60" class="rounded-circle" alt="">
+                <img src="../../img/Product_images/{{$product->main_image}}" width="60" height="60" class="rounded-circle" alt="">
                 </td>
                 <td>{{$product->prod_name}}</td>
                 <td class="text-danger"><del><strong>JD{{$product->old_price ? $product->old_price : 00}}</strong></del></td>

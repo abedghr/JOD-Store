@@ -30,7 +30,7 @@
                     
                 <div class="col-md-4">
                     <p class="text-center mt-3"><strong> Product Image </strong></p>
-                    <img src="../../storage/Category_images/{{$category->cat_image}}" style="height:250px; width:100%;" class="rounded" alt="...">
+                    <img src="../../img/Category_images/{{$category->cat_image}}" style="height:250px; width:100%;" class="rounded" alt="...">
                 </div>
                 
                 <div class="col-md-8">

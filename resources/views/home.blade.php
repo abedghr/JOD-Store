@@ -17,7 +17,7 @@
 				<a class="text-light" href="{{route('category.show',['id'=>$category->id])}}">
                 <div class="col-lg-4 mb-3 text-light">
 					<div class="hot_deal_box"  style="height:200px;">
-						<img class="" src="../storage/Category_images/{{$category->cat_image}}" height="100%" width="100%"  alt="">
+						<img class="" src="../img/Category_images/{{$category->cat_image}}" height="100%" width="100%"  alt="">
 						<div class="content">
 							<h2>{{$category->cat_name}}</h2>
 							<p><a href="{{route('category.show',['id'=>$category->id])}}" class="text-light">shop now</a></p>
@@ -40,7 +40,7 @@
                 @foreach ($providers_logo as $logo)
                     <div class="item">
                         <a href="{{route('public_provider.profile',['id'=>$logo->id])}}">
-                            <img src="../storage/Provider_images/{{$logo->image}}" width="120" height="75" class="rounded-circle" alt="">
+                            <img src="../img/Provider_images/{{$logo->image}}" width="120" height="75" class="rounded-circle" alt="">
                             <label class="text-secondary">{{$logo->name}}</label>
                         </a>
                     </div>
@@ -66,7 +66,7 @@
                         <div class="col col1">
                             <div class="f_p_item">
                                 <div class="f_p_img">
-                                    <img class="img-fluid" src="../storage/Product_images/{{$product->main_image}}" alt="">
+                                    <img class="img-fluid" src="../img/Product_images/{{$product->main_image}}" alt="">
                                     <div class="p_icon">
                                         <a href="{{route('product.show',['id'=>$product->id])}}">
 											<i class="lnr lnr-eye"></i>

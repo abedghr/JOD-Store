@@ -37,7 +37,7 @@
                                     <td>
                                         <div class="media mt-3">
                                             <div class="d-flex">
-                                                <img src="../../storage/Product_images/{{$ca['image']}}" width="80" height="80" alt="">
+                                                <img src="../../img/Product_images/{{$ca['image']}}" width="80" height="80" alt="">
                                             </div>
                                             <div class="media-body">
 												<a href="{{route('product.show',['id'=>$ca['id']])}}">

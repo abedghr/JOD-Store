@@ -153,7 +153,7 @@
               @foreach ($providers as $provider)
               <tr>
                 <td>
-                <img src="../storage/Provider_images/{{$provider->image}}" width="60" height="60" class="rounded-circle" alt="">
+                <img src="../img/Provider_images/{{$provider->image}}" width="60" height="60" class="rounded-circle" alt="">
                 </td>
                 <td>{{$provider->name}}</td>
                 <td>{{$provider->email}}</td>

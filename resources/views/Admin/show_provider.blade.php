@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <p class="text-center mt-3">Provider Image</p>
-                    <img src="../../storage/Provider_images/{{$provider->image}}" style="height:275px; width:100%;" class="rounded" alt="...">
+                    <img src="../../img/Provider_images/{{$provider->image}}" style="height:275px; width:100%;" class="rounded" alt="...">
                 </div>
                 
                 <div class="col-md-4">
@@ -45,7 +45,7 @@
                 </div>
                 <div class="col-md-4">
                     <p class="text-center mt-3">Provider Cover Image</p>
-                    <img src="../../storage/Provider_coverimages/{{$provider->cover_image}}" style="height:275px; width:100%;" class="rounded" alt="...">
+                    <img src="../../img/Provider_coverimages/{{$provider->cover_image}}" style="height:275px; width:100%;" class="rounded" alt="...">
                 </div>
             </div>
             <hr>

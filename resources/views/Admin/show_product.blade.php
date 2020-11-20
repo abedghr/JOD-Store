@@ -25,7 +25,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <p class="text-center mt-3"><strong> Product Image </strong></p>
-                    <img src="../../storage/Product_images/{{$product->main_image}}" style="height:435px; width:100%;" class="rounded" alt="...">
+                    <img src="../../img/Product_images/{{$product->main_image}}" style="height:435px; width:100%;" class="rounded" alt="...">
                 </div>
                 
                 <div class="col-md-8">
@@ -52,7 +52,7 @@
               </div>
               @foreach ($images as $image)
               <div class="col-md-3">
-                <img src="../../storage/Product_images/{{$image->image}}" height="200" width="100%" class="rounded  pl-2 pr-2 pb-2" alt="...">
+                <img src="../../img/Product_images/{{$image->image}}" height="200" width="100%" class="rounded  pl-2 pr-2 pb-2" alt="...">
               </div>
               @endforeach
             </div>

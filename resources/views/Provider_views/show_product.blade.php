@@ -25,7 +25,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <p class="text-center mt-3"><strong> Product Image </strong></p>
-                    <img src="../../storage/Product_images/{{$product->main_image}}" style="height:435px; width:100%;" class="rounded" alt="...">
+                    <img src="../../img/Product_images/{{$product->main_image}}" style="height:435px; width:100%;" class="rounded" alt="...">
                 </div>
                 
                 <div class="col-md-8">

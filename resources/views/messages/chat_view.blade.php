@@ -11,7 +11,7 @@
 
                                 <div class="media">
                                     <div class="media-left">
-                                        <img src="../storage/Provider_images/{{$provider->image}}" alt="" class="media-object">
+                                        <img src="../img/Provider_images/{{$provider->image}}" alt="" class="media-object">
                                     </div>
 
                                     <div class="media-body">

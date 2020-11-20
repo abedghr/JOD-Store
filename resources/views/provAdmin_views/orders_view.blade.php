@@ -27,8 +27,8 @@
                 <tr>
                     <td>{{$i}}</td>
                     <td>
-                        <a href="../../storage/Product_images/{{$order['main_image']}}">
-                        <img src="../../storage/Product_images/{{$order['main_image']}}" width="80" height="80" class="rounded" alt="">
+                        <a href="../../img/Product_images/{{$order['main_image']}}">
+                        <img src="../../img/Product_images/{{$order['main_image']}}" width="80" height="80" class="rounded" alt="">
                         </a>
                     </td>
                     <td><strong>{{$order['prod_name']}}</strong></td>

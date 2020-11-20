@@ -13,11 +13,11 @@
 							<ol class="carousel-indicators">
 								<?php $i=1; $x=""; ?>
 								<li data-target="#carouselExampleIndicators" data-slide-to="{{$i}}" hidden>
-									<img src="../storage/Product_images/{{$product->main_image}}" width="60" height="60" alt="">
+									<img src="../img/Product_images/{{$product->main_image}}" width="60" height="60" alt="">
 								</li>
 								@foreach ($images as $image)
 								<li data-target="#carouselExampleIndicators" data-slide-to="{{$i}}">
-									<img src="../storage/Product_images/{{$image->image}}" width="60" height="60" alt="">
+									<img src="../img/Product_images/{{$image->image}}" width="60" height="60" alt="">
 								</li>
 								
 								<?php $i++; $x=$image->image; ?>
@@ -25,11 +25,11 @@
 							</ol>
 							<div class="carousel-inner">
 								<div class="carousel-item active">
-									<img class="d-block w-100" src="../storage/Product_images/{{$product->main_image}}">
+									<img class="d-block w-100" src="../img/Product_images/{{$product->main_image}}">
 								</div>
 								@foreach ($images as $item)
 								<div class="carousel-item">
-									<img class="d-block w-100" src="../storage/Product_images/{{$item->image}}">
+									<img class="d-block w-100" src="../img/Product_images/{{$item->image}}">
 								</div>
 								@endforeach
 							</div>

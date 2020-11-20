@@ -14,7 +14,7 @@
                 @foreach ($providers_logo as $logo)
                     <div class="item">
                         <a href="{{route('public_provider.profile',['id'=>$logo->id])}}">
-                            <img src="../storage/Provider_images/{{$logo->image}}" width="120" height="75" class="rounded-circle" alt="">
+                            <img src="../img/Provider_images/{{$logo->image}}" width="120" height="75" class="rounded-circle" alt="">
                             <label class="text-secondary">{{$logo->name}}</label>
                         </a>
                     </div>
@@ -41,7 +41,7 @@
                             <div class="col-lg-3 col-md-3 col-sm-6">
                                 <div class="f_p_item">
                                     <div class="f_p_img">
-                                        <img class="img-fluid rounded" src="../storage/Product_images/{{$product->main_image}}" alt="">
+                                        <img class="img-fluid rounded" src="../img/Product_images/{{$product->main_image}}" alt="">
                                         <div class="p_icon">
                                             <a href="{{route('product.show',['id'=>$product->id])}}">
                                                 <i class="lnr lnr-eye"></i>

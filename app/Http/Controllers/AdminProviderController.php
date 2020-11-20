@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AdminOfProvider;
+use App\Models\AdminsOfProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -30,7 +31,7 @@ class AdminProviderController extends Controller
      */
     public function create()
     {
-        $admins = AdminOfProvider::select()->orderBy('id','desc')->paginate(5);
+        $admins = AdminsOfProvider::select()->orderBy('id','desc')->paginate(5);
         return view('Provider_views.manage_admins_provider',[
             'admins'=>$admins
         ]);    
@@ -50,7 +51,7 @@ class AdminProviderController extends Controller
             'password'=>'required|min:8'
         ]);
 
-        $admin = AdminOfProvider::create([
+        $admin = AdminsOfProvider::create([
             'name'=> $request->input('admin_name'),
             'email'=> $request->input('email'),
             'password'=> Hash::make($request->input('password'))
@@ -78,7 +79,7 @@ class AdminProviderController extends Controller
      */
     public function edit($id)
     {
-        $admin = AdminOfProvider::find($id);
+        $admin = AdminsOfProvider::find($id);
         return view("Provider_views.edit_admin_provider",[
             'admin'=>$admin
         ]);
@@ -100,7 +101,7 @@ class AdminProviderController extends Controller
                 'email'=>'required|email|unique:admins',
                 'password'=>'min:8'
             ]);
-            $update_admin = AdminOfProvider::where('id',$id)->update([
+            $update_admin = AdminsOfProvider::where('id',$id)->update([
                 'name'=>$request->input('admin_name'),
                 'email'=>$request->input('email'),
                 'password'=> Hash::make($request->input('password'))
@@ -111,7 +112,7 @@ class AdminProviderController extends Controller
                 'admin_name'=>'required',
                 'email'=>'required|email|unique:admins'
             ]);
-            $update_admin = AdminOfProvider::where('id',$id)->update([
+            $update_admin = AdminsOfProvider::where('id',$id)->update([
                 'name'=>$request->input('admin_name'),
                 'email'=>$request->input('email'),
             ]);
@@ -127,7 +128,7 @@ class AdminProviderController extends Controller
      */
     public function destroy($id)
     {
-        AdminOfProvider::where('id',$id)->delete();
+        AdminsOfProvider::where('id',$id)->delete();
         return redirect()->route('admin_provider.create');
     }
 }

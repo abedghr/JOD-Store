@@ -20,7 +20,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-4 text-center">
-                            <img src="../storage/Provider_images/{{Auth::user()->image}}" class="rounded" width="275" height="275" alt="">
+                            <img src="../img/Provider_images/{{Auth::user()->image}}" class="rounded" width="275" height="275" alt="">
                         </div>
                         <div class="col-md-8 mt-2">
                             <h4><strong>Name :</strong> {{Auth::user()->name}}</h4>
@@ -107,7 +107,7 @@
             </div>
             <div class="row">
               <div class="col-md-3">
-                <img src="../storage/Provider_images/{{Auth::user()->image}}" height="200" width="200" alt="">
+                <img src="../img/Provider_images/{{Auth::user()->image}}" height="200" width="200" alt="">
               </div>
               <div class="col-md-9 mt-5">
                 <div class="form-group">
@@ -126,7 +126,7 @@
             </div>
             <div class="row mt-2">
               <div class="col-md-3">
-                <img src="../storage/Provider_coverimages/{{Auth::user()->cover_image}}" height="175" width="200" alt="">
+                <img src="../img/Provider_coverimages/{{Auth::user()->cover_image}}" height="175" width="200" alt="">
               </div>
               <div class="col-md-9 mt-5">
                 <div class="form-group">

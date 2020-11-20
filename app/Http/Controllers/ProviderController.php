@@ -63,11 +63,13 @@ class ProviderController extends Controller
 
         if($request->hasFile('image')){
             $fileImage = time() . '.' . $request->file('image')->getClientOriginalName();
-            $request->file('image')->storeAs('public/Provider_images',$fileImage);
+            /* $request->file('image')->storeAs('public/Provider_images',$fileImage); */
+            $request->file('image')->move('img/Provider_images',$fileImage);
             
             if($request->hasFile('cover_image')){
                 $coverImage = time(). '.' . $request->file('cover_image')->getClientOriginalName();
-                $request->file('cover_image')->storeAs('public/Provider_coverImages',$coverImage);
+                /* $request->file('cover_image')->storeAs('public/Provider_coverImages',$coverImage); */
+                $request->file('cover_image')->move('img/Provider_coverImages',$coverImage);
                 
                 if(isset($request->password) || !empty($request->password)){
                 $provider = Provider::where('id',$id)->update([
@@ -135,7 +137,8 @@ class ProviderController extends Controller
         }else{
             if($request->hasFile('cover_image')){
                 $coverImage = time(). '.' . $request->file('cover_image')->getClientOriginalName();
-                $request->file('cover_image')->storeAs('public/Provider_coverImages',$coverImage);
+                /* $request->file('cover_image')->storeAs('public/Provider_coverImages',$coverImage); */
+                $request->file('cover_image')->move('img/Provider_coverImages',$coverImage);
                 
                 if(isset($request->password) || !empty($request->password)){
                     $provider = Provider::where('id',$id)->update([

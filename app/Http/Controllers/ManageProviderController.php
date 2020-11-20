@@ -54,11 +54,13 @@ class ManageProviderController extends Controller
 
         if($request->hasFile('image')){
             $fileImage = time() . '.' . $request->file('image')->getClientOriginalName();
-            $request->file('image')->storeAs('public/Provider_images',$fileImage);
+            /* $request->file('image')->storeAs('public/Provider_images',$fileImage); */
+            $request->file('image')->move('img/Provider_images',$fileImage);
             
             if($request->hasFile('cover_image')){
                 $coverImage = time(). '.' . $request->file('cover_image')->getClientOriginalName();
-                $request->file('cover_image')->storeAs('public/Provider_coverImages',$coverImage);
+                /* $request->file('cover_image')->storeAs('public/Provider_coverImages',$coverImage); */
+                $request->file('cover_image')->move('img/Provider_coverImages',$coverImage);
             }else{
                 $coverImage='default_cover.jpg';
             }
@@ -77,7 +79,8 @@ class ManageProviderController extends Controller
         }else{
             if($request->hasFile('cover_image')){
                 $coverImage = time(). '.' . $request->file('cover_image')->getClientOriginalName();
-                $request->file('cover_image')->storeAs('public/Provider_coverImages',$coverImage);
+                /* $request->file('cover_image')->storeAs('public/Provider_coverImages',$coverImage); */
+                $request->file('cover_image')->move('img/Provider_coverImages',$coverImage);
             }else{
                 $coverImage='default_cover.jpg';
             }
@@ -143,11 +146,13 @@ class ManageProviderController extends Controller
 
         if($request->hasFile('image')){
             $fileImage = time() . '.' . $request->file('image')->getClientOriginalName();
-            $request->file('image')->storeAs('public/Provider_images',$fileImage);
+            /* $request->file('image')->storeAs('public/Provider_images',$fileImage); */
+            $request->file('image')->move('img/Provider_images',$fileImage);
             
             if($request->hasFile('cover_image')){
                 $coverImage = time(). '.' . $request->file('cover_image')->getClientOriginalName();
-                $request->file('cover_image')->storeAs('public/Provider_coverImages',$coverImage);
+                /* $request->file('cover_image')->storeAs('public/Provider_coverImages',$coverImage); */
+                $request->file('cover_image')->move('img/Provider_coverImages',$coverImage);
                 $provider = Provider::where('id',$id)->update([
                     'name'=>$request->prov_name,
                     'email'=>$request->email,
@@ -174,7 +179,8 @@ class ManageProviderController extends Controller
         }else{
             if($request->hasFile('cover_image')){
                 $coverImage = time(). '.' . $request->file('cover_image')->getClientOriginalName();
-                $request->file('cover_image')->storeAs('public/Provider_coverImages',$coverImage);
+                /* $request->file('cover_image')->storeAs('public/Provider_coverImages',$coverImage); */
+                $request->file('cover_image')->move('img/Provider_coverImages',$coverImage);
                 $provider = Provider::where('id',$id)->update([
                     'name'=>$request->prov_name,
                     'email'=>$request->email,

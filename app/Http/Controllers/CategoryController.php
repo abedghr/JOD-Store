@@ -51,8 +51,10 @@ class CategoryController extends Controller
             'cat_name'=>'required|unique:categories',
         ]);
         if($request->hasFile('cat_image')){
+
             $fileImage = time() . '.' . $request->file('cat_image')->getClientOriginalName();
-            $request->file('cat_image')->storeAs('public/Category_images',$fileImage);
+            /* $request->file('cat_image')->storeAs('public/Category_images',$fileImage); */
+            $request->file('cat_image')->move('img/Category_images',$fileImage);
             
             Category::create([
                 'cat_name'=>$request->input('cat_name'),
@@ -126,7 +128,8 @@ class CategoryController extends Controller
 
         if($request->hasFile('cat_image')){
             $fileImage = time() . '.' . $request->file('cat_image')->getClientOriginalName();
-            $request->file('cat_image')->storeAs('public/Category_images',$fileImage);
+            /* $request->file('cat_image')->storeAs('public/Category_images',$fileImage); */
+            $request->file('cat_image')->move('img/Category_images',$fileImage);
 
             Category::where('id',$id)->update([
                 'cat_name'=> $request->cat_name,

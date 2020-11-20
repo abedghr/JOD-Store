@@ -98,7 +98,7 @@
               @foreach ($categories as $cat)
               <tr>
                 <td>
-                <img src="../storage/Category_images/{{$cat->cat_image}}" width="60" height="60" class="rounded-circle" alt="">
+                <img src="../img/Category_images/{{$cat->cat_image}}" width="60" height="60" class="rounded-circle" alt="">
                 </td>
                 <td>{{$cat->cat_name}}</td>
                 <td>{{$cat->providers_number}}</td>

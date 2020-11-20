@@ -226,7 +226,7 @@
               @foreach ($images as $image)
               <tr>
                 <td>
-                <img src="../../storage/Product_images/{{$image->image}}" width="80%" height="250" class="rounded" alt="">
+                <img src="../../img/Product_images/{{$image->image}}" width="80%" height="250" class="rounded" alt="">
                 </td>
                 <td>
                 <form method="post" action="{{route('product_provider_image.delete',['id'=>$image->id])}}" style="display: inline">

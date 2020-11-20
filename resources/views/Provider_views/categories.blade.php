@@ -41,7 +41,7 @@
 
               @foreach ($categories as $category)
                 <tr>
-                  <td><img src="../storage/Category_images/{{$category->cat_image}}" width="60" height="60" class="rounded-circle" alt=""></td>
+                  <td><img src="../img/Category_images/{{$category->cat_image}}" width="60" height="60" class="rounded-circle" alt=""></td>
                   <td>{{$category->cat_name}}</td>
                   <td>{{$category->created_at->format('Y-m-d')}}</td>
                   <td>

@@ -62,7 +62,8 @@ class ProductController extends Controller
         ]);
         if($request->hasFile('main_image')){
             $Image = time().'.'.$request->file('main_image')->getClientOriginalName();
-            $request->file('main_image')->storeAs('public/Product_images',$Image);
+            /* $request->file('main_image')->storeAs('public/Product_images',$Image); */
+            $request->file('main_image')->move('img/Product_images',$Image);
 
 
             Product::create([
@@ -91,7 +92,8 @@ class ProductController extends Controller
                     $filename = pathinfo($imageName,PATHINFO_FILENAME);
                     $extention = $image->getClientOriginalExtension();
                     $fileNameToStore = $filename.'_'.time().','.$extention;
-                    $image->storeAs('public/Product_images',$fileNameToStore);
+                    /* $image->storeAs('public/Product_images',$fileNameToStore); */
+                    $image->move('img/Product_images',$fileNameToStore);
                     
                     $last = Product::orderBy('created_at', 'desc')->first();  
                     ProductsImages::create([
@@ -122,7 +124,8 @@ class ProductController extends Controller
                     $filename = pathinfo($imageName,PATHINFO_FILENAME);
                     $extention = $image->getClientOriginalExtension();
                     $fileNameToStore = $filename.'_'.time().','.$extention;
-                    $image->storeAs('public/Product_images',$fileNameToStore);
+                    /* $image->storeAs('public/Product_images',$fileNameToStore); */
+                    $image->move('img/Product_images',$fileNameToStore);
                     
                     $last = Product::orderBy('created_at', 'desc')->first();  
                     ProductsImages::create([
@@ -192,7 +195,8 @@ class ProductController extends Controller
         ]);
         if($request->hasFile('main_image')){
             $Image = time().'.'.$request->file('main_image')->getClientOriginalName();
-            $request->file('main_image')->storeAs('public/Product_images',$Image);
+            /* $request->file('main_image')->storeAs('public/Product_images',$Image); */
+            $request->file('main_image')->move('img/Product_images',$Image);
             Product::where('id',$id)->update([
                 'prod_name'=>$request->prod_name,
                 'description'=>$request->description,
@@ -218,7 +222,8 @@ class ProductController extends Controller
                     $filename = pathinfo($imageName,PATHINFO_FILENAME);
                     $extention = $image->getClientOriginalExtension();
                     $fileNameToStore = $filename.'_'.time().','.$extention;
-                    $image->storeAs('public/Product_images',$fileNameToStore);
+                    /* $image->storeAs('public/Product_images',$fileNameToStore); */
+                    $image->move('img/Product_images',$fileNameToStore);
                     
                     $last = Product::orderBy('created_at', 'desc')->first();  
                     ProductsImages::create([
@@ -249,7 +254,8 @@ class ProductController extends Controller
                     $filename = pathinfo($imageName,PATHINFO_FILENAME);
                     $extention = $image->getClientOriginalExtension();
                     $fileNameToStore = $filename.'_'.time().','.$extention;
-                    $image->storeAs('public/Product_images',$fileNameToStore);
+                    /* $image->storeAs('public/Product_images',$fileNameToStore); */
+                    $image->move('img/Product_images',$fileNameToStore);
                     
                     $last = Product::orderBy('created_at', 'desc')->first();  
                     ProductsImages::create([
