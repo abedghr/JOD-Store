@@ -5,7 +5,13 @@ use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes  /public/storage   !public/
+| Web Routes  /public/storage /storage/*.key
+
+
+!public/ *
+
+!.gitignore
+
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
