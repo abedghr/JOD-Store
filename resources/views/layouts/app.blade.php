@@ -142,8 +142,12 @@
         </main><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
 
+@if (isset(session('user')))
+    
+@endif
 <script>
     var receiver_id = '';
+    
     var my_id = "{{session('user')['user_id'] ? session('user')['user_id'] : 0}}";
     $(document).ready(function () {
 
