@@ -144,7 +144,7 @@
 
 <script>
     var receiver_id = '';
-    var my_id = "{{session('user')['user_id']}}";
+    var my_id = "{{session('user')['user_id'] ? session('user')['user_id'] : 0}}";
     $(document).ready(function () {
 
         $.ajaxSetup({
