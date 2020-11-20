@@ -139,7 +139,7 @@
     <h3 class="text-center"><strong><a href="/home">Visite Store</a></strong></h3>
         <main class="py-4">
             @yield('content')
-        </main><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+        </main>{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
 
 <script>
@@ -227,7 +227,7 @@
         }, 0);
     }
 </script>
-
+ --}}
 <script>
     // Enable pusher logging - don't include this in production
     Pusher.logToConsole = true;
