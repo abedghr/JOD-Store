@@ -111,7 +111,7 @@ class PublicOrderController extends Controller
            session()->forget('user');
            $user_data[0] = [];
         }
-        $user_data = $user['user_id'] ?  User::where('id',$user['user_id'])->get() : 'none';
+        $user_data = $user['user_id'] ?  User::where('id',$user['user_id'])->get() : [];
         $cities = City::all();
         if(session()->has('cart') && session('cart')!=[]){
             $providers = session()->get('providers');

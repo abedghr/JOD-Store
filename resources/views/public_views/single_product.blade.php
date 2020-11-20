@@ -1,6 +1,5 @@
 <?php 
-	$pageTitle = "Single Product";
-	ob_start();
+    $pageTitle = "Single Product";
 ?>
 
 @include('public_views.includes.public_header')

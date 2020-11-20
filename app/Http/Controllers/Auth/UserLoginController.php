@@ -35,8 +35,7 @@ class UserLoginController extends Controller
         if(session()->has('user') && session('user') != []){
             return redirect()->route('home');
         }else{
-            session(['user'=>['user_id'=>'0','userName'=>'none']]);
-            return view('auth.login');
+        return view('auth.login');
         }
     }
 
