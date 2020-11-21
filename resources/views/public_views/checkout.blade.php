@@ -13,25 +13,25 @@
 							@csrf
 							<div class="col-md-6 form-group">
 								<label for="">First Name <span class="text-danger">*</span> :</label>
-								<input type="text" class="form-control" id="first" name="fname" value="@if($user_data != []){{$user_data[0]->name}}@endif" placeholder="First Name">
+								<input type="text" class="form-control" id="first" name="fname" value="@if(isset($user)){{$user_data[0]->name}}@endif" placeholder="First Name">
 								@error('fname')
 									<span class="text-danger">{{$message}}</span>
 								@enderror
 							</div>
 							<div class="col-md-6 form-group">
 								<label for="">Last Name <span class="text-danger">*</span> :</label>
-								<input type="text" class="form-control" id="last" name="lname" value="@if($user_data != []){{$user_data[0]->lname}}@endif" placeholder="Last Name">
+								<input type="text" class="form-control" id="last" name="lname" value="@if(isset($user)){{$user_data[0]->lname}}@endif" placeholder="Last Name">
 								@error('lname')
 									<span class="text-danger">{{$message}}</span>
 								@enderror
 							</div>
 							<div class="col-md-12 form-group">
 								<label for="">Email Address :</label>
-								<input type="email" class="form-control" id="email" name="email" value="@if($user_data != []){{$user_data[0]->email}}@endif" placeholder="Email Address">
+								<input type="email" class="form-control" id="email" name="email" value="@if(isset($user)){{$user_data[0]->email}}@endif" placeholder="Email Address">
 							</div>
 							<div class="col-md-6 form-group">
 								<label for="">Phone Number <span class="text-danger">*</span> :</label>
-								<input type="text" class="form-control" id="number" name="number" value="@if($user_data != []){{$user_data[0]->phone}}@endif" placeholder="Phone number">
+								<input type="text" class="form-control" id="number" name="number" value="@if(isset($user)){{$user_data[0]->phone}}@endif" placeholder="Phone number">
 								@error('number')
 								<span class="text-danger">{{$message}}</span>
 								@enderror
@@ -39,8 +39,9 @@
 							<div class="col-md-6 form-group">
 								<label for="">City Location <span class="text-danger">*</span> :</label>
 								<select class="country_select target city" onchange="changeCity()" id="city" name="city">
+										<option value="none"></option>
 									@foreach ($cities as $city)
-										<option class='single-city{{$city->city}}' data-price='{{$city->delivery_price}}' value="{{$city->city}}" @if($user_data != [] && $user_data[0]->city == $city->city) selected clicked @endif>{{$city->city}}</option>
+										<option class='single-city{{$city->city}}' data-price='{{$city->delivery_price}}' value="{{$city->city}}" @if(isset($user) && $user_data[0]->city == $city->city) selected clicked @endif>{{$city->city}}</option>
 									@endforeach
 								</select>
 								@error('city')
@@ -50,7 +51,7 @@
 							
 							<div class="col-md-12 form-group">
 								<label for="">Address Line <span class="text-danger">*</span> :</label>
-								<input type="text" class="form-control" id="address" name="address" value="@if($user_data != []){{$user_data[0]->Address}}@endif" placeholder="Address">
+								<input type="text" class="form-control" id="address" name="address" value="@if(isset($user)){{$user_data[0]->Address}}@endif" placeholder="Address">
 								@error('address')
 								<span class="text-danger">{{$message}}</span>
 								@enderror
@@ -129,13 +130,20 @@
 	@include('public_views.includes.public_footer')
 	
 	<script>
+		
 		var city_name = $('#city').val();
-		if(city_name != ""){
+		if(city_name !== null && city_name !== "none"){
 		var city = $('.single-city'+city_name).attr('data-price');
 		var total =  $('#totalPrice').attr('data');
 		var totalWithDel = (parseFloat(city)* "{{$count_provider}}") + parseFloat(total);
 		$("#totalPrice").text(totalWithDel);
 		$('.delivery').html(' + '+ city);
+		}else{
+			city_name = "0";
+			var total =  $('#totalPrice').attr('data');
+			var totalWithDel = parseFloat(city_name) + parseFloat(total);
+			$("#totalPrice").text(totalWithDel);
+			$('.delivery').html(' + '+ city_name);
 		}
 		function changeCity(){
 			var city_name = $('#city').val();

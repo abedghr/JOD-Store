@@ -37,7 +37,7 @@
 				<div class="float-right">
 					<ul class="right_side">
 						
-						@if ($user != null || $user != [])
+						@if (isset($user))
 						<li>
 							<span><a href="">{{$user['userName']}}</a></span>
 						</li>
@@ -99,10 +99,9 @@
 
 							<div class="col-lg-4">
 								<ul class="nav navbar-nav navbar-right right_nav pull-right">
-
 									<hr>
                                     <li class="nav-item">
-										@if ($user != null)
+										@if (isset($user))
 										<a href="{{route('user.profile')}}" class="icons">
 											<i class="fa fa-user" aria-hidden="true"></i>
 										</a>

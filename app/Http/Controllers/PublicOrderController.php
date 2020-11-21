@@ -95,36 +95,50 @@ class PublicOrderController extends Controller
 
     public function tracking(){
         $user = session()->get('user');
+        if(session()->has('user')){
+            return view('public_views.tracking_order',[
+                'user'=>$user
+            ]);
+        }else{
+            return view('public_views.tracking_order');
+        }
         
-        return view('public_views.tracking_order',[
-            'user'=>$user
-        ]);
     }
 
     public function checkout(){
-        if(session()->has('user') && session('user') != []){
+        if(session()->has('user')){
         $user = session()->get('user');
         $user_data = User::where('id',$user['user_id'])->get();
-        }else{
-           $the_user = session(['user'=>['user_id'=>'','userName'=>'']]);
+        }/* else{ */
+           /* $the_user = session(['user'=>['user_id'=>'','userName'=>'']]);
            $user = $the_user;
            session()->forget('user');
-           $user_data[0] = [];
-        }
-        $user_data = $user['user_id'] ?  User::where('id',$user['user_id'])->get() : [];
+           $user_data[0] = []; */
+        /* } */
+        /* $user_data = $user['user_id'] ?  User::where('id',$user['user_id'])->get() : []; */
         $cities = City::all();
-        if(session()->has('cart') && session('cart')!=[]){
+        if(session()->has('cart')){
             $providers = session()->get('providers');
             $count_provider = count($providers);
             $cart = session()->get('cart');
-            return view('public_views.checkout',[
-                'cart'=>$cart,
-                'cities'=>$cities,
-                'providers'=>$providers,
-                'count_provider'=>$count_provider,
-                'user'=>$user,
-                'user_data'=>$user_data
-            ]);
+            if(session()->has('user')){
+                return view('public_views.checkout',[
+                    'cart'=>$cart,
+                    'cities'=>$cities,
+                    'providers'=>$providers,
+                    'count_provider'=>$count_provider,
+                    'user'=>$user,
+                    'user_data'=>$user_data
+                ]);
+            }else{
+                return view('public_views.checkout',[
+                    'cart'=>$cart,
+                    'cities'=>$cities,
+                    'providers'=>$providers,
+                    'count_provider'=>$count_provider,
+                ]);
+            }
+            
         }else{
             return redirect()->route('cart.index');
         }
@@ -135,7 +149,7 @@ class PublicOrderController extends Controller
             'fname'=> 'required',
             'lname'=> 'required',
             'number'=> 'required',
-            'city' => 'required',
+            'city' => 'required|not_in:none',
             'address'=> 'required'
         ]);
 
@@ -225,14 +239,12 @@ class PublicOrderController extends Controller
         session()->forget('providers');
         session()->forget('total_price');
         session()->forget('counter');
-        if(session()->has('user') && session('user') != []){
+        if(session()->has('user')){
             $user = session()->get('user');
             $user_data = User::where('id',$user['user_id'])->get();
         }else{
-            $the_user = session(['user'=>['user_id'=>'','userName'=>'']]);
-           $user = $the_user;
-           session()->forget('user');
-           $user_data[0] = [];
+            session()->forget('user');
+            $user_data[0] = [];
         }
 
         return redirect()->route('orders.done')->with(['your_orders'=>$your_orders , 'email'=>$request->email , 'city'=>$request->city , 'address'=>$request->address , 'total_price' => $your_total_price]);

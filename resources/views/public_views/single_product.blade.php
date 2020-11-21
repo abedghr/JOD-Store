@@ -140,7 +140,7 @@
 										</div>
 									</div>
 									<div class="col-md-12 text-right">
-										@if ($user != null)
+										@if (isset($user))
 										<button class="btn submit_btn" id="comment_btn">Comment</button>	
 										@else
 										<button class="btn btn-primary" disabled title="You Must be login">Comment</button>	
@@ -184,7 +184,7 @@
 							</div>
 						</div>
 						<div class="col-lg-6">
-							@if ($user != null)
+							@if (isset($user))
 							<div class="review_box">
 								<h4>Add a Review</h4>
 								<a id="star5" style="cursor:pointer">Click to Rate:</a>
@@ -244,142 +244,165 @@
 	<!--================End Product Description Area =================-->
 
 <br><br>
-    @include('public_views.includes.public_footer')
-<script>
+	@include('public_views.includes.public_footer')
+	@if (isset($user)){
+		<script>
     
-    $("document").ready(function(){
-		$("#addCart").click(function(){
-			var quantity = $("#sst").val();
-			$.ajax({
-				type: "get",
-				url : "{{route('addtocart')}}",
-				data: {
-					'_token' : "{{csrf_token()}}",
-					'product_id': {{$product->id}},
-					'quantity': quantity,
-				},
-				success:function(data){
-					$('#cart_count').html(data.counter);
-					
-				}
-			});
-		});
-		
-		$('#comment_btn').click(function(){
-			var comment = $('#comment').val();
-			if(comment != ""){
-				$.ajax({
-				type: "POST",
-				url : "{{route('comment.store')}}",
-				data: {
-					"_token": "{{ csrf_token() }}",
-					'comment': comment,
-					'prod_id': "{{$product->id}}",
-					'user_id': "{{$user['user_id']}}"
-				},
-				success:function(data){
-					$("#comment_list").html(data);
-					$('#comment').val('');
-					$feed = "Comment done";
-                	swal($feed, " ", "success");
-				}
+			$("document").ready(function(){
+				$("#addCart").click(function(){
+					var quantity = $("#sst").val();
+					$.ajax({
+						type: "get",
+						url : "{{route('addtocart')}}",
+						data: {
+							'_token' : "{{csrf_token()}}",
+							'product_id': {{$product->id}},
+							'quantity': quantity,
+						},
+						success:function(data){
+							$('#cart_count').html(data.counter);
+							
+						}
+					});
 				});
-			}else{
-				$feed = "You must fill the comment box";
-                swal($feed, " ", "error");
-                $('.swal-button').css('background-color','red');
+				
+				$('#comment_btn').click(function(){
+					var comment = $('#comment').val();
+					if(comment != ""){
+						$.ajax({
+						type: "POST",
+						url : "{{route('comment.store')}}",
+						data: {
+							"_token": "{{ csrf_token() }}",
+							'comment': comment,
+							'prod_id': "{{$product->id}}",
+							'user_id': "{{$user['user_id']}}"
+						},
+						success:function(data){
+							$("#comment_list").html(data);
+							$('#comment').val('');
+							$feed = "Comment done";
+							swal($feed, " ", "success");
+						}
+						});
+					}else{
+						$feed = "You must fill the comment box";
+						swal($feed, " ", "error");
+						$('.swal-button').css('background-color','red');
+					}
+				});
+				$("#star5").click(function(){
+					$.ajax({
+						type : "GET",
+						url : "{{route('rating.store')}}",
+						data : {
+							'rating':5,
+							'user_id': "{{$user['user_id']}}",
+							'prod_id': "{{$product->id}}"
+						},success:function(data){
+							$feed = "Your Rate is "+data.rating+" Star";
+							swal($feed, " ", "success");
+							$("#yourRateBox").html(data.yourRate);
+						}
+					});
+				});
+				$("#star4").click(function(){
+					$.ajax({
+						type : "GET",
+						url : "{{route('rating.store')}}",
+						data : {
+							'rating':4,
+							'user_id': "{{$user['user_id']}}",
+							'prod_id': "{{$product->id}}"
+						},success:function(data){
+							$feed = "Your Rate is "+data.rating+" Star";
+							swal($feed, " ", "success");
+							$("#yourRateBox").html(data.yourRate);
+						}
+					});
+				});
+				$("#star3").click(function(){
+					$.ajax({
+						type : "GET",
+						url : "{{route('rating.store')}}",
+						data : {
+							'rating':3,
+							'user_id': "{{$user['user_id']}}",
+							'prod_id': "{{$product->id}}"
+						},success:function(data){
+							$feed = "Your Rate is "+data.rating+" Star";
+							swal($feed, " ", "success");
+							$("#yourRateBox").html(data.yourRate);
+						}
+					});
+				});
+				$("#star2").click(function(){
+					$.ajax({
+						type : "GET",
+						url : "{{route('rating.store')}}",
+						data : {
+							'rating':2,
+							'user_id': "{{$user['user_id']}}",
+							'prod_id': "{{$product->id}}"
+						},success:function(data){
+							$feed = "Your Rate is "+data.rating+" Star";
+							swal($feed, " ", "success");
+							$("#yourRateBox").html(data.yourRate);
+						}
+					});
+				});
+				$("#star1").click(function(){
+					$.ajax({
+						type : "GET",
+						url : "{{route('rating.store')}}",
+						data : {
+							'rating':1,
+							'user_id': "{{$user['user_id']}}",
+							'prod_id': "{{$product->id}}"
+						},success:function(data){
+							$feed = "Your Rate is "+data.rating+" Star";
+							swal($feed, " ", "success");
+							console.log(data)
+							$("#yourRateBox").html(data.yourRate);
+						}
+					});
+				});
+			});
+		
+			function delete_comment(id){
+				$.ajax({
+						type: "GET",
+						url : "{{route('comment.destroy')}}",
+						data: {
+							'comment_id':id,
+							'prod_id': "{{$product->id}}"
+						},
+						success:function(data){
+							$("#comment_list").html(data);
+						}
+					});
 			}
+		
+		</script>
+	@else
+	<script>
+		$("document").ready(function(){
+				$("#addCart").click(function(){
+					var quantity = $("#sst").val();
+					$.ajax({
+						type: "get",
+						url : "{{route('addtocart')}}",
+						data: {
+							'_token' : "{{csrf_token()}}",
+							'product_id': {{$product->id}},
+							'quantity': quantity,
+						},
+						success:function(data){
+							$('#cart_count').html(data.counter);
+							
+						}
+					});
+				});
 		});
-		$("#star5").click(function(){
-			$.ajax({
-				type : "GET",
-				url : "{{route('rating.store')}}",
-				data : {
-					'rating':5,
-					'user_id': "{{$user['user_id']}}",
-					'prod_id': "{{$product->id}}"
-				},success:function(data){
-					$feed = "Your Rate is "+data.rating+" Star";
-                	swal($feed, " ", "success");
-					$("#yourRateBox").html(data.yourRate);
-				}
-			});
-		});
-		$("#star4").click(function(){
-			$.ajax({
-				type : "GET",
-				url : "{{route('rating.store')}}",
-				data : {
-					'rating':4,
-					'user_id': "{{$user['user_id']}}",
-					'prod_id': "{{$product->id}}"
-				},success:function(data){
-					$feed = "Your Rate is "+data.rating+" Star";
-                	swal($feed, " ", "success");
-					$("#yourRateBox").html(data.yourRate);
-				}
-			});
-		});
-		$("#star3").click(function(){
-			$.ajax({
-				type : "GET",
-				url : "{{route('rating.store')}}",
-				data : {
-					'rating':3,
-					'user_id': "{{$user['user_id']}}",
-					'prod_id': "{{$product->id}}"
-				},success:function(data){
-					$feed = "Your Rate is "+data.rating+" Star";
-                	swal($feed, " ", "success");
-					$("#yourRateBox").html(data.yourRate);
-				}
-			});
-		});
-		$("#star2").click(function(){
-			$.ajax({
-				type : "GET",
-				url : "{{route('rating.store')}}",
-				data : {
-					'rating':2,
-					'user_id': "{{$user['user_id']}}",
-					'prod_id': "{{$product->id}}"
-				},success:function(data){
-					$feed = "Your Rate is "+data.rating+" Star";
-                	swal($feed, " ", "success");
-					$("#yourRateBox").html(data.yourRate);
-				}
-			});
-		});
-		$("#star1").click(function(){
-			$.ajax({
-				type : "GET",
-				url : "{{route('rating.store')}}",
-				data : {
-					'rating':1,
-					'user_id': "{{$user['user_id']}}",
-					'prod_id': "{{$product->id}}"
-				},success:function(data){
-					$feed = "Your Rate is "+data.rating+" Star";
-                	swal($feed, " ", "success");
-					console.log(data)
-					$("#yourRateBox").html(data.yourRate);
-				}
-			});
-		});
-    });
-
-	function delete_comment(id){
-		$.ajax({
-				type: "GET",
-				url : "{{route('comment.destroy')}}",
-				data: {
-					'comment_id':id,
-					'prod_id': "{{$product->id}}"
-				},
-				success:function(data){
-					$("#comment_list").html(data);
-				}
-			});
-	}
-
-</script>
+	</script>
+	@endif

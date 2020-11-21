@@ -13,12 +13,21 @@ class PublicCategoryController extends Controller
         $category = Category::findorFail($id);
         $categories = Category::all();
         $products = Product::where('category',$id)->select()->orderBy('id','desc')->paginate(10);
-        return view('public_views.category',[
-            'category'=>$category,
-            'products'=>$products,
-            'categories'=>$categories,
-            'user'=>$user
-        ]);
+        if(session()->has('user')){
+            return view('public_views.category',[
+                'category'=>$category,
+                'products'=>$products,
+                'categories'=>$categories,
+                'user'=>$user
+            ]);
+        }else{
+            return view('public_views.category',[
+                'category'=>$category,
+                'products'=>$products,
+                'categories'=>$categories
+            ]);
+        }
+        
     }
 
     

@@ -21,10 +21,17 @@ class PublicProviderController extends Controller
     public function all(){
         $user = session()->get('user');
         $providers = Provider::select()->paginate(12);
-        return view('public_views.vendors',[
-            'providers'=>$providers,
-            'user'=>$user
-        ]);
+        if(session()->has('user')){
+            return view('public_views.vendors',[
+                'providers'=>$providers,
+                'user'=>$user
+            ]);
+        }else{
+            return view('public_views.vendors',[
+                'providers'=>$providers
+            ]);
+        }
+        
     }
 
     public function profile($id){
@@ -42,13 +49,23 @@ class PublicProviderController extends Controller
                 $cat_arr[$category->id]['name']=$category->cat_name;
             }
         }
-        return view('public_views.profile',[
-            'provider'=>$single_provider,
-            'products'=>$products,
-            'categories'=>$cat_arr,
-            'category_active'=>'all',
-            'user'=>$user
-        ]);
+        if(session()->has('user')){
+            return view('public_views.profile',[
+                'provider'=>$single_provider,
+                'products'=>$products,
+                'categories'=>$cat_arr,
+                'category_active'=>'all',
+                'user'=>$user
+            ]);
+        }else{
+            return view('public_views.profile',[
+                'provider'=>$single_provider,
+                'products'=>$products,
+                'categories'=>$cat_arr,
+                'category_active'=>'all'
+            ]);
+        }
+        
     }
 
     public function profile_categories($prov_id , $cat_id){
@@ -65,13 +82,23 @@ class PublicProviderController extends Controller
                 $cat_arr[$category->id]['name']=$category->cat_name;
             }
         }
-        return view('public_views.profile_category',[
-            'provider'=>$single_provider,
-            'products'=>$products,
-            'categories'=>$cat_arr,
-            'category_active'=>$cat_id,
-            'user'=>$user
-        ]);
+        if(session()->has('user')){
+            return view('public_views.profile_category',[
+                'provider'=>$single_provider,
+                'products'=>$products,
+                'categories'=>$cat_arr,
+                'category_active'=>$cat_id,
+                'user'=>$user
+            ]);
+        }else{
+            return view('public_views.profile_category',[
+                'provider'=>$single_provider,
+                'products'=>$products,
+                'categories'=>$cat_arr,
+                'category_active'=>$cat_id
+            ]);
+        }
+        
     }
     
     public function search_vendors(Request $request){
@@ -108,6 +135,7 @@ class PublicProviderController extends Controller
         })->orWhere(function($query) use ($provider_id , $my_id) {
             $query->where('from_provider',$provider_id)->where('to_user',$my_id);
         })->get();
+        
         return view('messages.chat_view',[
             'provider'=>$provider,
             'messages'=>$messages,

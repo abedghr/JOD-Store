@@ -18,7 +18,7 @@ class publicFeedbackController extends Controller
 {
     public function Provider_feedback(Request $request){
         $user = session()->get('user');
-        if($user != null || $user != []){
+        if(isset($user)){
             Feedback::create([
                 'feedback'=>$request->feedback,
                 'provider_id'=>$request->provider_id,

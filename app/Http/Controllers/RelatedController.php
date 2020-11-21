@@ -82,7 +82,6 @@ class RelatedController extends Controller
     {
         $related = Related::find($id);
         if($request->input('name') != $related->name){
-            dd();
             $valid = $request->validate([
                 'name'=>'required|unique:related,name',
                 'provider'=>'required'

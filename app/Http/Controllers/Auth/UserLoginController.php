@@ -65,7 +65,7 @@ class UserLoginController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'phone' => 000000,
+            'phone' => "079079079",
             'Address'=>$request->address
         ])){
             $user = User::where('email',$request->email)->get();

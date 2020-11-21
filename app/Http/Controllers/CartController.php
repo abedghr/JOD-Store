@@ -73,15 +73,26 @@ class CartController extends Controller
         $cart= session()->has('cart') ? session()->get('cart') : [];
         $providers= session()->has('providers') ? session()->get('providers') : [];
         if(session()->has('cart') && session('cart')!= []){
-            return view('public_views.cart',[
-                'cart'=>$cart,
-                'providers'=>$providers,
-                'user'=>$user
-            ]);
+            if(session()->has('user')){
+                return view('public_views.cart',[
+                    'cart'=>$cart,
+                    'providers'=>$providers,
+                    'user'=>$user
+                ]);
+            }else{
+                return view('public_views.cart',[
+                    'cart'=>$cart,
+                    'providers'=>$providers
+                ]);
+            }
         }else{
+            if(session()->has('user')){
             return view('public_views.empty_cart',[
                 'user'=>$user
             ]);
+            }else{
+                return view('public_views.empty_cart');
+            }
         }
     }
 

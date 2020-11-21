@@ -17,12 +17,21 @@ class PublicProductController extends Controller
         $products = Product::select()->orderBy('id','desc')->paginate(12);
         $providers_logo = Provider::where('email_verified_at','<>',null)->get();
         $categories = Category::all();
-        return view('public_views.shop',[
-            'products'=>$products,
-            'categories'=>$categories,
-            'providers_logo'=>$providers_logo,
-            'user'=>$user
-        ]);
+        if(session()->has('user')){
+            return view('public_views.shop',[
+                'products'=>$products,
+                'categories'=>$categories,
+                'providers_logo'=>$providers_logo,
+                'user'=>$user
+            ]);
+        }else{
+            return view('public_views.shop',[
+                'products'=>$products,
+                'categories'=>$categories,
+                'providers_logo'=>$providers_logo
+            ]);
+        }
+        
     }
 
     public function show($id){
@@ -51,24 +60,44 @@ class PublicProductController extends Controller
         }
         
         if(!isset($maxRate[0])){
+            if(session()->has('user')){
+                return view('public_views.single_product',[
+                    'product'=>$single_product,
+                    'images'=>$product_images,
+                    'user'=>$user,
+                    'comments'=>$comments,
+                    'rating'=>$rate,
+                    'product_rate'=>3
+                ]);
+            }else{
+                return view('public_views.single_product',[
+                    'product'=>$single_product,
+                    'images'=>$product_images,
+                    'comments'=>$comments,
+                    'rating'=>$rate,
+                    'product_rate'=>3
+                ]);
+            }
+        }
+        if(session()->has('user')){
             return view('public_views.single_product',[
                 'product'=>$single_product,
                 'images'=>$product_images,
                 'user'=>$user,
                 'comments'=>$comments,
                 'rating'=>$rate,
-                'product_rate'=>3
+                'product_rate'=>$maxRate[0]->rating
+            ]);
+        }else{
+            return view('public_views.single_product',[
+                'product'=>$single_product,
+                'images'=>$product_images,
+                'comments'=>$comments,
+                'rating'=>$rate,
+                'product_rate'=>$maxRate[0]->rating
             ]);
         }
-
-        return view('public_views.single_product',[
-            'product'=>$single_product,
-            'images'=>$product_images,
-            'user'=>$user,
-            'comments'=>$comments,
-            'rating'=>$rate,
-            'product_rate'=>$maxRate[0]->rating
-        ]);
+        
     }
 
     public function vendor_product_all($prov_id){
@@ -85,13 +114,23 @@ class PublicProductController extends Controller
                 $cat_arr[$category->id]['name']=$category->cat_name;
             }
         }
-        return view('public_views.profile',[
-            'provider'=>$single_provider,
-            'products'=>$products,
-            'categories'=>$cat_arr,
-            'category_active'=>'all',
-            'user'=>$user,
-        ]);
+        if(session()->has('user')){
+            return view('public_views.profile',[
+                'provider'=>$single_provider,
+                'products'=>$products,
+                'categories'=>$cat_arr,
+                'category_active'=>'all',
+                'user'=>$user,
+            ]);
+        }else{
+            return view('public_views.profile',[
+                'provider'=>$single_provider,
+                'products'=>$products,
+                'categories'=>$cat_arr,
+                'category_active'=>'all'
+            ]);
+        }
+        
     }
 
     public function search(Request $request){
