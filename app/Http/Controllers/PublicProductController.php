@@ -78,7 +78,6 @@ class PublicProductController extends Controller
                     'product'=>$single_product,
                     'images'=>$product_images,
                     'comments'=>$comments,
-                    'rating'=>$rate,
                     'product_rate'=>3,
                     'related_products'=>$related_products
                 ]);
@@ -99,7 +98,6 @@ class PublicProductController extends Controller
                 'product'=>$single_product,
                 'images'=>$product_images,
                 'comments'=>$comments,
-                'rating'=>$rate,
                 'product_rate'=>$maxRate[0]->rating,
                 'related_products'=>$related_products
             ]);
