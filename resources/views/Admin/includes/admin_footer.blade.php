@@ -11,6 +11,11 @@
 </div>
 <!-- ./wrapper -->
 
+
+<div id="fb-root"></div>
+	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v8.0&appId=1302610216739853&autoLogAppEvents=1" nonce="VKOEbsPZ"></script>
+
+
 <!-- jQuery -->
 <script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
 <!-- jQuery UI 1.11.4 -->

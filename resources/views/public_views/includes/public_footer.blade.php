@@ -91,8 +91,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<!--================ End footer Area  =================-->
 
 
-
-
+	
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="{{asset('js/app.js')}}"></script>
@@ -112,7 +111,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script src="{{asset('public_libraries/js/mail-script.js')}}"></script>
 <script src="{{asset('public_libraries/js/theme.js')}}"></script>
 <script src="{{asset('public_libraries/sweetalert/sweetalert.min.js')}}"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <script>
         
         $("document").ready(function(){

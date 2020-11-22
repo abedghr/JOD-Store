@@ -267,13 +267,16 @@
                    <span class="text-danger"><strong>Un-Available</strong></span>
                 @endif </td>  
                 <td style="width:200px;">
-                <a href="{{route('admin_product.show',['id'=> $product->id])}}" class="btn btn-warning"><i class="fa fa-eye"></i></a>
-                <a href="{{route('product.edit',['id'=> $product->id])}}" class="btn btn-info"><i class="fa fa-edit"></i></a>
-                <form method="post" action="{{route('product.destroy',['id'=>$product->id])}}" style="display: inline">
-                    @csrf
-                    @method('delete')
-                <button onclick="return confirm('Are you sure ?')" type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
-                </form>
+                  <div class="fb-share-button" data-href="http://jordan-store.herokuapp.com/singe-product/{{$product->id}}" data-layout="button" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div><br>
+                  <div class="mt-2">
+                      <a href="{{route('admin_product.show',['id'=> $product->id])}}" class="btn btn-warning"><i class="fa fa-eye"></i></a>
+                      <a href="{{route('product.edit',['id'=> $product->id])}}" class="btn btn-info"><i class="fa fa-edit"></i></a>
+                      <form method="post" action="{{route('product.destroy',['id'=>$product->id])}}" style="display: inline">
+                        @csrf
+                        @method('delete')
+                      <button onclick="return confirm('Are you sure ?')" type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                      </form>
+                  </div>
                 </td>
               </tr>
               <?php $i++; ?>

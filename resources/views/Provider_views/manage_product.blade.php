@@ -207,7 +207,7 @@
     <div class="card card-secondary">
       <div class="card-header">
         <h3 class="card-title">Products List</h3>
-
+        
         <div class="card-tools">
           <ul class="pagination pagination-sm float-right">
             {!! $products->links() !!}
@@ -244,13 +244,16 @@
                 <td>{{$product->gender}}</td>
                 <td>{{$product->inventory}} Item</td>  
                 <td style="width:200px;">
-                <a href="{{route('product_provider.show',['id'=> $product->id])}}" class="btn btn-warning"><i class="fa fa-eye"></i></a>
-                <a href="{{route('product_provider.edit',['id'=> $product->id])}}" class="btn btn-info"><i class="fa fa-edit"></i></a>
-                <form method="post" action="{{route('product_provider.destroy',['id'=>$product->id])}}" style="display: inline">
-                    @csrf
-                    @method('delete')
-                <button onclick="return confirm('Are you sure ?')" type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
-                </form>
+                  <div class="fb-share-button" data-href="http://jordan-store.herokuapp.com/singe-product/{{$product->id}}" data-layout="button" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div><br>
+                  <div class="mt-2">
+                    <a href="{{route('product_provider.show',['id'=> $product->id])}}" class="btn btn-warning"><i class="fa fa-eye"></i></a>
+                    <a href="{{route('product_provider.edit',['id'=> $product->id])}}" class="btn btn-info"><i class="fa fa-edit"></i></a>
+                    <form method="post" action="{{route('product_provider.destroy',['id'=>$product->id])}}" style="display: inline">
+                        @csrf
+                        @method('delete')
+                    <button onclick="return confirm('Are you sure ?')" type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                    </form>
+                  </div>
                 </td>
               </tr>
               <?php $i++; ?>
