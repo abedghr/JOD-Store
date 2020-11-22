@@ -40,7 +40,9 @@ class PublicProductController extends Controller
         $related_products = Product::where('prod_related',$single_product->prod_related)->where('id','<>',$single_product->id)->get();
         $product_images = ProductsImages::where('product_id',$id)->get();
         $comments = Comment::where('prod_id',$id)->orderBy('created_at','desc')->get();
+        if(session()->has('user')){
         $rate = Rating::where('user_id',$user["user_id"])->where('prod_id',$id)->get();
+        }
         $star1 = Rating::where('rating',1)->where('prod_id',$id)->select('rating')->get();
         $star2 = Rating::where('rating',2)->where('prod_id',$id)->select('rating')->get();
         $star3 = Rating::where('rating',3)->where('prod_id',$id)->select('rating')->get();
