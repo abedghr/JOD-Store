@@ -116,8 +116,10 @@
 											<div class="media-body">
 												<h4>{{$comment->user->name}}</h4>
 												<h5>{{$comment->created_at->format('Y-m-d')}}</h5>
-												@if ($comment->user_id == $user['user_id'])
-												<a class="btn-danger text-light reply_btn" onclick="delete_comment({{$comment->id}})" id="delete_comment"><i class="fa fa-trash text-light"></i></a>	
+												@if (isset($user))
+													@if ($comment->user_id == $user['user_id'])
+													<a class="btn-danger text-light reply_btn" onclick="delete_comment({{$comment->id}})" id="delete_comment"><i class="fa fa-trash text-light"></i></a>	
+													@endif
 												@endif
 											</div>
 										</div>
@@ -242,7 +244,46 @@
 		</div>
 	</section>
 	<!--================End Product Description Area =================-->
-
+	
+	<!--================Clients Logo Area =================-->
+	<h2 class="text-center">Related Products</h2>
+	<section class="clients_logo_area mt-5">
+		<div class="container-fluid">
+			<div class="clients_slider owl-carousel">
+                @foreach ($related_products as $product)
+					
+				<div class="">
+					<div class="col-12">
+						<div class="f_p_item">
+							<div class="f_p_img">
+								<img class="img-fluid rounded" src="../img/Product_images/{{$product->main_image}}" width="100%" alt="">
+								<div class="p_icon">
+									<a href="{{route('product.show',['id'=>$product->id])}}">
+										<i class="lnr lnr-eye"></i>
+									</a>
+									<a class="js-addcart-detail" style="cursor: pointer" onclick="addca({{$product->id}})">
+										<i class="lnr lnr-cart"></i>
+									</a>
+								</div>
+							</div>
+								<h4 class="product-name"><a href="#" class="product-name js-name-detail">{{$product->prod_name}}</a></h4>
+								<p class="product-details"><strong>Provider : {{$product->prov->name}}</strong></p>
+								<p class="product-details"><strong>Category : {{$product->cat->cat_name}}</strong></p>
+								<span class="text-danger"><strong><del class="text-danger">JD{{number_format($product->old_price,2)}}</del></strong></span><br>
+								<span class="text-success"><strong>JD{{number_format($product->new_price,2)}}</strong></span>
+						</div>
+					</div>
+					{{-- <a href="{{route('public_provider.profile',['id'=>$logo->id])}}">
+						<img src="../img/Product_images/{{$product->main_image}}" alt="">
+						<label class="text-secondary">{{$logo->name}}</label>
+					</a> --}}
+				</div>
+				@endforeach
+                    
+			</div>
+		</div>
+	</section>
+	<!--================End Clients Logo Area =================-->
 <br><br>
 	@include('public_views.includes.public_footer')
 	@if (isset($user)){
@@ -406,3 +447,22 @@
 		});
 	</script>
 	@endif
+	<script>
+		function addca(id){
+        var nameProduct = $('.js-addcart-detail').parent().parent().parent().parent().find('.js-name-detail').html();
+        swal(nameProduct, "is added to cart !", "success");
+        $.ajax({
+            type: "get",
+            url : "{{route('addtocart')}}",
+            data: {
+                '_token' : "{{csrf_token()}}",
+                'product_id': id,
+                'quantity': 1
+            },
+            success:function(data){
+                $('#cart_count').html(data.counter);
+                console.log(data);
+            }
+        });
+    }
+	</script>

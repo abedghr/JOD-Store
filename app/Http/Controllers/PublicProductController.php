@@ -37,6 +37,7 @@ class PublicProductController extends Controller
     public function show($id){
         $user = session()->get('user');
         $single_product = Product::findorfail($id);
+        $related_products = Product::where('prod_related',$single_product->prod_related)->where('id','<>',$single_product->id)->get();
         $product_images = ProductsImages::where('product_id',$id)->get();
         $comments = Comment::where('prod_id',$id)->orderBy('created_at','desc')->get();
         $rate = Rating::where('user_id',$user["user_id"])->where('prod_id',$id)->get();
@@ -67,7 +68,8 @@ class PublicProductController extends Controller
                     'user'=>$user,
                     'comments'=>$comments,
                     'rating'=>$rate,
-                    'product_rate'=>3
+                    'product_rate'=>3,
+                    'related_products'=>$related_products
                 ]);
             }else{
                 return view('public_views.single_product',[
@@ -75,7 +77,8 @@ class PublicProductController extends Controller
                     'images'=>$product_images,
                     'comments'=>$comments,
                     'rating'=>$rate,
-                    'product_rate'=>3
+                    'product_rate'=>3,
+                    'related_products'=>$related_products
                 ]);
             }
         }
@@ -86,7 +89,8 @@ class PublicProductController extends Controller
                 'user'=>$user,
                 'comments'=>$comments,
                 'rating'=>$rate,
-                'product_rate'=>$maxRate[0]->rating
+                'product_rate'=>$maxRate[0]->rating,
+                'related_products'=>$related_products
             ]);
         }else{
             return view('public_views.single_product',[
@@ -94,7 +98,8 @@ class PublicProductController extends Controller
                 'images'=>$product_images,
                 'comments'=>$comments,
                 'rating'=>$rate,
-                'product_rate'=>$maxRate[0]->rating
+                'product_rate'=>$maxRate[0]->rating,
+                'related_products'=>$related_products
             ]);
         }
         
