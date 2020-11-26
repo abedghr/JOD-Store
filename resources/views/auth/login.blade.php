@@ -8,7 +8,7 @@
                 
             <div class="row">
                 <div class="col-lg-7">
-                    <div style="background-image: url('https://m.economictimes.com/thumb/msid-70763463,width-1200,height-900,resizemode-4,imgsize-236943/gem.jpg'); background-size: 100% 100%; height: 500px; background-repeat: no-repeat;">
+                    <div style="background-image: url('{{asset("storage/Category_images/1605897008.comp.jpg")}}'); background-size: 100% 100%; height: 500px; background-repeat: no-repeat;">
                         <div style="background-color:rgba(0,0,0,0.5); height:100%">
                             
                         </div>
@@ -64,7 +64,7 @@
                             </div>
                         </div>
                         <div class="form-group pl-4 pr-4">
-                            <a href="{{-- {{route('user.register')}} --}}" class="btn btn-info btn-block">Register</a>
+                            <a href="{{route('view.register')}}" class="btn btn-info btn-block">Register</a>
                         </div>
                     </form>
                 </div> 

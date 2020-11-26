@@ -21,7 +21,7 @@ PUSHER_APP_CLUSTER=mt1
 
 Route::get('/', function () {
     /* return redirect()->route('home'); */
-    return view('welcome');
+    return view('home');
 });
 
 

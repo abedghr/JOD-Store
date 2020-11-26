@@ -146,7 +146,7 @@ class PublicProductController extends Controller
             $output.='<div class="col-lg-3 col-md-3 col-sm-6">
             <div class="f_p_item">
                 <div class="f_p_img">
-                    <img class="img-fluid" src="../../storage/Product_images/'.$product->main_image.'" alt="">
+                    <img class="img-fluid" src="../../img/Product_images/'.$product->main_image.'" alt="">
                     <div class="p_icon">
                         <a href="singe-product/'.$product->id.'">
                             <i class="fa fa-eye"></i>
@@ -177,7 +177,7 @@ class PublicProductController extends Controller
             $output.='<div class="col-lg-3 col-md-3 col-sm-6">
             <div class="f_p_item">
                 <div class="f_p_img">
-                    <img class="img-fluid" src="../../storage/Product_images/'.$product->main_image.'" alt="">
+                    <img class="img-fluid" src="../../img/Product_images/'.$product->main_image.'" alt="">
                     <div class="p_icon">
                         <a href="singe-product/'.$product->id.'">
                             <i class="fa fa-eye"></i>
@@ -208,7 +208,7 @@ class PublicProductController extends Controller
             $output.='<div class="col-lg-3 col-md-3 col-sm-6">
             <div class="f_p_item">
                 <div class="f_p_img">
-                    <img class="img-fluid" src="../../storage/Product_images/'.$product->main_image.'" alt="">
+                    <img class="img-fluid" src="../../img/Product_images/'.$product->main_image.'" alt="">
                     <div class="p_icon">
                         <a href="singe-product/'.$product->id.'">
                             <i class="fa fa-eye"></i>
@@ -251,7 +251,7 @@ class PublicProductController extends Controller
             $output.='<div class="col-lg-3 col-md-3 col-sm-6">
             <div class="f_p_item">
                 <div class="f_p_img">
-                    <img class="img-fluid" src="../storage/Product_images/'.$product->main_image.'" alt="">
+                    <img class="img-fluid" src="../img/Product_images/'.$product->main_image.'" alt="">
                     <div class="p_icon">
                         <a href="singe-product/'.$product->id.'">
                             <i class="fa fa-eye"></i>
@@ -293,7 +293,7 @@ class PublicProductController extends Controller
             $output.='<div class="col-lg-3 col-md-3 col-sm-6">
             <div class="f_p_item">
                 <div class="f_p_img">
-                    <img class="img-fluid" src="../../storage/Product_images/'.$product->main_image.'" alt="">
+                    <img class="img-fluid" src="../../img/Product_images/'.$product->main_image.'" alt="">
                     <div class="p_icon">
                         <a href="singe-product/'.$product->id.'">
                             <i class="fa fa-eye"></i>
@@ -323,7 +323,7 @@ class PublicProductController extends Controller
             $output.='<div class="col-lg-3 col-md-3 col-sm-6">
             <div class="f_p_item">
                 <div class="f_p_img">
-                    <img class="img-fluid" src="../../storage/Product_images/'.$product->main_image.'" alt="">
+                    <img class="img-fluid" src="../../img/Product_images/'.$product->main_image.'" alt="">
                     <div class="p_icon">
                         <a href="singe-product/'.$product->id.'">
                             <i class="fa fa-eye"></i>
@@ -366,7 +366,7 @@ class PublicProductController extends Controller
             $output.='<div class="col-lg-3 col-md-3 col-sm-6">
             <div class="f_p_item">
                 <div class="f_p_img">
-                    <img class="img-fluid" src="../storage/Product_images/'.$product->main_image.'" alt="">
+                    <img class="img-fluid" src="../img/Product_images/'.$product->main_image.'" alt="">
                     <div class="p_icon">
                         <a href="singe-product/'.$product->id.'">
                             <i class="fa fa-eye"></i>
