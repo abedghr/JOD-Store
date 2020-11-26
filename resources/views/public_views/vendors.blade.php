@@ -4,23 +4,26 @@
 
 
 <section class="">
-    <div class="d-flex align-items-center"  style="margin-top: 160px;">
+    <!-- d-flex align-items-center -->
+    <div class="row"  style="font-family:Times New Roman; font-weight:bold; padding-left:50px; padding-top:25px; color:black; background-color:rgba(0,0,0,0.1); height:100px; margin-top:98px;">
+        <div class="col-md-4">
+            <h3 style="font-family: Times new roman; font-weight: bold;"><i>LETS FIND YOUR BEST STORE</i></h3>
+        </div>
+        <div class="col-md-7">
+            <input type="search" id="vendor_search" onkeyup="search_vendors()" class="form-control bg-light" placeholder="Search Store...">
+        </div>
         <div class="container">
-            <div class="banner_content text-center">
-                <h2>Lets Find Your Best Store</h2>
-            </div>
+            
             <div class="banner_content text-center mt-5">
-                <div class="">
+                {{-- <div class="">
                     <div class="row">
-                        <div class="col-md-2">
+                        
 
                         </div>
-                        <div class="col-md-8">
-                            <input type="search" id="vendor_search" onkeyup="search_vendors()" class="form-control bg-light" style="border-radius:20px" placeholder="Search Store...">
-                        </div>
+                        
                     </div>
 
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

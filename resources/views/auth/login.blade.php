@@ -8,7 +8,7 @@
                 
             <div class="row">
                 <div class="col-lg-7">
-                    <div style="background-image: url('{{asset("storage/Category_images/1605897008.comp.jpg")}}'); background-size: 100% 100%; height: 500px; background-repeat: no-repeat;">
+                    <div style="background-image: url('{{asset("img/userbackgroundlogin.jpg")}}'); background-size: 100% 100%; height: 500px; background-repeat: no-repeat;">
                         <div style="background-color:rgba(0,0,0,0.5); height:100%">
                             
                         </div>

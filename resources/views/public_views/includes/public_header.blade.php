@@ -66,17 +66,17 @@
                        <h3>Jordan<sup><small class="text-primary">Store</small></sup></h3>
 					</a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-					 aria-expanded="false" aria-label="Toggle navigation">
+					 {{-- aria-expanded="false" --}} aria-label="Toggle navigation">
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
 					<!-- Collect the nav links, forms, and other content for toggling -->
-					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<div class="row w-100">
 							<div class="col-lg-8 pr-0">
 								<ul class="nav navbar-nav center_nav pull-right">
-									<li class="nav-item @if ($pageTitle == "Home") active @endif ">
+									<li class="nav-item {{-- @if ($pageTitle == "Home") active @endif --}} ">
 										<a class="nav-link" href="{{route('home')}}">Home</a>
 									</li>
 									<li class="nav-item @if ($pageTitle == "Shop") active @endif">

@@ -1,8 +1,11 @@
 <?php $pageTitle = "Contact Us" ?>
 @include('public_views.includes.public_header')
 <br>
-<section class="contact_area p_120 bg-light"  style="margin-top: 110px;">
-    <div class="container">
+
+<section class="contact_area p_120" style="margin-top: -32px;">
+    <h2 style="font-family:Times New Roman; font-weight:bold; padding-left:50px; padding-top:25px; color:black; background-color:rgba(0,0,0,0.1); height:100px"><i>Contact US</i></h2>
+    <div class="container" style="margin-top: 80px;">
+        
         <div class="row">
             <div class="col-lg-3">
                 <div class="contact_info">

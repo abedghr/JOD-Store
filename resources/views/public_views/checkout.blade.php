@@ -39,7 +39,6 @@
 							<div class="col-md-6 form-group">
 								<label for="">City Location <span class="text-danger">*</span> :</label>
 								<select class="country_select target city" onchange="changeCity()" id="city" name="city">
-										<option value="none"></option>
 									@foreach ($cities as $city)
 										<option class='single-city{{$city->city}}' data-price='{{$city->delivery_price}}' value="{{$city->city}}" @if(isset($user) && $user_data[0]->city == $city->city) selected clicked @endif>{{$city->city}}</option>
 									@endforeach
@@ -132,19 +131,12 @@
 	<script>
 		
 		var city_name = $('#city').val();
-		if(city_name !== null && city_name !== "none"){
 		var city = $('.single-city'+city_name).attr('data-price');
 		var total =  $('#totalPrice').attr('data');
 		var totalWithDel = (parseFloat(city)* "{{$count_provider}}") + parseFloat(total);
 		$("#totalPrice").text(totalWithDel);
 		$('.delivery').html(' + '+ city);
-		}else{
-			city_name = "0";
-			var total =  $('#totalPrice').attr('data');
-			var totalWithDel = parseFloat(city_name) + parseFloat(total);
-			$("#totalPrice").text(totalWithDel);
-			$('.delivery').html(' + '+ city_name);
-		}
+		
 		function changeCity(){
 			var city_name = $('#city').val();
 			var city = $('.single-city'+city_name).attr('data-price');

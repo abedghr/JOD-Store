@@ -291,7 +291,7 @@ class PublicOrderController extends Controller
         if(!empty($order[0])){
             if($order[0]->order_status == 0){
                 $output = '<article class="card">
-                <header class="card-header"><h6>Order ID: '.$request->order_id.'</h6></header>
+                <header class="card-header bg-light"><h6>Order ID: '.$request->order_id.'</h6></header>
                 <div class="card-body">
                     <div class="track">
                         <div class="step active"> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text">Order Pending</span> </div>
@@ -305,7 +305,7 @@ class PublicOrderController extends Controller
             </article>';
             }elseif($order[0]->order_status == 1){
                 $output = '<article class="card">
-                <header class="card-header"><h6>Order ID: '.$request->order_id.'</h6></header>
+                <header class="card-header bg-light"><h6>Order ID: '.$request->order_id.'</h6></header>
                 <div class="card-body">
                     <div class="track">
                         <div class="step active"> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text">Order Pending</span> </div>
@@ -319,7 +319,7 @@ class PublicOrderController extends Controller
             </article>';
             }elseif($order[0]->order_status == 3 || $order[0]->order_status == 2){
                 $output = '<article class="card">
-                <header class="card-header"><h6>Order ID: '.$request->order_id.'</h6></header>
+                <header class="card-header bg-light"><h6>Order ID: '.$request->order_id.'</h6></header>
                 <div class="card-body">
                     <div class="track">
                         <div class="step active"> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text">Order Pending</span> </div>
@@ -333,7 +333,7 @@ class PublicOrderController extends Controller
             </article>';
             }elseif($order[0]->order_status == -1 ){
                 $output = '<article class="card">
-                <header class="card-header"><h6>Order ID: '.$request->order_id.'</h6></header>
+                <header class="card-header bg-light"><h6>Order ID: '.$request->order_id.'</h6></header>
                 <div class="card-body">
                     <div class="track">
                         <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Order Pending</span> </div>
@@ -347,7 +347,7 @@ class PublicOrderController extends Controller
             </article>';
             }elseif($order[0]->order_status == -2){
                 $output = '<article class="card">
-                <header class="card-header"><h6>Order ID: '.$request->order_id.'</h6></header>
+                <header class="card-header bg-light"><h6>Order ID: '.$request->order_id.'</h6></header>
                 <div class="card-body">
                     <div class="track">
                         <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Order Pending</span> </div>
@@ -369,7 +369,7 @@ class PublicOrderController extends Controller
     public function show_orders(Request $request){
         $orders = Order::where('phone',$request->user_phone)->select('id','created_at')->get();
         if(!empty($orders[0])){
-            $output = '';
+            $output = '<header class="card-header mb-4 bg-light" style="border:1px solid silver"><h6>Your Orders ID :<a href="" class="col-md-6">View all</a></h6></header>';
             foreach($orders as $order){
                 $output.='<li class="list-group-item">('.$order->created_at->format('Y-m-d').') &nbsp;Order ID : '.$order->id.'  &nbsp;<a href="">View Order</a></li>';
             }

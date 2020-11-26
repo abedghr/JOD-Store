@@ -2,10 +2,8 @@
 @include('public_views.includes.public_header')
 
 	<!--================Home Banner Area =================-->
-	<section class="text-center" style="margin-top: 160px;">
-		<div class="main_title">
-			<h2>Welcome To Jordan Store</h2>
-		</div>
+	<section class="text-center" style="margin-top: 120px;">
+		<h2 style="font-family:Times New Roman; font-weight:bold; padding-left:50px; padding-top:25px; color:black; background-color:rgba(0,0,0,0.1); height:100px">WELCOME TO JORDAN STORES</h2>
 	</section>
 	<!--================End Home Banner Area =================-->
 
@@ -60,33 +58,38 @@
 						<p>Who are in extremely love with eco friendly system.</p>
 					</div>
 				</div>
-				<div class="row">
-					
+			</div>
+				<section class="clients_logo_area mt-5">
+				<div class="container-fluid">
+					<div class="clients_slider owl-carousel">
                     @foreach ($featured_products as $product)
-                        <div class="col col1">
-                            <div class="f_p_item">
-                                <div class="f_p_img">
-                                    <img class="img-fluid" src="../img/Product_images/{{$product->main_image}}" alt="">
-                                    <div class="p_icon">
-                                        <a href="{{route('product.show',['id'=>$product->id])}}">
+					<div class="">
+						<div class="col-12">
+							<div class="f_p_item">
+								<div class="f_p_img">
+									<img class="img-fluid rounded" src="../img/Product_images/{{$product->main_image}}" width="100%" alt="">
+									<div class="p_icon">
+										<a href="{{route('product.show',['id'=>$product->id])}}">
 											<i class="lnr lnr-eye"></i>
 										</a>
-                                        <a class="js-addcart-detail" style="cursor: pointer" onclick="addca({{$product->id}})">
-                                            <i class="lnr lnr-cart"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                    <h4 class="product-name"><a href="#" class="product-name js-name-detail">{{$product->prod_name}}</a></h4>
-                                    <p class="product-details"><strong>Provider : {{$product->prov->name}}</strong></p>
-                                    <p class="product-details"><strong>Category : {{$product->cat->cat_name}}</strong></p>
-                                    <span class="text-danger"><strong><del class="text-danger">JD{{number_format($product->old_price,2)}}</del></strong></span><br>
-                                    <span class="text-success"><strong>JD{{number_format($product->old_price,2)}}</strong></span>
-						    </div>
-					    </div>
-                    @endforeach
-					
+										<a class="js-addcart-detail" style="cursor: pointer" onclick="addca({{$product->id}})">
+											<i class="lnr lnr-cart"></i>
+										</a>
+									</div>
+								</div>
+									<h4 class="product-name"><a href="#" class="product-name js-name-detail">{{$product->prod_name}}</a></h4>
+									<p class="product-details"><strong>Provider : {{$product->prov->name}}</strong></p>
+									<p class="product-details"><strong>Category : {{$product->cat->cat_name}}</strong></p>
+									<span class="text-danger"><strong><del class="text-danger">JD{{number_format($product->old_price,2)}}</del></strong></span><br>
+									<span class="text-success"><strong>JD{{number_format($product->new_price,2)}}</strong></span>
+							</div>
+						</div>
+						
+					</div>
+					@endforeach
+					</div>
 				</div>
-			</div>
+				</section>
 		</div>
 	</section>
 	<!--================End Feature Product Area =================-->

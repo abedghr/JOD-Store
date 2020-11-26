@@ -97,7 +97,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script src="{{asset('js/app.js')}}"></script>
 <script src="{{asset('public_libraries/js/jquery-3.2.1.min.js')}}"></script>
 <script src="{{asset('public_libraries/js/popper.js')}}"></script>
-<script src="{{asset('public_libraries/js/bootstrap.min.js')}}"></script>
+{{-- <script src="{{asset('public_libraries/js/bootstrap.min.js')}}"></script> --}}
 <script src="{{asset('public_libraries/js/stellar.js')}}"></script>
 <script src="{{asset('public_libraries/vendors/lightbox/simpleLightbox.min.js')}}"></script>
 <script src="{{asset('public_libraries/vendors/nice-select/js/jquery.nice-select.min.js')}}"></script>
@@ -106,7 +106,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script src="{{asset('public_libraries/vendors/owl-carousel/owl.carousel.min.js')}}"></script>
 <script src="{{asset('public_libraries/js/jquery.ajaxchimp.min.js')}}"></script>
 <script src="{{asset('public_libraries/vendors/counter-up/jquery.waypoints.min.js')}}"></script>
-{{-- <script src="{{asset('public_libraries/vendors/flipclock/timer.js')}}"></script> --}}
+<script src="{{asset('public_libraries/vendors/flipclock/timer.js')}}"></script>
 <script src="{{asset('public_libraries/vendors/counter-up/jquery.counterup.js')}}"></script>
 <script src="{{asset('public_libraries/js/mail-script.js')}}"></script>
 <script src="{{asset('public_libraries/js/theme.js')}}"></script>

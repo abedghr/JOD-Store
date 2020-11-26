@@ -250,33 +250,30 @@
 	<section class="clients_logo_area mt-5">
 		<div class="container-fluid">
 			<div class="clients_slider owl-carousel">
-                @foreach ($related_products as $product)
+                @foreach ($related_products as $Rproduct)
 					
 				<div class="">
 					<div class="col-12">
 						<div class="f_p_item">
 							<div class="f_p_img">
-								<img class="img-fluid rounded" src="../img/Product_images/{{$product->main_image}}" width="100%" alt="">
+								<img class="img-fluid rounded" src="../img/Product_images/{{$Rproduct->main_image}}" width="100%" alt="">
 								<div class="p_icon">
-									<a href="{{route('product.show',['id'=>$product->id])}}">
+									<a href="{{route('product.show',['id'=>$Rproduct->id])}}">
 										<i class="lnr lnr-eye"></i>
 									</a>
-									<a class="js-addcart-detail" style="cursor: pointer" onclick="addca({{$product->id}})">
+									<a class="js-addcart-detail" style="cursor: pointer" onclick="addca({{$Rproduct->id}})">
 										<i class="lnr lnr-cart"></i>
 									</a>
 								</div>
 							</div>
-								<h4 class="product-name"><a href="#" class="product-name js-name-detail">{{$product->prod_name}}</a></h4>
-								<p class="product-details"><strong>Provider : {{$product->prov->name}}</strong></p>
-								<p class="product-details"><strong>Category : {{$product->cat->cat_name}}</strong></p>
-								<span class="text-danger"><strong><del class="text-danger">JD{{number_format($product->old_price,2)}}</del></strong></span><br>
-								<span class="text-success"><strong>JD{{number_format($product->new_price,2)}}</strong></span>
+								<h4 class="product-name"><a href="#" class="product-name js-name-detail">{{$Rproduct->prod_name}}</a></h4>
+								<p class="product-details"><strong>Provider : {{$Rproduct->prov->name}}</strong></p>
+								<p class="product-details"><strong>Category : {{$Rproduct->cat->cat_name}}</strong></p>
+								<span class="text-danger"><strong><del class="text-danger">JD{{number_format($Rproduct->old_price,2)}}</del></strong></span><br>
+								<span class="text-success"><strong>JD{{number_format($Rproduct->new_price,2)}}</strong></span>
 						</div>
 					</div>
-					{{-- <a href="{{route('public_provider.profile',['id'=>$logo->id])}}">
-						<img src="../img/Product_images/{{$product->main_image}}" alt="">
-						<label class="text-secondary">{{$logo->name}}</label>
-					</a> --}}
+					
 				</div>
 				@endforeach
                     
@@ -285,7 +282,9 @@
 	</section>
 	<!--================End Clients Logo Area =================-->
 <br><br>
+
 	@include('public_views.includes.public_footer')
+	
 	@if (isset($user)){
 		<script>
     

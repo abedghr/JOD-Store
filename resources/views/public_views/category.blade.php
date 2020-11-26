@@ -2,8 +2,8 @@
 @include('public_views.includes.public_header')
 
 	<!--================Home Banner Area =================-->
-	<section class="container"  style="margin-top: 160px;">
-        <h2>LETS SHOPPING ('{{$category->cat_name}}')...</h2>
+    <section  style="margin-top: 120px;">
+        <h2 style="font-family:Times New Roman; font-weight:bold; padding-left:50px; padding-top:25px; color:black; background-color:rgba(0,0,0,0.1); height:100px">LETS SHOPPING ({{$category->cat_name}})</h2>
 	</section>
 	<!--================End Home Banner Area =================-->
 

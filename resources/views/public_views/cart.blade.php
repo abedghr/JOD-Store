@@ -2,8 +2,8 @@
 @include('public_views.includes.public_header')
 
 <!--================Home Banner Area =================-->
-<section class="text-center" style="margin-top: 160px;">
-	<h1><span class="bg-light welcome_header">Shopping Cart</span></h1>
+<section class="text-center" style="margin-top: 122px;">
+	<h2 style="font-family:Times New Roman; font-weight:bold; padding-left:50px; padding-top:25px; color:black; background-color:rgba(0,0,0,0.1); height:100px">SHOPPING CART</h2>
 </section>
 <!--================End Home Banner Area =================-->
 
@@ -19,7 +19,7 @@
 						<tbody>
 							<?php $total = 0 ;?>
 							@foreach ($providers as $provider)
-								<tr>
+								<tr class="bg-light">
 									<th>
 									<h4><a href="{{route('public_provider.profile',['id'=>$provider['provider_id']])}}">{{$provider['provider']}}</a></h4>
 									</th>
@@ -58,7 +58,7 @@
                                         <h5>JD{{number_format($ca['unit_price']*$ca['quantity'],2)}}</h5>
 									</td>
 									<td>
-										<a href="{{route('cart.remove',['prod_id'=>$ca['id'],'prov_id'=>$ca['provider_id']])}}" onclick="return confirm('Are you sure?')"><i class="btn btn-danger rounded-circle fa fa-remove"></i></a>
+										<a href="{{route('cart.remove',['prod_id'=>$ca['id'],'prov_id'=>$ca['provider_id']])}}" onclick="return confirm('Are you sure?')"><i class="btn btn-danger fa fa-trash"></i></a>
 									</td>
 								</tr>
 								<?php $total += $ca['unit_price']*$ca['quantity']; ?>

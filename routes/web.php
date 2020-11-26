@@ -342,7 +342,7 @@ Route::post('/feedback','PublicFeedbackController@admin_feedback')->name('admin_
 Route::get('/shopping-cart','CartController@shoppingcart')->name('cart.index')->middleware('preventbackbutton');
 Route::get('/checkout','PublicOrderController@checkout')->name('checkout')->middleware('preventbackbutton');
 Route::get('/remove-from-cart/{prov_id}/{prod_id}','CartController@removeFromCart')->name('cart.remove');
-Route::get('/singe-product/{id}','PublicProductController@show')->name('product.show')->middleware('preventbackbutton');
+Route::get('/single-product/{id}','PublicProductController@show')->name('product.show')->middleware('preventbackbutton');
 Route::get('/tracking-order','PublicOrderController@tracking')->name('order.tracking')->middleware('preventbackbutton');
 Route::post('/checkout-process','PublicOrderController@checkout_process')->name('order.payment')->middleware('preventbackbutton');
 Route::get('/order_done','PublicOrderController@orderDone')->name('orders.done')->middleware('preventbackbutton');
