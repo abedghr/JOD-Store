@@ -21,7 +21,7 @@
     <link href="{{ asset('css/mystyles.css') }}" rel="stylesheet">
 </head>
 <body>
-
+    <h3 class="text-center"><strong><a href="/home" class="btn btn-dark btn-block">Visite Store</a></strong></h3>
 <div class="container mt-5">
     @yield('content')
 </div>

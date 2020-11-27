@@ -2,8 +2,8 @@
 @include('public_views.includes.public_header')
 
 <!--================Home Banner Area =================-->
-<section class="text-center" style="margin-top: 122px;">
-	<h2 style="font-family:Times New Roman; font-weight:bold; padding-left:50px; padding-top:25px; color:black; background-color:rgba(0,0,0,0.1); height:100px">SHOPPING CART</h2>
+<section class="text-center" style="margin-top: 122px; background-image: url({{asset('img/cart-image.jpg')}}); background-size:100% 100%; height:300px; position:relative;"">
+	<h2 style="font-family:Times New Roman; font-weight:bold; padding-left:50px; padding-top:25px; color:white; background-color:rgba(0,0,0,0.8); height:100px; position: absolute; width:100%; bottom:-9px;">SHOPPING CART</h2>
 </section>
 <!--================End Home Banner Area =================-->
 

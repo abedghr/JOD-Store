@@ -170,14 +170,14 @@
               </p>
             </a>
           </li>
-          {{-- <li class="nav-item">
+          <li class="nav-item">
           <a href="{{route('admin_provider.create')}}" class="nav-link">
-              <i class="nav-icon fas fa-user-circle"></i>
+              <i class="nav-icon fas fa-users"></i>
               <p>
                 Manage Admins
               </p>
             </a>
-          </li> --}}
+          </li>
           <li class="nav-item">
           <a href="{{route('product_provider.create')}}" class="nav-link">
               <i class="nav-icon fa fa-product-hunt"></i>

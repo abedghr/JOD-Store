@@ -21,7 +21,7 @@ PUSHER_APP_CLUSTER=mt1
 
 Route::get('/', function () {
     /* return redirect()->route('home'); */
-    return view('home');
+    return redirect()->route('home');
 });
 
 
@@ -173,6 +173,7 @@ Route::group(['prefix' => 'provider'], function () {
 
     // Dashboard Route
     Route::get('/','ProviderController@index')->name('provider.dashboard')->middleware('preventbackbutton','verified');
+    
     
     // Register Route
     Route::get('/register','Auth\ProviderRegisterController@showRegisterForm')->name('provider.register');

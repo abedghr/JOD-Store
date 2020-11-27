@@ -76,14 +76,14 @@
 						<div class="row w-100">
 							<div class="col-lg-8 pr-0">
 								<ul class="nav navbar-nav center_nav pull-right">
-									<li class="nav-item {{-- @if ($pageTitle == "Home") active @endif --}} ">
+									<li class="nav-item @if ($pageTitle == "Home") active @endif ">
 										<a class="nav-link" href="{{route('home')}}">Home</a>
 									</li>
 									<li class="nav-item @if ($pageTitle == "Shop") active @endif">
 										<a href="{{route('product.all')}}" class="nav-link" role="button" aria-haspopup="true" aria-expanded="false">Shop</a>
 									</li>
-									<li class="nav-item @if ($pageTitle == "Vendors") active @endif">
-										<a href="{{route('provider.all')}}" class="nav-link" role="button" aria-haspopup="true" aria-expanded="false">Vendors</a>
+									<li class="nav-item @if ($pageTitle == "Stores") active @endif">
+										<a href="{{route('provider.all')}}" class="nav-link" role="button" aria-haspopup="true" aria-expanded="false">Stores</a>
 									</li>
 									<li class="nav-item @if ($pageTitle == "Contact Us") active @endif">
 										<a class="nav-link" href="{{route('contact-us')}}">Contact</a>

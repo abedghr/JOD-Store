@@ -3,11 +3,13 @@ $pageTitle = "Tracking Order";
 ?>
 
 @include('public_views.includes.public_header')
+<section  style="margin-top: 120px; background-image: url({{asset('img/tracking-image.jpeg')}}); background-size:100% 100%; height:250px; position:relative;">
+    <h2 style="font-family:Times New Roman; font-weight:bold; padding-left:50px; padding-top:25px; color:white; background-color:rgba(0,0,0,0.8); height:100px"><i>Tracking Orders</i></h2>
+</section>
 
 <!--================Tracking Box Area =================-->
 <section class="tracking_box_area p_120">
-    <h2 style="font-family:Times New Roman; font-weight:bold; padding-left:50px; padding-top:25px; color:black; background-color:rgba(0,0,0,0.1); height:100px"><i>Tracking Orders</i></h2>
-    <div class="container"   style="margin-top: 100px;">
+    <div class="container">
         <div class="row">
             <div class="col-md-6 mt-3 mb-5">
                 <div class="tracking_box_inner">

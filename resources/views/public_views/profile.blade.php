@@ -1,15 +1,14 @@
 <?php $pageTitle = "Profile" ?>
 @include('public_views.includes.public_header')
 
-
+<div class="container" style="margin-top:200px;">
 <!--================Home Banner Area =================-->
     <section class="bg-profile" style="margin-top: 122px; background-image: url('../../img/Provider_coverImages/{{$provider->cover_image}}')">
         <div class="d-flex align-items-center">
-            <div class="container">
-            </div>
+            
         </div>
     </section>
-    <div class="container">
+    <div class="">
         <div class="row">
             <div class="col-lg-3 text-center">
                 <img src="../../img/provider_images/{{$provider->image}}" class="rounded-circle" width="250" height="250" style="margin-top:-80px; padding:10px; border:1px solid silver" alt="">
@@ -43,7 +42,7 @@
 
 <!--================Category Product Area =================-->
 <section class="cat_product_area mt-5">
-    <div class="container-fluid">
+    <div class="">
         <div class="row flex-row-reverse">
             <div class="col-lg-9">
                 <div class="product_top_bar">
@@ -132,7 +131,7 @@
     </div>
 </section>
 <!--================End Category Product Area =================-->
-
+</div>
 <!--================ Subscription Area ================-->
 <section class="subscription-area section_gap mt-5">
     <div class="container">

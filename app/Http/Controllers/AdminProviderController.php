@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AdminOfProvider;
 use App\Models\AdminsOfProvider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AdminProviderController extends Controller
@@ -48,13 +49,14 @@ class AdminProviderController extends Controller
         $valid = $request->validate([
             'admin_name'=>'required',
             'email'=>'required|email|unique:admins',
-            'password'=>'required|min:8'
+            'password'=>'required|min:8',
         ]);
 
         $admin = AdminsOfProvider::create([
             'name'=> $request->input('admin_name'),
             'email'=> $request->input('email'),
-            'password'=> Hash::make($request->input('password'))
+            'password'=> Hash::make($request->input('password')),
+            'provider'=>Auth::user()->id
         ]);
         
         return redirect(url()->previous());
@@ -104,7 +106,8 @@ class AdminProviderController extends Controller
             $update_admin = AdminsOfProvider::where('id',$id)->update([
                 'name'=>$request->input('admin_name'),
                 'email'=>$request->input('email'),
-                'password'=> Hash::make($request->input('password'))
+                'password'=> Hash::make($request->input('password')),
+                'provider'=>Auth::user()->id
             ]);
             return redirect()->route('admin_provider.create');
         }else{
@@ -115,6 +118,7 @@ class AdminProviderController extends Controller
             $update_admin = AdminsOfProvider::where('id',$id)->update([
                 'name'=>$request->input('admin_name'),
                 'email'=>$request->input('email'),
+                'provider'=>Auth::user()->id
             ]);
             return redirect()->route('admin_provider.create');
         }

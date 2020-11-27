@@ -38,6 +38,7 @@
             <thead>
               <tr>
                 <th>Actions</th>
+                <th>Order ID</th>
                 <th>Name</th>
                 <th>phone</th>
                 <th>City</th>
@@ -72,6 +73,7 @@
                           <button onclick="return confirm('Are you sure ?')" type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                       </form>
                   </td>
+                  <td>{{$order->id}}</td>
                   <input type="hidden" value="{{$order->id}}" id="order_id">
                   <td>{{$order->fname.' '.$order->lname}}</td>
                   <td>{{$order->phone}}</td>

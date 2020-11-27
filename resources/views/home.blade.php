@@ -2,34 +2,36 @@
 @include('public_views.includes.public_header')
 
 	<!--================Home Banner Area =================-->
-	<section class="text-center" style="margin-top: 120px;">
-		<h2 style="font-family:Times New Roman; font-weight:bold; padding-left:50px; padding-top:25px; color:black; background-color:rgba(0,0,0,0.1); height:100px">WELCOME TO JORDAN STORES</h2>
+	<section class="text-center" style="margin-top: 120px; background-image: url({{asset('img/ecom2.jpg')}}); background-size:100% 100%; height:250px; position:relative;">
+		<h2 style="font-family:Times New Roman; font-weight:bold; padding-left:50px; padding-top:25px; padding-bottom:25px; color:white; background-color:rgba(0,0,0,0.6); position: absolute; bottom:-8px; width:100%;">WELCOME TO JORDAN STORES</h2>
 	</section>
 	<!--================End Home Banner Area =================-->
-
-	<!--================Hot Deals Area =================-->
-	<section class="hot_deals_area header_gap">
-		<div class="container-fluid">
-			<div class="row">
-				@foreach ($categories as $category)
-				<a class="text-light" href="{{route('category.show',['id'=>$category->id])}}">
-                <div class="col-lg-4 mb-3 text-light">
-					<div class="hot_deal_box"  style="height:200px;">
-						<img class="" src="../img/Category_images/{{$category->cat_image}}" height="100%" width="100%"  alt="">
-						<div class="content">
-							<h2>{{$category->cat_name}}</h2>
-							<p><a href="{{route('category.show',['id'=>$category->id])}}" class="text-light">shop now</a></p>
+ <!--================Blog Categorie Area =================-->
+ <section class="blog_categorie_area">
+	<div class="container">
+		<div class="row">
+			@foreach ($categories as $category)
+			<a class="text-light" href="{{route('category.show',['id'=>$category->id])}}">
+				<div class="col-lg-4 mb-3">
+					<div class="categories_post"   style="height:200px;">
+						<img src="../img/Category_images/{{$category->cat_image}}" height="100%" width="100%" alt="post">
+						<div class="categories_details">
+							<div class="categories_text">
+								<a class="text-light" href="{{route('category.show',['id'=>$category->id])}}">
+									<h5>{{$category->cat_name}}</h5>
+								</a>
+								<div class="border_line"></div>
+								<p><a href="{{route('category.show',['id'=>$category->id])}}" class="text-light">shop now</a></p>
+							</div>
 						</div>
-						<a class="hot_deal_link" href="{{route('category.show',['id'=>$category->id])}}"></a>
 					</div>
 				</div>
-				</a>
-                @endforeach
-				
-			</div>
+			</a>
+			@endforeach
 		</div>
-	</section>
-	<!--================End Hot Deals Area =================-->
+	</div>
+</section>
+<!--================Blog Categorie Area =================-->
 
 	<!--================Clients Logo Area =================-->
 	<section class="clients_logo_area">

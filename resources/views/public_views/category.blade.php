@@ -2,8 +2,8 @@
 @include('public_views.includes.public_header')
 
 	<!--================Home Banner Area =================-->
-    <section  style="margin-top: 120px;">
-        <h2 style="font-family:Times New Roman; font-weight:bold; padding-left:50px; padding-top:25px; color:black; background-color:rgba(0,0,0,0.1); height:100px">LETS SHOPPING ({{$category->cat_name}})</h2>
+    <section  style="margin-top: 120px; background-image: url({{asset('img/ecom22.jpg')}}); background-size:100% 100%; height:250px; position:relative;">
+        <h2 style="font-family:Times New Roman; font-weight:bold; padding-left:50px; padding-top:25px; color:white; background-color:rgba(0,0,0,0.6); height:100px">LETS SHOPPING ({{$category->cat_name}})</h2>
 	</section>
 	<!--================End Home Banner Area =================-->
 

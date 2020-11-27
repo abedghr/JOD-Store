@@ -21,6 +21,10 @@ class ProviderController extends Controller
         $this->middleware('auth:provider');
     }
 
+    public function add_admin_of_provider(){
+        
+    }
+
     public function index()
     {
         $products_number = Product::where('provider',Auth::user()->id)->count();

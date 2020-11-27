@@ -2,9 +2,13 @@
 @include('public_views.includes.public_header')
 <br>
 
-<section class="contact_area p_120" style="margin-top: -32px;">
-    <h2 style="font-family:Times New Roman; font-weight:bold; padding-left:50px; padding-top:25px; color:black; background-color:rgba(0,0,0,0.1); height:100px"><i>Contact US</i></h2>
-    <div class="container" style="margin-top: 80px;">
+<section  style="margin-top: 100px; background-image: url({{asset('img/contact-image1.jpg')}}); background-size:100% 100%; height:350px; position:relative;">
+    <h2 style="font-family:Times New Roman; font-weight:bold; padding-left:50px; padding-top:25px; color:white; background-color:rgba(0,0,0,0.8); height:90px;"><i>Contact US</i></h2>
+</section>
+
+<section class="contact_area p_120">
+    
+    <div class="container">
         
         <div class="row">
             <div class="col-lg-3">

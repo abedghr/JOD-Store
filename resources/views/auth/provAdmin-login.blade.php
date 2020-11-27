@@ -1,7 +1,7 @@
 @extends('layouts.provAdmin-app')
 
 @section('content')
-<div class="container">
+<div class="container mt-5">
     <div class="row justify-content-center" style="height: 450px !important;">
         <div class="col-md-10">
             <div class="card bg-light" style="height: 100%">
@@ -12,7 +12,7 @@
                 <div class="col-lg-7">
                     <div style="background-image: url({{asset('../img/providerBackgroundLogin.jpg')}}); background-size: 100% 100%; height: 450px; background-repeat: no-repeat;">
                         <div style="background-color:rgba(0,0,0,0.3); height:100%">
-                            
+                            <a href="/provider/login" class="btn btn-dark btn-block">Provider Login</a>
                         </div>
                         
                         

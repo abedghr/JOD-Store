@@ -8,9 +8,9 @@
                 
             <div class="row">
                 <div class="col-lg-7">
-                    <div style="background-image: url('{{asset("img/userbackgroundlogin.jpg")}}'); background-size: 100% 100%; height: 500px; background-repeat: no-repeat;">
-                        <div style="background-color:rgba(0,0,0,0.5); height:100%">
-                            
+                    <div style="background-image: url('{{asset("img/ecommerce1.jpg")}}'); background-size: 100% 100%; height: 500px; background-repeat: no-repeat;">
+                        <div style="height:100%">
+                            <a href="/provider/login" class="btn btn-dark btn-block">Provider Login</a>
                         </div>
                         
                         

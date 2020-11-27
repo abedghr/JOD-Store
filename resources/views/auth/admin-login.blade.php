@@ -13,6 +13,7 @@
                     <div style="background-image: url(../img/AdminLogin.jpg); background-size: 100% 100%; height: 500px; background-repeat: no-repeat;">
                         <div style="background-color:rgba(0,0,0,0.3); height:100%">
                             <h1 class="text-light" style="font-family:Arial, Helvetica, sans-serif; position: relative; top: 38%; margin-left:15px;">JOD-Store</h1>
+                            <small class="text-light" style="font-family:Arial, Helvetica, sans-serif; position: relative; top: 36%; margin-left:15px;">Admin Dashboard</small>
                         </div>
                         
                         

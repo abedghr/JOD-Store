@@ -1,15 +1,15 @@
-<?php $pageTitle = "Vendors" ?>
+<?php $pageTitle = "Stores" ?>
 @include('public_views.includes.public_header')
 <br>
 
 
 <section class="">
     <!-- d-flex align-items-center -->
-    <div class="row"  style="font-family:Times New Roman; font-weight:bold; padding-left:50px; padding-top:25px; color:black; background-color:rgba(0,0,0,0.1); height:100px; margin-top:98px;">
+    <div class="row"  style="font-family:Times New Roman; font-weight:bold; padding-left:50px; padding-top:25px; color:white; background-color:rgba(0,0,0,0.8); height:100px; margin-top:98px;">
         <div class="col-md-4">
             <h3 style="font-family: Times new roman; font-weight: bold;"><i>LETS FIND YOUR BEST STORE</i></h3>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-4">
             <input type="search" id="vendor_search" onkeyup="search_vendors()" class="form-control bg-light" placeholder="Search Store...">
         </div>
         <div class="container">
