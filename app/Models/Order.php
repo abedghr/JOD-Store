@@ -10,5 +10,7 @@ class Order extends Model
         'fname','lname','email','phone','phone2','city','Address','notes','provider','total_price','total_With_Delivery' ,'order_status','payment_method'
     ];
 
-    
+    public function Prov(){
+        return $this->belongsTo('App\Models\Provider','provider','id');
+    }
 }

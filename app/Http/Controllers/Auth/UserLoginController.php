@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\City;
+use App\Models\Order;
+use App\Models\ProductsOfOrders;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -76,13 +78,26 @@ class UserLoginController extends Controller
 
     public function profile(){
         $user = session()->get('user');
-        if($user != null){
+        if($user != null || isset($user)){
             $userData = User::find($user['user_id']);
             $cities = City::all();
+            $orders = Order::where('email',$userData->email)->OrderBy('created_at','desc')->get();
+            $productsOrders = Array();
+            $i = 0;
+            foreach($orders as $order){
+                $prodOrders = ProductsOfOrders::where('order_id',$order->id)->get();
+                foreach($prodOrders as $prod){
+                    $productsOrders[$i] = ['order_id'=>$prod->order_id , 'prod_name'=>$prod->prod_name , 'price'=>$prod->new_price , 'quantity'=>$prod->quantity , 'category'=>$prod->cat->cat_name , 'provider'=>$prod->provid->name , 'image'=>$prod->main_image];
+                    $i++;
+                }
+            
+            }
             return view('public_views.user_profile',[
                 'user'=>$user,
                 'userData'=>$userData,
-                'cities'=>$cities
+                'cities'=>$cities,
+                'yourOrders'=>$orders,
+                'productsOrder'=>$productsOrders
             ]);
         }else{
             return redirect()->route('home');

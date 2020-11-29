@@ -1,7 +1,7 @@
 <?php $pageTitle = "Profile" ?>
 @include('public_views.includes.public_header')
 
-<div class="container" style="margin-top:200px;">
+<div class="container" style="margin-top:150px;">
 <!--================Home Banner Area =================-->
     <section class="bg-profile" style="margin-top: 122px; background-image: url('../../img/Provider_coverImages/{{$provider->cover_image}}')">
         <div class="d-flex align-items-center">
@@ -71,6 +71,7 @@
                                     <h4 class="product-name"><a href="#" class="product-name js-name-detail">{{$product->prod_name}}</a></h4>
                                     <p class="product-details"><strong>Provider : {{$product->prov->name}}</strong></p>
                                     <p class="product-details"><strong>Category : {{$product->cat->cat_name}}</strong></p>
+                                    <p class="product-details"><strong>Gender : {{$product->gender}}</strong></p>
                                     <span class="text-danger"><strong><del class="text-danger">JD{{number_format($product->old_price,2)}}</del></strong></span><br>
                                     <span class="text-success"><strong>JD{{number_format($product->new_price,2)}}</strong></span>
                             </div>

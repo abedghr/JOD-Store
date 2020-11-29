@@ -79,18 +79,61 @@
                 </div>
             </div>
         </div>
+        <hr>
     </div>
 </div>
-<hr>
+
+
 <div class="container mt-5">
-    <h2>Your Orders :</h2>
-    <div class="card">
-        <h5 class="card-header">Featured</h5>
-        <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
+    <h2 class="text-dark">Your Orders :</h2>
+@foreach ($yourOrders as $order)
+
+<div class="card mb-4">
+    <h5 class="card-header bg-secondary text-light">Order ID : {{$order->id}} , <small ><strong>Created At : </strong>{{$order->created_at}}</small></h5>
+    <div class="card-body row">
+      <div class="col-md-2">
+        <p class="card-text"><strong>Store : {{$order->Prov->name}}</strong></p>
       </div>
+      <div class="col-md-3">
+        <p class="card-text">Email : {{$order->email}}</p>
+      </div>
+      <div class="col-md-2">
+        <p class="card-text">City : {{$order->city}}</p>
+      </div>
+      <div class="col-md-2">
+        <p class="card-text">Address : {{$order->Address}}</p>
+      </div>
+      <div class="col-md-1">
+        <p class="card-text">Total : JD{{$order->total_price}}</p>
+      </div>
+      <div class="col-md-2">
+        <p class="card-text">Total Price Including Delivery : {{$order->total_With_Delivery}}</p>
+      </div>
+      <div class="col-md-12">
+          <hr>
+      </div>
+      <div class="col-md-12 row">
+        @foreach ($productsOrder as $prod)
+              @if ($order->id == $prod['order_id'])
+              <div class="col-md-3">
+                  <img src="../../img/Product_images/{{$prod['image']}}" width="100%" height="200" alt="">
+              </div>
+              <div class="col-md-9">
+                <p>Product Name : {{$prod['prod_name']}}</p>
+                <p>Price : JD{{$prod['price']}}</p>
+                <p>Quantity : {{$prod['quantity']}}</p>
+                <p>Category : {{$prod['category']}}</p>
+                <p>Store : {{$prod['provider']}}</p>
+              </div>
+              @endif
+        @endforeach
+      </div>
+        
+      </div>
+          
+      
+      {{-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
+    </div>
+@endforeach
 </div>
 @include('public_views.includes.public_footer')

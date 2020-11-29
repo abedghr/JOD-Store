@@ -2,7 +2,7 @@
 @include('public_views.includes.public_header')
 
 	<!--================Home Banner Area =================-->
-    <section  style="margin-top: 120px; background-image: url({{asset('img/ecom22.jpg')}}); background-size:100% 100%; height:250px; position:relative;">
+    <section  style="margin-top: 120px; background-image: url(../img/Category_images/{{$category->cat_image}}); background-size:cover; background-position:center center; height:350px; position:relative;">
         <h2 style="font-family:Times New Roman; font-weight:bold; padding-left:50px; padding-top:25px; color:white; background-color:rgba(0,0,0,0.6); height:100px">LETS SHOPPING ({{$category->cat_name}})</h2>
 	</section>
 	<!--================End Home Banner Area =================-->
@@ -38,6 +38,7 @@
                                 <h4 class="product-name"><a href="#" class="product-name js-name-detail">{{$product->prod_name}}</a></h4>
                                 <p class="product-details"><strong>Provider : {{$product->prov->name}}</strong></p>
                                 <p class="product-details"><strong>Category : {{$product->cat->cat_name}}</strong></p>
+                                <p class="product-details"><strong>Gender : {{$product->gender}}</strong></p>
                                 <span class="text-danger"><strong><del class="text-danger">JD{{number_format($product->old_price,2)}}</del></strong></span><br>
                                 <span class="text-success"><strong>JD{{number_format($product->new_price,2)}}</strong></span>
                         </div>

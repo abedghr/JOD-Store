@@ -7,6 +7,7 @@
 	</section>
 	<!--================End Home Banner Area =================-->
  <!--================Blog Categorie Area =================-->
+ 
  <section class="blog_categorie_area">
 	<div class="container">
 		<div class="row">
@@ -82,6 +83,7 @@
 									<h4 class="product-name"><a href="#" class="product-name js-name-detail">{{$product->prod_name}}</a></h4>
 									<p class="product-details"><strong>Provider : {{$product->prov->name}}</strong></p>
 									<p class="product-details"><strong>Category : {{$product->cat->cat_name}}</strong></p>
+									<p class="product-details"><strong>Gender : {{$product->gender}}</strong></p>
 									<span class="text-danger"><strong><del class="text-danger">JD{{number_format($product->old_price,2)}}</del></strong></span><br>
 									<span class="text-success"><strong>JD{{number_format($product->new_price,2)}}</strong></span>
 							</div>
