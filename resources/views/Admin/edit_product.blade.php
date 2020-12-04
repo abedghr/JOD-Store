@@ -142,21 +142,11 @@
                     </div>
                     
                   </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Product Status <span class="text-danger"> Optional</span></label>
-                      <input type="text" class="form-control" id="exampleInputEmail1" value="{{$product->prod_status}}" name="prod_status" placeholder="Enter Product Status">
-                    </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Product Status <span class="text-danger"> Optional</span></label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" value="{{$product->prod_status}}" name="prod_status" placeholder="Enter Product Status">
                   </div>
-                  <div class="col-md-6">
-                    <label for="exampleInputEmail1">Product Colors <span class="text-danger"> Optional</span></label>
-                    <input type="text" id="color" class="form-control" style="width:80%; display:inline">
-                    <input type="hidden" name="colors" id="colors" value="{{$product->colors}}">
-                    <a class="btn btn-warning" onclick="addColor()" style="margin-bottom:5px">+</a>
-                  </div>
-                </div>
-                <div class="row">
+                  <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="exampleInputPassword1">Availability <span class="text-danger"> Optional</span></label>
@@ -207,23 +197,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                  <label>The COLORS :</label>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <p id="the_colors">{{$product->colors}}</p>
-                    </div>
-                    <div class="col-md-3">
-                      <input type="text" class="form-control" placeholder="Color name to delete" id="color_text_remove">
-                    </div>
-                    <div class="col-md-3">
-                      <a class="btn btn-danger text-light" onclick="remove_color()">remove color</a>
-                    </div>
-                  </div>
-                  
-                </div>
-                
-                
                 </div>
                 <!-- /.card-body -->
 
@@ -263,7 +236,7 @@
             @foreach ($images as $image)
             <tr>
               <td>
-              <img src="../../storage/Product_images/{{$image->image}}" width="80%" height="250" class="rounded" alt="">
+              <img src="../../img/Product_images/{{$image->image}}" width="80%" height="250" class="rounded" alt="">
               </td>
               <td>
               <form method="post" action="{{route('product_provider_image.delete',['id'=>$image->id])}}" style="display: inline">

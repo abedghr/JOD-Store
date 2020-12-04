@@ -44,7 +44,7 @@
                         <td>
                             <a href="/admin/Messages" class="dropdown-item">
                                 <i class="fa fa-first-order mr-2"></i> There is a New Feedback from user &nbsp;'{{$notify->data['name']}}'
-                                <br><span class="text-muted text-sm">{{$notify->data['date']}}</span>
+                                <br><span class="text-muted text-sm">{{$notify->data['created_at']}}</span>
                             </a>
                         </td>
                     @endif

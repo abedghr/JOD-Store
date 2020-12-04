@@ -72,8 +72,8 @@
                                     <p class="product-details"><strong>Provider : {{$product->prov->name}}</strong></p>
                                     <p class="product-details"><strong>Category : {{$product->cat->cat_name}}</strong></p>
                                     <p class="product-details"><strong>Gender : {{$product->gender}}</strong></p>
-                                    <span class="text-danger"><strong><del class="text-danger">JD{{number_format($product->old_price,2)}}</del></strong></span><br>
-                                    <span class="text-success"><strong>JD{{number_format($product->new_price,2)}}</strong></span>
+                                    <span class="text-danger"><strong><del class="text-danger">JD{{number_format($product->old_price,2)}}</del></strong></span>
+                                    <span class="text-success ml-2"><strong>JD{{number_format($product->new_price,2)}}</strong></span>
                             </div>
                         </div>
                         @endforeach
@@ -85,7 +85,7 @@
                         <div class="l_w_title">
                             <h3>Browse Categories</h3>
                         </div>
-                        <div class="widgets_inner">
+                        <div class="widgets_inner" style="height:400px; overflow-y: scroll;">
                             <ul class="list">
                                 <li>
                                     <a href="{{route('vendor_product.all',['provider_id'=>$provider->id])}}" @if($category_active == "all") class="active-category" @endif>All</a>
@@ -94,6 +94,11 @@
                                 @foreach ($categories as $category)
                                 <li>
                                     <a href="{{route('profile_category.show',['prov_id'=>$provider->id ,'cat_id'=>$category['id']])}}"  @if ($category['id'] == $category_active) class="active-category" @endif>{{$category['name']}}</a>
+                                    <ol style="list-style: none;">
+                                        <li><a href="{{route('profile_gender.show',['cat_id'=>$category['id'] ,'prov_id'=>$provider->id , 'gender'=>'men'])}}">Men</a></li>
+                                        <li style="margin-top: -20px;"><a href="{{route('profile_gender.show',['cat_id'=>$category['id'],'prov_id'=>$provider->id , 'gender'=>'women'])}}">Women</a></li>
+                                        <li style="margin-top: -20px;"><a href="{{route('profile_gender.show',['cat_id'=>$category['id'],'prov_id'=>$provider->id , 'gender'=>'multiGender'])}}">Multi-Gender</a></li>
+                                    </ol>
                                 </li>
                                 @endforeach
                             </ul>

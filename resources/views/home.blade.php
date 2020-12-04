@@ -13,7 +13,7 @@
 		<div class="row">
 			@foreach ($categories as $category)
 			<a class="text-light" href="{{route('category.show',['id'=>$category->id])}}">
-				<div class="col-lg-4 mb-3">
+				<div class="col-lg-3 mb-3">
 					<div class="categories_post"   style="height:200px;">
 						<img src="../img/Category_images/{{$category->cat_image}}" height="100%" width="100%" alt="post">
 						<div class="categories_details">
@@ -63,10 +63,9 @@
 				</div>
 			</div>
 				<section class="clients_logo_area mt-5">
-				<div class="container-fluid">
 					<div class="clients_slider owl-carousel">
                     @foreach ($featured_products as $product)
-					<div class="">
+					<div>
 						<div class="col-12">
 							<div class="f_p_item">
 								<div class="f_p_img">
@@ -84,15 +83,14 @@
 									<p class="product-details"><strong>Provider : {{$product->prov->name}}</strong></p>
 									<p class="product-details"><strong>Category : {{$product->cat->cat_name}}</strong></p>
 									<p class="product-details"><strong>Gender : {{$product->gender}}</strong></p>
-									<span class="text-danger"><strong><del class="text-danger">JD{{number_format($product->old_price,2)}}</del></strong></span><br>
-									<span class="text-success"><strong>JD{{number_format($product->new_price,2)}}</strong></span>
+									<span class="text-danger"><strong><del class="text-danger">JD{{number_format($product->old_price,2)}}</del></strong></span>
+									<span class="text-success ml-2"><strong>JD{{number_format($product->new_price,2)}}</strong></span>
 							</div>
 						</div>
 						
 					</div>
 					@endforeach
 					</div>
-				</div>
 				</section>
 		</div>
 	</section>

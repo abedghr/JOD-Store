@@ -101,6 +101,40 @@ class PublicProviderController extends Controller
         
     }
     
+    public function profile_gender($prov_id , $cat_id,$gender){
+        $user = session()->get('user');
+        $single_provider = Provider::findorFail($prov_id);
+        $products = Product::where('provider',$prov_id)->where('category',$cat_id)->where('gender',$gender)->select()->paginate(12);
+        $categories = Category::all();
+        $cat_arr = array();
+        foreach($categories as $category){
+            $prod = Product::where('category',$category->id)->where('provider',$prov_id)->first();
+            
+            if($prod['category'] != null){
+                $cat_arr[$category->id]['id']=$category->id;
+                $cat_arr[$category->id]['name']=$category->cat_name;
+            }
+        }
+        if(session()->has('user')){
+            return view('public_views.profile_category_gender',[
+                'provider'=>$single_provider,
+                'products'=>$products,
+                'categories'=>$cat_arr,
+                'category_active'=>$cat_id,
+                'user'=>$user,
+                'gen'=>$gender
+            ]);
+        }else{
+            return view('public_views.profile_category_gender',[
+                'provider'=>$single_provider,
+                'products'=>$products,
+                'categories'=>$cat_arr,
+                'category_active'=>$cat_id,
+                'gen'=>$gender
+            ]);
+        }
+    }
+    
     public function search_vendors(Request $request){
         $vendors = Provider::where('name', 'like' , '%'.$request->vendor.'%')->select()->paginate(12);
         

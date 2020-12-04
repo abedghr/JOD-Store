@@ -50,7 +50,9 @@ class PublicProductController extends Controller
         $star5 = Rating::where('rating',5)->where('prod_id',$id)->select('rating')->get();
         $maxRate ="";
 
-        if($star5->count() >= $star4->count() && $star5->count() >= $star3->count() && $star5->count() >= $star2->count() && $star5->count() >= $star1->count()){
+        $maxR = (5*$star5->count() + 4*$star4->count() + 3*$star3->count() + 2*$star2->count() + 1*$star1->count())/($star5->count() + $star4->count() + $star3->count() + $star2->count() + $star1->count());
+
+        /* if($star5->count() >= $star4->count() && $star5->count() >= $star3->count() && $star5->count() >= $star2->count() && $star5->count() >= $star1->count()){
             $maxRate = $star5;
         }elseif($star4->count() > $star5->count() && $star4->count() >= $star3->count() && $star4->count() >= $star2->count() && $star4->count() >= $star1->count()){
             $maxRate = $star4;
@@ -60,9 +62,9 @@ class PublicProductController extends Controller
             $maxRate = $star2;
         }elseif($star1->count() > $star5->count() && $star1->count() > $star4->count() && $star1->count() > $star3->count() && $star1->count() > $star2->count()){
             $maxRate = $star1;
-        }
+        } */
         
-        if(!isset($maxRate[0])){
+        if(!isset($maxR)){
             if(session()->has('user')){
                 return view('public_views.single_product',[
                     'product'=>$single_product,
@@ -90,7 +92,7 @@ class PublicProductController extends Controller
                 'user'=>$user,
                 'comments'=>$comments,
                 'rating'=>$rate,
-                'product_rate'=>$maxRate[0]->rating,
+                'product_rate'=>$maxR,
                 'related_products'=>$related_products
             ]);
         }else{
@@ -98,7 +100,7 @@ class PublicProductController extends Controller
                 'product'=>$single_product,
                 'images'=>$product_images,
                 'comments'=>$comments,
-                'product_rate'=>$maxRate[0]->rating,
+                'product_rate'=>$maxR,
                 'related_products'=>$related_products
             ]);
         }
@@ -159,8 +161,8 @@ class PublicProductController extends Controller
                     <h4 class="product-name"><a href="#" class="product-name js-name-detail">'.$product->prod_name.'</a></h4>
                     <p class="product-details"><strong>Provider : '.$product->prov->name.'</strong></p>
                     <p class="product-details"><strong>Category : '.$product->cat->cat_name.'</strong></p>
-                    <span class="text-danger"><strong><del class="text-danger">JD'.number_format($product->old_price,2).'</del></strong></span><br>
-                    <span class="text-success"><strong>JD'.number_format($product->new_price,2).'</strong></span>
+                    <span class="text-danger"><strong><del class="text-danger">JD'.number_format($product->old_price,2).'</del></strong></span>
+                    <span class="text-success ml-2"><strong>JD'.number_format($product->new_price,2).'</strong></span>
             </div>
         </div>';
         }
@@ -190,8 +192,8 @@ class PublicProductController extends Controller
                     <h4 class="product-name"><a href="#" class="product-name js-name-detail">'.$product->prod_name.'</a></h4>
                     <p class="product-details"><strong>Provider : '.$product->prov->name.'</strong></p>
                     <p class="product-details"><strong>Category : '.$product->cat->cat_name.'</strong></p>
-                    <span class="text-danger"><strong><del class="text-danger">JD'.number_format($product->old_price,2).'</del></strong></span><br>
-                    <span class="text-success"><strong>JD'.number_format($product->new_price,2).'</strong></span>
+                    <span class="text-danger"><strong><del class="text-danger">JD'.number_format($product->old_price,2).'</del></strong></span>
+                    <span class="text-success ml-2"><strong>JD'.number_format($product->new_price,2).'</strong></span>
             </div>
         </div>';
         }
@@ -221,8 +223,39 @@ class PublicProductController extends Controller
                     <h4 class="product-name"><a href="#" class="product-name js-name-detail">'.$product->prod_name.'</a></h4>
                     <p class="product-details"><strong>Provider : '.$product->prov->name.'</strong></p>
                     <p class="product-details"><strong>Category : '.$product->cat->cat_name.'</strong></p>
-                    <span class="text-danger"><strong><del class="text-danger">JD'.number_format($product->old_price,2).'</del></strong></span><br>
-                    <span class="text-success"><strong>JD'.number_format($product->new_price,2).'</strong></span>
+                    <span class="text-danger"><strong><del class="text-danger">JD'.number_format($product->old_price,2).'</del></strong></span>
+                    <span class="text-success ml-2"><strong>JD'.number_format($product->new_price,2).'</strong></span>
+            </div>
+        </div>';
+        }
+        return $data = array(
+            'row_result'=>$output,
+        );
+    }
+
+    public function search_vendorsGender_products(Request $request){
+        $search_products = Product::where('prod_name','like', '%'.$request->data_search.'%')->where('provider',$request->prov_id)->where('category',$request->cat_id)->where('gender',$request->gender)->paginate(12);
+        
+        $output = '';
+        foreach($search_products as $product){
+            $output.='<div class="col-lg-3 col-md-3 col-sm-6">
+            <div class="f_p_item">
+                <div class="f_p_img">
+                    <img class="img-fluid" src="../../../img/Product_images/'.$product->main_image.'" alt="">
+                    <div class="p_icon">
+                        <a href="singe-product/'.$product->id.'">
+                            <i class="fa fa-eye"></i>
+                        </a>
+                        <a class="js-addcart-detail" style="cursor: pointer" onclick="addca('.$product->id.')">
+                            <i class="lnr lnr-cart"></i>
+                        </a>
+                    </div>
+                </div>
+                    <h4 class="product-name"><a href="#" class="product-name js-name-detail">'.$product->prod_name.'</a></h4>
+                    <p class="product-details"><strong>Provider : '.$product->prov->name.'</strong></p>
+                    <p class="product-details"><strong>Category : '.$product->cat->cat_name.'</strong></p>
+                    <span class="text-danger"><strong><del class="text-danger">JD'.number_format($product->old_price,2).'</del></strong></span>
+                    <span class="text-success ml-2"><strong>JD'.number_format($product->new_price,2).'</strong></span>
             </div>
         </div>';
         }
@@ -264,8 +297,8 @@ class PublicProductController extends Controller
                     <h4 class="product-name"><a href="#" class="product-name js-name-detail">'.$product->prod_name.'</a></h4>
                     <p class="product-details"><strong>Provider : '.$product->prov->name.'</strong></p>
                     <p class="product-details"><strong>Category : '.$product->cat->cat_name.'</strong></p>
-                    <span class="text-danger"><strong><del class="text-danger">JD'.number_format($product->old_price,2).'</del></strong></span><br>
-                    <span class="text-success"><strong>JD'.number_format($product->new_price,2).'</strong></span>
+                    <span class="text-danger"><strong><del class="text-danger">JD'.number_format($product->old_price,2).'</del></strong></span>
+                    <span class="text-success ml-2"><strong>JD'.number_format($product->new_price,2).'</strong></span>
             </div>
         </div>';
         }
@@ -306,8 +339,91 @@ class PublicProductController extends Controller
                     <h4 class="product-name"><a href="#" class="product-name js-name-detail">'.$product->prod_name.'</a></h4>
                     <p class="product-details"><strong>Provider : '.$product->prov->name.'</strong></p>
                     <p class="product-details"><strong>Category : '.$product->cat->cat_name.'</strong></p>
-                    <span class="text-danger"><strong><del class="text-danger">JD'.number_format($product->old_price,2).'</del></strong></span><br>
-                    <span class="text-success"><strong>JD'.number_format($product->new_price,2).'</strong></span>
+                    <span class="text-danger"><strong><del class="text-danger">JD'.number_format($product->old_price,2).'</del></strong></span>
+                    <span class="text-success ml-2"><strong>JD'.number_format($product->new_price,2).'</strong></span>
+            </div>
+        </div>';
+        }
+
+        return $data = array('arr'=>$output);
+    }
+
+    public function vendorCategoryFilter(Request $request){
+        if($request->filter == "low-to-high"){
+            $filter = Product::where('provider',$request->prov_id)->where('category',$request->cat_id)->select()->orderBy('new_price','asc')->paginate(12);
+        }else if($request->filter == "high-to-low"){
+            $filter = Product::where('provider',$request->prov_id)->where('category',$request->cat_id)->select()->orderBy('new_price','desc')->paginate(12);
+        }else if($request->filter == "less-10"){
+            $filter = Product::where('new_price', '<=' , 10)->where('provider',$request->prov_id)->where('category',$request->cat_id)->select()->orderBy('new_price','desc')->paginate(12);
+        }else if($request->filter == "less-25"){
+            $filter = Product::where('new_price', '<=' , 25)->where('provider',$request->prov_id)->where('category',$request->cat_id)->select()->orderBy('new_price','desc')->paginate(12);
+        }else if($request->filter == "less-35"){
+            $filter = Product::where('new_price', '<=' , 35)->where('provider',$request->prov_id)->where('category',$request->cat_id)->select()->orderBy('new_price','desc')->paginate(12);
+        }else{
+            $filter = Product::where('new_price', '>' , 35)->where('provider',$request->prov_id)->where('category',$request->cat_id)->select()->orderBy('new_price','desc')->paginate(12);
+        }
+
+        $output = '';
+        foreach($filter as $product){
+            $output.='<div class="col-lg-3 col-md-3 col-sm-6">
+            <div class="f_p_item">
+                <div class="f_p_img">
+                    <img class="img-fluid" src="../../img/Product_images/'.$product->main_image.'" alt="">
+                    <div class="p_icon">
+                        <a href="singe-product/'.$product->id.'">
+                            <i class="fa fa-eye"></i>
+                        </a>
+                        <a class="js-addcart-detail" style="cursor: pointer" onclick="addca('.$product->id.')">
+                            <i class="lnr lnr-cart"></i>
+                        </a>
+                    </div>
+                </div>
+                    <h4 class="product-name"><a href="#" class="product-name js-name-detail">'.$product->prod_name.'</a></h4>
+                    <p class="product-details"><strong>Provider : '.$product->prov->name.'</strong></p>
+                    <p class="product-details"><strong>Category : '.$product->cat->cat_name.'</strong></p>
+                    <span class="text-danger"><strong><del class="text-danger">JD'.number_format($product->old_price,2).'</del></strong></span>
+                    <span class="text-success ml-2"><strong>JD'.number_format($product->new_price,2).'</strong></span>
+            </div>
+        </div>';
+        }
+
+        return $data = array('arr'=>$output);
+    }
+    public function vendorGenderFilter(Request $request){
+        if($request->filter == "low-to-high"){
+            $filter = Product::where('provider',$request->prov_id)->where('category',$request->cat_id)->where('gender',$request->gender)->select()->orderBy('new_price','asc')->paginate(12);
+        }else if($request->filter == "high-to-low"){
+            $filter = Product::where('provider',$request->prov_id)->where('category',$request->cat_id)->where('gender',$request->gender)->select()->orderBy('new_price','desc')->paginate(12);
+        }else if($request->filter == "less-10"){
+            $filter = Product::where('new_price', '<=' , 10)->where('provider',$request->prov_id)->where('category',$request->cat_id)->where('gender',$request->gender)->select()->orderBy('new_price','desc')->paginate(12);
+        }else if($request->filter == "less-25"){
+            $filter = Product::where('new_price', '<=' , 25)->where('provider',$request->prov_id)->where('category',$request->cat_id)->where('gender',$request->gender)->select()->orderBy('new_price','desc')->paginate(12);
+        }else if($request->filter == "less-35"){
+            $filter = Product::where('new_price', '<=' , 35)->where('provider',$request->prov_id)->where('category',$request->cat_id)->where('gender',$request->gender)->select()->orderBy('new_price','desc')->paginate(12);
+        }else{
+            $filter = Product::where('new_price', '>' , 35)->where('provider',$request->prov_id)->where('category',$request->cat_id)->where('gender',$request->gender)->select()->orderBy('new_price','desc')->paginate(12);
+        }
+
+        $output = '';
+        foreach($filter as $product){
+            $output.='<div class="col-lg-3 col-md-3 col-sm-6">
+            <div class="f_p_item">
+                <div class="f_p_img">
+                    <img class="img-fluid" src="../../../img/Product_images/'.$product->main_image.'" alt="">
+                    <div class="p_icon">
+                        <a href="singe-product/'.$product->id.'">
+                            <i class="fa fa-eye"></i>
+                        </a>
+                        <a class="js-addcart-detail" style="cursor: pointer" onclick="addca('.$product->id.')">
+                            <i class="lnr lnr-cart"></i>
+                        </a>
+                    </div>
+                </div>
+                    <h4 class="product-name"><a href="#" class="product-name js-name-detail">'.$product->prod_name.'</a></h4>
+                    <p class="product-details"><strong>Provider : '.$product->prov->name.'</strong></p>
+                    <p class="product-details"><strong>Category : '.$product->cat->cat_name.'</strong></p>
+                    <span class="text-danger"><strong><del class="text-danger">JD'.number_format($product->old_price,2).'</del></strong></span>
+                    <span class="text-success ml-2"><strong>JD'.number_format($product->new_price,2).'</strong></span>
             </div>
         </div>';
         }
@@ -336,8 +452,8 @@ class PublicProductController extends Controller
                     <h4 class="product-name"><a href="#" class="product-name js-name-detail">'.$product->prod_name.'</a></h4>
                     <p class="product-details"><strong>Provider : '.$product->prov->name.'</strong></p>
                     <p class="product-details"><strong>Category : '.$product->cat->cat_name.'</strong></p>
-                    <span class="text-danger"><strong><del class="text-danger">JD'.number_format($product->old_price,2).'</del></strong></span><br>
-                    <span class="text-success"><strong>JD'.number_format($product->new_price,2).'</strong></span>
+                    <span class="text-danger"><strong><del class="text-danger">JD'.number_format($product->old_price,2).'</del></strong></span>
+                    <span class="text-success ml-2"><strong>JD'.number_format($product->new_price,2).'</strong></span>
             </div>
         </div>';
         }
@@ -379,8 +495,82 @@ class PublicProductController extends Controller
                     <h4 class="product-name"><a href="#" class="product-name js-name-detail">'.$product->prod_name.'</a></h4>
                     <p class="product-details"><strong>Provider : '.$product->prov->name.'</strong></p>
                     <p class="product-details"><strong>Category : '.$product->cat->cat_name.'</strong></p>
-                    <span class="text-danger"><strong><del class="text-danger">JD'.number_format($product->old_price,2).'</del></strong></span><br>
-                    <span class="text-success"><strong>JD'.number_format($product->new_price,2).'</strong></span>
+                    <span class="text-danger"><strong><del class="text-danger">JD'.number_format($product->old_price,2).'</del></strong></span>
+                    <span class="text-success ml-2"><strong>JD'.number_format($product->new_price,2).'</strong></span>
+            </div>
+        </div>';
+        }
+
+        return $data = array('arr'=>$output);
+    }
+
+
+    public function search_in_singleGender(Request $request){
+        $search_products = Product::where('prod_name','like', '%'.$request->data_search.'%')->where('category',$request->cat_id)->where('gender',$request->gender)->paginate(12);
+        
+        $output = '';
+        foreach($search_products as $product){
+            $output.='<div class="col-lg-3 col-md-3 col-sm-6">
+            <div class="f_p_item">
+                <div class="f_p_img">
+                    <img class="img-fluid" src="../../img/Product_images/'.$product->main_image.'" alt="">
+                    <div class="p_icon">
+                        <a href="singe-product/'.$product->id.'">
+                            <i class="fa fa-eye"></i>
+                        </a>
+                        <a class="js-addcart-detail" style="cursor: pointer" onclick="addca('.$product->id.')">
+                            <i class="lnr lnr-cart"></i>
+                        </a>
+                    </div>
+                </div>
+                    <h4 class="product-name"><a href="#" class="product-name js-name-detail">'.$product->prod_name.'</a></h4>
+                    <p class="product-details"><strong>Provider : '.$product->prov->name.'</strong></p>
+                    <p class="product-details"><strong>Category : '.$product->cat->cat_name.'</strong></p>
+                    <span class="text-danger"><strong><del class="text-danger">JD'.number_format($product->old_price,2).'</del></strong></span>
+                    <span class="text-success ml-2"><strong>JD'.number_format($product->new_price,2).'</strong></span>
+            </div>
+        </div>';
+        }
+        return $data = array(
+            'row_result'=>$output,
+        );
+    }
+
+    public function filter_gender(Request $request){
+        if($request->filter == "low-to-high"){
+            $filter = Product::where('category',$request->cat_id)->where('gender',$request->gender)->select()->orderBy('new_price','asc')->paginate(12);
+        }else if($request->filter == "high-to-low"){
+            $filter = Product::where('category',$request->cat_id)->where('gender',$request->gender)->select()->orderBy('new_price','desc')->paginate(12);
+        }else if($request->filter == "less-10"){
+            $filter = Product::where('new_price', '<=' , 10)->where('category',$request->cat_id)->where('gender',$request->gender)->select()->orderBy('new_price','desc')->paginate(12);
+        }else if($request->filter == "less-25"){
+            $filter = Product::where('new_price', '<=' , 25)->where('category',$request->cat_id)->where('gender',$request->gender)->select()->orderBy('new_price','desc')->paginate(12);
+        }else if($request->filter == "less-35"){
+            $filter = Product::where('new_price', '<=' , 35)->where('category',$request->cat_id)->where('gender',$request->gender)->select()->orderBy('new_price','desc')->paginate(12);
+        }else{
+            $filter = Product::where('new_price', '>' , 35)->where('category',$request->cat_id)->where('gender',$request->gender)->select()->orderBy('new_price','desc')->paginate(12);
+        }
+
+        $output = '';
+        foreach($filter as $product){
+            $output.='<div class="col-lg-3 col-md-3 col-sm-6">
+            <div class="f_p_item">
+                <div class="f_p_img">
+                    <img class="img-fluid" src="../../img/Product_images/'.$product->main_image.'" alt="">
+                    <div class="p_icon">
+                        <a href="singe-product/'.$product->id.'">
+                            <i class="fa fa-eye"></i>
+                        </a>
+                        <a class="js-addcart-detail" style="cursor: pointer" onclick="addca('.$product->id.')">
+                            <i class="lnr lnr-cart"></i>
+                        </a>
+                    </div>
+                </div>
+                    <h4 class="product-name"><a href="#" class="product-name js-name-detail">'.$product->prod_name.'</a></h4>
+                    <p class="product-details"><strong>Provider : '.$product->prov->name.'</strong></p>
+                    <p class="product-details"><strong>Category : '.$product->cat->cat_name.'</strong></p>
+                    <span class="text-danger"><strong><del class="text-danger">JD'.number_format($product->old_price,2).'</del></strong></span>
+                    <span class="text-success ml-2"><strong>JD'.number_format($product->new_price,2).'</strong></span>
             </div>
         </div>';
         }
@@ -390,22 +580,21 @@ class PublicProductController extends Controller
 
     public function rating_store(Request $request){
         
-        Rating::where('user_id',$request->user_id)->where('prod_id',$request->prod_id)->delete();
-        Rating::create([
+        Rating::where('user_id',$request->user_id)->where('prod_id',$request->prod_id)->update([
             'rating'=>$request->rating,
             'user_id'=>$request->user_id,
             'prod_id'=>$request->prod_id
         ]);
 
-        $rate = Rating::latest()->first();
+        $rate = Rating::where("user_id",$request->user_id)->where("prod_id",$request->prod_id)->get();
         $output = "";
             if (isset($rate)){
                 $output.='<div class="rating_list">
                         <h3>Your Rate:</h3>
                         <ul class="list" style="color:#fbd600">
                             <li>	
-                                <a href="#">'.$rate->rating.' STAR.';
-                        for ($i = 0; $i < $rate->rating; $i++){
+                                <a href="#">'.$rate[0]->rating.' STAR.';
+                        for ($i = 0; $i < $rate[0]->rating; $i++){
                         $output.='<i class="fa fa-star"></i>';
                         }	
                         $output.='</a>	

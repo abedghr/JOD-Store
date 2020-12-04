@@ -1,9 +1,9 @@
 <?php $pageTitle = "Profile" ?>
 @include('public_views.includes.public_header')
-
+<br>
 <div class="container" style="margin-top:150px;">
 <!--================Home Banner Area =================-->
-    <section class="bg-profile " style="margin-top: 122px; background-image: url('../../img/Provider_coverImages/{{$provider->cover_image}}')">
+    <section class="bg-profile" style="margin-top: 122px; background-image: url('../../../img/Provider_coverImages/{{$provider->cover_image}}')">
         <div class="d-flex align-items-center">
             <div class="container">
             </div>
@@ -12,7 +12,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-3 text-center">
-                <img src="../../img/provider_images/{{$provider->image}}" class="rounded-circle" width="250" height="250" style="margin-top:-80px; padding:10px; border:1px solid silver" alt="">
+                <img src="../../../img/provider_images/{{$provider->image}}" class="rounded-circle" width="250" height="250" style="margin-top:-80px; padding:10px; border:1px solid silver" alt="">
             </div>
             <div class="col-lg-6">
                 <small>Online Store</small>
@@ -58,7 +58,7 @@
                     <div class="col-lg-3 col-md-3 col-sm-6">
                         <div class="f_p_item">
                             <div class="f_p_img">
-                                <img class="img-fluid rounded" src="../../img/Product_images/{{$product->main_image}}" alt="">
+                                <img class="img-fluid rounded" src="../../../img/Product_images/{{$product->main_image}}" alt="">
                                 <div class="p_icon">
                                     <a href="{{route('product.show',['id'=>$product->id])}}">
                                         <i class="lnr lnr-eye"></i>
@@ -94,9 +94,9 @@
                             <li>
                                 <a href="{{route('profile_category.show',['prov_id'=>$provider->id ,'cat_id'=>$category['id']])}}"  @if ($category['id'] == $category_active) class="active-category" @endif>{{$category['name']}}</a>
                                 <ol style="list-style: none;">
-                                    <li><a href="{{route('profile_gender.show',['cat_id'=>$category['id'] ,'prov_id'=>$provider->id , 'gender'=>'men'])}}">Men</a></li>
-                                    <li style="margin-top: -20px;"><a href="{{route('profile_gender.show',['cat_id'=>$category['id'],'prov_id'=>$provider->id , 'gender'=>'women'])}}">Women</a></li>
-                                    <li style="margin-top: -20px;"><a href="{{route('profile_gender.show',['cat_id'=>$category['id'],'prov_id'=>$provider->id , 'gender'=>'multiGender'])}}">Multi-Gender</a></li>
+                                    <li><a href="{{route('profile_gender.show',['cat_id'=>$category['id'] ,'prov_id'=>$provider->id , 'gender'=>'men'])}}" @if ($gen == 'men' && $category['id'] == $category_active) class="active-category" @endif>Men</a></li>
+                                    <li style="margin-top: -20px;"><a href="{{route('profile_gender.show',['cat_id'=>$category['id'],'prov_id'=>$provider->id , 'gender'=>'women'])}}" @if ($gen == 'women' && $category['id'] == $category_active) class="active-category" @endif>Women</a></li>
+                                    <li style="margin-top: -20px;"><a href="{{route('profile_gender.show',['cat_id'=>$category['id'],'prov_id'=>$provider->id , 'gender'=>'multiGender'])}}"  @if ($gen == 'multiGender' && $category['id'] == $category_active) class="active-category" @endif>Multi-Gender</a></li>
                                 </ol>
                             </li>
                             @endforeach
@@ -167,11 +167,12 @@
         if(data != ""){
             $.ajax({
                 type: "get",
-                url : "{{route('vendorsCategory_product.search')}}",
+                url : "{{route('vendorsGender_product.search')}}",
                 data:{
                     'data_search':data,
                     'prov_id':"{{$provider->id}}",
-                    'cat_id': "{{$category_active}}"
+                    'cat_id': "{{$category_active}}",
+                    'gender': "{{$gen}}"
                 },
                 dataType : 'json',
                 success:function(data){
@@ -208,11 +209,12 @@
      function vendor_filter_price (filter){
          $.ajax({
              type: "get",
-             url : "{{route('vendors_Categoryfilter.price')}}",
+             url : "{{route('vendors_Genderfilter.price')}}",
              data : {
                  'filter':filter,
                  'prov_id':"{{$provider->id}}",
-                 'cat_id':"{{$category_active}}"
+                 'cat_id':"{{$category_active}}",
+                 'gender':"{{$gen}}"
              },
              success:function(data){
              $('.prod_content').html(data.arr);

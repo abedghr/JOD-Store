@@ -1,8 +1,8 @@
-<?php  $pageTitle = "Category"; ?>
+<?php  $pageTitle = "Category ".$gen; ?>
 @include('public_views.includes.public_header')
 
 	<!--================Home Banner Area =================-->
-    <section  style="margin-top: 120px; background-image: url(../img/Category_images/{{$category->cat_image}}); background-size:cover; background-position:center center; height:350px; position:relative;">
+    <section  style="margin-top: 120px; background-image: url(../../img/Category_images/{{$category->cat_image}}); background-size:cover; background-position:center center; height:350px; position:relative;">
         <h2 style="font-family:Times New Roman; font-weight:bold; padding-left:50px; padding-top:25px; color:white; background-color:rgba(0,0,0,0.6); height:100px">LETS SHOPPING ({{$category->cat_name}})</h2>
 	</section>
 	<!--================End Home Banner Area =================-->
@@ -25,7 +25,7 @@
                     <div class="col-lg-3 col-md-3 col-sm-6">
                         <div class="f_p_item">
                             <div class="f_p_img">
-                                <img class="img-fluid rounded" src="../img/Product_images/{{$product->main_image}}" alt="">
+                                <img class="img-fluid rounded" src="../../img/Product_images/{{$product->main_image}}" alt="">
                                 <div class="p_icon">
                                     <a href="{{route('product.show',['id'=>$product->id])}}">
                                         <i class="lnr lnr-eye"></i>
@@ -62,9 +62,9 @@
                                 <li>
                                     <a href="{{route('category.show',['id'=>$cat->id])}}" @if ($cat->id == $category->id) class="active-category" @endif >{{$cat->cat_name}}</a>
                                     <ol style="list-style: none;">
-                                        <li><a href="{{route('category_gender.show',['id'=>$category->id , 'gender'=>'men'])}}">Men</a></li>
-                                        <li style="margin-top: -20px;" ><a href="{{route('category_gender.show',['id'=>$category->id , 'gender'=>'women'])}}">Women</a></li>
-                                        <li style="margin-top: -20px;"><a href="{{route('category_gender.show',['id'=>$category->id , 'gender'=>'multiGender'])}}">Multi-Gender</a></li>
+                                        <li><a href="{{route('category_gender.show',['id'=>$cat->id , 'gender'=>'men'])}}" @if ($gen == 'men' && $cat->id == $category->id) class="active-category" @endif >Men</a></li>
+                                        <li style="margin-top: -20px;" ><a href="{{route('category_gender.show',['id'=>$cat->id , 'gender'=>'women'])}}" @if ($gen == 'women' && $cat->id == $category->id) class="active-category" @endif >Women</a></li>
+                                        <li style="margin-top: -20px;"><a href="{{route('category_gender.show',['id'=>$cat->id , 'gender'=>'multiGender'])}}" @if ($gen == 'multiGender' && $cat->id == $category->id) class="active-category" @endif >Multi-Gender</a></li>
                                     </ol>
                                 </li>
                                 @endforeach
@@ -144,10 +144,11 @@
          if(data != ""){
              $.ajax({
                  type: "get",
-                 url : "{{route('single_category.search')}}",
+                 url : "{{route('single_gender.search')}}",
                  data:{
                      'data_search':data,
-                     'cat_id':"{{$category->id}}"
+                     'cat_id':"{{$category->id}}",
+                     'gender':"{{$gen}}"
                  },
                  dataType : 'json',
                  success:function(data){
@@ -183,10 +184,11 @@
      function filter_price (filter){
          $.ajax({
              type: "get",
-             url : "{{route('filter_category.price')}}",
+             url : "{{route('filter_gender.price')}}",
              data : {
                  'filter':filter,
-                 'cat_id':"{{$category->id}}"
+                 'cat_id':"{{$category->id}}",
+                 'gender':"{{$gen}}"
              },
              success:function(data){
              $('.prod_content').html(data.arr);
