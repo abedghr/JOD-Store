@@ -1,4 +1,25 @@
-
+<!--================ Subscription Area ================-->
+<section class="subscription-area section_gap" style="background-color:rgba(0,0,0,0.6); height:550px; background-image: url({{asset('img/ecommerce1.jpg')}}); background-size:100% 100%; background-repeat:no-repeat;">
+	<div style="width:100%; height:550px; background-color:rgba(0,0,0,0.6); margin-top:-100px;"><br>	
+		<div class="container">
+			<div class="row justify-content-center" style="margin-top: 140px;">
+				<div class="col-lg-7">
+				</div>
+				<div class="col-lg-5 p-4" style="border-radius:30px; background-color:rgba(0,0,0,0.6);">
+					<div class="section-title text-center text-light">
+                        <h2 class="text-light">Subscribe With Us</h2>
+                        <span>If you have a business and you want to join us and get your own store</span>
+					</div>
+					<div class="row justify-content-center" style="margin-top: -20px;">
+						<a href="{{route('provider.register')}}" class="btn btn-light btn-lg">Register</a>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+	</section>
+    <!--================ End Subscription Area ================-->
 	<!--================ start footer Area  =================-->
 	<footer class="footer-area section_gap">
 		<div class="container">

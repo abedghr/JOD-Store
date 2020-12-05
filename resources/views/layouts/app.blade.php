@@ -136,7 +136,7 @@
 </head>
 <body>
    
-    <h3 class="text-center"><strong><a href="/home" class="btn btn-dark btn-block">Visite Store</a></strong></h3>
+    <h3 class="text-center"><strong><a href="/home" class="btn btn-dark btn-block">Visite Jordan Stores</a></strong></h3>
         <main class="py-4">
             @yield('content')
         </main>{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 

@@ -25,7 +25,7 @@
 
     <h3 class="text-center">
         <strong>
-            <a href="/home" class="btn btn-dark btn-block">Visite Store</a>
+            <a href="/home" class="btn btn-dark btn-block">Visite Jordan Stores</a>
         </strong>
     </h3>
         @yield('content')

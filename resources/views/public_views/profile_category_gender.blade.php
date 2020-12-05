@@ -136,27 +136,7 @@
 </section>
 <!--================End Category Product Area =================-->
 </div>
-<!--================ Subscription Area ================-->
-<section class="subscription-area section_gap mt-5">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="section-title text-center">
-                    <h2>Your Feedback</h2>
-                    <span>If you have a note and you want to tell us, send your it.</span>
-                </div>
-            </div>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-lg-6 text-center">
-                <textarea name="feedback" id="" cols="30" class="form-control feedback-box" rows="3"></textarea>
-                <br>
-                <button class="btn btn-primary btn-feedback">Send Feedback</button>
-            </div>
-        </div>
-    </div>
-</section>
-<!--================ End Subscription Area ================-->
+
 
 @include('public_views.includes.public_footer')
 <script>

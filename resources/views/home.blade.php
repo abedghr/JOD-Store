@@ -63,11 +63,11 @@
 				</div>
 			</div>
 				<section class="clients_logo_area mt-5">
-					<div class="clients_slider owl-carousel">
+					<div class="clients_slider owl-carousel text-dark">
                     @foreach ($featured_products as $product)
 					<div>
 						<div class="col-12">
-							<div class="f_p_item">
+							<div class="f_p_item text-dark">
 								<div class="f_p_img">
 									<img class="img-fluid rounded" src="../img/Product_images/{{$product->main_image}}" width="100%" alt="">
 									<div class="p_icon">
@@ -96,33 +96,7 @@
 	</section>
 	<!--================End Feature Product Area =================-->
 
-	<!--================ Subscription Area ================-->
-	<section class="subscription-area section_gap">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-lg-8">
-					<div class="section-title text-center">
-                        <h2>Subscribe With Us</h2>
-                        <span>If you have a business and you want to join us send your email</span>
-					</div>
-				</div>
-			</div>
-			<div class="row justify-content-center">
-				<div class="col-lg-6">
-					<div id="mc_embed_signup">
-						<form target="_blank" novalidate action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&id=92a4423d01"
-						 method="get" class="subscription relative">
-							<input type="email" name="EMAIL" placeholder="Email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email address'"
-							 required="">
-							<button type="submit" class="newsl-btn">Send</button>
-							<div class="info"></div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-    <!--================ End Subscription Area ================-->
+	
     
 @include('public_views.includes.public_footer')
 <script>

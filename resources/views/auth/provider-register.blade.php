@@ -14,15 +14,16 @@
                 <div class="row">
                     <div class="col-lg-7">
                         <div style="background-image: url(../img/providerBackgroundLogin.jpg); background-size: 100% 100%; height: 630px; background-repeat: no-repeat;">
-                            <div style="background-color:rgba(0,0,0,0.3); height:100%">
                             
-                            </div>
+                                <div style="background-color:rgba(0,0,0,0.3); height:100%">
+                                    <a href="/provider/login" class="btn btn-dark btn-block">Store Login</a>
+                                </div>
                             
                         </div>
                     </div>
                     <div class="col-lg-5" style="height: 100%"> 
                         <div class="card-body mt-5">
-                            <h4>Provider Register</h4>
+                            <h4>Create Store</h4>
                             <form method="POST"  action="{{ route('provider.register.submit') }}">
                                 @csrf
                                 <strong>
