@@ -1,5 +1,5 @@
 <!--================ Subscription Area ================-->
-<section class="subscription-area section_gap" style="background-color:rgba(0,0,0,0.6); height:550px; background-image: url({{asset('img/ecommerce1.jpg')}}); background-size:100% 100%; background-repeat:no-repeat;">
+<section class="subscription-area section_gap" id="subscription-area" style="background-color:rgba(0,0,0,0.6); height:550px; background-image: url({{asset('img/ecommerce1.jpg')}}); background-size:100% 100%; background-repeat:no-repeat;">
 	<div style="width:100%; height:550px; background-color:rgba(0,0,0,0.6); margin-top:-100px;"><br>	
 		<div class="container">
 			<div class="row justify-content-center" style="margin-top: 140px;">
@@ -144,11 +144,21 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                 
 				swal(nameProduct, "is added to cart !", "success");
 			});
+        	});
+		
         });
         
-        });
-        
-    </script>
+
+		
+		
+
+	</script>
+	@if ($pageTitle == "Profile")  
+		<script>
+			$("#subscription-area").hide();
+		</script>
+	@endif
+	
 	{{-- <script src="https://js.pusher.com/7.0/pusher.min.js"></script> --}}
 
 	{{-- <script>

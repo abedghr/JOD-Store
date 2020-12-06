@@ -170,9 +170,9 @@
           </li>
           <li class="nav-item">
           <a href="{{route('manage_provider.create')}}" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
+              <i class="nav-icon fas fa-store"></i>
               <p>
-                Manage Providers
+                Manage Stores
               </p>
             </a>
           </li>
