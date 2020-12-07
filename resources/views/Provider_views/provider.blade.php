@@ -26,7 +26,7 @@
                 <div class="icon">
                   <i class="ion ion-bag"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{route('order.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -41,7 +41,7 @@
                 <div class="icon">
                   <i class="ion fa fa-money"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="#" class="small-box-footer disabled"><i class="fas fa-arrow-circle-up"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -71,7 +71,7 @@
                 <div class="icon">
                   <i class="ion ion-pie-graph"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="#" class="small-box-footer disabled"><i class="fas fa-arrow-circle-up"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -86,7 +86,7 @@
                 <div class="icon">
                   <i class="ion ion-bag"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{route('order.filters',['status'=>3])}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -101,7 +101,7 @@
                 <div class="icon">
                   <i class="fa fa-ban"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{route('order.filters',['status'=>-1])}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -111,12 +111,12 @@
                 <div class="inner">
                   <h3>{{$ordersOnDelivery}}</h3>
   
-                  <p>Orders On Delivery</p>
+                  <p>Orders In Delivery</p>
                 </div>
                 <div class="icon">
                   <i class="fa fa-car"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{route('order.filters',['status'=>1])}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -131,7 +131,7 @@
                 <div class="icon">
                   <i class="fa fa-thumbs-down"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{route('order.filters',['status'=>-2])}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -154,14 +154,14 @@
               <!-- small box -->
               <div class="small-box bg-success">
                 <div class="inner">
-                  <h3>150</h3>
+                  <h3>{{$feedbacks}}</h3>
   
                   <p>Feedbacks</p>
                 </div>
                 <div class="icon">
-                  <i class="fa fa-comment-alt"></i>
+                  <i class="fa fa-envelope"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{route('provider_feedback.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->

@@ -115,10 +115,10 @@
       <div class="col-md-12 row">
         @foreach ($productsOrder as $prod)
               @if ($order->id == $prod['order_id'])
-              <div class="col-md-3">
+              <div class="col-md-3 mt-3">
                   <img src="../../img/Product_images/{{$prod['image']}}" width="100%" height="200" alt="">
               </div>
-              <div class="col-md-9">
+              <div class="col-md-9 mt-3">
                 <p>Product Name : {{$prod['prod_name']}}</p>
                 <p>Price : JD{{$prod['price']}}</p>
                 <p>Quantity : {{$prod['quantity']}}</p>
@@ -127,11 +127,8 @@
               </div>
               @endif
         @endforeach
+      </div>        
       </div>
-        
-      </div>
-          
-      
       {{-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
     </div>
 @endforeach

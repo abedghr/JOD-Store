@@ -20,7 +20,7 @@ class PublicProviderController extends Controller
 {
     public function all(){
         $user = session()->get('user');
-        $providers = Provider::select()->paginate(12);
+        $providers = Provider::where('email_verified_at','<>',null)->select()->paginate(12);
         if(session()->has('user')){
             return view('public_views.vendors',[
                 'providers'=>$providers,

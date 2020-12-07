@@ -62,7 +62,7 @@
 					</div>
 				</div>
 			</div>
-				<section class="clients_logo_area mt-5">
+				<section class="clients_logo_area mt-5 pl-5 pr-5">
 					<div class="clients_slider owl-carousel text-dark">
                     @foreach ($featured_products as $product)
 					<div>
@@ -79,7 +79,7 @@
 										</a>
 									</div>
 								</div>
-									<h4 class="product-name"><a href="#" class="product-name js-name-detail">{{$product->prod_name}}</a></h4>
+									<h4 class="product-name"><a href="#" class="product-name js-name-detail text-dark">{{$product->prod_name}}</a></h4>
 									<p class="product-details"><strong>Provider : {{$product->prov->name}}</strong></p>
 									<p class="product-details"><strong>Category : {{$product->cat->cat_name}}</strong></p>
 									<p class="product-details"><strong>Gender : {{$product->gender}}</strong></p>

@@ -3,7 +3,7 @@
 <br>
 
 <section  style="margin-top: 100px; background-image: url({{asset('img/contact-image1.jpg')}}); background-size:100% 100%; height:350px; position:relative;">
-    <h2 style="font-family:Times New Roman; font-weight:bold; padding-left:50px; padding-top:25px; color:white; background-color:rgba(0,0,0,0.8); height:90px;"><i>Contact US</i></h2>
+    <h2 style="font-family:Times New Roman; font-weight:bold; padding-left:50px; padding-top:25px; color:white; background-color:rgba(0,0,0,0.8); height:90px; position: absolute; bottom:-8px; width:100%;"><i>Contact US</i></h2>
 </section>
 
 <section class="contact_area p_120">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\NewMessage;
+use App\Models\Feedback;
 use App\Models\Message;
 use App\Models\Order;
 use App\Models\Product;
@@ -37,6 +38,7 @@ class ProviderController extends Controller
         $ordersFailed = Order::where('provider',Auth::user()->id)->where('order_status','-2')->count();
         $newOrders = Order::where('provider',Auth::user()->id)->where('order_status','0')->count();
         $orders = Order::where('provider',Auth::user()->id)->count();
+        $feedbacks = Feedback::count();
         return view('Provider_views.provider',[
             'products_number'=>$products_number,
             'orders_number'=>$orders,
@@ -46,7 +48,8 @@ class ProviderController extends Controller
             'ordersDeclined'=>$ordersDeclined,
             'ordersFailed'=>$ordersFailed,
             'newOrders'=>$newOrders,
-            'visitors'=>$visitors
+            'visitors'=>$visitors,
+            'feedbacks'=>$feedbacks
         ]);
     }
 

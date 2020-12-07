@@ -39,7 +39,7 @@
 						
 						@if (isset($user))
 						<li>
-							<span><a href="">{{$user['userName']}}</a></span>
+							<span><a href="{{route('user.profile')}}">{{$user['userName']}}</a></span>
 						</li>
 						<li>
 							<span><a href="{{route('user.logout')}}" class="ml-0">Logout</a></span>
@@ -99,7 +99,6 @@
 
 							<div class="col-lg-4">
 								<ul class="nav navbar-nav navbar-right right_nav pull-right">
-									<hr>
                                     <li class="nav-item">
 										@if (isset($user))
 										<a href="{{route('user.profile')}}" class="icons">
@@ -112,7 +111,6 @@
 										@endif
 										
 									</li>
-                                    <hr>
 
 									<li class="nav-item">
 										<a href="{{route('cart.index')}}" class="icons">
@@ -121,7 +119,6 @@
 										</a>
 									</li>
 
-									<hr>
 								</ul>
 							</div>
 						</div>
@@ -131,4 +128,3 @@
 		</div>
 	</header>
 	<!--================Header Menu Area =================-->
-  {{--   <br><br><br><br><br> --}}

@@ -25,7 +25,7 @@
                 <div class="icon">
                   <i class="fa fa-envelope"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{route('message.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -40,7 +40,7 @@
                 <div class="icon">
                   <i class="ion fa fa-globe"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{route('delivery.price')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -50,12 +50,12 @@
                 <div class="inner">
                   <h3>{{$providers_number}}</h3>
   
-                  <p>Provider Registrations</p>
+                  <p>Stores Registrations</p>
                 </div>
                 <div class="icon">
                   <i class="ion fa fa-users"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{route('manage_provider.create')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -65,7 +65,7 @@
                 <div class="inner">
                   <h3>65</h3>
   
-                  <p>Active Providers</p>
+                  <p>Active Stores</p>
                 </div>
                 <div class="icon">
                   <i class="ion fa fa-users"></i>
@@ -100,20 +100,20 @@
                 <div class="icon">
                   <i class="ion ion-pie-graph"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="#" class="small-box-footer disabled"><i class="fas fa-arrow-circle-up"></i></a>
               </div>
             </div>
             <!-- ./col -->
             <div class="col-lg-3 col-6">
               <!-- small box -->
-              <div class="small-box bg-danger">
+              <div class="small-box bg-info">
                 <div class="inner">
-                  <h3>65</h3>
+                  <h3>{{$count_categories}}</h3>
   
-                  <p>Pending Providers</p>
+                  <p>Categories</p>
                 </div>
                 <div class="icon">
-                  <i class="ion fa fa-users"></i>
+                  <i class="ion fa fa-list-alt"></i>
                 </div>
                 <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
@@ -125,7 +125,7 @@
                 <div class="inner">
                   <h3>65</h3>
   
-                  <p>Disabled Providers</p>
+                  <p>Disabled Stores</p>
                 </div>
                 <div class="icon">
                   <i class="ion fa fa-users"></i>

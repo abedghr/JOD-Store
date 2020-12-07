@@ -3,7 +3,7 @@
 
 	<!--================Home Banner Area =================-->
     <section  style="margin-top: 120px; background-image: url(../img/Category_images/{{$category->cat_image}}); background-size:cover; background-position:center center; height:350px; position:relative;">
-        <h2 style="font-family:Times New Roman; font-weight:bold; padding-left:50px; padding-top:25px; color:white; background-color:rgba(0,0,0,0.6); height:100px">LETS SHOPPING ({{$category->cat_name}})</h2>
+        <h2 style="font-family:Times New Roman; font-weight:bold; padding-left:50px; padding-top:25px; color:white; background-color:rgba(0,0,0,0.6); height:100px;  position: absolute; bottom:-8px; width:100%;">LETS SHOPPING ({{$category->cat_name}})</h2>
 	</section>
 	<!--================End Home Banner Area =================-->
 

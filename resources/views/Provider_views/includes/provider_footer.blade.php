@@ -1,5 +1,5 @@
 <footer class="main-footer text-center">
-    <strong>Copyright &copy; <script>document.write(new Date().getFullYear());</script> <a href="#">Abedalrahman Al-ghandour</a>.</strong>
+    <strong>Copyright &copy; <script>document.write(new Date().getFullYear());</script> <a href="#">Jordan Stores</a>.</strong>
     All rights reserved.
   </footer>
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin;
 use App\Models\AdminFeedback;
+use App\Models\Category;
 use App\Models\City;
 use App\Models\Order;
 use App\Models\Product;
@@ -47,13 +48,15 @@ class AdminController extends Controller
         $all_users = User::all()->count();
         $users_messages = AdminFeedback::all()->count();
         $cities = City::all()->count();
+        $count_categories = Category::count();
         return view('Admin.admin',[
             'orders_number' => $orders_number,
             'sum_order_sales' => $sum_order_sales,
             'providers_number' => $providers_number,
             'all_users' => $all_users,
             'users_messages' => $users_messages,
-            'cities' => $cities
+            'cities' => $cities,
+            'count_categories'=>$count_categories
         ]);
     }
 

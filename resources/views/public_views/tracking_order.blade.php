@@ -4,7 +4,7 @@ $pageTitle = "Tracking Order";
 
 @include('public_views.includes.public_header')
 <section  style="margin-top: 120px; background-image: url({{asset('img/tracking-image.jpeg')}}); background-size:100% 100%; height:250px; position:relative;">
-    <h2 style="font-family:Times New Roman; font-weight:bold; padding-left:50px; padding-top:25px; color:white; background-color:rgba(0,0,0,0.8); height:100px"><i>Tracking Orders</i></h2>
+    <h2 style="font-family:Times New Roman; font-weight:bold; padding-left:50px; padding-top:25px; color:white; background-color:rgba(0,0,0,0.8); height:100px; position: absolute; bottom:-8px; width:100%;"><i>Tracking Orders</i></h2>
 </section>
 
 <!--================Tracking Box Area =================-->

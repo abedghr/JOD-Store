@@ -1,5 +1,5 @@
 <!--================ Subscription Area ================-->
-<section class="subscription-area section_gap" id="subscription-area" style="background-color:rgba(0,0,0,0.6); height:550px; background-image: url({{asset('img/ecommerce1.jpg')}}); background-size:100% 100%; background-repeat:no-repeat;">
+<section class="subscription-area section_gap" id="subscription-area" style="background-color:rgba(0,0,0,0.6); height:550px; background-image: url({{asset('img/ecommerce1.jpg')}}); background-size:100% 100%; background-repeat:no-repeat; margin-top:300px;">
 	<div style="width:100%; height:550px; background-color:rgba(0,0,0,0.6); margin-top:-100px;"><br>	
 		<div class="container">
 			<div class="row justify-content-center" style="margin-top: 140px;">
@@ -103,7 +103,7 @@
 			</div>
 			<div class="row footer-bottom d-flex justify-content-between align-items-center">
 				<p class="col-lg-12 footer-text text-center"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Jordan Stores</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 				</p>
 			</div>

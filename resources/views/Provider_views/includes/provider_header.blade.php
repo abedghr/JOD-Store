@@ -212,7 +212,7 @@
           </li>
           <li class="nav-item">
             <a href="{{route('provider_feedback.index')}}" class="nav-link">
-                <i class="nav-icon fa fa-user-circle" aria-hidden="true"></i>
+                <i class="nav-icon fa fa-envelope" aria-hidden="true"></i>
                 <p>
                   Feedbacks
                 </p>

@@ -38,17 +38,17 @@
 				</div>
 				<div class="col-lg-5 offset-lg-1">
 					<strong>
-					<div class="s_product_text">
+					<div class="s_product_text text-dark">
 						<h3 class="js-name-detail">{{$product->prod_name}}</h3>
                         <h2>JD{{number_format($product->new_price,2)}}</h2>
                         <h4><del class="text-danger">JD{{number_format($product->old_price,2)}}</del></h4>
                         <ul class="list">
 							<li>
 								<a class="active" href="#">
-									<span>Category</span> : {{$product->cat->cat_name}}
+									<span>Category</span> : <strong class="text-dark">{{$product->cat->cat_name}}</strong>
 								</a>
 								<a class="active" href="{{route('public_provider.profile',['id'=>$product->provider])}}"><br>
-									<span>Provider</span> : {{$product->prov->name}}
+									<span>Provider</span> : <strong class="text-dark">{{$product->prov->name}}</strong>
 								</a>
 							</li>
 							<li>
@@ -247,14 +247,13 @@
 	
 	<!--================Clients Logo Area =================-->
 	<h2 class="text-center">Related Products</h2>
-	<section class="clients_logo_area mt-5">
-		<div class="container-fluid">
+	<section class="clients_logo_area mt-5 pl-5 pr-5">
 			<div class="clients_slider owl-carousel">
                 @foreach ($related_products as $Rproduct)
 					
 				<div class="">
 					<div class="col-12">
-						<div class="f_p_item">
+						<div class="f_p_item text-dark">
 							<div class="f_p_img">
 								<img class="img-fluid rounded" src="../img/Product_images/{{$Rproduct->main_image}}" width="100%" alt="">
 								<div class="p_icon">
@@ -266,11 +265,11 @@
 									</a>
 								</div>
 							</div>
-								<h4 class="product-name"><a href="#" class="product-name js-name-detail">{{$Rproduct->prod_name}}</a></h4>
+								<h4 class="product-name"><a href="#" class="product-name js-name-detail text-dark">{{$Rproduct->prod_name}}</a></h4>
 								<p class="product-details"><strong>Provider : {{$Rproduct->prov->name}}</strong></p>
 								<p class="product-details"><strong>Category : {{$Rproduct->cat->cat_name}}</strong></p>
-								<span class="text-danger"><strong><del class="text-danger">JD{{number_format($Rproduct->old_price,2)}}</del></strong></span><br>
-								<span class="text-success"><strong>JD{{number_format($Rproduct->new_price,2)}}</strong></span>
+								<span class="text-danger"><strong><del class="text-danger">JD{{number_format($Rproduct->old_price,2)}}</del></strong></span>
+								<span class="text-success ml-2"><strong>JD{{number_format($Rproduct->new_price,2)}}</strong></span>
 						</div>
 					</div>
 					
@@ -278,7 +277,6 @@
 				@endforeach
                     
 			</div>
-		</div>
 	</section>
 	<!--================End Clients Logo Area =================-->
 <br><br>
