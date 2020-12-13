@@ -49,20 +49,12 @@ class PublicProductController extends Controller
         $star4 = Rating::where('rating',4)->where('prod_id',$id)->select('rating')->get();
         $star5 = Rating::where('rating',5)->where('prod_id',$id)->select('rating')->get();
         $maxRate ="";
-
+        if($star1->count()==0 && $star2->count()==0 && $star3->count()==0 && $star4->count()==0 && $star5->count()==0){
+            $maxR="3";
+        }else{
         $maxR = (5*$star5->count() + 4*$star4->count() + 3*$star3->count() + 2*$star2->count() + 1*$star1->count())/($star5->count() + $star4->count() + $star3->count() + $star2->count() + $star1->count());
-
-        /* if($star5->count() >= $star4->count() && $star5->count() >= $star3->count() && $star5->count() >= $star2->count() && $star5->count() >= $star1->count()){
-            $maxRate = $star5;
-        }elseif($star4->count() > $star5->count() && $star4->count() >= $star3->count() && $star4->count() >= $star2->count() && $star4->count() >= $star1->count()){
-            $maxRate = $star4;
-        }elseif($star3->count() > $star5->count() && $star3->count() > $star4->count() && $star3->count() >= $star2->count() && $star3->count() >= $star1->count()){
-            $maxRate = $star3;
-        }elseif($star2->count() > $star5->count() && $star2->count() > $star4->count() && $star2->count() > $star3->count() && $star2->count() >= $star1->count()){
-            $maxRate = $star2;
-        }elseif($star1->count() > $star5->count() && $star1->count() > $star4->count() && $star1->count() > $star3->count() && $star1->count() > $star2->count()){
-            $maxRate = $star1;
-        } */
+        }
+        
         
         if(!isset($maxR)){
             if(session()->has('user')){

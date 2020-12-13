@@ -61,13 +61,14 @@ class UserLoginController extends Controller
         $valid = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'], 
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'phone1'=> ['required']
         ]);
         if(User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'phone' => "079079079",
+            'phone' => $request->phone1,
             'Address'=>$request->address
         ])){
             $user = User::where('email',$request->email)->get();
