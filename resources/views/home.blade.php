@@ -2,9 +2,51 @@
 @include('public_views.includes.public_header')
 
 	<!--================Home Banner Area =================-->
-	<section class="text-center" style="margin-top: 120px; background-image: url({{asset('img/ecom2.jpg')}}); background-size:100% 100%; height:250px; position:relative;">
-		<h2 style="font-family:Times New Roman; font-weight:bold; padding-left:50px; padding-top:25px; padding-bottom:25px; color:white; background-color:rgba(0,0,0,0.6); position: absolute; bottom:-8px; width:100%;">WELCOME TO JORDAN STORES</h2>
-	</section>
+	<!--Carousel Wrapper-->
+<div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel" data-interval="4000">
+	<!--Indicators-->
+	<ol class="carousel-indicators">
+	  <li data-target="#carousel-example-1z" data-slide-to="0" class="active"></li>
+	  <li data-target="#carousel-example-1z" data-slide-to="1"></li>
+	  <li data-target="#carousel-example-1z" data-slide-to="2"></li>
+	</ol>
+	<!--/.Indicators-->
+	<!--Slides-->
+	<div class="carousel-inner" role="listbox" style="height:450px;">
+	  <!--First slide-->
+	  <div class="carousel-item active">
+		<img class="d-block w-100" src="{{asset('img/shop.jpg')}}"
+		  alt="First slide">
+	  </div>
+	  <!--/First slide-->
+	  <!--Second slide-->
+	  <div class="carousel-item">
+		<img class="d-block w-100" src="{{asset('img/shopcat2.png')}}"
+		  alt="Second slide">
+	  </div>
+	  <!--/Second slide-->
+	  <!--Third slide-->
+	  <div class="carousel-item">
+		<img class="d-block w-100" src="{{asset('img/ecommerce1.jpg')}}"
+		  alt="Third slide">
+	  </div>
+	  <!--/Third slide-->
+	</div>
+	<!--/.Slides-->
+	<!--Controls-->
+	<a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev" style=>
+	  <span class="carousel-control-prev-icon" aria-hidden="true" style="    position: relative;
+	  top: 61px;"></span>
+	  <span class="sr-only">Previous</span>
+	</a>
+	<a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next">
+	  <span class="carousel-control-next-icon" aria-hidden="true" style="    position: relative;
+	  top: 61px;"></span>
+	  <span class="sr-only">Next</span>
+	</a>
+	<!--/.Controls-->
+  </div>
+  <!--/.Carousel Wrapper-->
 	<!--================End Home Banner Area =================-->
  <!--================Blog Categorie Area =================-->
  
@@ -52,12 +94,12 @@
 	<!--================End Clients Logo Area =================-->
 
 	<!--================Feature Product Area =================-->
-	<section class="feature_product_area section_gap">
+	<section class="feature_product_area section_gap" style="padding-bottom: 50px;">
 		<div class="main_box">
 			<div class="container-fluid">
 				<div class="row">
 					<div class="main_title">
-						<h2>Best Sellers</h2>
+						<h2>Top Sellers</h2>
 						<p>Who are in extremely love with eco friendly system.</p>
 					</div>
 				</div>
@@ -81,10 +123,10 @@
 								</div>
 									<h4 class="product-name"><a href="#" class="product-name js-name-detail text-dark">{{$product->prod_name}}</a></h4>
 									<p class="product-details"><strong>Provider : {{$product->prov->name}}</strong></p>
-									<p class="product-details"><strong>Category : {{$product->cat->cat_name}}</strong></p>
+									<!--<p class="product-details"><strong>Category : {{$product->cat->cat_name}}</strong></p>-->
 									<p class="product-details"><strong>Gender : {{$product->gender}}</strong></p>
-									<span class="text-danger"><strong><del class="text-danger">JD{{number_format($product->old_price,2)}}</del></strong></span>
-									<span class="text-success ml-2"><strong>JD{{number_format($product->new_price,2)}}</strong></span>
+									<span class="text-danger"><strong><del class="text-danger">{{number_format($product->old_price,2)}}JOD</del></strong></span>
+									<span class="text-success ml-2"><strong>{{number_format($product->new_price,2)}}JOD</strong></span>
 							</div>
 						</div>
 						

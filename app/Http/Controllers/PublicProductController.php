@@ -572,11 +572,20 @@ class PublicProductController extends Controller
 
     public function rating_store(Request $request){
         
-        Rating::where('user_id',$request->user_id)->where('prod_id',$request->prod_id)->update([
-            'rating'=>$request->rating,
-            'user_id'=>$request->user_id,
-            'prod_id'=>$request->prod_id
-        ]);
+        $userRate = Rating::where('user_id',$request->user_id)->where('prod_id',$request->prod_id)->get();
+        if(isset($userRate[0])){
+            Rating::where('user_id',$request->user_id)->where('prod_id',$request->prod_id)->update([
+                'rating'=>$request->rating,
+                'user_id'=>$request->user_id,
+                'prod_id'=>$request->prod_id
+            ]);
+        }else{
+            Rating::where('user_id',$request->user_id)->where('prod_id',$request->prod_id)->create([
+                'rating'=>$request->rating,
+                'user_id'=>$request->user_id,
+                'prod_id'=>$request->prod_id
+            ]);
+        }
 
         $rate = Rating::where("user_id",$request->user_id)->where("prod_id",$request->prod_id)->get();
         $output = "";

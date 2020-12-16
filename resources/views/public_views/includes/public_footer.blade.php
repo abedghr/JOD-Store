@@ -1,5 +1,5 @@
 <!--================ Subscription Area ================-->
-<section class="subscription-area section_gap" id="subscription-area" style="background-color:rgba(0,0,0,0.6); height:550px; background-image: url({{asset('img/ecommerce1.jpg')}}); background-size:100% 100%; background-repeat:no-repeat; margin-top:300px;">
+<section class="subscription-area section_gap" id="subscription-area" style="background-color:rgba(0,0,0,0.6); height:550px; background-image: url({{asset('img/ecommerce1.jpg')}}); background-size:100% 100%; background-repeat:no-repeat; margin-top:50px;">
 	<div style="width:100%; height:550px; background-color:rgba(0,0,0,0.6); margin-top:-100px;"><br>	
 		<div class="container">
 			<div class="row justify-content-center" style="margin-top: 140px;">
