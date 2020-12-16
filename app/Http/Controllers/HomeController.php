@@ -26,6 +26,29 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
+    public function index2(){
+        $user = session()->get('user');
+        $category = Category::all()->all();
+        $providers = Provider::where('email_verified_at','<>',null)->get();
+        $top_products = Product::select()->orderBy('number_of_bought','desc')->limit(12)->get();
+        if(session()->has("user")){
+            return view('home',[
+            'categories' => $category,
+            'providers'=>$providers,
+            'top_products'=>$top_products,
+            'user'=>$user
+            ]);
+        }else{
+            return view('public_side.home',[
+                'categories' => $category,
+                'providers'=>$providers,
+                'top_products'=>$top_products
+            ]);
+        }
+        
+    }
+
     public function index()
     {        
         $user = session()->get('user');

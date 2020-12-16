@@ -383,3 +383,13 @@ Route::put('/user_update/{id}','Auth\UserLoginController@update')->name('user.up
 Route::get('/user_message','PublicProviderController@getMessage')->name('message.user');
 Route::post('message_user','PublicProviderController@sendMessage')->name('message_user.send');
 Route::get('/chat/{id}','PublicProviderController@chat_show')->name('chat.show');
+
+route::get('/pup','HomeController@index2')->name('home2');
+Route::get('/category2/{id}','PublicCategoryController@show2')->name('category.show2')->middleware('preventbackbutton');
+Route::get('/category-filter','PublicProductController@filter_category2')->name('filter_category2.price');
+Route::get('/search/singleCategory2','PublicProductController@search_in_singleCategory2')->name('single_category2.search');
+Route::get('/category2/{id}/{gender}','PublicCategoryController@gender_show2')->name('category_gender2.show')->middleware('preventbackbutton');
+Route::get('/search/singleGender2','PublicProductController@search_in_singleGender2')->name('single_gender.search2');
+Route::get('/gender-filter2','PublicProductController@filter_gender2')->name('filter_gender.price2');
+Route::get('/providers2','PublicProviderController@all2')->name('provider.all2')->middleware('preventbackbutton');
+Route::get('/search_vendor2','PublicProviderController@search_vendors2')->name('search.vendors2');

@@ -44,7 +44,7 @@
                         </div>
                     </div>
                     @endforeach
-            </div>
+                </div>
             </div>
             <div class="col-lg-3">
                 <div class="left_sidebar_area">
@@ -156,7 +156,7 @@
      function filter_price (filter){
          $.ajax({
              type: "get",
-             url : "{{route('filter_category.price')}}",
+             url : "{{route('filter_category2.price')}}",
              data : {
                  'filter':filter,
                  'cat_id':"{{$category->id}}"
