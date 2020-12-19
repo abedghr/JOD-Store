@@ -1,4 +1,4 @@
-
+<?php $pageTitle = $category->cat_name."Gen" ?>
 @include('public_side.includes.public_header')
 <!-- /banner_bottom_agile_info -->
 <div class="page-head_agile_info_w3l">
@@ -103,7 +103,7 @@
                         <img src="../../img/Product_images/{{$product->main_image}}" alt="" class="pro-image-back">
                             <div class="men-cart-pro">
                                 <div class="inner-men-cart-pro">
-                                    <a href="{{route('product.show',['id'=>$product->id])}}" class="link-product-add-cart">Quick View</a>
+                                    <a href="{{route('product.show2',['id'=>$product->id])}}" class="link-product-add-cart">Quick View</a>
                                 </div>
                             </div>
                             <span class="product-new-top">New</span>

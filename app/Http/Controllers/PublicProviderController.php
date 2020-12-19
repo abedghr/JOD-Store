@@ -88,6 +88,44 @@ class PublicProviderController extends Controller
         }
         
     }
+    public function profile2($id){
+        $user = session()->get('user');
+        $single_provider = Provider::findorFail($id);
+        $providers = Provider::where('email_verified_at','<>',null)->get();
+        $products = Product::where('provider',$id)->select()->paginate(12);
+        event(new VendorProfileVisitor($single_provider));
+        $categories = Category::all();
+        $cat_arr = array();
+        foreach($categories as $category){
+            $prod = Product::where('category',$category->id)->where('provider',$id)->first();
+            
+            if($prod['category'] != null){
+                $cat_arr[$category->id]['id']=$category->id;
+                $cat_arr[$category->id]['name']=$category->cat_name;
+            }
+        }
+        if(session()->has('user')){
+            return view('public_side.profile',[
+                'provider'=>$single_provider,
+                'providers'=>$providers,
+                'products'=>$products,
+                'categories'=>$categories,
+                'store_categories'=>$cat_arr,
+                'category_active'=>'all',
+                'user'=>$user
+            ]);
+        }else{
+            return view('public_side.profile',[
+                'provider'=>$single_provider,
+                'providers'=>$providers,
+                'products'=>$products,
+                'categories'=>$categories,
+                'store_categories'=>$cat_arr,
+                'category_active'=>'all'
+            ]);
+        }
+        
+    }
 
     public function profile_categories($prov_id , $cat_id){
         $user = session()->get('user');
@@ -116,6 +154,43 @@ class PublicProviderController extends Controller
                 'provider'=>$single_provider,
                 'products'=>$products,
                 'categories'=>$cat_arr,
+                'category_active'=>$cat_id
+            ]);
+        }
+        
+    }
+    public function profile_categories2($prov_id , $cat_id){
+        $user = session()->get('user');
+        $single_provider = Provider::findorFail($prov_id);
+        $providers = Provider::where('email_verified_at','<>',null)->get();
+        $products = Product::where('provider',$prov_id)->where('category',$cat_id)->select()->paginate(12);
+        $categories = Category::all();
+        $cat_arr = array();
+        foreach($categories as $category){
+            $prod = Product::where('category',$category->id)->where('provider',$prov_id)->first();
+            
+            if($prod['category'] != null){
+                $cat_arr[$category->id]['id']=$category->id;
+                $cat_arr[$category->id]['name']=$category->cat_name;
+            }
+        }
+        if(session()->has('user')){
+            return view('public_side.profile_category',[
+                'provider'=>$single_provider,
+                'providers'=>$providers,
+                'products'=>$products,
+                'categories'=>$categories,
+                'store_categories'=>$cat_arr,
+                'category_active'=>$cat_id,
+                'user'=>$user
+            ]);
+        }else{
+            return view('public_side.profile_category',[
+                'provider'=>$single_provider,
+                'providers'=>$providers,
+                'products'=>$products,
+                'categories'=>$categories,
+                'store_categories'=>$cat_arr,
                 'category_active'=>$cat_id
             ]);
         }
@@ -150,6 +225,44 @@ class PublicProviderController extends Controller
                 'provider'=>$single_provider,
                 'products'=>$products,
                 'categories'=>$cat_arr,
+                'category_active'=>$cat_id,
+                'gen'=>$gender
+            ]);
+        }
+    }
+    public function profile_gender2($prov_id , $cat_id,$gender){
+        $user = session()->get('user');
+        $single_provider = Provider::findorFail($prov_id);
+        $providers = Provider::where('email_verified_at','<>',null)->get();
+        $products = Product::where('provider',$prov_id)->where('category',$cat_id)->where('gender',$gender)->select()->paginate(12);
+        $categories = Category::all();
+        $cat_arr = array();
+        foreach($categories as $category){
+            $prod = Product::where('category',$category->id)->where('provider',$prov_id)->first();
+            
+            if($prod['category'] != null){
+                $cat_arr[$category->id]['id']=$category->id;
+                $cat_arr[$category->id]['name']=$category->cat_name;
+            }
+        }
+        if(session()->has('user')){
+            return view('public_side.profile_category_gender',[
+                'provider'=>$single_provider,
+                'providers'=>$providers,
+                'categories'=>$categories,
+                'products'=>$products,
+                'store_categories'=>$cat_arr,
+                'category_active'=>$cat_id,
+                'user'=>$user,
+                'gen'=>$gender
+            ]);
+        }else{
+            return view('public_side.profile_category_gender',[
+                'provider'=>$single_provider,
+                'providers'=>$providers,
+                'categories'=>$categories,
+                'products'=>$products,
+                'store_categories'=>$cat_arr,
                 'category_active'=>$cat_id,
                 'gen'=>$gender
             ]);

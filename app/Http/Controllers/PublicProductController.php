@@ -98,6 +98,80 @@ class PublicProductController extends Controller
         }
         
     }
+    public function show2($id){
+        $user = session()->get('user');
+        $categories = Category::all();
+        $providers = Provider::where('email_verified_at','<>',null)->get();
+        $single_product = Product::findorfail($id);
+        $related_products = Product::where('prod_related',$single_product->prod_related)->where('id','<>',$single_product->id)->get();
+        $product_images = ProductsImages::where('product_id',$id)->get();
+        $comments = Comment::where('prod_id',$id)->orderBy('created_at','desc')->get();
+        if(session()->has('user')){
+        $rate = Rating::where('user_id',$user["user_id"])->where('prod_id',$id)->get();
+        }
+        $star1 = Rating::where('rating',1)->where('prod_id',$id)->select('rating')->get();
+        $star2 = Rating::where('rating',2)->where('prod_id',$id)->select('rating')->get();
+        $star3 = Rating::where('rating',3)->where('prod_id',$id)->select('rating')->get();
+        $star4 = Rating::where('rating',4)->where('prod_id',$id)->select('rating')->get();
+        $star5 = Rating::where('rating',5)->where('prod_id',$id)->select('rating')->get();
+        $maxRate ="";
+        if($star1->count()==0 && $star2->count()==0 && $star3->count()==0 && $star4->count()==0 && $star5->count()==0){
+            $maxR="3";
+        }else{
+        $maxR = (5*$star5->count() + 4*$star4->count() + 3*$star3->count() + 2*$star2->count() + 1*$star1->count())/($star5->count() + $star4->count() + $star3->count() + $star2->count() + $star1->count());
+        }
+        
+        
+        if(!isset($maxR)){
+            if(session()->has('user')){
+                return view('public_side.single_product',[
+                    'categories'=>$categories,
+                    'providers'=>$providers,
+                    'product'=>$single_product,
+                    'images'=>$product_images,
+                    'user'=>$user,
+                    'comments'=>$comments,
+                    'rating'=>$rate,
+                    'product_rate'=>3,
+                    'related_products'=>$related_products
+                ]);
+            }else{
+                return view('public_side.single_product',[
+                    'categories'=>$categories,
+                    'providers'=>$providers,
+                    'product'=>$single_product,
+                    'images'=>$product_images,
+                    'comments'=>$comments,
+                    'product_rate'=>3,
+                    'related_products'=>$related_products
+                ]);
+            }
+        }
+        if(session()->has('user')){
+            return view('public_side.single_product',[
+                'categories'=>$categories,
+                'providers'=>$providers,
+                'product'=>$single_product,
+                'images'=>$product_images,
+                'user'=>$user,
+                'comments'=>$comments,
+                'rating'=>$rate,
+                'product_rate'=>$maxR,
+                'related_products'=>$related_products
+            ]);
+        }else{
+            return view('public_side.single_product',[
+                'categories'=>$categories,
+                'providers'=>$providers,
+                'product'=>$single_product,
+                'images'=>$product_images,
+                'comments'=>$comments,
+                'product_rate'=>$maxR,
+                'related_products'=>$related_products
+            ]);
+        }
+        
+    }
 
     public function vendor_product_all($prov_id){
         $user = session()->get('user');
@@ -193,6 +267,43 @@ class PublicProductController extends Controller
             'row_result'=>$output,
         );
     }
+    public function search_vendors_products2(Request $request){
+        $search_products = Product::where('prod_name','like', '%'.$request->data_search.'%')->where('provider',$request->prov_id)->paginate(12);
+        
+        $output = '';
+        foreach($search_products as $product){
+            $output.='<div class="col-md-4 product-men">
+            <div class="men-pro-item simpleCart_shelfItem">
+                <div class="men-thumb-item">
+                    <img src="../img/Product_images/'.$product->main_image.'" alt="" class="pro-image-front">
+                    <img src="../img/Product_images/'.$product->main_image.'" alt="" class="pro-image-back">
+                        <div class="men-cart-pro">
+                            <div class="inner-men-cart-pro">
+                                <a href="'.route('product.show2',['id'=>$product->id]).'" class="link-product-add-cart">Quick View</a>
+                            </div>
+                        </div>
+                        <span class="product-new-top">New</span>
+                        
+                </div>
+                <div class="item-info-product ">
+                    <h4><a href="single.html" class="js-name-detail">'.$product->prod_name.'</a></h4>
+                    <p><a href="">Store: '.$product->prov->name.'</a></p>
+                    <p>Gender: '.$product->gender.'</p>
+                    <div class="info-product-price">
+                        <span class="item_price">'.number_format($product->new_price,2).'JOD</span>
+                        <del>'.number_format($product->old_price,2).'JOD</del>
+                    </div>
+                    <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
+                        <input type="submit" name="submit" value="Add to cart" class="button js-addcart-detail" onclick="addca('.$product->id.')" />
+                    </div>
+                </div>
+            </div>
+        </div>';
+        }
+        return $data = array(
+            'row_result'=>$output,
+        );
+    }
 
     public function search_vendorsCategory_products(Request $request){
         $search_products = Product::where('prod_name','like', '%'.$request->data_search.'%')->where('provider',$request->prov_id)->where('category',$request->cat_id)->paginate(12);
@@ -229,24 +340,30 @@ class PublicProductController extends Controller
         
         $output = '';
         foreach($search_products as $product){
-            $output.='<div class="col-lg-3 col-md-3 col-sm-6">
-            <div class="f_p_item">
-                <div class="f_p_img">
-                    <img class="img-fluid" src="../../img/Product_images/'.$product->main_image.'" alt="">
-                    <div class="p_icon">
-                        <a href="singe-product/'.$product->id.'">
-                            <i class="fa fa-eye"></i>
-                        </a>
-                        <a class="js-addcart-detail" style="cursor: pointer" onclick="addca('.$product->id.')">
-                            <i class="lnr lnr-cart"></i>
-                        </a>
+            $output.='<div class="col-md-4 product-men">
+            <div class="men-pro-item simpleCart_shelfItem">
+                <div class="men-thumb-item">
+                    <img src="../../img/Product_images/'.$product->main_image.'" alt="" class="pro-image-front">
+                    <img src="../../img/Product_images/'.$product->main_image.'" alt="" class="pro-image-back">
+                        <div class="men-cart-pro">
+                            <div class="inner-men-cart-pro">
+                                <a href="'.route('product.show2',['id'=>$product->id]).'" class="link-product-add-cart">Quick View</a>
+                            </div>
+                        </div>
+                        <span class="product-new-top">New</span>
+                </div>
+                <div class="item-info-product ">
+                    <h4><a href="single.html" class="js-name-detail">'.$product->prod_name.'</a></h4>
+                    <p><a href="">Store: '.$product->prov->name.'</a></p>
+                    <p>Gender: '.$product->gender.'</p>
+                    <div class="info-product-price">
+                        <span class="item_price">'.number_format($product->new_price,2).'JOD</span>
+                        <del>'.number_format($product->old_price,2).'JOD</del>
+                    </div>
+                    <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
+                        <input type="submit" name="submit" value="Add to cart" class="button js-addcart-detail" onclick="addca('.$product->id.')" />
                     </div>
                 </div>
-                    <h4 class="product-name"><a href="#" class="product-name js-name-detail">'.$product->prod_name.'</a></h4>
-                    <p class="product-details"><strong>Provider : '.$product->prov->name.'</strong></p>
-                    <p class="product-details"><strong>Category : '.$product->cat->cat_name.'</strong></p>
-                    <span class="text-danger"><strong><del class="text-danger">JD'.number_format($product->old_price,2).'</del></strong></span>
-                    <span class="text-success ml-2"><strong>JD'.number_format($product->new_price,2).'</strong></span>
             </div>
         </div>';
         }
@@ -278,6 +395,42 @@ class PublicProductController extends Controller
                     <p class="product-details"><strong>Category : '.$product->cat->cat_name.'</strong></p>
                     <span class="text-danger"><strong><del class="text-danger">JD'.number_format($product->old_price,2).'</del></strong></span>
                     <span class="text-success ml-2"><strong>JD'.number_format($product->new_price,2).'</strong></span>
+            </div>
+        </div>';
+        }
+        return $data = array(
+            'row_result'=>$output,
+        );
+    }
+    public function search_vendorsGender_products2(Request $request){
+        $search_products = Product::where('prod_name','like', '%'.$request->data_search.'%')->where('provider',$request->prov_id)->where('category',$request->cat_id)->where('gender',$request->gender)->paginate(12);
+        
+        $output = '';
+        foreach($search_products as $product){
+            $output.='<div class="col-md-4 product-men">
+            <div class="men-pro-item simpleCart_shelfItem">
+                <div class="men-thumb-item">
+                    <img src="../../../img/Product_images/'.$product->main_image.'" alt="" class="pro-image-front">
+                    <img src="../../../img/Product_images/'.$product->main_image.'" alt="" class="pro-image-back">
+                        <div class="men-cart-pro">
+                            <div class="inner-men-cart-pro">
+                                <a href="'.route('product.show2',['id'=>$product->id]).'" class="link-product-add-cart">Quick View</a>
+                            </div>
+                        </div>
+                        <span class="product-new-top">New</span>
+                </div>
+                <div class="item-info-product ">
+                    <h4><a href="single.html" class="js-name-detail">'.$product->prod_name.'</a></h4>
+                    <p><a href="">Store: '.$product->prov->name.'</a></p>
+                    <p>Gender: '.$product->gender.'</p>
+                    <div class="info-product-price">
+                        <span class="item_price">'.number_format($product->new_price,2).'JOD</span>
+                        <del>'.number_format($product->old_price,2).'JOD</del>
+                    </div>
+                    <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
+                        <input type="submit" name="submit" value="Add to cart" class="button js-addcart-detail" onclick="addca('.$product->id.')" />
+                    </div>
+                </div>
             </div>
         </div>';
         }
@@ -351,7 +504,7 @@ class PublicProductController extends Controller
                     <img src="../img/Product_images/'.$product->main_image.'" alt="" class="pro-image-back">
                         <div class="men-cart-pro">
                             <div class="inner-men-cart-pro">
-                                <a href="'.route('product.show',['id'=>$product->id]).'" class="link-product-add-cart">Quick View</a>
+                                <a href="'.route('product.show2',['id'=>$product->id]).'" class="link-product-add-cart">Quick View</a>
                             </div>
                         </div>
                         <span class="product-new-top">New</span>
@@ -417,6 +570,54 @@ class PublicProductController extends Controller
 
         return $data = array('arr'=>$output);
     }
+    public function vendorFilter2(Request $request){
+        if($request->filter == "low-to-high"){
+            $filter = Product::where('provider',$request->prov_id)->select()->orderBy('new_price','asc')->paginate(12);
+        }else if($request->filter == "high-to-low"){
+            $filter = Product::where('provider',$request->prov_id)->select()->orderBy('new_price','desc')->paginate(12);
+        }else if($request->filter == "less-10"){
+            $filter = Product::where('new_price', '<=' , 10)->where('provider',$request->prov_id)->select()->orderBy('new_price','desc')->paginate(12);
+        }else if($request->filter == "less-25"){
+            $filter = Product::where('new_price', '<=' , 25)->where('provider',$request->prov_id)->select()->orderBy('new_price','desc')->paginate(12);
+        }else if($request->filter == "less-35"){
+            $filter = Product::where('new_price', '<=' , 35)->where('provider',$request->prov_id)->select()->orderBy('new_price','desc')->paginate(12);
+        }else{
+            $filter = Product::where('new_price', '>' , 35)->where('provider',$request->prov_id)->select()->orderBy('new_price','desc')->paginate(12);
+        }
+
+        $output = '';
+        foreach($filter as $product){
+            $output.='<div class="col-md-4 product-men">
+            <div class="men-pro-item simpleCart_shelfItem">
+                <div class="men-thumb-item">
+                    <img src="../img/Product_images/'.$product->main_image.'" alt="" class="pro-image-front">
+                    <img src="../img/Product_images/'.$product->main_image.'" alt="" class="pro-image-back">
+                        <div class="men-cart-pro">
+                            <div class="inner-men-cart-pro">
+                                <a href="'.route('product.show2',['id'=>$product->id]).'" class="link-product-add-cart">Quick View</a>
+                            </div>
+                        </div>
+                        <span class="product-new-top">New</span>
+                        
+                </div>
+                <div class="item-info-product ">
+                    <h4><a href="single.html" class="js-name-detail">'.$product->prod_name.'</a></h4>
+                    <p><a href="">Store: '.$product->prov->name.'</a></p>
+                    <p>Gender: '.$product->gender.'</p>
+                    <div class="info-product-price">
+                        <span class="item_price">'.number_format($product->new_price,2).'JOD</span>
+                        <del>'.number_format($product->old_price,2).'JOD</del>
+                    </div>
+                    <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
+                        <input type="submit" name="submit" value="Add to cart" class="button js-addcart-detail" onclick="addca('.$product->id.')" />
+                    </div>
+                </div>
+            </div>
+        </div>';
+        }
+
+        return $data = array('arr'=>$output);
+    }
 
     public function vendorCategoryFilter(Request $request){
         if($request->filter == "low-to-high"){
@@ -459,6 +660,54 @@ class PublicProductController extends Controller
 
         return $data = array('arr'=>$output);
     }
+    public function vendorCategoryFilter2(Request $request){
+        if($request->filter == "low-to-high"){
+            $filter = Product::where('provider',$request->prov_id)->where('category',$request->cat_id)->select()->orderBy('new_price','asc')->paginate(12);
+        }else if($request->filter == "high-to-low"){
+            $filter = Product::where('provider',$request->prov_id)->where('category',$request->cat_id)->select()->orderBy('new_price','desc')->paginate(12);
+        }else if($request->filter == "less-10"){
+            $filter = Product::where('new_price', '<=' , 10)->where('provider',$request->prov_id)->where('category',$request->cat_id)->select()->orderBy('new_price','desc')->paginate(12);
+        }else if($request->filter == "less-25"){
+            $filter = Product::where('new_price', '<=' , 25)->where('provider',$request->prov_id)->where('category',$request->cat_id)->select()->orderBy('new_price','desc')->paginate(12);
+        }else if($request->filter == "less-35"){
+            $filter = Product::where('new_price', '<=' , 35)->where('provider',$request->prov_id)->where('category',$request->cat_id)->select()->orderBy('new_price','desc')->paginate(12);
+        }else{
+            $filter = Product::where('new_price', '>' , 35)->where('provider',$request->prov_id)->where('category',$request->cat_id)->select()->orderBy('new_price','desc')->paginate(12);
+        }
+
+        $output = '';
+        foreach($filter as $product){
+            $output.='<div class="col-md-4 product-men">
+            <div class="men-pro-item simpleCart_shelfItem">
+                <div class="men-thumb-item">
+                    <img src="../../img/Product_images/'.$product->main_image.'" alt="" class="pro-image-front">
+                    <img src="../../img/Product_images/'.$product->main_image.'" alt="" class="pro-image-back">
+                        <div class="men-cart-pro">
+                            <div class="inner-men-cart-pro">
+                                <a href="'.route('product.show2',['id'=>$product->id]).'" class="link-product-add-cart">Quick View</a>
+                            </div>
+                        </div>
+                        <span class="product-new-top">New</span>
+                        
+                </div>
+                <div class="item-info-product ">
+                    <h4><a href="single.html" class="js-name-detail">'.$product->prod_name.'</a></h4>
+                    <p><a href="">Store: '.$product->prov->name.'</a></p>
+                    <p>Gender: '.$product->gender.'</p>
+                    <div class="info-product-price">
+                        <span class="item_price">'.number_format($product->new_price,2).'JOD</span>
+                        <del>'.number_format($product->old_price,2).'JOD</del>
+                    </div>
+                    <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
+                        <input type="submit" name="submit" value="Add to cart" class="button js-addcart-detail" onclick="addca('.$product->id.')" />
+                    </div>
+                </div>
+            </div>
+        </div>';
+        }
+
+        return $data = array('arr'=>$output);
+    }
     public function vendorGenderFilter(Request $request){
         if($request->filter == "low-to-high"){
             $filter = Product::where('provider',$request->prov_id)->where('category',$request->cat_id)->where('gender',$request->gender)->select()->orderBy('new_price','asc')->paginate(12);
@@ -494,6 +743,54 @@ class PublicProductController extends Controller
                     <p class="product-details"><strong>Category : '.$product->cat->cat_name.'</strong></p>
                     <span class="text-danger"><strong><del class="text-danger">JD'.number_format($product->old_price,2).'</del></strong></span>
                     <span class="text-success ml-2"><strong>JD'.number_format($product->new_price,2).'</strong></span>
+            </div>
+        </div>';
+        }
+
+        return $data = array('arr'=>$output);
+    }
+    public function vendorGenderFilter2(Request $request){
+        if($request->filter == "low-to-high"){
+            $filter = Product::where('provider',$request->prov_id)->where('category',$request->cat_id)->where('gender',$request->gender)->select()->orderBy('new_price','asc')->paginate(12);
+        }else if($request->filter == "high-to-low"){
+            $filter = Product::where('provider',$request->prov_id)->where('category',$request->cat_id)->where('gender',$request->gender)->select()->orderBy('new_price','desc')->paginate(12);
+        }else if($request->filter == "less-10"){
+            $filter = Product::where('new_price', '<=' , 10)->where('provider',$request->prov_id)->where('category',$request->cat_id)->where('gender',$request->gender)->select()->orderBy('new_price','desc')->paginate(12);
+        }else if($request->filter == "less-25"){
+            $filter = Product::where('new_price', '<=' , 25)->where('provider',$request->prov_id)->where('category',$request->cat_id)->where('gender',$request->gender)->select()->orderBy('new_price','desc')->paginate(12);
+        }else if($request->filter == "less-35"){
+            $filter = Product::where('new_price', '<=' , 35)->where('provider',$request->prov_id)->where('category',$request->cat_id)->where('gender',$request->gender)->select()->orderBy('new_price','desc')->paginate(12);
+        }else{
+            $filter = Product::where('new_price', '>' , 35)->where('provider',$request->prov_id)->where('category',$request->cat_id)->where('gender',$request->gender)->select()->orderBy('new_price','desc')->paginate(12);
+        }
+
+        $output = '';
+        foreach($filter as $product){
+            $output.='<div class="col-md-4 product-men">
+            <div class="men-pro-item simpleCart_shelfItem">
+                <div class="men-thumb-item">
+                    <img src="../../../img/Product_images/'.$product->main_image.'" alt="" class="pro-image-front">
+                    <img src="../../../img/Product_images/'.$product->main_image.'" alt="" class="pro-image-back">
+                        <div class="men-cart-pro">
+                            <div class="inner-men-cart-pro">
+                                <a href="'.route('product.show2',['id'=>$product->id]).'" class="link-product-add-cart">Quick View</a>
+                            </div>
+                        </div>
+                        <span class="product-new-top">New</span>
+                        
+                </div>
+                <div class="item-info-product ">
+                    <h4><a href="single.html" class="js-name-detail">'.$product->prod_name.'</a></h4>
+                    <p><a href="">Store: '.$product->prov->name.'</a></p>
+                    <p>Gender: '.$product->gender.'</p>
+                    <div class="info-product-price">
+                        <span class="item_price">'.number_format($product->new_price,2).'JOD</span>
+                        <del>'.number_format($product->old_price,2).'JOD</del>
+                    </div>
+                    <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
+                        <input type="submit" name="submit" value="Add to cart" class="button js-addcart-detail" onclick="addca('.$product->id.')" />
+                    </div>
+                </div>
             </div>
         </div>';
         }
@@ -543,7 +840,7 @@ class PublicProductController extends Controller
                     <img src="../img/Product_images/'.$product->main_image.'" alt="" class="pro-image-back">
                         <div class="men-cart-pro">
                             <div class="inner-men-cart-pro">
-                                <a href="'.route('product.show',['id'=>$product->id]).'" class="link-product-add-cart">Quick View</a>
+                                <a href="'.route('product.show2',['id'=>$product->id]).'" class="link-product-add-cart">Quick View</a>
                             </div>
                         </div>
                         <span class="product-new-top">New</span>
@@ -634,7 +931,7 @@ class PublicProductController extends Controller
                     <img src="../img/Product_images/'.$product->main_image.'" alt="" class="pro-image-back">
                         <div class="men-cart-pro">
                             <div class="inner-men-cart-pro">
-                                <a href="'.route('product.show',['id'=>$product->id]).'" class="link-product-add-cart">Quick View</a>
+                                <a href="'.route('product.show2',['id'=>$product->id]).'" class="link-product-add-cart">Quick View</a>
                             </div>
                         </div>
                         <span class="product-new-top">New</span>
@@ -702,7 +999,7 @@ class PublicProductController extends Controller
                     <img src="../../img/Product_images/'.$product->main_image.'" alt="" class="pro-image-back">
                         <div class="men-cart-pro">
                             <div class="inner-men-cart-pro">
-                                <a href="'.route('product.show',['id'=>$product->id]).'" class="link-product-add-cart">Quick View</a>
+                                <a href="'.route('product.show2',['id'=>$product->id]).'" class="link-product-add-cart">Quick View</a>
                             </div>
                         </div>
                         <span class="product-new-top">New</span>
@@ -793,7 +1090,7 @@ class PublicProductController extends Controller
                     <img src="../../img/Product_images/'.$product->main_image.'" alt="" class="pro-image-back">
                         <div class="men-cart-pro">
                             <div class="inner-men-cart-pro">
-                                <a href="'.route('product.show',['id'=>$product->id]).'" class="link-product-add-cart">Quick View</a>
+                                <a href="'.route('product.show2',['id'=>$product->id]).'" class="link-product-add-cart">Quick View</a>
                             </div>
                         </div>
                         <span class="product-new-top">New</span>

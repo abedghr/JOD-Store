@@ -391,5 +391,17 @@ Route::get('/search/singleCategory2','PublicProductController@search_in_singleCa
 Route::get('/category2/{id}/{gender}','PublicCategoryController@gender_show2')->name('category_gender2.show')->middleware('preventbackbutton');
 Route::get('/search/singleGender2','PublicProductController@search_in_singleGender2')->name('single_gender.search2');
 Route::get('/gender-filter2','PublicProductController@filter_gender2')->name('filter_gender.price2');
-Route::get('/providers2','PublicProviderController@all2')->name('provider.all2')->middleware('preventbackbutton');
+Route::get('/stores','PublicProviderController@all2')->name('provider.all2')->middleware('preventbackbutton');
 Route::get('/search_vendor2','PublicProviderController@search_vendors2')->name('search.vendors2');
+Route::get('/store/{id}','PublicProviderController@profile2')->name('public_provider.profile2')->middleware('preventbackbutton');
+Route::get('/search-vendors-products2','PublicProductController@search_vendors_products2')->name('vendors_product.search2');
+Route::get('/vendor-filter2','PublicProductController@vendorFilter2')->name('vendors_filter.price2');
+Route::get('/store/{prov_id}/{cat_id}','PublicProviderController@profile_categories2')->name('profile_category.show2')->middleware('preventbackbutton');
+Route::get('/store/{prov_id}/{cat_id}/{gender}','PublicProviderController@profile_gender2')->name('profile_gender.show2')->middleware('preventbackbutton');
+Route::get('/search-vendorsCategory-products','PublicProductController@search_vendorsCategory_products2')->name('vendorsCategory_product.search2');
+Route::get('/search-vendorsGender-products','PublicProductController@search_vendorsGender_products2')->name('vendorsGender_product.search2');
+Route::get('/vendor-Category-filter','PublicProductController@vendorCategoryFilter2')->name('vendors_Categoryfilter.price2');
+Route::get('/vendor-Gender-filter','PublicProductController@vendorGenderFilter2')->name('vendors_Genderfilter.price2');
+Route::get('/contact', 'HomeController@contact_us2')->name('contact-us2')->middleware('preventbackbutton');
+Route::get('/singleProduct/{id}','PublicProductController@show2')->name('product.show2')->middleware('preventbackbutton');
+Route::get('/trackingOrder','PublicOrderController@tracking2')->name('order.tracking2')->middleware('preventbackbutton');

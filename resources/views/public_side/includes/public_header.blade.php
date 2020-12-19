@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Elite Shoppy an Ecommerce Online Shopping Category Flat Bootstrap Responsive Website Template | Home :: w3layouts</title>
+<title><?php echo $pageTitle; ?></title>
 <!--/tags -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Elite Shoppy Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
-		function hideURLbar(){ window.scrollTo(0,1); }> </script>
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!--//tags -->
+
+<link rel="stylesheet" href="{{asset('/pub_libraries/css/flexslider.css')}}" type="text/css" media="screen" />
 <link href="{{asset('/pub_libraries/css/bootstrap.css')}}" rel="stylesheet" type="text/css" media="all" />
 <link href="{{asset('/pub_libraries/css/style.css')}}" rel="stylesheet" type="text/css" media="all" />
 <link href="{{asset('/pub_libraries/css/font-awesome.css')}}" rel="stylesheet"> 
@@ -17,6 +19,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- //for bootstrap working -->
 <link href="fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
 <link href='fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,900,900italic,700italic' rel='stylesheet' type='text/css'>
+
+	
 
 <style>
     .swal-button {
@@ -26,6 +30,86 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 .pagination {
     margin: 0px !important;
 }
+.track {
+    position: relative;
+    background-color: #ddd;
+    height: 7px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-bottom: 60px;
+    margin-top: 50px
+}
+
+.track .step {
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    width: 25%;
+    margin-top: -18px;
+    text-align: center;
+    position: relative
+}
+
+.track .step.active:before {
+    background: #2fdab8;
+}
+.track .step.active-failed:before {
+    background: red
+}
+
+.track .step::before {
+    height: 7px;
+    position: absolute;
+    content: "";
+    width: 100%;
+    left: 0;
+    top: 18px
+}
+
+.track .step.active .icon {
+    background: #2fdab8;
+    color: #fff
+}
+.track .step.active-failed .icon {
+    background: red;
+    color: #fff
+}
+
+.track .icon {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    position: relative;
+    border-radius: 100%;
+    background: #ddd
+}
+
+.track .step.active .text {
+    font-weight: 400;
+    color: #000
+}
+
+.track .text {
+    display: block;
+    margin-top: 7px
+}
+
+.itemside {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%
+}
+
+.itemside .aside {
+    position: relative;
+    -ms-flex-negative: 0;
+    flex-shrink: 0
+}
+
 </style>
 </head>
 <body>
@@ -91,8 +175,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
 				  <ul class="nav navbar-nav menu__list">
-					<li class="active menu__item menu__item--current"><a class="menu__link" href="index.html">Home <span class="sr-only">(current)</span></a></li>
-					<li class="dropdown menu__item">
+					<li class="active @if($pageTitle == "Home") menu__item menu__item--current @endif"><a class="menu__link" href="{{route('home2')}}">Home <span class="sr-only">(current)</span></a></li>
+					<li class="dropdown menu__item @if($pageTitle == "home") menu__item menu__item--current @endif">
 						<a href="#" class="dropdown-toggle menu__link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories<span class="caret"></span></a>
 							<ul class="dropdown-menu multi-column columns-3">
 								<div class="agile_inner_drop_nav_info">
@@ -112,8 +196,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								</div>
 							</ul>
 					</li>
-					<li class="dropdown menu__item">
-						<a href="#" class="dropdown-toggle menu__link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Stores<span class="caret"></span></a>
+					<li class="dropdown menu__item @if($pageTitle == "Stores") menu__item menu__item--current @endif">
+						<a href="#" class="dropdown-toggle menu__link " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Stores<span class="caret"></span></a>
 							<ul class="dropdown-menu multi-column columns-3">
 								<div class="agile_inner_drop_nav_info">
 									<div class="col-sm-6 multi-gd-img1 multi-gd-text ">
@@ -124,7 +208,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										<ul class="multi-column-dropdown row">
                                             @foreach ($providers as $provider)
                                             <div class="col-sm-4 text-center">
-                                            <li><a href="mens.html">{{$provider->name}}</a></li>
+                                            <li><a href="{{route('public_provider.profile2',['id'=>$provider->id])}}">{{$provider->name}}</a></li>
                                             </div>
                                             @endforeach						
 										</ul>
@@ -173,9 +257,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<li><a href="typography.html">Typography</a></li>
 								</ul>
 					</li> --}}
-					<li class=" menu__item"><a class="menu__link" href="contact.html">Contact</a></li>
-					<li class=" menu__item"><a class="menu__link" href="contact.html">Tracking Order</a></li>
-					<li class=" menu__item"><a class="menu__link" href="contact.html">Shopping Cart</a></li>
+					<li class=" menu__item @if($pageTitle == "Contact Us") menu__item menu__item--current @endif"><a class="menu__link" href="{{route('contact-us2')}}">Contact</a></li>
+					<li class=" menu__item @if($pageTitle == "Tracking Order") menu__item menu__item--current @endif"><a class="menu__link " href="{{route('order.tracking2')}}">Tracking Order</a></li>
+					<li class=" menu__item @if($pageTitle == "Shopping Cart") menu__item menu__item--current @endif"><a class="menu__link" href="contact.html">Shopping Cart</a></li>
 				  </ul>
 				</div>
 			  </div>

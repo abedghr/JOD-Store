@@ -29,7 +29,7 @@ class HomeController extends Controller
 
     public function index2(){
         $user = session()->get('user');
-        $category = Category::all()->all();
+        $category = Category::all();
         $providers = Provider::where('email_verified_at','<>',null)->get();
         $top_products = Product::select()->orderBy('number_of_bought','desc')->limit(12)->get();
         if(session()->has("user")){
@@ -80,6 +80,24 @@ class HomeController extends Controller
             ]);
         }else{
             return view('public_views.contact-us');
+        }
+        
+    }
+    public function contact_us2(){
+        $user = session()->get('user');
+        $category = Category::all()->all();
+        $providers = Provider::where('email_verified_at','<>',null)->get();
+        if(session()->has("user")){
+            return view('public_side.contact-us',[
+                'categories' => $category,
+                'providers'=>$providers,
+                'user'=>$user
+            ]);
+        }else{
+            return view('public_side.contact-us',[
+                'categories' => $category,
+                'providers'=>$providers
+            ]);
         }
         
     }

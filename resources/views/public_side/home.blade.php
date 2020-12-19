@@ -1,7 +1,5 @@
+<?php $pageTitle = "Home" ?>
 @include('public_side.includes.public_header')
-
-
-
 <!-- banner -->
 	<div id="myCarousel" class="carousel slide" data-ride="carousel">
 		<!-- Indicators -->
@@ -165,14 +163,14 @@
                                 <img src="../img/Product_images/{{$product->main_image}}" alt="" class="pro-image-back">
                                     <div class="men-cart-pro">
                                         <div class="inner-men-cart-pro">
-                                            <a href="{{route('product.show',['id'=>$product->id])}}" class="link-product-add-cart">Quick View</a>
+                                            <a href="{{route('product.show2',['id'=>$product->id])}}" class="link-product-add-cart">Quick View</a>
                                         </div>
                                     </div>
                                     <span class="product-new-top">New</span>
                                     
                             </div>
                             <div class="item-info-product ">
-                                <h4><a href="single.html" class="js-name-detail">{{$product->prod_name}}</a></h4>
+                                <h4><a href="" class="js-name-detail">{{$product->prod_name}}</a></h4>
                                 <p><a href="">Store: {{$product->prov->name}}</a></p>
                                 <p>Gender: {{$product->gender}}</p>
                                 <div class="info-product-price">

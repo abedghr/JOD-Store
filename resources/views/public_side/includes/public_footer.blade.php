@@ -1,5 +1,5 @@
 <!-- /we-offer -->
-<div class="sale-w3ls" style="margin-bottom: 50px;">
+<div class="sale-w3ls footerReg" style="margin-bottom: 50px;">
 	<div style="width: 100%; height:100%; background-color:rgba(0,0,0,0.6); min-height:380px">
 		<div class="container">
 			<h6>Register With Us</h6>
@@ -251,6 +251,11 @@
 <script src="{{asset('public_libraries/sweetalert/sweetalert.min.js')}}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="{{asset('public_libraries/vendors/owl-carousel/owl.carousel.min.js')}}"></script>
+	@if ($pageTitle == "Store" || $pageTitle == "Contact Us")  
+	<script>
+		$(".footerReg").hide();
+	</script>
+	@endif
 	<script type="text/javascript">
 		$(document).ready(function() {
 			/*

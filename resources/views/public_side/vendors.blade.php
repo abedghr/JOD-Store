@@ -1,4 +1,4 @@
-
+<?php $pageTitle = "Stores" ?>
 @include('public_side.includes.public_header')
 <!-- /banner_bottom_agile_info -->
 <div class="page-head_agile_info_w3l">

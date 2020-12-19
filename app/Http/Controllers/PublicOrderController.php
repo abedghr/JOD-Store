@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\NewNotification;
+use App\Models\Category;
 use App\Models\City;
 use App\Models\Order;
 use App\Models\Product;
@@ -101,6 +102,24 @@ class PublicOrderController extends Controller
             ]);
         }else{
             return view('public_views.tracking_order');
+        }
+        
+    }
+    public function tracking2(){
+        $user = session()->get('user');
+        $categories = Category::all();
+        $providers = Provider::where('email_verified_at','<>',null)->get();
+        if(session()->has('user')){
+            return view('public_side.tracking_order',[
+                'categories'=>$categories,
+                'providers'=>$providers,
+                'user'=>$user
+            ]);
+        }else{
+            return view('public_side.tracking_order',[
+                'categories'=>$categories,
+                'providers'=>$providers
+            ]);
         }
         
     }
@@ -291,7 +310,7 @@ class PublicOrderController extends Controller
         if(!empty($order[0])){
             if($order[0]->order_status == 0){
                 $output = '<article class="card">
-                <header class="card-header bg-light"><h6>Order ID: '.$request->order_id.'</h6></header>
+                <header class="card-header bg-light"><h4>Order ID: '.$request->order_id.'</h4></header>
                 <div class="card-body">
                     <div class="track">
                         <div class="step active"> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text">Order Pending</span> </div>
@@ -300,12 +319,12 @@ class PublicOrderController extends Controller
                         <div class="step"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Order Done</span> </div>
                     </div>
                     <hr>
-                    <a href="#" class="btn submit_btn" data-abc="true"> <i class="fa fa-eye"></i> Show The order</a>
+                    <a href="#" class="hvr-outline-out button2 btn text-light" data-abc="true" style="border-radius: 0px !important;> <i class="fa fa-eye"></i> Show The order</a>
                 </div>
             </article>';
             }elseif($order[0]->order_status == 1){
                 $output = '<article class="card">
-                <header class="card-header bg-light"><h6>Order ID: '.$request->order_id.'</h6></header>
+                <header class="card-header bg-light"><h4>Order ID: '.$request->order_id.'</h4></header>
                 <div class="card-body">
                     <div class="track">
                         <div class="step active"> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text">Order Pending</span> </div>
@@ -314,12 +333,12 @@ class PublicOrderController extends Controller
                         <div class="step"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Order Done</span> </div>
                     </div>
                     <hr>
-                    <a href="#" class="btn submit_btn" data-abc="true"> <i class="fa fa-eye"></i> Show The order</a>
+                    <a href="#" class="hvr-outline-out button2 btn text-light" data-abc="true" style="border-radius: 0px !important;> <i class="fa fa-eye"></i> Show The order</a>
                 </div>
             </article>';
             }elseif($order[0]->order_status == 3 || $order[0]->order_status == 2){
                 $output = '<article class="card">
-                <header class="card-header bg-light"><h6>Order ID: '.$request->order_id.'</h6></header>
+                <header class="card-header bg-light"><h4>Order ID: '.$request->order_id.'</h4></header>
                 <div class="card-body">
                     <div class="track">
                         <div class="step active"> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text">Order Pending</span> </div>
@@ -328,12 +347,12 @@ class PublicOrderController extends Controller
                         <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Order Done</span> </div>
                     </div>
                     <hr>
-                    <a href="#" class="btn submit_btn" data-abc="true"> <i class="fa fa-eye"></i> Show The order</a>
+                    <a href="#" class="hvr-outline-out button2 btn text-light" data-abc="true" style="border-radius: 0px !important;> <i class="fa fa-eye"></i> Show The order</a>
                 </div>
             </article>';
             }elseif($order[0]->order_status == -1 ){
                 $output = '<article class="card">
-                <header class="card-header bg-light"><h6>Order ID: '.$request->order_id.'</h6></header>
+                <header class="card-header bg-light"><h4>Order ID: '.$request->order_id.'</h4></header>
                 <div class="card-body">
                     <div class="track">
                         <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Order Pending</span> </div>
@@ -342,12 +361,12 @@ class PublicOrderController extends Controller
                         <div class="step "> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Order Done</span> </div>
                     </div>
                     <hr>
-                    <a href="#" class="btn submit_btn" data-abc="true"> <i class="fa fa-eye"></i> Show The order</a>
+                    <a href="#" class="hvr-outline-out button2 btn text-light" data-abc="true" style="border-radius: 0px !important;> <i class="fa fa-eye"></i> Show The order</a>
                 </div>
             </article>';
             }elseif($order[0]->order_status == -2){
                 $output = '<article class="card">
-                <header class="card-header bg-light"><h6>Order ID: '.$request->order_id.'</h6></header>
+                <header class="card-header bg-light"><h4>Order ID: '.$request->order_id.'</h4></header>
                 <div class="card-body">
                     <div class="track">
                         <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Order Pending</span> </div>
@@ -356,7 +375,7 @@ class PublicOrderController extends Controller
                         <div class="step active-failed"> <span class="icon"> <i class="fa fa-times"></i> </span> <span class="text">Un-received Order</span> </div>
                     </div>
                     <hr>
-                    <a href="#" class="btn submit_btn" data-abc="true"> <i class="fa fa-eye"></i> Show The order</a>
+                    <a href="#" class="hvr-outline-out button2 btn text-light" data-abc="true" style="border-radius: 0px !important;> <i class="fa fa-eye"></i> Show The order</a>
                 </div>
             </article>';
             }
@@ -369,7 +388,7 @@ class PublicOrderController extends Controller
     public function show_orders(Request $request){
         $orders = Order::where('phone',$request->user_phone)->select('id','created_at')->get();
         if(!empty($orders[0])){
-            $output = '<header class="card-header mb-4 bg-light" style="border:1px solid silver"><h6>Your Orders ID :<a href="" class="col-md-6">View all</a></h6></header>';
+            $output = '<header class="card-header mb-4 bg-light" style="border:1px solid silver height:"><h4>Your Orders ID :<a href="" class=""> View all</a></h4></header>';
             foreach($orders as $order){
                 $output.='<li class="list-group-item">('.$order->created_at->format('Y-m-d').') &nbsp;Order ID : '.$order->id.'  &nbsp;<a href="">View Order</a></li>';
             }

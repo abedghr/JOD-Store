@@ -68,7 +68,8 @@ class publicFeedbackController extends Controller
         $new_feedback = AdminFeedback::latest()->first();
         $admins = Admin::get();
         Notification::send($admins, new AdminFeedbackNotification($new_feedback));
-        return redirect(url()->previous());
+        dd($feedback);
+        /* return redirect(url()->previous()); */
     }
 
 
