@@ -33,6 +33,27 @@ class PublicProductController extends Controller
         }
         
     }
+    public function all2(){
+        $user = session()->get('user');
+        $products = Product::select()->orderBy('id','desc')->paginate(12);
+        $providers_logo = Provider::where('email_verified_at','<>',null)->get();
+        $categories = Category::all();
+        if(session()->has('user')){
+            return view('public_side.shop',[
+                'products'=>$products,
+                'categories'=>$categories,
+                'providers'=>$providers_logo,
+                'user'=>$user
+            ]);
+        }else{
+            return view('public_side.shop',[
+                'products'=>$products,
+                'categories'=>$categories,
+                'providers'=>$providers_logo
+            ]);
+        }
+        
+    }
 
     public function show($id){
         $user = session()->get('user');
@@ -229,6 +250,43 @@ class PublicProductController extends Controller
                     <p class="product-details"><strong>Category : '.$product->cat->cat_name.'</strong></p>
                     <span class="text-danger"><strong><del class="text-danger">JD'.number_format($product->old_price,2).'</del></strong></span>
                     <span class="text-success ml-2"><strong>JD'.number_format($product->new_price,2).'</strong></span>
+            </div>
+        </div>';
+        }
+        return $data = array(
+            'row_result'=>$output,
+        );
+    }
+    public function search2(Request $request){
+        $search_products = Product::where('prod_name','like', '%'.$request->data_search.'%')->paginate(12);
+        
+        $output = '';
+        foreach($search_products as $product){
+            $output.='<div class="col-md-4 product-men">
+            <div class="men-pro-item simpleCart_shelfItem">
+                <div class="men-thumb-item">
+                    <img src="../img/Product_images/'.$product->main_image.'" alt="" class="pro-image-front">
+                    <img src="../img/Product_images/'.$product->main_image.'" alt="" class="pro-image-back">
+                        <div class="men-cart-pro">
+                            <div class="inner-men-cart-pro">
+                                <a href="'.route('product.show2',['id'=>$product->id]).'" class="link-product-add-cart">Quick View</a>
+                            </div>
+                        </div>
+                        <span class="product-new-top">New</span>
+                        
+                </div>
+                <div class="item-info-product ">
+                    <h4><a href="single.html" class="js-name-detail">'.$product->prod_name.'</a></h4>
+                    <p><a href="">Store: '.$product->prov->name.'</a></p>
+                    <p>Gender: '.$product->gender.'</p>
+                    <div class="info-product-price">
+                        <span class="item_price">'.number_format($product->new_price,2).'JOD</span>
+                        <del>'.number_format($product->old_price,2).'JOD</del>
+                    </div>
+                    <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
+                        <input type="submit" name="submit" value="Add to cart" class="button js-addcart-detail" onclick="addca('.$product->id.')" />
+                    </div>
+                </div>
             </div>
         </div>';
         }

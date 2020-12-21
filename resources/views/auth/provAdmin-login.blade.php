@@ -12,7 +12,7 @@
                 <div class="col-lg-7">
                     <div style="background-image: url({{asset('../img/providerBackgroundLogin.jpg')}}); background-size: 100% 100%; height: 450px; background-repeat: no-repeat;">
                         <div style="background-color:rgba(0,0,0,0.3); height:100%">
-                            <a href="/provider/login" class="btn btn-dark btn-block">Provider Login</a>
+                            <a href="/provider/login" class="btn btn-dark btn-block pt-3 pb-3" style="background-color: #111; border-radius:0px;">Provider Login</a>
                         </div>
                         
                         
@@ -28,7 +28,7 @@
                             <label for="email" class="col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div>
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Enter email">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -42,7 +42,7 @@
                             <label for="password" class="col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div>
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Enter password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -51,10 +51,9 @@
                                 @enderror
                             </div>
                         </div>
-                        <br>
-                         <div class="form-group">
+                         <div class="form-group mt-4">
                             <div>
-                                <button type="submit" class="btn btn-primary btn-block">
+                                <button type="submit" class="btn btn-dark btn-block" style="background-color: #111">
                                     {{ __('Login') }}
                                 </button>
                         {{--

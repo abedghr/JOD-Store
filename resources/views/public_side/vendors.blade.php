@@ -56,7 +56,7 @@
                                         <div class="back"><i class="fa fa-instagram" aria-hidden="true"></i></div></a>
                                     </li>
                                 </ul><br>
-                                <a class="hvr-outline-out button2 btn btn-block text-light mt-1" href="single.html"><strong>Shopping</strong></a>
+                                <a class="hvr-outline-out button2 btn btn-block text-light mt-1" href="{{route('public_provider.profile2',['id'=>$provider->id])}}"><strong>Shopping</strong></a>
                             </div>
                         </div>
                     </div>
@@ -68,7 +68,18 @@
             </div>
     <!-- //team -->
 
+<!-- /we-offer -->
+<div class="sale-w3ls footerReg">
+	<div style="width: 100%; height:100%; background-color:rgba(0,0,0,0.6); min-height:380px">
+		<div class="container">
+			<h6>Register With Us</h6>
+			<p class="text-light"><strong>If you have a business and you want to join us and get your own store</strong></p>
 
+			<a class="hvr-outline-out button2" href="{{route('provider.register')}}">Register </a>
+		</div>
+	</div>
+</div>
+<!-- //we-offer -->
 @include('public_side.includes.public_footer')
 
 <script>

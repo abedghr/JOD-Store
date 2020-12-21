@@ -1,15 +1,4 @@
-<!-- /we-offer -->
-<div class="sale-w3ls footerReg" style="margin-bottom: 50px;">
-	<div style="width: 100%; height:100%; background-color:rgba(0,0,0,0.6); min-height:380px">
-		<div class="container">
-			<h6>Register With Us</h6>
-			<p class="text-light"><strong>If you have a business and you want to join us and get your own store</strong></p>
 
-			<a class="hvr-outline-out button2" href="single.html">Register </a>
-		</div>
-	</div>
-</div>
-<!-- //we-offer -->
 <!-- footer -->
 <div class="footer">
 	<div class="footer_agile_inner_info_w3l">
@@ -251,11 +240,7 @@
 <script src="{{asset('public_libraries/sweetalert/sweetalert.min.js')}}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="{{asset('public_libraries/vendors/owl-carousel/owl.carousel.min.js')}}"></script>
-	@if ($pageTitle == "Store" || $pageTitle == "Contact Us")  
-	<script>
-		$(".footerReg").hide();
-	</script>
-	@endif
+	
 	<script type="text/javascript">
 		$(document).ready(function() {
 			/*

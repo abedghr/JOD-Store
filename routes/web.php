@@ -405,3 +405,8 @@ Route::get('/vendor-Gender-filter','PublicProductController@vendorGenderFilter2'
 Route::get('/contact', 'HomeController@contact_us2')->name('contact-us2')->middleware('preventbackbutton');
 Route::get('/singleProduct/{id}','PublicProductController@show2')->name('product.show2')->middleware('preventbackbutton');
 Route::get('/trackingOrder','PublicOrderController@tracking2')->name('order.tracking2')->middleware('preventbackbutton');
+Route::get('/shoppingCart','CartController@shoppingcart2')->name('cart.index2')->middleware('preventbackbutton');
+Route::get('/checkout2','PublicOrderController@checkout2')->name('checkout2')->middleware('preventbackbutton');
+Route::get('/allProducts','PublicProductController@all2')->name('product.all2')->middleware('preventbackbutton');
+Route::get('/search2','PublicProductController@search2')->name('search2');
+Route::get('/filter2','PublicProductController@filter2')->name('filter.price2');

@@ -22,16 +22,34 @@
             <p class="mb-3"><strong>{{$provider->description ? $provider->description : "No Description"}}</strong></p>
             @if (isset($user))
             <a href="{{route('chat.show',['id'=>$provider->id])}}" class="btn btn-secondary  btn-block mt-2" style="background-color: #2fdab8 !important">Chat Us</a>
+            <small class="text-dark"><strong>&nbsp;</strong></small>
             @else
             <button class="btn btn-secondary  btn-block mt-2 text-light " style="background-color: #2fdab8 !important" disabled>Chat Us</button>
             <small class="text-danger"><strong>you sould be Login to Chat us</strong></small>
             @endif
         </div>
-        <div class="col-lg-4 ml-3 mt-2" style="border-left: 2px solid silver; padding-top:10px; padding-bottom:10px;x">
-            <p><strong>Phone (1) : </strong></p>
-            <p><strong>Phone (2) : </strong>{{$provider->phone2}}</p>
-            <p><strong>Email : </strong>{{$provider->email}}</p>
-            <p><strong>Address : </strong>{{$provider->address}}</p>
+        <div class="col-md-1"></div>
+        <div class="col-lg-3">
+            <ul class="social-nav model-3d-0 footer-social w3_agile_social two" style="margin:0px !important">
+                <li><a href="#" class="facebook">
+                    <div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
+                    <div class="back"><i class="fa fa-facebook" aria-hidden="true"></i></div></a>
+                </li>
+                <li><a href="#" class="instagram">
+                    <div class="front"><i class="fa fa-instagram" aria-hidden="true"></i></div>
+                    <div class="back"><i class="fa fa-instagram" aria-hidden="true"></i></div></a>
+                </li>
+                <li><a class="instagram bg-info" id="contact-btn">
+                    <div class="front text-light bg-info" style="width:100px; background-color:#2ec2a4;">Contact Us</div>
+                    <div class="back" style="width:100px;">Contact Us</div></a>
+                </li>
+            </ul>
+            <div id="info" style="display: none;">
+                <p><strong>Phone (1) : </strong>{{$provider->phone1}}</p>
+                <p><strong>Phone (2) : </strong>{{$provider->phone2}}</p>
+                <p><strong>Email : </strong>{{$provider->email}}</p>
+                <p><strong>Address : </strong>{{$provider->address}}</p>
+            </div>
         </div>
 
 </div>
@@ -44,6 +62,7 @@
 			<div class="css-treeview">
 				<h4>Categories</h4>
                     <ul>
+                        <li><a href="{{route('public_provider.profile2',['id'=>$provider->id])}}"><strong>All Products</strong></a></li>
                     <?php $i= 0; ?>
                     @foreach ($store_categories as $cat)
                         <li><input type="checkbox" id="item-0-{{$i}}" /><label for="item-0-{{$i}}"><i class="fa fa-long-arrow-right" aria-hidden="true"></i> {{$cat['name']}}</label>
@@ -158,7 +177,11 @@
 <!-- //we-offer -->
 @include('public_side.includes.public_footer')
 <script>
-
+    $('document').ready(function(){
+        $("#contact-btn").click(function(){
+            $("#info").toggle("10000");
+        });
+    });
     let old_data = $('.prod_content').html();
     function search_vendorsCategory_products(){
         var data = $('#search').val();

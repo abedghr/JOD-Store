@@ -29,7 +29,7 @@
                             <label for="email" class="col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div>
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Enter email">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -43,7 +43,7 @@
                             <label for="password" class="col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div>
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Enter password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -54,7 +54,7 @@
                         </div>
                         <div class="form-group mt-5">
                             <div>
-                                <button type="submit" class="btn btn-primary btn-block">
+                                <button type="submit" class="btn btn-dark btn-block" style="background-color: #111;">
                                     {{ __('Login') }}
                                 </button>
 

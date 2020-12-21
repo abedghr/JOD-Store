@@ -162,11 +162,59 @@ class PublicOrderController extends Controller
             return redirect()->route('cart.index');
         }
     }
+    public function checkout2(){
+        $categories = Category::all();
+        $providers = Provider::where('email_verified_at','<>',null)->get();
+        if(session()->has('user')){
+        $user = session()->get('user');
+        $user_data = User::where('id',$user['user_id'])->get();
+        }/* else{ */
+           /* $the_user = session(['user'=>['user_id'=>'','userName'=>'']]);
+           $user = $the_user;
+           session()->forget('user');
+           $user_data[0] = []; */
+        /* } */
+        /* $user_data = $user['user_id'] ?  User::where('id',$user['user_id'])->get() : []; */
+        $cities = City::all();
+        if(session()->has('cart')){
+            $providers0 = session()->get('providers');
+            $count_provider = count($providers0);
+            $cart = session()->get('cart');
+            if(session()->has('user')){
+                return view('public_side.checkout',[
+                    'categories' => $categories,
+                    'providers'=>$providers,
+                    'cart'=>$cart,
+                    'cities'=>$cities,
+                    'providers0'=>$providers0,
+                    'count_provider'=>$count_provider,
+                    'user'=>$user,
+                    'user_data'=>$user_data
+                ]);
+            }else{
+                return view('public_side.checkout',[
+                    'categories' => $categories,
+                    'providers'=>$providers,
+                    'cart'=>$cart,
+                    'cities'=>$cities,
+                    'providers0'=>$providers0,
+                    'count_provider'=>$count_provider,
+                ]);
+            }
+            
+        }else{
+            return redirect()->route('cart.index2',[
+                'categories' => $categories,
+                'providers'=>$providers
+            ]);
+        }
+    }
 
     public function checkout_process(Request $request){
         $valid = $request->validate([
             'fname'=> 'required',
             'lname'=> 'required',
+            'email'=>'required',
             'number'=> 'required',
             'city' => 'required|not_in:none',
             'address'=> 'required'

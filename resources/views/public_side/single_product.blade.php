@@ -44,23 +44,8 @@
 			</div>
 		</div>
 		<div class="col-md-8 single-right-left simpleCart_shelfItem">
-					<h3>{{$product->prod_name}}</h3>
+					<h3 class="js-name-detail">{{$product->prod_name}}</h3>
 					<p><span class="item_price">{{number_format($product->new_price,2)}} JOD</span> <del> {{number_format($product->old_price,2)}} JOD</del></p>
-					<div class="rating1">
-						<span class="starRating">
-							<input id="rating5" type="radio" name="rating" value="5">
-							<label for="rating5">5</label>
-							<input id="rating4" type="radio" name="rating" value="4">
-							<label for="rating4">4</label>
-							<input id="rating3" type="radio" name="rating" value="3" checked="">
-							<label for="rating3">3</label>
-							<input id="rating2" type="radio" name="rating" value="2">
-							<label for="rating2">2</label>
-							<input id="rating1" type="radio" name="rating" value="1">
-							<label for="rating1">1</label>
-						</span>
-                    </div>
-                    <br>
                     <a class="active" href="#">
                         <span>Category</span> : <strong class="text-dark">{{$product->cat->cat_name}}</strong>
                     </a>
@@ -79,112 +64,167 @@
 					</div>
 					<div class="color-quality">
 						<div class="color-quality-right">
-							<h5>Quality :</h5>
-							<input type="number" class="form-control" style="width: 80px;" min="1" max="30" value="1">
+							<h5>Quantity :</h5>
+							<input type="number" name="qty" id="sst" class="form-control qty" style="width: 80px;" min="1" max="30" value="1">
 						</div>
 					</div><br>
 					<div class="occasion-cart">
-						<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-															<form action="#" method="post">
-																<fieldset>
-																	<input type="hidden" name="cmd" value="_cart">
-																	<input type="hidden" name="add" value="1">
-																	<input type="hidden" name="business" value=" ">
-																	<input type="hidden" name="item_name" value="Wing Sneakers">
-																	<input type="hidden" name="amount" value="650.00">
-																	<input type="hidden" name="discount_amount" value="1.00">
-																	<input type="hidden" name="currency_code" value="USD">
-																	<input type="hidden" name="return" value=" ">
-																	<input type="hidden" name="cancel_return" value=" ">
-																	<input type="submit" name="submit" value="Add to cart" class="button">
-																</fieldset>
-															</form>
-														</div>
-																			
+						<button class="hvr-outline-out button2 btn text-light js-addcart-detail" id="addCart" style="border-radius: 0px !important;">ADD TO CART</button>												
 					</div>
-					<ul class="social-nav model-3d-0 footer-social w3_agile_social single_page_w3ls">
-						                                   <li class="share">Share On : </li>
-															<li><a href="#" class="facebook">
-																  <div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
-																  <div class="back"><i class="fa fa-facebook" aria-hidden="true"></i></div></a></li>
-															<li><a href="#" class="twitter"> 
-																  <div class="front"><i class="fa fa-twitter" aria-hidden="true"></i></div>
-																  <div class="back"><i class="fa fa-twitter" aria-hidden="true"></i></div></a></li>
-															<li><a href="#" class="instagram">
-																  <div class="front"><i class="fa fa-instagram" aria-hidden="true"></i></div>
-																  <div class="back"><i class="fa fa-instagram" aria-hidden="true"></i></div></a></li>
-															<li><a href="#" class="pinterest">
-																  <div class="front"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
-																  <div class="back"><i class="fa fa-linkedin" aria-hidden="true"></i></div></a></li>
-														</ul>
-					
 		      </div>
 	 			<div class="clearfix"> </div>
-				<!-- /new_arrivals --> 
-	<div class="responsive_tabs_agileits"> 
-				<div id="horizontalTab">
-						<ul class="resp-tabs-list" style="margin-left: -15px;">
-							<li>Reviews</li>
-							<li>Information</li>
-						</ul>
-					<div class="resp-tabs-container">
-						<div class="tab">
-							<div class="row">
-                                    <div class="single_page_agile_its_w3ls " style="padding: 0px !important;">
-                                        <div class="col-md-6" style="overflow-y:scroll; height:332px;">    
-                                            <div class="bootstrap-tab-text-grids">
-                                            @foreach ($comments as $comment)
-                                            <div class="bootstrap-tab-text-grid">
-                                                <div class="bootstrap-tab-text-grid-right"  style="float: none !important; padding-left:20px;">
-                                                    <ul>
-                                                        <li><a href="#">{{$comment->user->name}}</a><br><small>{{$comment->created_at->format('Y-m-d')}}</small></li>
-                                                        
-                                                        <li>@if (isset($user))
-                                                            @if ($comment->user_id == $user['user_id'])
-                                                            <a onclick="delete_comment({{$comment->id}})" id="delete_comment" style="cursor: pointer;"><i class="fa fa-trash-o fa-lg"></i></a>
-                                                            @endif
-                                                            @endif
-                                                        </li>
-                                                    </ul>
-                                                    <p style="margin-top:5px !important;">{{$comment->comment}}.</p>
-                                                </div>
-                                                <div class="clearfix"> </div>
-                                            </div>
-                                            <hr>
-                                            @endforeach
-                                            
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">    
-                                            <div class="bootstrap-tab-text-grids">
-                                            <div class="add-review">
-                                                <h4>add a comment</h4>
-                                                <form action="#" method="post" style="margin:0px !important;" onclick="event.preventDefault()">
-                                                        <textarea name="comment" id="comment" required=""></textarea>
-                                                        @if (isset($user))
-                                                        <input type="submit" value="SEND" id="comment_btn" style="margin-bottom: 45px">    
-                                                        @else
-                                                        <button disabled title="You Must be login" class="btn btn-secondary" style="outline: none; padding: 14px 0; background: #2fdab8; border: none; width: 20%; font-size: 1em; color: #fff;font-weight: 700; letter-spacing: 2px;">Send</button>
-                                                        @endif
-                                                </form>
-                                            </div>
-                                            </div>
-                                        </div>
-								</div>
+	<!--================Product Description Area =================-->
+	<section class="product_description_area">
+		<div class="container">
+			<ul class="nav nav-tabs" id="myTab" role="tablist">
+				<li class="nav-item">
+					<a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Comments</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link active" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false">Reviews</a>
+				</li>
+			</ul>
+			<div class="tab-content" id="myTabContent" style="height: 300px;">
+				<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+					<div class="row">
+						<div class="col-lg-6 comments-box" style="overflow-y: scroll; height:270px;">
+							<div class="comment_list" id="comment_list">
+								
+									@foreach ($comments as $comment)
+									<div class="review_item" style="margin-bottom: 15px;">
+										<div class="media">
+											<div class="media-body">
+                                                <h4>{{$comment->user->name}}</h4>
+												<h5>{{$comment->created_at->format('Y-m-d')}}</h5>
+												@if (isset($user))
+													@if ($comment->user_id == $user['user_id'])
+													<a class="btn-danger text-light reply_btn mr-3" onclick="delete_comment({{$comment->id}})" id="delete_comment"><i class="fa fa-trash text-light"></i></a>	
+													@endif
+												@endif
+											</div>
+										</div>
+										<p class="mt-2">{{$comment->comment}}</p>
+									</div>
+									<hr>
+									@endforeach
+										
+								
 							</div>
-						 </div>
-						   <div class="tab3">
-
-							<div class="single_page_agile_its_w3ls">
-							  <h6>Big Wing Sneakers (Navy)</h6>
-							   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget nisl ullamcorper, molestie blandit ipsum auctor. Mauris volutpat augue dolor.Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut lab ore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. labore et dolore magna aliqua.</p>
-							   <p class="w3ls_para">Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget nisl ullamcorper, molestie blandit ipsum auctor. Mauris volutpat augue dolor.Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut lab ore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. labore et dolore magna aliqua.</p>
+						</div>
+						<div class="col-lg-6">
+							<div class="review_box">
+								<h4>Post a comment</h4>
+								<form class="row contact_form" onclick="event.preventDefault()" method="post" id="contactForm" novalidate="novalidate">
+									@csrf
+									<div class="col-md-12">
+										<div class="form-group">
+											<textarea class="form-control" name="comment" id="comment" rows="5" placeholder="Enter your comment"></textarea>
+										</div>
+									</div>
+									<div class="col-md-12 text-right">
+										@if (isset($user))
+										<button class="btn submit_btn" id="comment_btn" style="background-color: #2fdab8">Comment</button>	
+										@else
+										<button class="btn btn-primary" disabled title="You Must be login" style="background-color: #2fdab8">Comment</button>	
+										@endif
+										
+									</div>
+								</form>
 							</div>
 						</div>
 					</div>
-				</div>	
+				</div>
+				<div class="tab-pane fade active in" id="review" role="tabpanel" aria-labelledby="review-tab">
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="row total_rate">
+								<div class="col-12">
+									<div class="box_total">
+										<h5 class="mb-2">Product Rate</h5>
+										<a href="#" style="color:#2fdab8;">
+											<i class="fa fa-star fa-4x"></i>
+											<h4 class="text-dark">{{$product_rate}} STAR</h4>
+										</a>
+									</div>
+								</div>
+								<div class="col-12" id="yourRateBox">
+									@if (isset($rating[0]))
+									<div class="rating_list">
+										<h3>Your Rate:</h3>
+										<ul class="list" style="color:#2fdab8">
+											<li>	
+												<a href="#" class="text-dark">{{$rating[0]->rating}} STAR
+												@for ($i = 0; $i < $rating[0]->rating; $i++)
+													<i class="fa fa-star" style="color:#2fdab8"></i>
+												@endfor	
+												</a>	
+											</li>
+										</ul>
+									</div>
+									@endif
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6">
+							@if (isset($user))
+							<div class="review_box">
+								<h4>Add a Review</h4>
+								<a id="star5" style="cursor:pointer">Click to Rate:</a>
+								<ul class="list" style="color:#2fdab8;">
+									<li>
+										<label class="text-dark">5 Star</label>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+									</li>
+								</ul><br>
+								<a id="star4" style="cursor:pointer">Click to Rate:</a>
+								<ul class="list" style="color:#2fdab8">
+									<li>
+										<label class="text-dark">4 Star</label>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+									</li>
+								</ul><br>
+								<a id="star3" style="cursor:pointer">Click to Rate:</a>
+								<ul class="list" style="color:#2fdab8">
+									<li>
+										<label class="text-dark">3 Star</label>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+									</li>
+								</ul><br>
+								<a id="star2" style="cursor:pointer">Click to Rate:</a>
+								<ul class="list" style="color:#2fdab8">
+									<li>
+										<label class="text-dark">2 Star</label>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+									</li>
+								</ul><br>
+								<a id="star1" style="cursor:pointer">Click to Rate:</a>
+								<ul class="list" style="color:#2fdab8">
+									<li>
+										<label class="text-dark">1 Star</label>
+											<i class="fa fa-star"></i>
+									</li>
+								</ul>
+							</div>
+							@endif
+
+						</div>
+					</div>
+				</div>
 			</div>
-	<!-- //new_arrivals --> 
+		</div>
+	</section>
+	<!--================End Product Description Area =================-->
+	
 	  	<!--/slider_owl-->
 	
 			<div class="w3_agile_latest_arrivals">
@@ -223,6 +263,7 @@
 		         </div>
 	        </div>
  </div>
+ 
 <!--//single_page-->
 @include('public_side.includes.public_footer')
 <!-- js -->
@@ -297,10 +338,18 @@
 </script>
 <!-- here stars scrolling icon -->
 <!-- for bootstrap working -->
-<script type="text/javascript" src="{{asset('pub_libraries/js/bootstrap.js')}}"></script>
+{{-- <script type="text/javascript" src="{{asset('pub_libraries/js/bootstrap.js')}}"></script> --}}
 @if (isset($user)){
 	<script type="text/javascript">
 		$(document).ready(function() {
+            $('#review-tab').click(function(){
+                $(this).addClass('active');
+                $("#contact-tab").removeClass('active');
+            });
+            $('#contact-tab').click(function(){
+                $(this).addClass('active');
+                $("#review-tab").removeClass('active');
+            });
 			/*
 				var defaults = {
 				containerID: 'toTop', // fading element id
@@ -322,7 +371,7 @@
                     },
                     success:function(data){
                         $('#cart_count').html(data.counter);
-                        
+                        $("#sst").val(1);
                     }
                 });
             });
@@ -462,7 +511,7 @@
                     },
                     success:function(data){
                         $('#cart_count').html(data.counter);
-                        
+                        $("#sst").val(1);
                     }
                 });
             });

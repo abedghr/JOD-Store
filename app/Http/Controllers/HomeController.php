@@ -33,7 +33,7 @@ class HomeController extends Controller
         $providers = Provider::where('email_verified_at','<>',null)->get();
         $top_products = Product::select()->orderBy('number_of_bought','desc')->limit(12)->get();
         if(session()->has("user")){
-            return view('home',[
+            return view('public_side.home',[
             'categories' => $category,
             'providers'=>$providers,
             'top_products'=>$top_products,

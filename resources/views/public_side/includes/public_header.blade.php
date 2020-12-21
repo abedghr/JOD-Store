@@ -109,7 +109,116 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     -ms-flex-negative: 0;
     flex-shrink: 0
 }
-
+.tab-content>.active {
+    display: block !important;
+}
+.product_description_area .tab-content .total_rate .box_total {
+    background: #f9f9ff;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.review_box h4 {
+    font-size: 24px;
+    color: #222222;
+    margin-bottom: 20px;
+}
+.review_box .list {
+    display: inline-block;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.list {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+.product_description_area .nav.nav-tabs {
+    background: #f9f9ff;
+    text-align: center !important;
+    display: block;
+    border: none;
+    padding: 10px 0px;
+    width:100%;
+}
+.product_description_area .nav.nav-tabs li a {
+    padding: 0px;
+    border: none;
+    line-height: 38px;
+    background: #fff;
+    border: 1px solid #eeeeee;
+    border-radius: 0px;
+    padding: 0px 30px;
+    color: #222222;
+    font-size: 13px;
+    font-weight: normal;
+}
+.nav-tabs .nav-link {
+    border: 1px solid transparent;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+}
+.product_description_area .tab-content {
+    border-left: 1px solid #eee;
+    border-right: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding: 30px;
+}
+.product_description_area .tab-content .total_rate .box_total h5 {
+    color: #222222;
+    margin-bottom: 0px;
+    font-size: 24px;
+}
+.review_box h4 {
+    font-size: 24px;
+    color: #222222;
+    margin-bottom: 20px;
+}
+.review_item .media .media-body h5 {
+    font-size: 13px !important;
+    font-weight: normal !important;
+    color: #777777 !important;
+}
+.review_item .media .media-body .reply_btn {
+    border: 1px solid #e0e0e0;
+    padding: 0px 28px;
+    display: inline-block;
+    line-height: 32px;
+    border-radius: 16px;
+    font-size: 14px;
+    font-family: "Roboto", sans-serif;
+    color: #222222;
+    position: absolute;
+    right: 0px;
+    top: 14px;
+}
+.product_description_area .tab-content .total_rate .box_total h4 {
+    color: #2fdab8;
+    font-size: 48px;
+    font-weight: bold;
+}
+.product_description_area .tab-content .total_rate .box_total h5 {
+    color: #222222;
+    margin-bottom: 0px;
+    font-size: 24px;
+}
+.product_description_area .nav.nav-tabs li a.active {
+    background: #2fdab8;
+    color: #fff;
+    border-color: #2fdab8;
+}
+.review_item .media .media-body {
+    vertical-align: middle;
+    align-self: center;
+}
+comments-box {
+    height: 300px !important;
+    overflow-y: scroll;
+}
+.review_item .media .media-body .reply_btn {
+    background-color: #2fdab8 !important;
+    cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -117,9 +226,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header" id="home">
 	<div class="container">
 		<ul>
-		    <li> <a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Sign In </a></li>
-			<li> <a href="#" data-toggle="modal" data-target="#myModal2"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Sign Up </a></li>
-			<li><i class="fa fa-phone" aria-hidden="true"></i> Call : +962 790714916</li>
+            @if (isset($user))
+		    <li> <a href="{{route('user.profile')}}"><i class="fa fa-user" aria-hidden="true"></i> {{$user['userName']}} </a></li>
+			<li> <a href="{{route('user.logout')}}"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout </a></li>
+			@else
+            <li> <a href="/login"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Sign In </a></li>
+			<li> <a href="{{route('view.register')}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Sign Up </a></li>
+            @endif
+            <li><i class="fa fa-phone" aria-hidden="true"></i> Call : +962 790714916</li>
 			<li><i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:info@example.com">jordan.stores@gmail.com</a></li>
 		</ul>
 	</div>
@@ -181,6 +295,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<ul class="dropdown-menu multi-column columns-3">
 								<div class="agile_inner_drop_nav_info">
 									<div class="col-sm-6 multi-gd-img1 multi-gd-text ">
+                                        <a href="{{route('product.all2')}}"><strong>All Categories</strong></a><br>
 										<a href="mens.html"><img src="{{asset('pub_libraries/images/banner3.jpg')}}" alt=" "/></a>
 									</div>
 									<div class="col-sm-6 multi-gd-img">
@@ -259,7 +374,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</li> --}}
 					<li class=" menu__item @if($pageTitle == "Contact Us") menu__item menu__item--current @endif"><a class="menu__link" href="{{route('contact-us2')}}">Contact</a></li>
 					<li class=" menu__item @if($pageTitle == "Tracking Order") menu__item menu__item--current @endif"><a class="menu__link " href="{{route('order.tracking2')}}">Tracking Order</a></li>
-					<li class=" menu__item @if($pageTitle == "Shopping Cart") menu__item menu__item--current @endif"><a class="menu__link" href="contact.html">Shopping Cart</a></li>
+					<li class=" menu__item @if($pageTitle == "Shopping Cart") menu__item menu__item--current @endif"><a class="menu__link" href="{{route('cart.index2')}}">Shopping Cart</a></li>
 				  </ul>
 				</div>
 			  </div>
@@ -267,7 +382,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 		<div class="top_nav_right">
 			<div class="wthreecartaits wthreecartaits2 cart cart box_1">
-                <a href=""> 
+                <a href="{{route('cart.index2')}}"> 
                     <button class="w3view-cart" type="submit" name="submit" value="" style="width:100px;"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i> <small id="cart_count"><strong>{{session('counter') ? session('counter') : 0}}</strong></small></button>
                 </a>
             </div>
@@ -276,117 +391,3 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 </div>
 <!-- //banner-top -->
-<!-- Modal1 -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-                <div class="modal-body modal-body-sub_agile">
-                <div class="col-md-8 modal_body_left modal_body_left1">
-                <h3 class="agileinfo_sign">Sign In <span>Now</span></h3>
-                            <form action="#" method="post">
-                    <div class="styled-input agile-styled-input-top">
-                        <input type="text" name="Name" required="">
-                        <label>Name</label>
-                        <span></span>
-                    </div>
-                    <div class="styled-input">
-                        <input type="email" name="Email" required=""> 
-                        <label>Email</label>
-                        <span></span>
-                    </div> 
-                    <input type="submit" value="Sign In">
-                </form>
-                  <ul class="social-nav model-3d-0 footer-social w3_agile_social top_agile_third">
-                                                    <li><a href="#" class="facebook">
-                                                          <div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
-                                                          <div class="back"><i class="fa fa-facebook" aria-hidden="true"></i></div></a></li>
-                                                    <li><a href="#" class="twitter"> 
-                                                          <div class="front"><i class="fa fa-twitter" aria-hidden="true"></i></div>
-                                                          <div class="back"><i class="fa fa-twitter" aria-hidden="true"></i></div></a></li>
-                                                    <li><a href="#" class="instagram">
-                                                          <div class="front"><i class="fa fa-instagram" aria-hidden="true"></i></div>
-                                                          <div class="back"><i class="fa fa-instagram" aria-hidden="true"></i></div></a></li>
-                                                    <li><a href="#" class="pinterest">
-                                                          <div class="front"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
-                                                          <div class="back"><i class="fa fa-linkedin" aria-hidden="true"></i></div></a></li>
-                                                </ul>
-                                                <div class="clearfix"></div>
-                                                <p><a href="#" data-toggle="modal" data-target="#myModal2" > Don't have an account?</a></p>
-
-                </div>
-                <div class="col-md-4 modal_body_right modal_body_right1">
-                    <img src="{{asset('images/log_pic.jpg')}}" alt=" "/>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </div>
-        <!-- //Modal content-->
-    </div>
-</div>
-<!-- //Modal1 -->
-<!-- Modal2 -->
-<div class="modal fade" id="myModal2" tabindex="-1" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-                <div class="modal-body modal-body-sub_agile">
-                <div class="col-md-8 modal_body_left modal_body_left1">
-                <h3 class="agileinfo_sign">Sign Up <span>Now</span></h3>
-                 <form action="#" method="post">
-                    <div class="styled-input agile-styled-input-top">
-                        <input type="text" name="Name" required="">
-                        <label>Name</label>
-                        <span></span>
-                    </div>
-                    <div class="styled-input">
-                        <input type="email" name="Email" required=""> 
-                        <label>Email</label>
-                        <span></span>
-                    </div> 
-                    <div class="styled-input">
-                        <input type="password" name="password" required=""> 
-                        <label>Password</label>
-                        <span></span>
-                    </div> 
-                    <div class="styled-input">
-                        <input type="password" name="Confirm Password" required=""> 
-                        <label>Confirm Password</label>
-                        <span></span>
-                    </div> 
-                    <input type="submit" value="Sign Up">
-                </form>
-                  <ul class="social-nav model-3d-0 footer-social w3_agile_social top_agile_third">
-                                                    <li><a href="#" class="facebook">
-                                                          <div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
-                                                          <div class="back"><i class="fa fa-facebook" aria-hidden="true"></i></div></a></li>
-                                                    <li><a href="#" class="twitter"> 
-                                                          <div class="front"><i class="fa fa-twitter" aria-hidden="true"></i></div>
-                                                          <div class="back"><i class="fa fa-twitter" aria-hidden="true"></i></div></a></li>
-                                                    <li><a href="#" class="instagram">
-                                                          <div class="front"><i class="fa fa-instagram" aria-hidden="true"></i></div>
-                                                          <div class="back"><i class="fa fa-instagram" aria-hidden="true"></i></div></a></li>
-                                                    <li><a href="#" class="pinterest">
-                                                          <div class="front"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
-                                                          <div class="back"><i class="fa fa-linkedin" aria-hidden="true"></i></div></a></li>
-                                                </ul>
-                                                <div class="clearfix"></div>
-                                                <p><a href="#">By clicking register, I agree to your terms</a></p>
-
-                </div>
-                <div class="col-md-4 modal_body_right modal_body_right1">
-                    <img src="{{asset('images/log_pic.jpg')}}" alt=" "/>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </div>
-        <!-- //Modal content-->
-    </div>
-</div>
-<!-- //Modal2 -->

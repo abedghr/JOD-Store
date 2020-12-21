@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\City;
 use App\Models\Product;
 use App\Models\Provider;
@@ -92,6 +93,44 @@ class CartController extends Controller
             ]);
             }else{
                 return view('public_views.empty_cart');
+            }
+        }
+    }
+    public function shoppingcart2(){
+        $user = session()->get('user');
+        $cart= session()->has('cart') ? session()->get('cart') : [];
+        $categories = Category::all();
+        $providers = $providers = Provider::where('email_verified_at','<>',null)->get();
+        $providers0= session()->has('providers') ? session()->get('providers') : [];
+        if(session()->has('cart') && session('cart')!= []){
+            if(session()->has('user')){
+                return view('public_side.cart',[
+                    'cart'=>$cart,
+                    'categories'=>$categories,
+                    'providers'=>$providers,
+                    'providers0'=>$providers0,
+                    'user'=>$user
+                ]);
+            }else{
+                return view('public_side.cart',[
+                    'cart'=>$cart,
+                    'categories'=>$categories,
+                    'providers'=>$providers,
+                    'providers0'=>$providers0
+                ]);
+            }
+        }else{
+            if(session()->has('user')){
+            return view('public_side.empty_cart',[
+                'categories'=>$categories,
+                'providers'=>$providers,
+                'user'=>$user
+            ]);
+            }else{
+                return view('public_side.empty_cart',[
+                    'categories'=>$categories,
+                    'providers'=>$providers
+                ]);
             }
         }
     }

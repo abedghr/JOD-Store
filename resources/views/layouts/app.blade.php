@@ -122,7 +122,6 @@
         input[type=text] {
             width: 100%;
             padding: 12px 20px;
-            margin: 15px 0 0 0;
             display: inline-block;
             border-radius: 4px;
             box-sizing: border-box;
@@ -136,7 +135,7 @@
 </head>
 <body>
    
-    <h3 class="text-center"><strong><a href="/home" class="btn btn-dark btn-block">Visite Jordan Stores</a></strong></h3>
+    <h3 class="text-center"><strong><a href="/home" class="btn btn-dark btn-block" style="background-color: #111; border-radius:0px;">Visite Jordan Stores</a></strong></h3>
         <main class="py-4">
             @yield('content')
         </main>{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 

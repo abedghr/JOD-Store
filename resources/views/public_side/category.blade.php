@@ -27,6 +27,7 @@
 			<div class="css-treeview">
 				<h4>Categories</h4>
                     <ul>
+                        <li><a href="{{route('product.all2')}}"><input type="checkbox" /><label for="><i class="fa fa-long-arrow-right" aria-hidden="true"></i>All Products</label></a></li>
                     <?php $i= 0; ?>
                     @foreach ($categories as $cat)
                         <li><input type="checkbox" id="item-0-{{$i}}" /><label for="item-0-{{$i}}"><i class="fa fa-long-arrow-right" aria-hidden="true"></i> {{$cat->cat_name}}</label>

@@ -2,8 +2,8 @@
 
 @section('content')
 
-<div class="container-fluid">
-    <div class="row justify-content-center" style="height: 500px !important;">
+<div class="container">
+    <div class="row justify-content-center" style="height: 608px !important;">
         
         <div class="col-md-1"></div>
         <div class="col-md-10">
@@ -13,10 +13,10 @@
                 </div> --}}
                 <div class="row">
                     <div class="col-lg-7">
-                        <div style="background-image: url(../img/providerBackgroundLogin.jpg); background-size: 100% 100%; height: 630px; background-repeat: no-repeat;">
+                        <div style="background-image: url(../img/providerBackgroundLogin.jpg); background-size: 100% 100%; height: 608px; background-repeat: no-repeat;">
                             
                                 <div style="background-color:rgba(0,0,0,0.3); height:100%">
-                                    <a href="/provider/login" class="btn btn-dark btn-block">Store Login</a>
+                                    <a href="/provider/login" class="btn btn-dark btn-block pt-3 pb-3" style="background-color: #111; border-radius:0px;">Store Login</a>
                                 </div>
                             
                         </div>
@@ -90,7 +90,7 @@
                                 </strong>
                                 <div class="form-group mt-4">
                                     <div>
-                                        <button type="submit" class="btn btn-primary btn-block">
+                                        <button type="submit" class="btn btn-dark btn-block" style="background-color: #111; border-radius:0px;">
                                             {{ __('Register') }}
                                         </button>
                                     </div>

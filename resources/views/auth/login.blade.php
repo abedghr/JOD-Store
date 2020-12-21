@@ -10,7 +10,7 @@
                 <div class="col-lg-7">
                     <div style="background-image: url('{{asset("img/ecommerce1.jpg")}}'); background-size: 100% 100%; height: 500px; background-repeat: no-repeat;">
                         <div style="height:100%">
-                            <a href="/provider/login" class="btn btn-dark btn-block">Provider Login</a>
+                            <a href="/provider/login" class="btn btn-dark btn-block pt-3 pb-3" style="background-color: #111; border-radius:0px;">Store Login</a>
                         </div>
                         
                         
@@ -52,7 +52,7 @@
 
                         <div class="form-group mt-5">
                             <div>
-                                <button type="submit" class="btn btn-primary btn-block">
+                                <button type="submit" class="btn btn-block text-light" style="background-color: #111; border-radius:0px;">
                                     {{ __('Login') }}
                                 </button>
 
@@ -64,7 +64,7 @@
                             </div>
                         </div>
                         <div class="form-group pl-4 pr-4">
-                            <a href="{{route('view.register')}}" class="btn btn-info btn-block">Register</a>
+                            <a href="{{route('view.register')}}" class="btn btn-info btn-block" style="background-color: #17c3a2">Register</a>
                         </div>
                     </form>
                 </div> 

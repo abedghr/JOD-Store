@@ -12,7 +12,7 @@
                 <div class="col-lg-7">
                     <div style="background-image: url(../img/providerBackgroundLogin.jpg); background-size: 100% 100%; height: 500px; background-repeat: no-repeat;">
                         <div style="background-color:rgba(0,0,0,0.3); height:100%">
-                            <a href="/adminsOfProvider/login" class="btn btn-dark btn-block">Store Employees Login</a>
+                            <a href="/adminsOfProvider/login" class="btn btn-dark btn-block pt-3 pb-3" style="background-color: #111; border-radius:0px;">Store Employees Login</a>
                         </div>
                         
                         
@@ -54,7 +54,7 @@
                         <br>
                         <div class="form-group">
                             <div>
-                                <button type="submit" class="btn btn-primary btn-block">
+                                <button type="submit" class="btn btn-dark btn-block" style="background-color: #111">
                                     {{ __('Login') }}
                                 </button>
 
@@ -66,7 +66,7 @@
                             </div>
                         </div>
                         <div class="form-group pl-4 pr-4">
-                            <a href="{{route('provider.register')}}" class="btn btn-info btn-block">Create Your Store</a>
+                            <a href="{{route('provider.register')}}" class="btn btn-info btn-block" style="background-color: #17c3a2">Create Your Store</a>
                         </div>
                     </form>
                 </div> 
