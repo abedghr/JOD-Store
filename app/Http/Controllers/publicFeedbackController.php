@@ -57,7 +57,7 @@ class publicFeedbackController extends Controller
             'phone'=>$request->input('phone'),
             'feedback'=>$request->input('message')
         ]);
-        
+
         $data = [
             'name'=>$request->input('name'),
             'email'=>$request->input('email'),
@@ -68,8 +68,8 @@ class publicFeedbackController extends Controller
         $new_feedback = AdminFeedback::latest()->first();
         $admins = Admin::get();
         Notification::send($admins, new AdminFeedbackNotification($new_feedback));
-        dd($feedback);
-        /* return redirect(url()->previous()); */
+        
+        return redirect(url()->previous());
     }
 
 

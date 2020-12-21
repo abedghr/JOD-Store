@@ -17,7 +17,7 @@
             <div class="row" style="background-color: #f3f3f3;">
                 <div class="col-lg-7">
                     <h3 class="mt-5">Billing Details</h3>
-                    <form class="row contact_form mt-3" action="{{route('order.payment')}}" method="post" novalidate="novalidate">
+                    <form class="row contact_form mt-3" action="{{route('order.payment2')}}" method="post" novalidate="novalidate">
                         @csrf
                         <div class="col-md-6 form-group">
                             <label for="">First Name <span class="text-danger">*</span> :</label>
@@ -81,7 +81,7 @@
                     <div class="order_box">
                         <h2 class="mt-5">Your Order</h2>
                         <ul class="list-group w3-agile mt-3">
-                            <li class="list-group-item" style="width:441px">
+                            <li class="list-group-item mr-3">
                                 <a class="text-dark"><strong>Product</strong>
                                     <span style="float:right;"><strong>Total</strong></span>
                                 </a>

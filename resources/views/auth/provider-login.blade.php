@@ -5,9 +5,6 @@
     <div class="row justify-content-center" style="height: 500px !important;">
         <div class="col-md-10">
             <div class="card bg-light" style="height: 100%">
-                {{-- <div class="card-header bg-primary text-light">
-                    {{ __('Admin Login') }}
-                </div> --}}
             <div class="row">
                 <div class="col-lg-7">
                     <div style="background-image: url(../img/providerBackgroundLogin.jpg); background-size: 100% 100%; height: 500px; background-repeat: no-repeat;">
@@ -20,7 +17,7 @@
                 </div>
             <div class="col-lg-5" style="height: 100%"> 
                 <div class="card-body mt-5">
-                    <h4>Vendor Login</h4>
+                    <h4>Store Login</h4>
                     <form method="POST" action="{{ route('provider.login.submit') }}">
                         @csrf
 

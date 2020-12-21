@@ -20,7 +20,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
 <link href='fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,900,900italic,700italic' rel='stylesheet' type='text/css'>
 
-	
 
 <style>
     .swal-button {
@@ -219,6 +218,28 @@ comments-box {
     background-color: #2fdab8 !important;
     cursor: pointer;
 }
+.order_details .title_confirmation {
+    text-align: center;
+    color: #28d500;
+    font-size: 18px;
+    margin-bottom: 80px;
+}
+.order_d_inner .details_item .list {
+    padding-left: 18px;
+}
+.list {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+.order_d_inner .details_item .list li {
+    margin-bottom: 8px;
+}
+.order_d_inner .details_item .list li a span {
+    width: 145px;
+    display: inline-block;
+    color: #777777;
+}
 </style>
 </head>
 <body>
@@ -227,7 +248,7 @@ comments-box {
 	<div class="container">
 		<ul>
             @if (isset($user))
-		    <li> <a href="{{route('user.profile')}}"><i class="fa fa-user" aria-hidden="true"></i> {{$user['userName']}} </a></li>
+		    <li> <a href="{{route('user.profile2')}}"><i class="fa fa-user" aria-hidden="true"></i> {{$user['userName']}} </a></li>
 			<li> <a href="{{route('user.logout')}}"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout </a></li>
 			@else
             <li> <a href="/login"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Sign In </a></li>
@@ -296,7 +317,7 @@ comments-box {
 								<div class="agile_inner_drop_nav_info">
 									<div class="col-sm-6 multi-gd-img1 multi-gd-text ">
                                         <a href="{{route('product.all2')}}"><strong>All Categories</strong></a><br>
-										<a href="mens.html"><img src="{{asset('pub_libraries/images/banner3.jpg')}}" alt=" "/></a>
+										<a href="{{route('product.all2')}}"><img src="{{asset('pub_libraries/images/banner3.jpg')}}" alt=" "/></a>
 									</div>
 									<div class="col-sm-6 multi-gd-img">
 										<ul class="multi-column-dropdown row">
@@ -317,7 +338,7 @@ comments-box {
 								<div class="agile_inner_drop_nav_info">
 									<div class="col-sm-6 multi-gd-img1 multi-gd-text ">
                                         <a href="{{route('provider.all2')}}"><strong>All Stores</strong></a><br>
-										<a href="mens.html"><img src="{{asset('img/store.jpg')}}" alt=" "/></a>
+										<a href="{{route('provider.all2')}}"><img src="{{asset('img/store.jpg')}}" alt=" "/></a>
 									</div>
 									<div class="col-sm-6 multi-gd-img">
 										<ul class="multi-column-dropdown row">

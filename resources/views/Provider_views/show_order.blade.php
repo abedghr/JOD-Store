@@ -51,6 +51,7 @@
     <div class="card-body mt-1">
         <div class="card-text mt-5">
             <p><strong>Customer Name :</strong> {{$order->fname.' '.$order->lname}}</p>
+            <p><strong>Customer Email :</strong> {{$order->email}}</p>
             <p><strong>Customer Phone :</strong> {{$order->phone}}</p>
             <p><strong>Customer Addrss :</strong> {{$order->Address}}</p>
             <p><strong>Customer Notes  :</strong> {{$order->notes ? $order->notes : '...'}}</p>

@@ -26,7 +26,7 @@ class OrderController extends Controller
 
     public function index()
     {
-       $orders = Order::where('provider',Auth::user()->id)->select()->paginate(10);
+       $orders = Order::where('provider',Auth::user()->id)->select()->get();
        $products_orders= array();
        foreach($orders as $order){
         $products_orders[$order->id]= ProductsOfOrders::where('order_id',$order->id)->count();

@@ -23,7 +23,7 @@
             <div class="col-sm-6">
                 <div class="card-tools">
                     <ul class="pagination pagination-sm float-right">
-                        {!! $orders->links() !!}
+                        
                     </ul>
                   </div>
             </div>

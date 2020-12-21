@@ -66,7 +66,7 @@
 								<span></span>
 							</div> 
 							<div class="styled-input">
-								<input type="text" name="Phone" required="">
+								<input type="text" name="phone" required="">
 								<label>Mobile Number</label>
 								<span></span>
 							</div>

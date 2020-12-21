@@ -173,7 +173,8 @@
 			</div>
 <!-- //login -->
 <a href="#home" class="scroll" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{{asset('public_libraries/vendors/owl-carousel/owl.carousel.min.js')}}"></script>
 <!-- js -->
 <script type="text/javascript" src="{{asset('/pub_libraries/js/jquery-2.1.4.min.js')}}"></script>
 <!-- //js -->
@@ -238,8 +239,7 @@
 </script>
 <!-- here stars scrolling icon -->
 <script src="{{asset('public_libraries/sweetalert/sweetalert.min.js')}}"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="{{asset('public_libraries/vendors/owl-carousel/owl.carousel.min.js')}}"></script>
+
 	
 	<script type="text/javascript">
 		$(document).ready(function() {

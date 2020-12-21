@@ -410,3 +410,6 @@ Route::get('/checkout2','PublicOrderController@checkout2')->name('checkout2')->m
 Route::get('/allProducts','PublicProductController@all2')->name('product.all2')->middleware('preventbackbutton');
 Route::get('/search2','PublicProductController@search2')->name('search2');
 Route::get('/filter2','PublicProductController@filter2')->name('filter.price2');
+Route::post('/checkoutProcess','PublicOrderController@checkout_process2')->name('order.payment2')->middleware('preventbackbutton');
+Route::get('/orderDone','PublicOrderController@orderDone2')->name('orders.done2')->middleware('preventbackbutton');
+Route::get('/userProfile','Auth\UserLoginController@profile2')->name('user.profile2');

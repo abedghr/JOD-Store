@@ -6,56 +6,30 @@
 		<ol class="carousel-indicators">
 			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 			<li data-target="#myCarousel" data-slide-to="1" class=""></li>
-			<li data-target="#myCarousel" data-slide-to="2" class=""></li>
-			<li data-target="#myCarousel" data-slide-to="3" class=""></li>
-			<li data-target="#myCarousel" data-slide-to="4" class=""></li> 
 		</ol>
 		<div class="carousel-inner" role="listbox">
-			<div class="item active"> 
-				<div class="container">
-					<div class="carousel-caption">
-						<h3>The Biggest <span>Sale</span></h3>
-						<p>Special for today</p>
-						<a class="hvr-outline-out button2" href="mens.html">Shop Now </a>
-					</div>
-				</div>
-			</div>
-			<div class="item item2"> 
-				<div class="container">
-					<div class="carousel-caption">
-						<h3>Summer <span>Collection</span></h3>
-						<p>New Arrivals On Sale</p>
-						<a class="hvr-outline-out button2" href="mens.html">Shop Now </a>
+			<div class="item active">
+				<div style="width:100%; height:100%; background-color:rgba(0,0,0,0.6)">
+					<div class="container">
+						<div class="carousel-caption">
+							<h3>Welcome <span>To</span> Jordan <span>Stores</span></h3>
+							<p>You can find everything that you want</p>
+							<a class="hvr-outline-out button2" href="{{route('product.all2')}}">Shop Now </a>
+						</div>
 					</div>
 				</div>
 			</div>
 			<div class="item item3"> 
-				<div class="container">
-					<div class="carousel-caption">
-						<h3>The Biggest <span>Sale</span></h3>
-						<p>Special for today</p>
-						<a class="hvr-outline-out button2" href="mens.html">Shop Now </a>
+				<div style="width:100%; height:100%; background-color:rgba(0,0,0,0.6)">
+					<div class="container">
+						<div class="carousel-caption">
+							<h3>Find your best <span>Store</span></h3>
+							<p>Make shopping from your best store</p>
+							<a class="hvr-outline-out button2" href="mens.html">Stores </a>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div class="item item4"> 
-				<div class="container">
-					<div class="carousel-caption">
-						<h3>Summer <span>Collection</span></h3>
-						<p>New Arrivals On Sale</p>
-						<a class="hvr-outline-out button2" href="mens.html">Shop Now </a>
-					</div>
-				</div>
-			</div>
-			<div class="item item5"> 
-				<div class="container">
-					<div class="carousel-caption">
-						<h3>The Biggest <span>Sale</span></h3>
-						<p>Special for today</p>
-						<a class="hvr-outline-out button2" href="mens.html">Shop Now </a>
-					</div>
-				</div>
-			</div> 
 		</div>
 		<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
 			<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
