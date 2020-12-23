@@ -8,6 +8,7 @@ use App\Models\Admin;
 use App\Models\AdminFeedback;
 use App\Models\Feedback;
 use App\Models\Provider;
+use App\Models\Notification as Notify;
 use App\Notifications\AdminFeedbackNotification;
 use App\Notifications\ProviderFeedbackNotification;
 use Illuminate\Http\Request;
@@ -40,6 +41,12 @@ class publicFeedbackController extends Controller
         event(new NewFeedbackNotification($data));
         $prov = Provider::where('id',$request->provider_id)->get();
         Notification::send($prov, new ProviderFeedbackNotification($new_feedback));
+
+        $the_notify = Notify::latest()->first()->update([
+            'feedback_id'=> $new_feedback->id,
+            'provider_id'=>$new_feedback->provider_id
+        ]);
+        
         return $text="";
     }
 
@@ -68,7 +75,11 @@ class publicFeedbackController extends Controller
         $new_feedback = AdminFeedback::latest()->first();
         $admins = Admin::get();
         Notification::send($admins, new AdminFeedbackNotification($new_feedback));
-        
+        foreach($admins as $admin){
+            $the_notify = Notify::latest()->first()->update([
+                'admin_id'=> $admin->id
+            ]);
+        }
         return redirect(url()->previous());
     }
 

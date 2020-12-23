@@ -9,6 +9,7 @@ use App\Models\Order;
 use App\Models\Product;
 use App\Models\ProductsOfOrders;
 use App\Models\Provider;
+use App\Models\Notification as Notify;
 use App\Notifications\OrderNotification;
 use App\User;
 use Illuminate\Contracts\Session\Session;
@@ -261,7 +262,8 @@ class PublicOrderController extends Controller
                 'date'=>'',
                 'time'=>''
             ];
-
+            
+            
             event(new NewNotification($data));
 
             $last = Order::orderBy('created_at','desc')->first();  
@@ -373,7 +375,12 @@ class PublicOrderController extends Controller
                 'date'=>'',
                 'time'=>''
             ];
-
+            $the_notify = Notify::latest()->first()->update([
+                'order_id'=> $new_order->id,
+                'provider_id'=>$provider['provider_id']
+            ]);
+            
+           
             event(new NewNotification($data));
 
             $last = Order::orderBy('created_at','desc')->first();  

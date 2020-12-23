@@ -96,7 +96,6 @@ class ProvAdminOrderController extends Controller
     public function destroy($id)
     {
         $provider = Provider::find($id);
-        Notification::where('type','App\Notifications\OrderNotification')->where('data->id',$id)->delete();
         Order::where('id',$id)->delete();
         
         

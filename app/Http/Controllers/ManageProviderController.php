@@ -48,7 +48,7 @@ class ManageProviderController extends Controller
         $valid = $request->validate([
             'prov_name'=>'required|string',
             'email'=>'required|email|unique:providers',
-            'password'=>'required|min:8',
+            'password'=>'required|min:8|confirmed',
             'phone1'=>'required'
         ]);
 
