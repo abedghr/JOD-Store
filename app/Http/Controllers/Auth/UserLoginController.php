@@ -24,7 +24,7 @@ class UserLoginController extends Controller
             
             if(Hash::check($request->password, $user[0]->password)){
                 session(['user'=>['user_id'=>$user[0]->id,'userName'=>$user[0]->name]]);
-                return redirect()->route('home');
+                return redirect()->route('home2');
             }
             else{
                 return redirect()->back()->withInput()
@@ -37,7 +37,7 @@ class UserLoginController extends Controller
 
     public function user_login_view(){
         if(session()->has('user') && session('user') != []){
-            return redirect()->route('home');
+            return redirect()->route('home2');
         }else{
         return view('auth.login');
         }
@@ -53,7 +53,7 @@ class UserLoginController extends Controller
     public function user_register_view(){
         
         if(session()->has('user') && session('user') != []){
-            return redirect()->route('home');
+            return redirect()->route('home2');
         }else{
         return view('auth.register');
         }
@@ -75,7 +75,7 @@ class UserLoginController extends Controller
         ])){
             $user = User::where('email',$request->email)->get();
                 session(['user'=>['user_id'=>$user[0]->id,'userName'=>$user[0]->name]]);
-                return redirect()->route('home');
+                return redirect()->route('home2');
         }
     }
 
@@ -103,7 +103,7 @@ class UserLoginController extends Controller
                 'productsOrder'=>$productsOrders
             ]);
         }else{
-            return redirect()->route('home');
+            return redirect()->route('home2');
         }
     }
     public function profile2(){

@@ -21,7 +21,7 @@ PUSHER_APP_CLUSTER=mt1
 
 Route::get('/', function () {
     /* return redirect()->route('home'); */
-    return redirect()->route('home');
+    return redirect()->route('home2');
 });
 
 
@@ -320,8 +320,39 @@ Route::group(['prefix' => 'adminsOfProvider'], function () {
 
 
 // Public Routes 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('preventbackbutton');
-Route::get('/contact-us', 'HomeController@contact_us')->name('contact-us')->middleware('preventbackbutton');
+
+Route::get('/homePage','HomeController@index2')->name('home2')->middleware('preventbackbutton');
+Route::get('/category2/{id}','PublicCategoryController@show2')->name('category.show2')->middleware('preventbackbutton');
+Route::get('/category-filter','PublicProductController@filter_category2')->name('filter_category2.price');
+Route::get('/search/singleCategory2','PublicProductController@search_in_singleCategory2')->name('single_category2.search');
+Route::get('/category2/{id}/{gender}','PublicCategoryController@gender_show2')->name('category_gender2.show')->middleware('preventbackbutton');
+Route::get('/search/singleGender2','PublicProductController@search_in_singleGender2')->name('single_gender.search2');
+Route::get('/gender-filter2','PublicProductController@filter_gender2')->name('filter_gender.price2');
+Route::get('/stores','PublicProviderController@all2')->name('provider.all2')->middleware('preventbackbutton');
+Route::get('/search_vendor2','PublicProviderController@search_vendors2')->name('search.vendors2');
+Route::get('/store/{id}','PublicProviderController@profile2')->name('public_provider.profile2')->middleware('preventbackbutton');
+Route::get('/search-vendors-products2','PublicProductController@search_vendors_products2')->name('vendors_product.search2');
+Route::get('/vendor-filter2','PublicProductController@vendorFilter2')->name('vendors_filter.price2');
+Route::get('/store/{prov_id}/{cat_id}','PublicProviderController@profile_categories2')->name('profile_category.show2')->middleware('preventbackbutton');
+Route::get('/store/{prov_id}/{cat_id}/{gender}','PublicProviderController@profile_gender2')->name('profile_gender.show2')->middleware('preventbackbutton');
+Route::get('/search-vendorsCategory-products','PublicProductController@search_vendorsCategory_products2')->name('vendorsCategory_product.search2');
+Route::get('/search-vendorsGender-products','PublicProductController@search_vendorsGender_products2')->name('vendorsGender_product.search2');
+Route::get('/vendor-Category-filter','PublicProductController@vendorCategoryFilter2')->name('vendors_Categoryfilter.price2');
+Route::get('/vendor-Gender-filter','PublicProductController@vendorGenderFilter2')->name('vendors_Genderfilter.price2');
+
+
+Route::get('/contact', 'HomeController@contact_us2')->name('contact-us2')->middleware('preventbackbutton');
+Route::get('/singleProduct/{id}','PublicProductController@show2')->name('product.show2')->middleware('preventbackbutton');
+Route::get('/trackingOrder','PublicOrderController@tracking2')->name('order.tracking2')->middleware('preventbackbutton');
+Route::get('/shoppingCart','CartController@shoppingcart2')->name('cart.index2')->middleware('preventbackbutton');
+Route::get('/checkout2','PublicOrderController@checkout2')->name('checkout2')->middleware('preventbackbutton');
+Route::get('/allProducts','PublicProductController@all2')->name('product.all2')->middleware('preventbackbutton');
+Route::get('/search2','PublicProductController@search2')->name('search2');
+Route::get('/filter2','PublicProductController@filter2')->name('filter.price2');
+Route::post('/checkoutProcess','PublicOrderController@checkout_process2')->name('order.payment2')->middleware('preventbackbutton');
+Route::get('/orderDone','PublicOrderController@orderDone2')->name('orders.done2')->middleware('preventbackbutton');
+Route::get('/userProfile','Auth\UserLoginController@profile2')->name('user.profile2');
+
 /* Route::post('/user/logout', 'Auth\LoginController@userLogout')->name('user.logout'); */
 Route::get('/addtocart','CartController@addtocart')->name('addtocart');
 Route::get('/products','PublicProductController@all')->name('product.all')->middleware('preventbackbutton');
@@ -332,35 +363,11 @@ Route::get('/category/{id}/{gender}','PublicCategoryController@gender_show')->na
 
 
 
-Route::get('/search','PublicProductController@search')->name('search');
-Route::get('/search/singleCategory','PublicProductController@search_in_singleCategory')->name('single_category.search');
-Route::get('/search/singleGender','PublicProductController@search_in_singleGender')->name('single_gender.search');
-Route::get('/search-vendors-products','PublicProductController@search_vendors_products')->name('vendors_product.search');
-Route::get('/search-vendorsCategory-products','PublicProductController@search_vendorsCategory_products')->name('vendorsCategory_product.search');
-Route::get('/search-vendorsGender-products','PublicProductController@search_vendorsGender_products')->name('vendorsGender_product.search');
-
-Route::get('/filter','PublicProductController@filter')->name('filter.price');
-Route::get('/category-filter','PublicProductController@filter_category')->name('filter_category.price');
-Route::get('/gender-filter','PublicProductController@filter_gender')->name('filter_gender.price');
-Route::get('/vendor-filter','PublicProductController@vendorFilter')->name('vendors_filter.price');
-Route::get('/vendor-Category-filter','PublicProductController@vendorCategoryFilter')->name('vendors_Categoryfilter.price');
-Route::get('/vendor-Gender-filter','PublicProductController@vendorGenderFilter')->name('vendors_Genderfilter.price');
-
-
-Route::get('/providers','PublicProviderController@all')->name('provider.all')->middleware('preventbackbutton');
-Route::get('/vendor-profile/{id}','PublicProviderController@profile')->name('public_provider.profile')->middleware('preventbackbutton');
-Route::get('/search_vendor','PublicProviderController@search_vendors')->name('search.vendors');
-Route::get('/profile/{prov_id}/{cat_id}','PublicProviderController@profile_categories')->name('profile_category.show')->middleware('preventbackbutton');
-Route::get('/profile/{prov_id}/{cat_id}/{gender}','PublicProviderController@profile_gender')->name('profile_gender.show')->middleware('preventbackbutton');
 Route::get('/send-feedback','PublicFeedbackController@provider_feedback')->name('feedback.send');
 Route::post('/feedback','PublicFeedbackController@admin_feedback')->name('admin_feedback.send');
-Route::get('/shopping-cart','CartController@shoppingcart')->name('cart.index')->middleware('preventbackbutton');
-Route::get('/checkout','PublicOrderController@checkout')->name('checkout')->middleware('preventbackbutton');
+
 Route::get('/remove-from-cart/{prov_id}/{prod_id}','CartController@removeFromCart')->name('cart.remove');
-Route::get('/single-product/{id}','PublicProductController@show')->name('product.show')->middleware('preventbackbutton');
-Route::get('/tracking-order','PublicOrderController@tracking')->name('order.tracking')->middleware('preventbackbutton');
-Route::post('/checkout-process','PublicOrderController@checkout_process')->name('order.payment')->middleware('preventbackbutton');
-Route::get('/order_done','PublicOrderController@orderDone')->name('orders.done')->middleware('preventbackbutton');
+
 Route::get('/tracking','PublicOrderController@show_tracking')->name('show.tracking')->middleware('preventbackbutton');
 Route::get('/show_user_orders','PublicOrderController@show_orders')->name('show.user.orders')->middleware('preventbackbutton');
 Route::post('/comment','PublicCommentController@store')->name('comment.store');
@@ -384,32 +391,5 @@ Route::get('/user_message','PublicProviderController@getMessage')->name('message
 Route::post('message_user','PublicProviderController@sendMessage')->name('message_user.send');
 Route::get('/chat/{id}','PublicProviderController@chat_show')->name('chat.show');
 
-route::get('/pup','HomeController@index2')->name('home2');
-Route::get('/category2/{id}','PublicCategoryController@show2')->name('category.show2')->middleware('preventbackbutton');
-Route::get('/category-filter','PublicProductController@filter_category2')->name('filter_category2.price');
-Route::get('/search/singleCategory2','PublicProductController@search_in_singleCategory2')->name('single_category2.search');
-Route::get('/category2/{id}/{gender}','PublicCategoryController@gender_show2')->name('category_gender2.show')->middleware('preventbackbutton');
-Route::get('/search/singleGender2','PublicProductController@search_in_singleGender2')->name('single_gender.search2');
-Route::get('/gender-filter2','PublicProductController@filter_gender2')->name('filter_gender.price2');
-Route::get('/stores','PublicProviderController@all2')->name('provider.all2')->middleware('preventbackbutton');
-Route::get('/search_vendor2','PublicProviderController@search_vendors2')->name('search.vendors2');
-Route::get('/store/{id}','PublicProviderController@profile2')->name('public_provider.profile2')->middleware('preventbackbutton');
-Route::get('/search-vendors-products2','PublicProductController@search_vendors_products2')->name('vendors_product.search2');
-Route::get('/vendor-filter2','PublicProductController@vendorFilter2')->name('vendors_filter.price2');
-Route::get('/store/{prov_id}/{cat_id}','PublicProviderController@profile_categories2')->name('profile_category.show2')->middleware('preventbackbutton');
-Route::get('/store/{prov_id}/{cat_id}/{gender}','PublicProviderController@profile_gender2')->name('profile_gender.show2')->middleware('preventbackbutton');
-Route::get('/search-vendorsCategory-products','PublicProductController@search_vendorsCategory_products2')->name('vendorsCategory_product.search2');
-Route::get('/search-vendorsGender-products','PublicProductController@search_vendorsGender_products2')->name('vendorsGender_product.search2');
-Route::get('/vendor-Category-filter','PublicProductController@vendorCategoryFilter2')->name('vendors_Categoryfilter.price2');
-Route::get('/vendor-Gender-filter','PublicProductController@vendorGenderFilter2')->name('vendors_Genderfilter.price2');
-Route::get('/contact', 'HomeController@contact_us2')->name('contact-us2')->middleware('preventbackbutton');
-Route::get('/singleProduct/{id}','PublicProductController@show2')->name('product.show2')->middleware('preventbackbutton');
-Route::get('/trackingOrder','PublicOrderController@tracking2')->name('order.tracking2')->middleware('preventbackbutton');
-Route::get('/shoppingCart','CartController@shoppingcart2')->name('cart.index2')->middleware('preventbackbutton');
-Route::get('/checkout2','PublicOrderController@checkout2')->name('checkout2')->middleware('preventbackbutton');
-Route::get('/allProducts','PublicProductController@all2')->name('product.all2')->middleware('preventbackbutton');
-Route::get('/search2','PublicProductController@search2')->name('search2');
-Route::get('/filter2','PublicProductController@filter2')->name('filter.price2');
-Route::post('/checkoutProcess','PublicOrderController@checkout_process2')->name('order.payment2')->middleware('preventbackbutton');
-Route::get('/orderDone','PublicOrderController@orderDone2')->name('orders.done2')->middleware('preventbackbutton');
-Route::get('/userProfile','Auth\UserLoginController@profile2')->name('user.profile2');
+
+// End Public Routes !!

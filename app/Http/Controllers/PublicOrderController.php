@@ -95,17 +95,6 @@ class PublicOrderController extends Controller
         //
     }
 
-    public function tracking(){
-        $user = session()->get('user');
-        if(session()->has('user')){
-            return view('public_views.tracking_order',[
-                'user'=>$user
-            ]);
-        }else{
-            return view('public_views.tracking_order');
-        }
-        
-    }
     public function tracking2(){
         $user = session()->get('user');
         $categories = Category::all();
@@ -125,44 +114,6 @@ class PublicOrderController extends Controller
         
     }
 
-    public function checkout(){
-        if(session()->has('user')){
-        $user = session()->get('user');
-        $user_data = User::where('id',$user['user_id'])->get();
-        }/* else{ */
-           /* $the_user = session(['user'=>['user_id'=>'','userName'=>'']]);
-           $user = $the_user;
-           session()->forget('user');
-           $user_data[0] = []; */
-        /* } */
-        /* $user_data = $user['user_id'] ?  User::where('id',$user['user_id'])->get() : []; */
-        $cities = City::all();
-        if(session()->has('cart')){
-            $providers = session()->get('providers');
-            $count_provider = count($providers);
-            $cart = session()->get('cart');
-            if(session()->has('user')){
-                return view('public_views.checkout',[
-                    'cart'=>$cart,
-                    'cities'=>$cities,
-                    'providers'=>$providers,
-                    'count_provider'=>$count_provider,
-                    'user'=>$user,
-                    'user_data'=>$user_data
-                ]);
-            }else{
-                return view('public_views.checkout',[
-                    'cart'=>$cart,
-                    'cities'=>$cities,
-                    'providers'=>$providers,
-                    'count_provider'=>$count_provider,
-                ]);
-            }
-            
-        }else{
-            return redirect()->route('cart.index');
-        }
-    }
     public function checkout2(){
         $categories = Category::all();
         $providers = Provider::where('email_verified_at','<>',null)->get();
@@ -211,119 +162,6 @@ class PublicOrderController extends Controller
         }
     }
 
-    public function checkout_process(Request $request){
-        $valid = $request->validate([
-            'fname'=> 'required',
-            'lname'=> 'required',
-            'email'=>'required',
-            'number'=> 'required',
-            'city' => 'required|not_in:none',
-            'address'=> 'required'
-        ]);
-
-
-        
-        $products = "";
-        $cart= session()->has('cart') ? session()->get('cart') : [];
-        $providers= session()->has('providers') ? session()->get('providers') : [];
-        $total = session()->get('total_price');
-        $your_orders=array();
-        $i=0;
-        foreach($providers as $provider){
-            $prov_total = session()->get('providers_total_'.$provider['provider_id']);
-            $del_price = City::where('city',$request->city)->select('delivery_price')->get();
-            
-            Order::create([
-                'fname'=>$request->input('fname'),
-                'lname'=>$request->input('lname'),
-                'phone'=>$request->input('number'),
-                /* 'phone2'=>$request->input('number2'), */
-                'email'=>$request->input('email'),
-                'city'=>$request->input('city'),
-                'Address'=>$request->input('address'),
-                'notes'=>$request->input('notes'),
-                'provider'=>$provider['provider_id'],
-                'total_price'=>session()->get('providers_total_'.$provider['provider_id']),
-                'total_With_Delivery'=>$prov_total+$del_price[0]->delivery_price
-            ]);
-
-            $new_order = Order::latest()->first();
-            $your_orders[$i] =$new_order->id;
-            $i++;
-            $prov = Provider::where('id',$provider['provider_id'])->get();
-            Notification::send($prov, new OrderNotification($new_order));
-            $data  = [
-                'order_id'=>$new_order->id,
-                'name'=> $request->input('fname'),
-                'email'=> $request->input('email'),
-                'city'=> $request->input('city'),
-                'provider_id'=> $provider['provider_id'],
-                'total_price'=> session()->get('providers_total_'.$provider['provider_id']),
-                'date'=>'',
-                'time'=>''
-            ];
-            
-            
-            event(new NewNotification($data));
-
-            $last = Order::orderBy('created_at','desc')->first();  
-            foreach($cart as $ca){
-                foreach($ca as $car){
-                    if($car['provider_id']== $provider['provider_id']){
-                        
-                        ProductsOfOrders::create([
-                        'prod_name'=>$car['title'],
-                        'new_price'=>$car['unit_price'],
-                        'quantity'=>$car['quantity'],
-                        'category'=>$car['category_id'],
-                        'provider'=>$car['provider_id'],
-                        'main_image'=>$car['image'],
-                        'order_id'=>$last->id
-                        ]);
-                        
-                        $the_prod = Product::where('id',$car['id'])->get();
-                        
-                        Product::where('id',$car['id'])->update([
-                            'inventory' => $the_prod[0]->inventory - $car['quantity'],
-                            'number_of_bought' => $the_prod[0]->number_of_bought + 1
-                        ]);
-                    }
-                }
-            }
-
-            
-        }
-
-
-        $delivery = City::where('city',$request->input('city'))->get();
-        
-        $your_total_price = session()->get('total_price');
-
-
-        foreach($providers as $provider){
-            $your_total_price += $delivery[0]->delivery_price;
-            session()->forget('providers_total_'.$provider['provider_id']);
-        }
-        session()->forget('cart');
-        session()->forget('providers');
-        session()->forget('total_price');
-        session()->forget('counter');
-        if(session()->has('user')){
-            $user = session()->get('user');
-            $user_data = User::where('id',$user['user_id'])->get();
-        }else{
-            session()->forget('user');
-            $user_data[0] = [];
-        }
-
-        return redirect()->route('orders.done')->with(['your_orders'=>$your_orders , 'email'=>$request->email , 'city'=>$request->city , 'address'=>$request->address , 'total_price' => $your_total_price]);
-        /* return view('public_views.order_done',[
-            
-            'your_orders'=>$your_orders
-            
-        ]); */
-        
-    }
     public function checkout_process2(Request $request){
         $valid = $request->validate([
             'fname'=> 'required',
@@ -442,34 +280,6 @@ class PublicOrderController extends Controller
         
     }
 
-    public function orderDone (Request $request){
-        if(session()->has('user') && session('user') != []){
-            $user = session()->get('user');
-            $user_data = User::where('id',$user['user_id'])->get();
-        }else{
-           $the_user = session(['user'=>['user_id'=>'','userName'=>'']]);
-           $user = $the_user;
-           session()->forget('user');
-           $user_data[0] = [];
-        }
-        $your_orders = FacadesSession::get('your_orders');
-        $your_email = FacadesSession::get('email');
-        $your_city = FacadesSession::get('city');
-        $your_address = FacadesSession::get('address');
-        $your_total_price = FacadesSession::get('total_price');
-        if(session()->has('your_orders') && session()->has('email')){
-        return view('public_views.order_done',[
-            'user'=>$user,
-            'your_orders'=>$your_orders,
-            'email'=>$your_email,
-            'city'=>$your_city,
-            'address'=>$your_address,
-            'total_price'=>$your_total_price
-        ]);
-        }else{
-            return redirect()->route('home');
-        }
-    }
     public function orderDone2 (Request $request){
         if(session()->has('user') && session('user') != []){
             $user = session()->get('user');

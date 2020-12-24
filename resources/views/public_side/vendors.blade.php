@@ -4,17 +4,6 @@
 <div class="page-head_agile_info_w3l">
 		<div class="container">
 			<h3>LETS FIND YOUR BEST STORE</h3>
-			<!--/w3_short-->
-				 <div class="services-breadcrumb">
-						<div class="agile_inner_breadcrumb">
-
-						   <ul class="w3_short">
-								<li><a href="index.html">Home</a><i>|</i></li>
-								<li>All Stores</li>
-							</ul>
-						 </div>
-				</div>
-	   <!--//w3_short-->
 	</div>
 </div>
 
@@ -26,10 +15,9 @@
                     <div class="header-bot mb-5">
                         <div class="header-bot_inner_wthreeinfo_header_mid">
                             <div class="col-md-3"></div>
-                            <div class="col-md-6 header-middle">
+                            <div class="col-md-7 header-middle">
                                 <form action="#" method="post">
-                                        <input type="search" name="search" id="vendor_search" onkeyup="search_vendors()" placeholder="Search here..." required="">
-                                        <input type="submit" value=" ">
+                                        <input type="search" name="search" id="vendor_search" onkeyup="search_vendors()" placeholder="Search here..." required="" style="border:1px solid #51d2d6">
                                     <div class="clearfix"></div>
                                 </form>
                             </div>

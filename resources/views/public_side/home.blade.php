@@ -25,7 +25,7 @@
 						<div class="carousel-caption">
 							<h3>Find your best <span>Store</span></h3>
 							<p>Make shopping from your best store</p>
-							<a class="hvr-outline-out button2" href="mens.html">Stores </a>
+							<a class="hvr-outline-out button2" href="{{route('provider.all2')}}">Stores </a>
 						</div>
 					</div>
 				</div>
