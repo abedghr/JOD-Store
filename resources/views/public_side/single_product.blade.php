@@ -49,7 +49,7 @@
                     <a class="active" href="#">
                         <span>Category</span> : <strong class="text-dark">{{$product->cat->cat_name}}</strong>
                     </a>
-                    <a class="active" href="{{route('public_provider.profile',['id'=>$product->provider])}}"><br>
+                    <a class="active" href="{{route('public_provider.profile2',['id'=>$product->provider])}}"><br>
                         <span>Provider</span> : <strong class="text-dark">{{$product->prov->name}}</strong>
                     </a><br>
                     <a href="#">
