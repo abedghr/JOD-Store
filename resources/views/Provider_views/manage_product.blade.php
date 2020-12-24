@@ -244,7 +244,7 @@
                 <td>{{$product->gender}}</td>
                 <td>{{$product->inventory}} Item</td>  
                 <td style="width:200px;">
-                  <div class="fb-share-button" data-href="http://jordan-store.herokuapp.com/singe-product/{{$product->id}}" data-layout="button" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div><br>
+                  <div class="fb-share-button" data-href="http://jordan-store.herokuapp.com/singleProduct/{{$product->id}}" data-layout="button" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div><br>
                   <div class="mt-2">
                     <a href="{{route('product_provider.show',['id'=> $product->id])}}" class="btn btn-warning"><i class="fa fa-eye"></i></a>
                     <a href="{{route('product_provider.edit',['id'=> $product->id])}}" class="btn btn-info"><i class="fa fa-edit"></i></a>
