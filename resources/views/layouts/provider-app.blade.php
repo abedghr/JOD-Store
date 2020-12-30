@@ -22,7 +22,7 @@
 </head>
 <body>
 
-    <h3 class="text-center"><strong><a href="/home" class="btn btn-dark btn-block" style="background-color: #111; border-radius:0px;">Visite Jordan Stores</a></strong></h3>
+    <h3 class="text-center"><strong><a href="{{route('home2')}}" class="btn btn-dark btn-block" style="background-color: #111; border-radius:0px;">Visite Jordan Stores</a></strong></h3>
     @yield('content')
 
 </body>

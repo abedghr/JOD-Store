@@ -164,14 +164,17 @@
 </div>	
 <!-- //mens -->
 <!-- /we-offer -->
-<div class="sale-w3ls" style="margin-bottom: 50px;">
+<div class="sale-w3ls">
 	<div style="width: 100%; height:100%; background-color:rgba(0,0,0,0.6); min-height:380px">
 		<div class="container">
-			<h6 style="padding-top:1em !important">Write Your Feedback</h6>
-			<center><textarea name="" id="feedback" class="form-control" style="width:500px;" rows="7"></textarea></center>
+            <h6 style="padding-top:1em !important">Write Your Feedback</h6>
+            <div class="col-md-3"></div>
+            <div class="col-md-6 mb-3">
+                <center><textarea name="" id="feedback" class="form-control bg-light" rows="4"></textarea></center>
 
-			<a class="hvr-outline-out button2" onclick="sendfeedback()" style="cursor: pointer;">Send </a>
-		</div>
+                <a class="hvr-outline-out button2" onclick="sendfeedback()" style="cursor: pointer;">Send </a>
+            </div>
+        </div>
 	</div>
 </div>
 <!-- //we-offer -->

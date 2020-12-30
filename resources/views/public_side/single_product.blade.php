@@ -1,28 +1,11 @@
 <?php $pageTitle = "Single Product"; ?>
 @include('public_side.includes.public_header')
 <!--/single_page-->
-       <!-- /banner_bottom_agile_info -->
-<div class="page-head_agile_info_w3l">
-		<div class="container">
-			<h3>Single <span>Page </span></h3>
-			<!--/w3_short-->
-				 <div class="services-breadcrumb">
-						<div class="agile_inner_breadcrumb">
-
-						   <ul class="w3_short">
-								<li><a href="index.html">Home</a><i>|</i></li>
-								<li>Single Page</li>
-							</ul>
-						 </div>
-				</div>
-	   <!--//w3_short-->
-	</div>
-</div>
 
   <!-- banner-bootom-w3-agileits -->
 <div class="banner-bootom-w3-agileits">
 	<div class="container">
-	     <div class="col-md-4 single-right-left ">
+	     <div class="col-md-6 single-right-left ">
 			<div class="grid images_3_of_2">
 				<div class="flexslider">
 					
@@ -43,16 +26,16 @@
 				</div>	
 			</div>
 		</div>
-		<div class="col-md-8 single-right-left simpleCart_shelfItem">
+		<div class="col-md-6 single-right-left simpleCart_shelfItem">
 					<h3 class="js-name-detail">{{$product->prod_name}}</h3>
 					<p><span class="item_price">{{number_format($product->new_price,2)}} JOD</span> <del> {{number_format($product->old_price,2)}} JOD</del></p>
-                    <a class="active" href="#">
+                    <a class="text-dark" href="#">
                         <span>Category</span> : <strong class="text-dark">{{$product->cat->cat_name}}</strong>
                     </a>
-                    <a class="active" href="{{route('public_provider.profile2',['id'=>$product->provider])}}"><br>
+                    <a class="text-dark" href="{{route('public_provider.profile2',['id'=>$product->provider])}}"><br>
                         <span>Provider</span> : <strong class="text-dark">{{$product->prov->name}}</strong>
                     </a><br>
-                    <a href="#">
+                    <a class="text-dark" href="#">
                         <span>Availibility</span> : @if ($product->availability == 1)
                             <span class="text-success">Available</span>
                         @else

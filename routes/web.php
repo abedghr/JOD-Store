@@ -321,12 +321,11 @@ Route::group(['prefix' => 'adminsOfProvider'], function () {
 
 // Public Routes 
 
-Route::get('/homePage','HomeController@index2')->name('home2')->middleware('preventbackbutton');
-Route::get('/category2/{id}','PublicCategoryController@show2')->name('category.show2')->middleware('preventbackbutton');
+Route::get('/home','HomeController@index2')->name('home2')->middleware('preventbackbutton');
+/* Route::get('/category2/{id}','PublicCategoryController@show2')->name('category.show2')->middleware('preventbackbutton'); */
 Route::get('/category-filter','PublicProductController@filter_category2')->name('filter_category2.price');
 Route::get('/search/singleCategory2','PublicProductController@search_in_singleCategory2')->name('single_category2.search');
-Route::get('/category2/{id}/{gender}','PublicCategoryController@gender_show2')->name('category_gender2.show')->middleware('preventbackbutton');
-Route::get('/search/singleGender2','PublicProductController@search_in_singleGender2')->name('single_gender.search2');
+/* Route::get('/category2/{id}/{gender}','PublicCategoryController@gender_show2')->name('category_gender2.show')->middleware('preventbackbutton');*/Route::get('/search/singleGender2','PublicProductController@search_in_singleGender2')->name('single_gender.search2');
 Route::get('/gender-filter2','PublicProductController@filter_gender2')->name('filter_gender.price2');
 Route::get('/stores','PublicProviderController@all2')->name('provider.all2')->middleware('preventbackbutton');
 Route::get('/search_vendor2','PublicProviderController@search_vendors2')->name('search.vendors2');
@@ -357,9 +356,9 @@ Route::get('/userProfile','Auth\UserLoginController@profile2')->name('user.profi
 Route::get('/addtocart','CartController@addtocart')->name('addtocart');
 Route::get('/products','PublicProductController@all')->name('product.all')->middleware('preventbackbutton');
 Route::get('/profile/{provider_id}','PublicProductController@vendor_product_all')->name('vendor_product.all')->middleware('preventbackbutton');
-Route::get('/category/{id}','PublicCategoryController@show')->name('category.show')->middleware('preventbackbutton');
+Route::get('/category/{id}','PublicCategoryController@show')->name('category.show2')->middleware('preventbackbutton');
 
-Route::get('/category/{id}/{gender}','PublicCategoryController@gender_show')->name('category_gender.show')->middleware('preventbackbutton');
+Route::get('/category/{id}/{gender}','PublicCategoryController@gender_show2')->name('category_gender2.show')->middleware('preventbackbutton');
 
 
 

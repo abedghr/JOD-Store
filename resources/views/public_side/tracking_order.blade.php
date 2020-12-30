@@ -40,8 +40,8 @@
         </div>
         <div class="row">
             <div class="col-md-6">
-                <div class="tracking_box_inner mt-2">
-                    <p class="ml-3">If you want to show your orders just enter your email billing or you mobile number.</p>
+                <div class="tracking_box_inner mt-5">
+                    <p class="ml-3">If you want to show your orders just enter your mobile number.</p>
                         <div class="col-md-12 form-group mt-3">
                             <input type="text" id="user_phone" class="form-control" name="phone" placeholder="Billing Phone">
                         </div>

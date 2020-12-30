@@ -12,7 +12,7 @@
                 <div class="col-lg-7">
                     <div style="background-image: url({{asset('../img/providerBackgroundLogin.jpg')}}); background-size: 100% 100%; height: 450px; background-repeat: no-repeat;">
                         <div style="background-color:rgba(0,0,0,0.3); height:100%">
-                            <a href="/provider/login" class="btn btn-dark btn-block pt-3 pb-3" style="background-color: #111; border-radius:0px;">Provider Login</a>
+                            <a href="/provider/login" class="btn btn-dark btn-block pt-3 pb-3" style="background-color: #111; border-radius:0px;">Store Login</a>
                         </div>
                         
                         
@@ -20,7 +20,7 @@
                 </div>
             <div class="col-lg-5" style="height: 100%"> 
                 <div class="card-body mt-5">
-                    <h4>Admins Of Provider Login</h4>
+                    <h4>Employees Login</h4>
                     <form method="POST" action="{{ route('provAdmin.login.submit') }}">
                         @csrf
 
