@@ -74,7 +74,7 @@
 		      </div>
 	 			<div class="clearfix"> </div>
 	<!--================Product Description Area =================-->
-	<section class="product_description_area">
+	<section class="product_description_area mt-4">
 		<div class="container">
 			<ul class="nav nav-tabs" id="myTab" role="tablist">
 				<li class="nav-item">
@@ -84,8 +84,8 @@
 					<a class="nav-link active" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false">Reviews</a>
 				</li>
 			</ul>
-			<div class="tab-content" id="myTabContent" style="height: 300px;">
-				<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+			<div class="tab-content mt-2" id="myTabContent" style="padding:0px !important;border-bottom: 0px !important;">
+				<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab" style="border-bottom: 1px solid #eee;				">
 					<div class="row">
 						<div class="col-lg-6 comments-box" style="overflow-y: scroll; height:270px;">
 							<div class="comment_list" id="comment_list">
@@ -93,9 +93,9 @@
 									@foreach ($comments as $comment)
 									<div class="review_item" style="margin-bottom: 15px;">
 										<div class="media">
-											<div class="media-body">
+											<div class="media-body pl-4 pt-3 pr-3">
                                                 <h4>{{$comment->user->name}}</h4>
-												<h5>{{$comment->created_at->format('Y-m-d')}}</h5>
+												<small style="font-size:11px;">{{$comment->created_at->format('Y-m-d')}}</small>
 												@if (isset($user))
 													@if ($comment->user_id == $user['user_id'])
 													<a class="btn-danger text-light reply_btn mr-3" onclick="delete_comment({{$comment->id}})" id="delete_comment"><i class="fa fa-trash text-light"></i></a>	
@@ -103,7 +103,7 @@
 												@endif
 											</div>
 										</div>
-										<p class="mt-2">{{$comment->comment}}</p>
+										<p class="pl-4 mt-1">{{$comment->comment}}</p>
 									</div>
 									<hr>
 									@endforeach
@@ -114,7 +114,7 @@
 						<div class="col-lg-6">
 							<div class="review_box">
 								<h4>Post a comment</h4>
-								<form class="row contact_form" onclick="event.preventDefault()" method="post" id="contactForm" novalidate="novalidate">
+								<form class="row contact_form p-2" onclick="event.preventDefault()" method="post" id="contactForm" novalidate="novalidate">
 									@csrf
 									<div class="col-md-12">
 										<div class="form-group">
@@ -135,7 +135,7 @@
 					</div>
 				</div>
 				<div class="tab-pane fade active in" id="review" role="tabpanel" aria-labelledby="review-tab">
-					<div class="row">
+					<div>
 						<div class="col-lg-6">
 							<div class="row total_rate">
 								<div class="col-12">
@@ -145,75 +145,84 @@
 											<i class="fa fa-star fa-4x"></i>
 											<h4 class="text-dark">{{$product_rate}} STAR</h4>
 										</a>
+										@if (isset($rating[0]))
+										<div class="rating_list text-left mt-2 ml-4" id="yourRateBox">
+											<h3>Your Rate:</h3>
+											<ul class="list" style="color:#2fdab8">
+												<li>	
+													<a href="#" class="text-dark">{{$rating[0]->rating}} STAR
+													@for ($i = 0; $i < $rating[0]->rating; $i++)
+														<i class="fa fa-star" style="color:#2fdab8"></i>
+													@endfor	
+													</a>	
+												</li>
+											</ul>
+										</div>
+									@endif
 									</div>
 								</div>
-								<div class="col-12" id="yourRateBox">
-									@if (isset($rating[0]))
-									<div class="rating_list">
-										<h3>Your Rate:</h3>
-										<ul class="list" style="color:#2fdab8">
-											<li>	
-												<a href="#" class="text-dark">{{$rating[0]->rating}} STAR
-												@for ($i = 0; $i < $rating[0]->rating; $i++)
-													<i class="fa fa-star" style="color:#2fdab8"></i>
-												@endfor	
-												</a>	
-											</li>
-										</ul>
-									</div>
-									@endif
+								<div class="col-12" >
+									
 								</div>
 							</div>
 						</div>
 						<div class="col-lg-6">
 							@if (isset($user))
 							<div class="review_box">
-								<h4>Add a Review</h4>
-								<a id="star5" style="cursor:pointer">Click to Rate:</a>
-								<ul class="list" style="color:#2fdab8;">
-									<li>
-										<label class="text-dark">5 Star</label>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-									</li>
-								</ul><br>
-								<a id="star4" style="cursor:pointer">Click to Rate:</a>
-								<ul class="list" style="color:#2fdab8">
-									<li>
-										<label class="text-dark">4 Star</label>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-									</li>
-								</ul><br>
-								<a id="star3" style="cursor:pointer">Click to Rate:</a>
-								<ul class="list" style="color:#2fdab8">
-									<li>
-										<label class="text-dark">3 Star</label>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-									</li>
-								</ul><br>
-								<a id="star2" style="cursor:pointer">Click to Rate:</a>
-								<ul class="list" style="color:#2fdab8">
-									<li>
-										<label class="text-dark">2 Star</label>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-									</li>
-								</ul><br>
-								<a id="star1" style="cursor:pointer">Click to Rate:</a>
-								<ul class="list" style="color:#2fdab8">
-									<li>
-										<label class="text-dark">1 Star</label>
-											<i class="fa fa-star"></i>
-									</li>
-								</ul>
+								<h4 style="padding: 20px; background-color: #f9f9ff; margin: 15px;
+								">Add a Review</h4>
+								<div class="pb-2 ml-3">
+									<a id="star5" style="cursor:pointer">
+										<ul class="list" style="color:#2fdab8;">
+											<li>
+												<label class="text-dark">5 Star</label>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+											</li>
+										</ul>
+									</a><br>
+									<a id="star4" style="cursor:pointer">
+										<ul class="list" style="color:#2fdab8">
+											<li>
+												<label class="text-dark">4 Star</label>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+											</li>
+										</ul>
+									</a><br>
+									<a id="star3" style="cursor:pointer">
+										<ul class="list" style="color:#2fdab8">
+											<li>
+												<label class="text-dark">3 Star</label>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+											</li>
+										</ul>
+									</a><br>
+									<a id="star2" style="cursor:pointer">
+										<ul class="list" style="color:#2fdab8">
+											<li>
+												<label class="text-dark">2 Star</label>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+											</li>
+										</ul>
+									</a><br>
+									<a id="star1" style="cursor:pointer">
+										<ul class="list" style="color:#2fdab8">
+											<li>
+												<label class="text-dark">1 Star</label>
+													<i class="fa fa-star"></i>
+											</li>
+										</ul>
+									</a>
+								</div>
 							</div>
 							@endif
 

@@ -174,7 +174,7 @@
           <a href="{{route('admin_provider.create')}}" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>
-                Manage Admins
+                Manage Employees
               </p>
             </a>
           </li>

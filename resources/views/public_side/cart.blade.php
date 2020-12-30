@@ -19,7 +19,7 @@
                         @foreach ($providers0 as $provider)
                             <tr class="bg-light">
                                 <th>
-                                <h4><a href="{{route('public_provider.profile',['id'=>$provider['provider_id']])}}">{{$provider['provider']}}</a></h4>
+                                <h4><a href="{{route('public_provider.profile2',['id'=>$provider['provider_id']])}}">{{$provider['provider']}}</a></h4>
                                 </th>
                                 <th scope="col"><strong>Price</strong></th>
                                 <th scope="col"><strong>Quantity</strong></th>

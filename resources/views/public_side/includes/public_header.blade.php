@@ -240,6 +240,14 @@ comments-box {
     display: inline-block;
     color: #777777;
 }
+.header ul li {
+    width: 49% !important;
+    border-right: none !important;
+}
+@media (max-width: 384px)
+.carousel-indicators {
+    bottom: -10% !important;
+}
 </style>
 </head>
 <body>
@@ -254,8 +262,7 @@ comments-box {
             <li> <a href="/login"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Sign In </a></li>
 			<li> <a href="{{route('view.register')}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Sign Up </a></li>
             @endif
-            <li><i class="fa fa-phone" aria-hidden="true"></i> Call : +962 790714916</li>
-			<li><i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:info@example.com">jordan.stores@gmail.com</a></li>
+           
 		</ul>
 	</div>
 </div>
@@ -404,7 +411,7 @@ comments-box {
 		<div class="top_nav_right">
 			<div class="wthreecartaits wthreecartaits2 cart cart box_1">
                 <a href="{{route('cart.index2')}}"> 
-                    <button class="w3view-cart" type="submit" name="submit" value="" style="width:100px;"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i> <small id="cart_count"><strong>{{session('counter') ? session('counter') : 0}}</strong></small></button>
+                    <button class="w3view-cart" type="submit" name="submit" value="" style="width:80px;"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i> <small id="cart_count"><strong>{{session('counter') ? session('counter') : 0}}</strong></small></button>
                 </a>
             </div>
 		</div>
