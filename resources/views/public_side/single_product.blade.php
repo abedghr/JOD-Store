@@ -36,10 +36,10 @@
                         <span>Provider</span> : <strong class="text-dark">{{$product->prov->name}}</strong>
                     </a><br>
                     <a class="text-dark" href="#">
-                        <span>Availibility</span> : @if ($product->availability == 1)
-                            <span class="text-success">Available</span>
+                        <span>Availibility</span> : @if ($product->inventory != 0)
+                            <span class="text-success"><strong>Available</strong></span>
                         @else
-                        <span class="text-danger">Un-available</span>
+                        <span class="text-danger"><strong>Un-available</strong></span>
                         @endif
                     </a>
                     <div class="description">

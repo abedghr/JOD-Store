@@ -135,11 +135,8 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Availability <span class="text-danger"> Optional</span></label>
-                            <select name="availability" id="" class="form-control">
-                                <option value="1" class="text-success" selected>Available</option>
-                                <option value="0"  class="text-danger">Un-available</option>
-                            </select>
+                            <label for="exampleInputPassword1">Inventory <span class="text-danger"> Optional</span></label>
+                            <input type="number" name="inventory" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-4">

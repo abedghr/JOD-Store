@@ -39,6 +39,7 @@
                             <p><strong> Gender :</strong> {{$product->gender}}</p>
                             <p><strong> Provider :</strong> {{$product->prov->name}}</p>
                             <p><strong> Availability :</strong> {{$product->availability == 1 ? 'Available' : 'Un-available'}}</p>
+                            <p><strong> Inventory :</strong> {{$product->inventory}} Item</p>
                             <p><strong> Status :</strong> {{$product->prod_status ? $product->prod_status : "none"}}</p>
                             <p><strong> Related :</strong> {{$product->prod_related ? $product->related->name : "....."}}</p>
                         </div>

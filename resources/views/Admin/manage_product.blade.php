@@ -153,11 +153,8 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Availability <span class="text-danger"> Optional</span></label>
-                            <select name="availability" id="" class="form-control">
-                                <option value="1" class="text-success" selected>Available</option>
-                                <option value="0"  class="text-danger">Un-available</option>
-                            </select>
+                            <label for="exampleInputPassword1">Inventory <span class="text-danger"> Optional</span></label>
+                            <input type="number" name="inventory" id="" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -243,7 +240,7 @@
               <th>Category</th>
               <th>Gender</th>
               <th>Provider</th>
-              <th>Availability</th>
+              <th>Inventory</th>
               <th style="width: 40px">Actions</th>
             </tr>
           </thead>
@@ -261,11 +258,7 @@
                 <td>{{$product->cat->cat_name}}</td>
                 <td>{{$product->gender}}</td>
                 <td>{{$product->prov->name}}</td>
-                <td>@if ($product->availability == 1)
-                   <span class="text-success"><strong>Available</strong></span>
-                @else
-                   <span class="text-danger"><strong>Un-Available</strong></span>
-                @endif </td>  
+                <td>{{$product->inventory}} Item</td>  
                 <td style="width:200px;">
                   <div class="fb-share-button" data-href="http://jordan-store.herokuapp.com/singe-product/{{$product->id}}" data-layout="button" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div><br>
                   <div class="mt-2">

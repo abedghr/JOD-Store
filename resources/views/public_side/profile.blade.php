@@ -21,7 +21,7 @@
             <hr>
             <p class="mb-3"><strong>{{$provider->description ? $provider->description : "No Description"}}</strong></p>
             @if (isset($user))
-            <a href="{{route('chat.show',['id'=>$provider->id])}}" class="btn btn-secondary  btn-block mt-2" style="background-color: #2fdab8 !important">Chat Us</a>
+            <a href="{{route('chat.show',['id'=>$provider->id])}}" target="_blank" class="btn btn-secondary  btn-block mt-2" style="background-color: #2fdab8 !important">Chat Us</a>
             <small class="text-dark"><strong>&nbsp;</strong></small>
             @else
             <button class="btn btn-secondary  btn-block mt-2 text-light " style="background-color: #2fdab8 !important" disabled>Chat Us</button>
@@ -31,11 +31,11 @@
         <div class="col-md-1"></div>
         <div class="col-lg-3">
             <ul class="social-nav model-3d-0 footer-social w3_agile_social two" style="margin:0px !important">
-                <li><a href="#" class="facebook">
+                <li><a href="{{$provider->facebook}}" target="_blank" class="facebook">
                     <div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
                     <div class="back"><i class="fa fa-facebook" aria-hidden="true"></i></div></a>
                 </li>
-                <li><a href="#" class="instagram">
+                <li><a href="{{$provider->instagram}}" target="_blank" class="instagram">
                     <div class="front"><i class="fa fa-instagram" aria-hidden="true"></i></div>
                     <div class="back"><i class="fa fa-instagram" aria-hidden="true"></i></div></a>
                 </li>

@@ -75,7 +75,7 @@ class ProductController extends Controller
                 'gender'=>$request->gender,
                 'provider'=>$request->provider,
                 'main_image'=>$Image,
-                'availability'=>$request->availability,
+                'inventory'=>$request->inventory,
                 'prod_status'=>$request->prod_status,
                 'country_made'=>$request->country,
                 'prod_related'=>$request->prod_related
@@ -113,7 +113,7 @@ class ProductController extends Controller
                 'category'=>$request->cat,
                 'gender'=>$request->gender,
                 'provider'=>$request->provider,
-                'availability'=>$request->availability,
+                'inventory'=>$request->inventory,
                 'prod_status'=>$request->prod_status,
                 'country_made'=>$request->country,
                 'prod_related'=>$request->prod_related
@@ -206,7 +206,7 @@ class ProductController extends Controller
                 'gender'=>$request->gender,
                 'provider'=>$request->provider,
                 'main_image'=>$Image,
-                'availability'=>$request->availability,
+                'inventory'=>$request->inventory,
                 'prod_status'=>$request->prod_status,
                 'country_made'=>$request->country,
                 'prod_related'=>$request->prod_related
@@ -233,7 +233,7 @@ class ProductController extends Controller
                 }
                 
             }
-            return redirect()->route('product.create');
+            return redirect(url()->previous());
         }else{
             Product::where('id',$id)->update([
                 'prod_name'=>$request->prod_name,
@@ -243,7 +243,7 @@ class ProductController extends Controller
                 'category'=>$request->cat,
                 'gender'=>$request->gender,
                 'provider'=>$request->provider,
-                'availability'=>$request->availability,
+                'inventory'=>$request->inventory,
                 'prod_status'=>$request->prod_status,
                 'country_made'=>$request->country,
                 'prod_related'=>$request->prod_related
@@ -264,7 +264,7 @@ class ProductController extends Controller
                     ]);
                 }  
             }
-            return redirect()->route('product.create');
+            return redirect(url()->previous());
         }
     }
 

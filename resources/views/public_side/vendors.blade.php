@@ -35,11 +35,11 @@
                                 <h4>{{$provider->name}}</h4>						
                             </div>
                                 <ul class="social-nav model-3d-0 footer-social w3_agile_social two" style="margin:0px !important">
-                                    <li><a href="#" class="facebook">
+                                    <li><a href="{{$provider->facebook}}" target="_blank" class="facebook">
                                         <div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
                                         <div class="back"><i class="fa fa-facebook" aria-hidden="true"></i></div></a>
                                     </li>
-                                    <li><a href="#" class="instagram">
+                                    <li><a href="{{$provider->instagram}}" target="_blank" class="instagram">
                                         <div class="front"><i class="fa fa-instagram" aria-hidden="true"></i></div>
                                         <div class="back"><i class="fa fa-instagram" aria-hidden="true"></i></div></a>
                                     </li>

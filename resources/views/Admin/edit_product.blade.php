@@ -149,11 +149,8 @@
                   <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Availability <span class="text-danger"> Optional</span></label>
-                            <select name="availability" id="" class="form-control">
-                                <option value="1" @if ($product->availability == "1") selected @endif class="text-success" selected>Available</option>
-                                <option value="0" @if ($product->availability == "0") selected @endif class="text-danger">Un-available</option>
-                            </select>
+                            <label for="exampleInputPassword1">Inventory <span class="text-danger"> Optional</span></label>
+                            <input type="number" class="form-control" name="inventory" value="{{$product->inventory}}">
                         </div>
                     </div>
                     <div class="col-md-4">

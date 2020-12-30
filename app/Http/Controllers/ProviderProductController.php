@@ -71,7 +71,7 @@ class ProviderProductController extends Controller
                 'gender'=>$request->gender,
                 'provider'=>Auth::user()->id,
                 'main_image'=>$Image,
-                'availability'=>$request->availability,
+                'inventory'=>$request->inventory,
                 'prod_status'=>$request->prod_status,
                 'country_made'=>$request->country,
                 'prod_related'=>$request->prod_related
@@ -107,7 +107,7 @@ class ProviderProductController extends Controller
                 'category'=>$request->cat,
                 'gender'=>$request->gender,
                 'provider'=>Auth::user()->id,
-                'availability'=>$request->availability,
+                'inventory'=>$request->inventory,
                 'prod_status'=>$request->prod_status,
                 'country_made'=>$request->country,
                 'prod_related'=>$request->prod_related
@@ -199,7 +199,7 @@ class ProviderProductController extends Controller
                 'gender'=>$request->gender,
                 'provider'=>Auth::user()->id,
                 'main_image'=>$Image,
-                'availability'=>$request->availability,
+                'inventory'=>$request->inventory,
                 'prod_status'=>$request->prod_status,
                 'country_made'=>$request->country,
                 'prod_related'=>$request->prod_related
@@ -238,7 +238,7 @@ class ProviderProductController extends Controller
                 'category'=>$request->cat,
                 'gender'=>$request->gender,
                 'provider'=>Auth::user()->id,
-                'availability'=>$request->availability,
+                'inventory'=>$request->inventory,
                 'prod_status'=>$request->prod_status,
                 'country_made'=>$request->country,
                 'prod_related'=>$request->prod_related

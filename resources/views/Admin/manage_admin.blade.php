@@ -17,8 +17,8 @@
         </div>
       </div><!-- /.container-fluid -->
     </section>
-
-    <!-- Main content -->
+    @if (Auth::user()->main_admin != null)
+            <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
         <div class="row">
@@ -89,6 +89,8 @@
     </div>
 </section>
 <!-- /.col -->
+    @endif
+
 
 <div class="col-md-12">
     <div class="card card-secondary">
@@ -125,12 +127,18 @@
                 <td>{{$admin->email}}</td>
                 <td>{{$admin->created_at->format('Y-m-d')}}</td>
                 <td style="width:200px;">
+                @if (Auth::user()->main_admin != null)
                 <a href="{{route('admin.edit',['id'=> $admin->id])}}" class="btn btn-info">Update</a>
                 <form method="post" action="{{route('admin.destroy',['id'=>$admin->id])}}" style="display: inline">
                     @csrf
                     @method('delete')
                 <button onclick="return confirm('Are you sure ?')" type="submit" class="btn btn-danger">DELETE</button>
                 </form>
+                @else
+                @if (Auth::user()->id == $admin->id)
+                <a href="{{route('admin.edit',['id'=> $admin->id])}}" class="btn btn-info">Update</a>
+                @endif
+                @endif
                 </td>
               </tr>
               <?php $i++; ?>
