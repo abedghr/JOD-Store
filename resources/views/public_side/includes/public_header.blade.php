@@ -324,10 +324,8 @@ comments-box {
 								<div class="agile_inner_drop_nav_info">
 									<div class="col-sm-6 multi-gd-img1 multi-gd-text ">
                                         <a href="{{route('product.all2')}}"><strong>All Categories</strong></a><br>
-                                        @if($pageTitle != "Single Product")
 										<a href="{{route('product.all2')}}"><img src="{{asset('pub_libraries/images/banner3.jpg')}}" alt=" "/></a>
-                                        @endif
-                                    </div>
+									</div>
 									<div class="col-sm-6 multi-gd-img">
 										<ul class="multi-column-dropdown row">
                                             @foreach ($categories as $category)
@@ -347,10 +345,8 @@ comments-box {
 								<div class="agile_inner_drop_nav_info">
 									<div class="col-sm-6 multi-gd-img1 multi-gd-text ">
                                         <a href="{{route('provider.all2')}}"><strong>All Stores</strong></a><br>
-										@if($pageTitle != "Single Product")
-                                        <a href="{{route('provider.all2')}}"><img src="{{asset('img/store.jpg')}}" alt=" "/></a>
-                                        @endif
-                                    </div>
+										<a href="{{route('provider.all2')}}"><img src="{{asset('img/store.jpg')}}" alt=" "/></a>
+									</div>
 									<div class="col-sm-6 multi-gd-img">
 										<ul class="multi-column-dropdown row">
                                             @foreach ($providers as $provider)
