@@ -54,7 +54,7 @@
 							</div>
 							<div class="w3-address-right">
 								<h6>Email Address</h6>
-								<p>Email :<a href="jordan.store@gmail.com"> jordan.store@gmail.com</a> / <a href="jod.store@gmail.com"> jod.store@gmail.com</a></p>
+								<p>Email :<a href="mailto: jordan.store@gmail.com"> jordan.store@gmail.com</a> / <a href="mailto: jod.store@gmail.com"> jod.store@gmail.com</a></p>
 							</div>
 							<div class="clearfix"> </div>
 						</div>

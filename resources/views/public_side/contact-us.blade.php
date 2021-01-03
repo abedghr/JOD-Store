@@ -23,8 +23,8 @@
 							<div class="mail-agileits-w3layouts">
 								<i class="fa fa-envelope-o" aria-hidden="true"></i>
 								<div class="contact-right">
-									<p>Mail </p><a href="jordan.store@gmail.com">jordan.store@gmail.com</a>
-									<p></p><a href="jod.store@gmail.com">jod.store@gmail.com</a>
+									<p>Mail </p><a href="mailto: jordan.store@gmail.com">jordan.store@gmail.com</a>
+									<p></p><a href="mailto: jod.store@gmail.com">jod.store@gmail.com</a>
 								</div>
 								<div class="clearfix"> </div>
 							</div>
