@@ -23,8 +23,8 @@
 							<div class="mail-agileits-w3layouts">
 								<i class="fa fa-envelope-o" aria-hidden="true"></i>
 								<div class="contact-right">
-									<p>Mail </p><a href="mailto:info@example.com">jordan.store@gmail.com</a>
-									<p></p><a href="mailto:info@example.com">jod.store@gmail.com</a>
+									<p>Mail </p><a href="jordan.store@gmail.com">jordan.store@gmail.com</a>
+									<p></p><a href="jod.store@gmail.com">jod.store@gmail.com</a>
 								</div>
 								<div class="clearfix"> </div>
 							</div>
@@ -40,15 +40,9 @@
                                 <li><a href="#" class="facebook">
                                         <div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
                                         <div class="back"><i class="fa fa-facebook" aria-hidden="true"></i></div></a></li>
-                                <li><a href="#" class="twitter"> 
-                                        <div class="front"><i class="fa fa-twitter" aria-hidden="true"></i></div>
-                                        <div class="back"><i class="fa fa-twitter" aria-hidden="true"></i></div></a></li>
                                 <li><a href="#" class="instagram">
                                         <div class="front"><i class="fa fa-instagram" aria-hidden="true"></i></div>
                                         <div class="back"><i class="fa fa-instagram" aria-hidden="true"></i></div></a></li>
-                                <li><a href="#" class="pinterest">
-                                        <div class="front"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
-                                        <div class="back"><i class="fa fa-linkedin" aria-hidden="true"></i></div></a></li>
                             </ul>
 					</div>
 					<div class="col-md-6 contact-form">

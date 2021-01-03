@@ -78,7 +78,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="phone1" class="">Mobile Number <span class="text-danger"> Optional</span></label>                 
+                                    <label for="phone1" class="">Mobile Number <span class="text-danger">*</span></label>                 
                                     <input id="phone1" name="phone1" type="text" class="form-control @error('phone1') is-invalid @enderror"  placeholder="Enter your mobile number">
                                     @error('phone1')
                                         <span class="invalid-feedback" role="alert">

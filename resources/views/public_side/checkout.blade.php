@@ -81,7 +81,7 @@
                     <div class="order_box">
                         <h2 class="mt-5">Your Order</h2>
                         <ul class="list-group w3-agile mt-3">
-                            <li class="list-group-item mr-3">
+                            <li class="list-group-item">
                                 <a class="text-dark"><strong>Product</strong>
                                     <span style="float:right;"><strong>Total</strong></span>
                                 </a>

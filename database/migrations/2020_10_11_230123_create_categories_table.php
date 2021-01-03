@@ -17,7 +17,6 @@ class CreateCategoriesTable extends Migration
             $table->bigIncrements('id');
             $table->string('cat_name');
             $table->text('cat_image')->default('default_category.png');
-            $table->bigInteger('providers_number')->default(0);
             $table->timestamps();
         });
     }

@@ -13,4 +13,7 @@ class Order extends Model
     public function Prov(){
         return $this->belongsTo('App\Models\Provider','provider','id');
     }
+    public function Notify(){
+        return $this->belongsTo(Notification::class);
+    }
 }

@@ -117,8 +117,8 @@ li {
 }
 .active {
     background: #eeeeee;
-}
-input[type=text] {
+} 
+/*input[type=text] {
     width: 100%;
     padding: 12px 20px;
     margin: 15px 0 0 0;
@@ -128,7 +128,7 @@ input[type=text] {
     outline: none;
     border: 1px solid #cccccc;
     margin-bottom: 20px;
-}
+} */
 input[type=text]:focus {
     border: 1px solid #aaaaaa;
 }

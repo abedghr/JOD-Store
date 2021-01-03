@@ -260,7 +260,7 @@ comments-box {
 			<li> <a href="{{route('user.logout')}}"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout </a></li>
 			@else
             <li> <a href="/login"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Sign In </a></li>
-			<li> <a href="{{route('view.register')}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Sign Up </a></li>
+			<li> <a href="{{route('view.register')}}"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign Up </a></li>
             @endif
            
 		</ul>
@@ -284,15 +284,9 @@ comments-box {
                 <li><a href="#" class="facebook">
                         <div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
                         <div class="back"><i class="fa fa-facebook" aria-hidden="true"></i></div></a></li>
-                <li><a href="#" class="twitter"> 
-                        <div class="front"><i class="fa fa-twitter" aria-hidden="true"></i></div>
-                        <div class="back"><i class="fa fa-twitter" aria-hidden="true"></i></div></a></li>
                 <li><a href="#" class="instagram">
                         <div class="front"><i class="fa fa-instagram" aria-hidden="true"></i></div>
                         <div class="back"><i class="fa fa-instagram" aria-hidden="true"></i></div></a></li>
-                <li><a href="#" class="pinterest">
-                        <div class="front"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
-                        <div class="back"><i class="fa fa-linkedin" aria-hidden="true"></i></div></a></li>
             </ul>
 		</div>
 		<div class="clearfix"></div>

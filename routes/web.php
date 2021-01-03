@@ -356,7 +356,7 @@ Route::get('/userProfile','Auth\UserLoginController@profile2')->name('user.profi
 Route::get('/addtocart','CartController@addtocart')->name('addtocart');
 Route::get('/products','PublicProductController@all')->name('product.all')->middleware('preventbackbutton');
 Route::get('/profile/{provider_id}','PublicProductController@vendor_product_all')->name('vendor_product.all')->middleware('preventbackbutton');
-Route::get('/category/{id}','PublicCategoryController@show')->name('category.show2')->middleware('preventbackbutton');
+Route::get('/category/{id}','PublicCategoryController@show2')->name('category.show2')->middleware('preventbackbutton');
 
 Route::get('/category/{id}/{gender}','PublicCategoryController@gender_show2')->name('category_gender2.show')->middleware('preventbackbutton');
 

@@ -74,7 +74,7 @@
                         </div>
                         <div class="form-group mt-4">
                             {{-- <input type="submit" value="Update" class="main_btn btn-block"> --}}
-                            <button type="submit" onclick="return confirm('Are you Sure that you finished shopping ?')" class="btn-block p-3" style="background-color:#17c3a2; font-weight:bold;">Update</button>
+                            <button type="submit" class="btn-block p-3" style="background-color:#17c3a2; font-weight:bold;">Update</button>
                         </div>
                     </form>
                 </div>

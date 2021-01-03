@@ -29,7 +29,7 @@
                     @foreach ($all_providers as $provider)
                     <div class="col-md-3">
                         <div class="thumbnail team-w3agile">
-                            <img src="./img/Provider_images/{{$provider->image}}" class="img-responsive" alt="">
+                            <img src="./img/Provider_images/{{$provider->image}}" class="img-responsive" alt="" style="height: 180px !important">
                             <div class="social-icons team-icons right-w3l fotw33">
                             <div class="caption">
                                 <h4>{{$provider->name}}</h4>						

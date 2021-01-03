@@ -18,6 +18,16 @@ class Provider extends Authenticatable implements MustVerifyEmail
         'name','email','password','phone1','phone2','subscribe','visitors','image','cover_image','description'
     ];
 
+    public function Orders(){
+        return  $this->hasMany(Order::class);
+    }
+    public function Msg(){
+        return  $this->hasMany(Message::class);
+    }
+    public function Noti(){
+        return $this->belongsTo(Notification::class);
+    }
+
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ProviderResetPasswordNotification($token));

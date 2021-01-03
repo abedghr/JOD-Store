@@ -162,7 +162,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Type of store :<span class="text-danger"> Optional</span></label>
-                  <select name="store_type" id="" class="form-control mt-3">
+                  <select name="store_type" id="" class="form-control">
                     <option value=""></option>
                     <option value="Online-store" @if (Auth::user()->store_type == 'Online-store') selected @endif >Online Store</option>
                     <option value="Real-store" @if (Auth::user()->store_type == 'Real-store') selected @endif >Real Store</option>

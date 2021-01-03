@@ -153,6 +153,6 @@ class UserLoginController extends Controller
             'city'=>$request->user_city,
             'Address'=>$request->user_address,
         ]);
-        return redirect()->route('user.profile');
+        return redirect()->route('user.profile2');
     }
 }

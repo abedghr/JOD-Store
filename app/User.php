@@ -4,6 +4,7 @@ namespace App;
 
 use App\Models\Comment;
 use App\Models\Feedback;
+use App\Models\Message;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -45,5 +46,9 @@ class User extends Authenticatable
 
     public function feedback(){
         return $this->hasMany(Feedback::class);
+    }
+
+    public function Msg(){
+        return  $this->hasMany(Message::class);
     }
 }
