@@ -337,15 +337,15 @@ comments-box {
 						<a href="#" class="dropdown-toggle menu__link " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Stores<span class="caret"></span></a>
 							<ul class="dropdown-menu multi-column columns-3">
 								<div class="agile_inner_drop_nav_info">
-									<div class="col-sm-6 multi-gd-img1 multi-gd-text ">
+									<div class="col-sm-4 multi-gd-img1 multi-gd-text ">
                                         <a href="{{route('provider.all2')}}"><strong>All Stores</strong></a><br>
 										<a href="{{route('provider.all2')}}"><img src="{{asset('img/store.jpg')}}" alt=" "/></a>
 									</div>
-									<div class="col-sm-6 multi-gd-img">
+									<div class="col-sm-8 multi-gd-img">
 										<ul class="multi-column-dropdown row">
                                             @foreach ($providers as $provider)
                                             <div class="col-sm-4 text-center">
-                                            <li><a href="{{route('public_provider.profile2',['id'=>$provider->id])}}">{{$provider->name}}</a></li>
+                                            <li><a href="{{route('public_provider.profile2',['id'=>$provider->id])}}">{{$provider->name}}{{$provider->subscribe}}</a></li>
                                             </div>
                                             @endforeach						
 										</ul>
