@@ -51,8 +51,8 @@ class PublicProviderController extends Controller
         $cat_arr = array();
         foreach($categories as $category){
             $prod = Product::where('category',$category->id)->where('provider',$id)->first();
-            
-            if($prod['category'] != null){
+            dd($prod['category']);
+            if($prod['category'] != null || empty($prod['category'])){
                 $cat_arr[$category->id]['id']=$category->id;
                 $cat_arr[$category->id]['name']=$category->cat_name;
             }

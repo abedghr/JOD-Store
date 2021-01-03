@@ -316,11 +316,11 @@ comments-box {
 						<a href="#" class="dropdown-toggle menu__link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories<span class="caret"></span></a>
 							<ul class="dropdown-menu multi-column columns-3">
 								<div class="agile_inner_drop_nav_info">
-									<div class="col-sm-6 multi-gd-img1 multi-gd-text ">
+									<div class="col-sm-4 multi-gd-img1 multi-gd-text ">
                                         <a href="{{route('product.all2')}}"><strong>All Categories</strong></a><br>
 										<a href="{{route('product.all2')}}"><img src="{{asset('pub_libraries/images/banner3.jpg')}}" alt=" "/></a>
 									</div>
-									<div class="col-sm-6 multi-gd-img">
+									<div class="col-sm-8 multi-gd-img">
 										<ul class="multi-column-dropdown row">
                                             @foreach ($categories as $category)
                                             <div class="col-sm-4 text-center">
