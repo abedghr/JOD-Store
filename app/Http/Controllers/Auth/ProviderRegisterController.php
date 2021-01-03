@@ -37,7 +37,8 @@ class ProviderRegisterController extends Controller
                 'name'=>$request->name,
                 'email'=>$request->email,
                 'password'=>Hash::make($request->password),
-                'phone1'=>$request->phone1
+                'phone1'=>$request->phone1,
+                'subscribe'=>30
             ]);
 
             $last_prov = Provider::latest()->first();

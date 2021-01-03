@@ -72,7 +72,8 @@ class ManageProviderController extends Controller
                 'phone2'=>$request->phone2,
                 'image'=>$fileImage,
                 'cover_image'=>$coverImage,
-                'description'=>$request->description
+                'description'=>$request->description,
+                'subscribe'=>30
             ]);
 
             return redirect()->route('manage_provider.create');
@@ -91,7 +92,8 @@ class ManageProviderController extends Controller
                 'phone1'=>$request->phone1,
                 'phone2'=>$request->phone2,
                 'cover_image'=>$coverImage,
-                'description'=>$request->description
+                'description'=>$request->description,
+                'subscribe'=>30
             ]);
             return redirect()->route('manage_provider.create');
         }
