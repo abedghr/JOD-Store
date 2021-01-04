@@ -99,10 +99,16 @@
                         <h4><a href="single.html" class="js-name-detail">{{$product->prod_name}}</a></h4>
                         <p><a href="">Store: {{$product->prov->name}}</a></p>
                         <p>Gender: {{$product->gender}}</p>
+                        @if ($product->old_price != null)
                         <div class="info-product-price">
                             <span class="item_price">{{number_format($product->new_price,2)}}JOD</span>
                             <del>{{number_format($product->old_price,2)}}JOD</del>
                         </div>
+                        @else
+                        <div class="info-product-price">
+                            <span class="item_price">{{number_format($product->new_price,2)}}JOD</span>
+                        </div>
+                        @endif
                         <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
                             <input type="submit" name="submit" value="Add to cart" class="button js-addcart-detail" onclick="addca({{$product->id}})" />
                         </div>

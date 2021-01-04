@@ -140,17 +140,24 @@
                                             <a href="{{route('product.show2',['id'=>$product->id])}}" class="link-product-add-cart">Quick View</a>
                                         </div>
                                     </div>
-                                    <span class="product-new-top">New</span>
+                                    
                                     
                             </div>
                             <div class="item-info-product ">
                                 <h4><a href="" class="js-name-detail">{{$product->prod_name}}</a></h4>
                                 <p><a href="">Store: {{$product->prov->name}}</a></p>
                                 <p>Gender: {{$product->gender}}</p>
-                                <div class="info-product-price">
+								@if ($product->old_price != null)
+								<div class="info-product-price">
                                     <span class="item_price">{{number_format($product->new_price,2)}}JOD</span>
                                     <del>{{number_format($product->old_price,2)}}JOD</del>
-                                </div>
+								</div>
+								@else
+								<div class="info-product-price">
+                                    <span class="item_price">{{number_format($product->new_price,2)}}JOD</span>
+								</div>
+								@endif
+								
                                 <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
                                     <input type="submit" name="submit" value="Add to cart" class="button js-addcart-detail" onclick="addca({{$product->id}})" />
                                 </div>

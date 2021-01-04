@@ -28,7 +28,12 @@
 		</div>
 		<div class="col-md-6 single-right-left simpleCart_shelfItem">
 					<h3 class="js-name-detail">{{$product->prod_name}}</h3>
+					@if ($product->old_price != null)
 					<p><span class="item_price">{{number_format($product->new_price,2)}} JOD</span> <del> {{number_format($product->old_price,2)}} JOD</del></p>
+					@else
+					<p><span class="item_price">{{number_format($product->new_price,2)}} JOD</span></p>
+					@endif
+					
                     <a class="text-dark" href="#">
                         <span>Category</span> : <strong class="text-dark">{{$product->cat->cat_name}}</strong>
                     </a>
@@ -40,7 +45,7 @@
                             <span class="text-success"><strong>Available</strong></span>
                         @else
                         <span class="text-danger"><strong>Un-available</strong></span>
-                        @endif
+						@endif
                     </a>
                     <div class="description">
 						<h5>{{$product->description}}</h5>
@@ -73,23 +78,29 @@
 						<div class="col-lg-6 comments-box" style="overflow-y: scroll; height:270px;">
 							<div class="comment_list" id="comment_list">
 								
-									@foreach ($comments as $comment)
-									<div class="review_item" style="margin-bottom: 15px;">
-										<div class="media">
-											<div class="media-body pl-4 pt-3 pr-3">
-                                                <h4>{{$comment->user->name}}</h4>
-												<small style="font-size:11px;">{{$comment->created_at->format('Y-m-d')}}</small>
-												@if (isset($user))
-													@if ($comment->user_id == $user['user_id'])
-													<a class="btn-danger text-light reply_btn mr-3" onclick="delete_comment({{$comment->id}})" id="delete_comment"><i class="fa fa-trash text-light"></i></a>	
-													@endif
-												@endif
-											</div>
+								@foreach ($comments as $comment)
+									
+								<div class="review_item col-md-11" style="margin-bottom: 15px;">
+									<div class="media">
+										<div class="media-body pl-4 pt-3 pr-3 ">
+											<h4>{{$comment->user->name}}</h4>
+											<small style="font-size:11px;">{{$comment->created_at->format('Y-m-d')}}</small>
+											
 										</div>
-										<p class="pl-4 mt-1">{{$comment->comment}}</p>
 									</div>
-									<hr>
-									@endforeach
+									<p class="pl-4 mt-1">{{$comment->comment}} {{$reviewed}}</p>
+								</div>
+								<div class="col-md-1">
+									@if (isset($user))
+											
+									@if ($comment->user_id == $user['user_id'])
+									<a class="btn btn-default text-light reply_btn" onclick="delete_comment({{$comment->id}})" id="delete_comment" style="background-color: #2fdab8;
+										border-color: #2fdab8;"><i class="fa fa-trash text-light"></i></a>	
+									@endif
+								@endif
+								</div>
+								<hr>
+								@endforeach
 										
 								
 							</div>
@@ -152,6 +163,7 @@
 						<div class="col-lg-6">
 							@if (isset($user))
 							<div class="review_box">
+								@if ($reviewed != "true")
 								<h4 style="padding: 20px; background-color: #f9f9ff; margin: 15px;
 								">Add a Review</h4>
 								<div class="pb-2 ml-3">
@@ -206,6 +218,8 @@
 										</ul>
 									</a>
 								</div>
+								@endif
+								
 							</div>
 							@endif
 
@@ -239,13 +253,19 @@
 									<h4><a href="" class="js-name-detail">{{$Rproduct->prod_name}}</a></h4>
 									<p><a href="">Store: {{$Rproduct->prov->name}}</a></p>
 									<p>Gender: {{$Rproduct->gender}}</p>
-									<div class="info-product-price">
-										<span class="item_price">{{number_format($Rproduct->new_price,2)}}JOD</span>
-										<del>{{number_format($Rproduct->old_price,2)}}JOD</del>
-									</div>
-									<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-										<input type="submit" name="submit" value="Add to cart" class="button js-addcart-detail" onclick="addca({{$Rproduct->id}})" />
-									</div>
+								@if ($Rproduct->old_price != null)
+								<div class="info-product-price">
+                                    <span class="item_price">{{number_format($Rproduct->new_price,2)}}JOD</span>
+                                    <del>{{number_format($Rproduct->old_price,2)}}JOD</del>
+								</div>
+								@else
+								<div class="info-product-price">
+                                    <span class="item_price">{{number_format($Rproduct->new_price,2)}}JOD</span>
+								</div>
+								@endif
+								<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
+									<input type="submit" name="submit" value="Add to cart" class="button js-addcart-detail" onclick="addca({{$Rproduct->id}})" />
+								</div>
 								</div>
 							</div>
 						</div>

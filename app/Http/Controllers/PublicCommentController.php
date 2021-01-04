@@ -45,26 +45,30 @@ class PublicCommentController extends Controller
         $output = "";
         foreach($comments as $comment){
             if($comment->user_id == $user['user_id']){
-                $output.='<div class="review_item">
+                $output.='<div class="review_item col-md-11" style="margin-bottom: 15px;">
                         <div class="media">
-                            <div class="media-body">
+                            <div class="media-body pl-4 pt-3 pr-3">
                                 <h4>'.$comment->user->name.'</h4>
-                                <h5>'.$comment->created_at->format('Y-m-d').'</h5>
-                                <a class="btn-danger text-light reply_btn" onclick="delete_comment('.$comment->id.')" id="delete_comment"><i class="fa fa-trash text-light"></i></a>
+                                <small style="font-size:11px;">'.$comment->created_at->format('Y-m-d').'</small>
+                                	
                             </div>
                         </div>
-                        <p>'.$comment->comment.'</p>
+                        <p class="pl-4 mt-1">'.$comment->comment.'</p>
+                    </div>
+                    <div class="col-md-1">
+                    <a class="btn btn-default text-light reply_btn" onclick="delete_comment('.$comment->id.')" id="delete_comment"  style="background-color: #2fdab8;
+                    border-color: #2fdab8;"><i class="fa fa-trash text-light"></i></a>
                     </div>
                     <hr>';
             }else{					
-                $output.='<div class="review_item">
+                $output.='<div class="review_item col-md-11" style="margin-bottom: 15px;">
                 <div class="media">
-                    <div class="media-body">
+                    <div class="media-body pl-4 pt-3 pr-3">
                         <h4>'.$comment->user->name.'</h4>
                         <h5>'.$comment->created_at->format('Y-m-d').'</h5>
                     </div>
                 </div>
-                <p>'.$comment->comment.'</p>
+                <p class="pl-4 mt-1">'.$comment->comment.'</p>
                 </div>
                 <hr>';
             }		
@@ -120,26 +124,30 @@ class PublicCommentController extends Controller
         $output = "";
         foreach($comments as $comment){
             if($comment->user_id == $user['user_id']){
-                $output.='<div class="review_item">
+                $output.='<div class="review_item col-md-11" style="margin-bottom: 15px;">
                         <div class="media">
-                            <div class="media-body">
+                            <div class="media-body pl-4 pt-3 pr-3">
                                 <h4>'.$comment->user->name.'</h4>
-                                <h5>'.$comment->created_at->format('Y-m-d').'</h5>
-                                <a class="btn-danger text-light reply_btn" onclick="delete_comment('.$comment->id.')" id="delete_comment"><i class="fa fa-trash text-light"></i></a>	
+                                <small style="font-size:11px;">'.$comment->created_at->format('Y-m-d').'</small>
+                                	
                             </div>
                         </div>
-                        <p>'.$comment->comment.'</p>
+                        <p class="pl-4 mt-1">'.$comment->comment.'</p>
+                    </div>
+                    <div class="col-md-1">
+                    <a class="btn btn-default text-light reply_btn" onclick="delete_comment('.$comment->id.')" id="delete_comment"  style="background-color: #2fdab8;
+                    border-color: #2fdab8;"><i class="fa fa-trash text-light"></i></a>
                     </div>
                     <hr>';
             }else{					
-                $output.='<div class="review_item">
+                $output.='<div class="review_item col-md-11" style="margin-bottom: 15px;">
                 <div class="media">
-                    <div class="media-body">
+                    <div class="media-body pl-4 pt-3 pr-3">
                         <h4>'.$comment->user->name.'</h4>
                         <h5>'.$comment->created_at->format('Y-m-d').'</h5>
                     </div>
                 </div>
-                <p>'.$comment->comment.'</p>
+                <p class="pl-4 mt-1">'.$comment->comment.'</p>
                 </div>
                 <hr>';
             }		

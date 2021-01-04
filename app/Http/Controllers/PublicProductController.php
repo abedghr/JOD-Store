@@ -108,6 +108,11 @@ class PublicProductController extends Controller
         $comments = Comment::where('prod_id',$id)->orderBy('created_at','desc')->get();
         if(session()->has('user')){
         $rate = Rating::where('user_id',$user["user_id"])->where('prod_id',$id)->get();
+        if(isset($rate[0])){
+            $reviewed = "true";
+        }else{
+            $reviewed = "false";
+        }
         }
         $star1 = Rating::where('rating',1)->where('prod_id',$id)->select('rating')->get();
         $star2 = Rating::where('rating',2)->where('prod_id',$id)->select('rating')->get();
@@ -133,7 +138,8 @@ class PublicProductController extends Controller
                     'comments'=>$comments,
                     'rating'=>$rate,
                     'product_rate'=>3,
-                    'related_products'=>$related_products
+                    'related_products'=>$related_products,
+                    'reviewed'=>$reviewed
                 ]);
             }else{
                 return view('public_side.single_product',[
@@ -143,7 +149,8 @@ class PublicProductController extends Controller
                     'images'=>$product_images,
                     'comments'=>$comments,
                     'product_rate'=>3,
-                    'related_products'=>$related_products
+                    'related_products'=>$related_products,
+                    'reviewed'=>$reviewed
                 ]);
             }
         }
@@ -157,7 +164,8 @@ class PublicProductController extends Controller
                 'comments'=>$comments,
                 'rating'=>$rate,
                 'product_rate'=>$maxR,
-                'related_products'=>$related_products
+                'related_products'=>$related_products,
+                'reviewed'=>$reviewed
             ]);
         }else{
             return view('public_side.single_product',[
