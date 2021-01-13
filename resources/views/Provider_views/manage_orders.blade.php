@@ -8,7 +8,7 @@
 
 <div class="col-md-12 mt-3">
     <div class="card">
-      <div class="card-header bg-secondary text-light">
+      <div class="card-header bg-secondary text-light mb-2">
         <div class="row">
             <div class="col-sm-1">
                 <h3 class="card-title mt-2"><strong>Orders</strong></h3>
@@ -33,7 +33,7 @@
         
       </div>
       <!-- /.card-header -->
-      <div class="card-body p-0 table-responsive mt-5">
+      <div class="card-body p-0 table-responsive">
         <table class="table text-center" id="table">
             <thead>
               <tr>
@@ -79,7 +79,7 @@
                   <td>{{$order->phone}}</td>
                   <td>{{$order->city}}</td>
                   <td>{{$order->Address}}</td>
-                  <td><a href="{{route('order.show',['order_id'=>$order->id])}}" class="badge badge-secondary text-light">({{$count_products[$order->id]}}) View Orders</a></td>
+                  <td><a href="{{route('order.show',['order_id'=>$order->id])}}" class="badge badge-secondary text-light">({{count($order->prodOfOrder)}}) View Orders</a></td>
                   <td>JD-{{$order->total_price}}</td>
                   <td>JD-{{$del}}</td>
                   <td>{{$order->created_at->format('Y-m-d')}}</td>

@@ -22,8 +22,47 @@ class ProviderController extends Controller
         $this->middleware('auth:provider');
     }
 
+    private function getPaymentStatus($id,$resourcePath){
+        $url = "https://test.oppwa.com/";
+        $url .= $resourcePath;
+	$url .= "?entityId=8a8294174b7ecb28014b9699220015ca";
+
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $url);
+	curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                   'Authorization:Bearer OGE4Mjk0MTc0YjdlY2IyODAxNGI5Njk5MjIwMDE1Y2N8c3k2S0pzVDg='));
+	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);// this should be set to true in production
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	$responseData = curl_exec($ch);
+	if(curl_errno($ch)) {
+		return curl_error($ch);
+	}
+	curl_close($ch);
+	return json_decode($responseData,true);
+    }
+
+    public function renewal_subscirbe(){
+        if(request('id') && request('resourcePath')){
+            $payment_status = $this->getPaymentStatus(request('id'), request('resourcePath'));
+            if(isset($payment_status['id'])){
+                $success = true;
+                Provider::where('id',Auth::user()->id)->update([
+                    'subscribe'=>30
+                ]);
+                return view('Provider_views.renewal_subscribe')->with(['success'=>$success]);
+            }else{
+                $failed = true;
+                return view('Provider_views.renewal_subscribe')->with(['failed'=>$failed]);
+            }
+        }
+        return view('Provider_views.renewal_subscribe');
+    }
+
+
     public function index()
     {
+        
         $products_number = Product::where('provider',Auth::user()->id)->count();
         $orders_data = Order::where('provider',Auth::user()->id)->where('order_status',3)->select()->get();
         $total = 0;

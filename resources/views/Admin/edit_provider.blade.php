@@ -6,7 +6,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Manage Providers</h1>
+            <h1>Manage Stores</h1>
           </div>
           {{-- <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -27,7 +27,7 @@
             <!-- general form elements -->
             <div class="card card-secondary">
               <div class="card-header">
-                <h3 class="card-title">Update Provider</h3>
+                <h3 class="card-title">Update Store</h3>
               </div>
               
               <!-- /.card-header -->
@@ -37,21 +37,21 @@
                 @method('put')
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Provider Name<span class="text-danger">*</span></label>
+                    <label for="exampleInputEmail1">Store Name<span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="exampleInputEmail1" name="prov_name" value="{{$provider->name}}" placeholder="Enter Provider name">
                     @error('prov_name')
                         <small class="text-danger"><strong>{{$message}}</strong></small>
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Provider Email<span class="text-danger">*</span></label>
+                    <label for="exampleInputEmail1">Store Email<span class="text-danger">*</span></label>
                     <input type="email" class="form-control" id="exampleInputEmail1" value="{{$provider->email}}" name="email" placeholder="Enter Provider email">
                     @error('email')
                         <small class="text-danger"><strong>{{$message}}</strong></small>
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Provider Password<span class="text-danger">*</span></label>
+                    <label for="exampleInputPassword1">Store Password<span class="text-danger">*</span></label>
                     <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Enter a new Password if you want to change it">
                     @error('password')
                         <small class="text-danger"><strong>{{$message}}</strong></small>
@@ -85,7 +85,7 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputFile">Provider Image<span class="text-danger"> Optional</span></label>
+                    <label for="exampleInputFile">Store Image<span class="text-danger"> Optional</span></label>
                     <div class="input-group">
                         <div class="custom-file">
                         <input type="file" name="image" class="custom-file-input" id="exampleInputFile">
@@ -97,7 +97,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputFile">Provider Cover Image<span class="text-danger"> Optional</span></label>
+                    <label for="exampleInputFile">Store Cover Image<span class="text-danger"> Optional</span></label>
                     <div class="input-group">
                         <div class="custom-file">
                         <input type="file" name="cover_image" class="custom-file-input" id="exampleInputFile">
@@ -113,7 +113,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" name="" class="btn btn-primary">Update Provider</button>
+                  <button type="submit" name="" class="btn btn-primary">Update Store</button>
                 </div>
               </form>
             </div>
@@ -123,4 +123,5 @@
     </div>
 </section>
 <!-- /.col -->
+</div>
 @include('Admin.includes.admin_footer')

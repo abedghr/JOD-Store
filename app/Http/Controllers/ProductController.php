@@ -167,6 +167,7 @@ class ProductController extends Controller
         $related = Related::all();
         $providers = Provider::all();
         $prod_images = ProductsImages::where('product_id',$id)->orderBy('created_at','desc')->get();
+        
         return view('Admin.edit_product',[
             'product'=>$product,
             'categories'=>$categories,
@@ -214,7 +215,7 @@ class ProductController extends Controller
             $last = Product::orderBy('created_at', 'desc')->first();  
                     ProductsImages::create([
                         'image'=>$Image,
-                        'product_id'=>$last->id
+                        'product_id'=>$id
                     ]);
             if($request->hasFile('images')){
                 foreach($request->images as $image){
@@ -228,14 +229,14 @@ class ProductController extends Controller
                     $last = Product::orderBy('created_at', 'desc')->first();  
                     ProductsImages::create([
                         'image'=>$fileNameToStore,
-                        'product_id'=>$last->id
+                        'product_id'=>$id
                     ]);
                 }
                 
             }
             return redirect(url()->previous());
         }else{
-            Product::where('id',$id)->update([
+            $x = Product::where('id',$id)->update([
                 'prod_name'=>$request->prod_name,
                 'description'=>$request->description,
                 'old_price'=>$request->old_price,
@@ -257,10 +258,10 @@ class ProductController extends Controller
                     /* $image->storeAs('public/Product_images',$fileNameToStore); */
                     $image->move('img/Product_images',$fileNameToStore);
                     
-                    $last = Product::orderBy('created_at', 'desc')->first();  
+                    
                     ProductsImages::create([
                         'image'=>$fileNameToStore,
-                        'product_id'=>$last->id
+                        'product_id'=>$id
                     ]);
                 }  
             }
@@ -278,5 +279,10 @@ class ProductController extends Controller
     {
         Product::where('id',$id)->delete();
         return redirect()->route('product.create');
+    }
+
+    public function delete_image($id){
+        ProductsImages::where('id',$id)->delete();
+        return redirect(url()->previous());
     }
 }

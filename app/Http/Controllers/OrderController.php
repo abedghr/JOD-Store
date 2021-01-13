@@ -26,15 +26,11 @@ class OrderController extends Controller
 
     public function index()
     {
-       $orders = Order::where('provider',Auth::user()->id)->select()->get();
-       $products_orders= array();
-       foreach($orders as $order){
-        $products_orders[$order->id]= ProductsOfOrders::where('order_id',$order->id)->count();
-       }
+       $orders = Order::where('provider',Auth::user()->id)->with('prodOfOrder')->select()->get();
+       
        
        return view("Provider_views.manage_orders",[
-           'orders'=>$orders,
-           'count_products'=>$products_orders
+           'orders'=>$orders
        ]);
     }
 

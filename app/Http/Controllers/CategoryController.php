@@ -33,7 +33,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $categories = Category::select()->orderBy('id','desc')->paginate(5);
+        $categories = Category::select()->orderBy('id','desc')->get();
         return view('Admin.manage_category',[
             'categories'=>$categories
         ]);

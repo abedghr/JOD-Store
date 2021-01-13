@@ -59,8 +59,8 @@
 <!-- /.col -->
 <div class="col-md-12">
     <div class="card">
-      <div class="card-header">
-        <h3 class="card-title">Related Products</h3>
+      <div class="card-header mb-2 bg-secondary">
+        <h3 class="card-title">Related Products List</h3>
 
         <div class="card-tools">
           <ul class="pagination pagination-sm float-right">
@@ -70,7 +70,7 @@
       </div>
       <!-- /.card-header -->
       <div class="card-body p-0">
-        <table class="table text-center">
+        <table class="table text-center" id="table">
           <thead>
             <tr>
               <th style="width: 10px">#</th>
@@ -111,3 +111,9 @@
 </div>
 
 @include('Provider_views.includes.provider_footer')
+<script>
+  $(document).ready(function () {
+$('#table').DataTable();
+$('.dataTables_length').addClass('bs-select');
+});
+</script>

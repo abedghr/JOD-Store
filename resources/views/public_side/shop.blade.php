@@ -1,3 +1,4 @@
+
 <?php $pageTitle = "Shop" ?>
 @include('public_side.includes.public_header')
 <!-- /banner_bottom_agile_info -->
@@ -48,7 +49,7 @@
 			<div class="clearfix"></div>
 		</div>
 		<div class="col-md-8 products-right">
-			<h5>Product <span>Compare(0)</span></h5>
+			<h5>All Products</h5>
 			<div class="sort-grid row">
 				<div class="col-md-6">
 					<input type="search" class="sorting form-control" id="search" onkeyup="search()" style="width:335px !important" placeholder="Search ..">
@@ -80,6 +81,7 @@
 				</div>
 				<div class="clearfix"></div>
             </div> --}}
+            
             <div class="prod_content">
             @foreach ($products as $product)
             <div class="col-md-4 product-men">
@@ -87,13 +89,11 @@
                     <div class="men-thumb-item">
                         <img src="../img/Product_images/{{$product->main_image}}" alt="" class="pro-image-front">
                         <img src="../img/Product_images/{{$product->main_image}}" alt="" class="pro-image-back">
-                            <div class="men-cart-pro">
-                                <div class="inner-men-cart-pro">
-                                    <a href="{{route('product.show2',['id'=>$product->id])}}" class="link-product-add-cart">Quick View</a>
-                                </div>
+                        <div class="men-cart-pro">
+                            <div class="inner-men-cart-pro">
+                                <a href="{{route('product.show2',['id'=>$product->id])}}" class="link-product-add-cart">Quick View</a>
                             </div>
-                            <span class="product-new-top">New</span>
-                            
+                        </div>       
                     </div>
                     <div class="item-info-product ">
                         <h4><a href="single.html" class="js-name-detail">{{$product->prod_name}}</a></h4>

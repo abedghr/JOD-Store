@@ -6,7 +6,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Manage Admins</h1>
+            <h1>Manage Employees</h1>
           </div>
           {{-- <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -27,7 +27,7 @@
             <!-- general form elements -->
             <div class="card card-secondary">
               <div class="card-header">
-                <h3 class="card-title">Add New Admin</h3>
+                <h3 class="card-title">Add New Employee</h3>
               </div>
               
               <!-- /.card-header -->
@@ -36,23 +36,30 @@
                 @csrf
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Admin Name<span class="text-danger">*</span></label>
+                    <label for="exampleInputEmail1">Employee Name<span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="exampleInputEmail1" name="admin_name" placeholder="Enter Admin name">
                     @error('admin_name')
                         <small class="text-danger"><strong>{{$message}}</strong></small>
                     @enderror
                 </div>
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Admin Email<span class="text-danger">*</span></label>
+                    <label for="exampleInputEmail1">Employee Email<span class="text-danger">*</span></label>
                     <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="Enter Admin email">
                     @error('email')
                         <small class="text-danger"><strong>{{$message}}</strong></small>
                     @enderror
                 </div>
                   <div class="form-group">
-                    <label for="exampleInputPassword1">Admin Password<span class="text-danger">*</span></label>
+                    <label for="exampleInputPassword1">Employee Password<span class="text-danger">*</span></label>
                     <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Enter Admin Password">
                     @error('password')
+                        <small class="text-danger"><strong>{{$message}}</strong></small>
+                    @enderror
+                </div>
+                <div class="form-group">
+                  <label for="password-confirm" class="">{{ __('Confirm Password') }}<span class="text-danger">*</span></label>
+                  <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="new-password" placeholder="Confirm password">
+                  @error('password')
                         <small class="text-danger"><strong>{{$message}}</strong></small>
                     @enderror
                 </div>
@@ -72,7 +79,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" name="C_Admin" class="btn btn-primary">Create Admin</button>
+                  <button type="submit" name="C_Admin" class="btn btn-primary">Create Employee</button>
                 </div>
               </form>
             </div>
@@ -85,7 +92,7 @@
 
 <div class="col-md-12">
     <div class="card card-secondary">
-      <div class="card-header">
+      <div class="card-header mb-2">
         <h3 class="card-title">Admins List</h3>
 
         <div class="card-tools">
@@ -96,7 +103,7 @@
       </div>
       <!-- /.card-header -->
       <div class="card-body p-0">
-        <table class="table text-center">
+        <table class="table text-center" id="table">
           <thead>
             <tr>
               <th>Image</th>
@@ -141,3 +148,9 @@
   <!-- /.col -->
 </div>
 @include('Provider_views.includes.provider_footer')
+<script>
+  $(document).ready(function () {
+$('#table').DataTable();
+$('.dataTables_length').addClass('bs-select');
+});
+</script>

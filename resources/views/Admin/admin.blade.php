@@ -63,7 +63,7 @@
               <!-- small box -->
               <div class="small-box bg-success">
                 <div class="inner">
-                  <h3>65</h3>
+                  <h3>{{$providers_active}}</h3>
   
                   <p>Active Stores</p>
                 </div>
@@ -123,7 +123,7 @@
               <!-- small box -->
               <div class="small-box bg-danger">
                 <div class="inner">
-                  <h3>65</h3>
+                  <h3>{{$providers_disabled}}</h3>
   
                   <p>Disabled Stores</p>
                 </div>

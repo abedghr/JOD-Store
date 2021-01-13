@@ -88,7 +88,7 @@
 											
 										</div>
 									</div>
-									<p class="pl-4 mt-1">{{$comment->comment}} {{$reviewed}}</p>
+									<p class="pl-4 mt-1">{{$comment->comment}}</p>
 								</div>
 								<div class="col-md-1">
 									@if (isset($user))
@@ -137,7 +137,7 @@
 										<h5 class="mb-2">Product Rate</h5>
 										<a href="#" style="color:#2fdab8;">
 											<i class="fa fa-star fa-4x"></i>
-											<h4 class="text-dark">{{$product_rate}} STAR</h4>
+											<h4 class="text-dark">{{number_format($product_rate,1)}} STAR</h4>
 										</a>
 										@if (isset($rating[0]))
 										<div class="rating_list text-left mt-2 ml-4" id="yourRateBox">
@@ -246,7 +246,6 @@
 												<a href="{{route('product.show2',['id'=>$Rproduct->id])}}" class="link-product-add-cart">Quick View</a>
 											</div>
 										</div>
-										<span class="product-new-top">New</span>
 										
 								</div>
 								<div class="item-info-product ">

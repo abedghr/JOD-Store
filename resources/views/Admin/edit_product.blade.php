@@ -236,10 +236,10 @@
               <img src="../../img/Product_images/{{$image->image}}" width="80%" height="250" class="rounded" alt="">
               </td>
               <td>
-              <form method="post" action="{{route('product_provider_image.delete',['id'=>$image->id])}}" style="display: inline">
+              <form method="post" action="{{route('ad_product_provider_image.delete',['id'=>$image->id])}}" style="display: inline">
                   @csrf
                   @method('delete')
-              <button onclick="return confirm('Are you sure ?')" type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                  <button onclick="return confirm('Are you sure ?')" type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
               </form>
               </td>
             </tr>

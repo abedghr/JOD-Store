@@ -137,7 +137,7 @@
                                     <a href="{{route('product.show2',['id'=>$product->id])}}" class="link-product-add-cart">Quick View</a>
                                 </div>
                             </div>
-                            <span class="product-new-top">New</span>
+                            
                             
                     </div>
                     <div class="item-info-product ">
@@ -242,7 +242,7 @@
                  'cat_id':"{{$category_active}}"
              },
              success:function(data){
-             $('.prod_content').html(data.arr);
+             $('.prod_content').html(data);
              }
          });
      }

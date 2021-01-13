@@ -113,27 +113,32 @@
           <hr>
       </div>
       <div class="col-md-12 row">
-        @foreach ($productsOrder as $prod)
-              @if ($order->id == $prod['order_id'])
-              <div class="col-md-3 mt-3">
-                  <img src="../../img/Product_images/{{$prod['image']}}" width="100%" height="200" alt="">
-              </div>
-              <div class="col-md-9 mt-3">
-                <strong>
-                    <p class="mb-3">Product Name : {{$prod['prod_name']}}</p>
-                    <p class="mb-3">Price : JD{{$prod['price']}}</p>
-                    <p class="mb-3">Quantity : {{$prod['quantity']}}</p>
-                    <p class="mb-3">Category : {{$prod['category']}}</p>
-                    <p class="mb-3">Store : {{$prod['provider']}}</p>
-                </strong>
+        @foreach ($order->prodOfOrder as $prod)
+          @if ($order->id == $prod->order_id)
+          
+          <div class="col-md-3 mt-3">
+              <img src="../../img/Product_images/{{$prod->main_image}}" width="100%" height="200" alt="">
+          </div>
+          <div class="col-md-3 mt-3">
+            <strong>
+                <p class="mb-3">Product Name : {{$prod->prod_name}}</p>
+                <p class="mb-3">Price : JD{{$prod->price}}</p>
+                <p class="mb-3">Quantity : {{$prod->quantity}}</p>
+                <p class="mb-3">Category : {{$prod->category}}</p>
+                <p class="mb-3">Store : {{$prod->provider}}</p>
+            </strong>
             </div>
-              @endif
-        @endforeach
+          @endif
+          @endforeach 
+
+       
       </div>        
       </div>
       {{-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
     </div>
 @endforeach
+@else
+<div class="alert alert-danger"><h4>There Is no Order</h4></div>
 @endif
 
 </div>

@@ -1,5 +1,16 @@
 <?php $guard="provider" ?>
 @include('Provider_views.includes.provider_header')
+<style>
+    input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    display: inline-block;
+    border-radius: 4px;
+    box-sizing: border-box;
+    outline: none;
+    border: 1px solid #cccccc;
+}
+</style>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     

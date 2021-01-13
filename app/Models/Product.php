@@ -32,5 +32,8 @@ class Product extends Model
     public function comment(){
         return $this->hasMany(Comment::class);
     }
-    
+    public function productImages()
+    {
+        return $this->hasMany(ProductsImages::class);
+    }
 }

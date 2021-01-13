@@ -45,7 +45,7 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                <label for="exampleInputFile">Category Image</label>
+                <label for="exampleInputFile">Category Image <span class="text-danger">Optional</span></label>
                 <div class="input-group">
                     <div class="custom-file">
                     <input type="file" name="cat_image" class="custom-file-input" id="exampleInputFile">

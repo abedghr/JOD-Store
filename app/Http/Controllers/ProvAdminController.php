@@ -33,6 +33,7 @@ class ProvAdminController extends Controller
         $valid = $request->validate([
             'name'=>'required|string',
             'email'=>'required|email',
+            'password'=>'confirmed',
         ]);
         if(isset($request->password) || !empty($request->password)){
         $provAdmin = AdminsOfProvider::where('id',$id)->update([

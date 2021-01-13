@@ -71,7 +71,7 @@
 <!-- /.col -->
 <div class="col-md-12">
     <div class="card">
-      <div class="card-header">
+      <div class="card-header bg-secondary mb-2">
         <h3 class="card-title">Related Products</h3>
 
         <div class="card-tools">
@@ -82,7 +82,7 @@
       </div>
       <!-- /.card-header -->
       <div class="card-body p-0">
-        <table class="table text-center">
+        <table class="table text-center" id="table">
           <thead>
             <tr>
               <th style="width: 10px">#</th>
@@ -125,3 +125,9 @@
 </div>
 
 @include('Admin.includes.admin_footer')
+<script>
+  $(document).ready(function () {
+$('#table').DataTable();
+$('.dataTables_length').addClass('bs-select');
+});
+</script>

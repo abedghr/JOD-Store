@@ -5,7 +5,7 @@
 <!-- /.col -->
 <div class="col-md-12">
     <div class="card">
-        <div class="card-header  bg-secondary text-light">
+        <div class="card-header bg-secondary text-light">
             <h3 class="card-title">Order Products</h3>
         </div>
         <div class="card-body p-0">

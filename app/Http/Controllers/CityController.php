@@ -44,7 +44,7 @@ class CityController extends Controller
     public function store(Request $request)
     {
         $valid = $request->validate([
-            'city_name'=>'required|string',
+            'city_name'=>'required|string|unique:cities,city',
             'delivery_price'=>'required|numeric'
         ]);
 

@@ -45,6 +45,8 @@ class AdminController extends Controller
         $orders_number = Order::all()->count();
         $sum_order_sales = Order::where('order_status',3)->get()->sum('total_price');
         $providers_number = Provider::all()->count();
+        $providers_disabled = Provider::where('subscribe',0)->count();
+        $providers_active = Provider::where('subscribe','<>',0)->count();
         $all_users = User::all()->count();
         $users_messages = AdminFeedback::all()->count();
         $cities = City::all()->count();
@@ -53,6 +55,8 @@ class AdminController extends Controller
             'orders_number' => $orders_number,
             'sum_order_sales' => $sum_order_sales,
             'providers_number' => $providers_number,
+            'providers_disabled'=>$providers_disabled,
+            'providers_active'=>$providers_active,
             'all_users' => $all_users,
             'users_messages' => $users_messages,
             'cities' => $cities,

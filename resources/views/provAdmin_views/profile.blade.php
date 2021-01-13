@@ -25,7 +25,7 @@
                         <div class="col-md-8 mt-2">
                             <h4><strong>Name :</strong> {{Auth::user()->name}}</h4>
                             <h4><strong>Email :</strong> {{Auth::user()->email}}</h4>
-                            <h4><strong>Provider : "{{Auth::user()->MainProvider->name}}"</strong></h4>
+                            <h4><strong>Store : "{{Auth::user()->MainProvider->name}}"</strong></h4>
                             <h4><strong>Created At :</strong> {{Auth::user()->created_at->format('Y-m-d')}}</h4>
                         </div>
                     </div>
@@ -59,26 +59,35 @@
             @method("put")
             <div class="card-body">
               <div class="form-group">
-                <label for="exampleInputEmail1">Provider Name<span class="text-danger">*</span></label>
+                <label for="exampleInputEmail1">Employee Name<span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="exampleInputEmail1" value="{{Auth::user()->name}}" name="name" placeholder="Enter Provider name">
                 @error('prov_name')
                     <small class="text-danger"><strong>{{$message}}</strong></small>
                 @enderror
               </div>
               <div class="form-group">
-                <label for="exampleInputEmail1">Provider Email<span class="text-danger">*</span></label>
+                <label for="exampleInputEmail1">Employee Email<span class="text-danger">*</span></label>
                 <input type="email" class="form-control" id="exampleInputEmail1" value="{{Auth::user()->email}}" name="email" placeholder="Enter Provider email">
                 @error('email')
                     <small class="text-danger"><strong>{{$message}}</strong></small>
                 @enderror
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword1">Provider Password<span class="text-danger">*</span></label>
+                <label for="exampleInputPassword1">Employee Password<span class="text-danger"> Optional</span></label>
                 <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Enter a new password if you want to change it">
                 @error('password')
                     <small class="text-danger"><strong>{{$message}}</strong></small>
                 @enderror
-            </div> 
+            </div>
+            <div class="form-group">
+              <label for="password-confirm" class="">{{ __('Confirm Password') }}</label>
+              <input id="password-confirm" type="password" class="form-control @error('password') is-invalid @enderror" name="password_confirmation" autocomplete="new-password" placeholder="Confirm password">
+              @error('password')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+              @enderror
+            </div>
             <div class="card-footer">
               <button type="submit" name="" class="btn btn-primary">Update Profile</button>
             </div> 

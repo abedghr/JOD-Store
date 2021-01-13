@@ -100,6 +100,9 @@ Route::group(['prefix' => 'admin'], function () {
     // Delete Product Route
     Route::delete('/delete_product/{id}','ProductController@destroy')->name('product.destroy');
 
+    // Delete Product Image Route
+    Route::delete('/delete_product_image/{id}','ProductController@delete_image')->name('ad_product_provider_image.delete');
+
     // Edit Product Route
     Route::get('/edit_product/{id}','ProductController@edit')->name('product.edit');
 
@@ -169,10 +172,15 @@ Route::group(['prefix' => 'provider'], function () {
     Route::get('/password/reset/{token}','Auth\ProviderResetPasswordController@showResetForm')->name('provider.password.reset');
     Route::post('/password/reset','Auth\ProviderResetPasswordController@reset')->name('provider.password.update');
 
+    // Check Subscribe Route
+    Route::get('/renewal_subscribe','ProviderController@renewal_subscirbe')->name('subscribe_renewal');
+
+    // Get Checkout Route
+    Route::GET('/get-checkout-id','PaymentProviderController@getCheckoutId')->name('get.chec    kout');
 
 
     // Dashboard Route
-    Route::get('/','ProviderController@index')->name('provider.dashboard')->middleware('preventbackbutton','verified');
+    Route::get('/','ProviderController@index')->name('provider.dashboard')->middleware('preventbackbutton','verified','CheckSubscribe');
     
     
     // Register Route
@@ -183,13 +191,13 @@ Route::group(['prefix' => 'provider'], function () {
     Route::put('/update_provider/{id}','ProviderController@update')->name('provider_profile.update');
 
     // Manage Admins of Providers Route 
-    Route::get('/manage_admin','AdminProviderController@create')->name('admin_provider.create')->middleware('preventbackbutton','verified');
+    Route::get('/manage_admin','AdminProviderController@create')->name('admin_provider.create')->middleware('preventbackbutton','verified','CheckSubscribe');
 
     // Store Admin-Provider Route
     Route::post('/store_admin_provider','AdminProviderController@store')->name('admin_provider.store');
 
     // Edit Admin-Provider Route
-    Route::get('/edit_admin/{id}','AdminProviderController@edit')->name('admin_provider.edit')->middleware('preventbackbutton','verified');
+    Route::get('/edit_admin/{id}','AdminProviderController@edit')->name('admin_provider.edit')->middleware('preventbackbutton','verified','CheckSubscribe');
 
     // Update Admin-Provider Route
     Route::put('/admin_provider/{id}','AdminProviderController@update')->name('admin_provider.update');
@@ -198,34 +206,34 @@ Route::group(['prefix' => 'provider'], function () {
     Route::delete('/delete_admin/{id}','AdminProviderController@destroy')->name('admin_provider.destroy');
 
     // Manage Provider-Product Route
-    Route::get('/manage_product','ProviderProductController@create')->name('product_provider.create')->middleware('preventbackbutton','verified');
+    Route::get('/manage_product','ProviderProductController@create')->name('product_provider.create')->middleware('preventbackbutton','verified','CheckSubscribe');
 
     // Store Provider-Product Route
     Route::post('/store_product','ProviderProductController@store')->name('product_provider.store');
 
     // Edit Provider-product Route
-    Route::get('/edit_product/{id}','ProviderProductController@edit')->name('product_provider.edit')->middleware('preventbackbutton','verified');
+    Route::get('/edit_product/{id}','ProviderProductController@edit')->name('product_provider.edit')->middleware('preventbackbutton','verified','CheckSubscribe');
 
     // Update Provider-Product Route
     Route::put('/product/{id}','ProviderProductController@update')->name('product_provider.update');
 
     // Show Provider-Product Route
-    Route::get('/show_product/{id}','ProviderProductController@show')->name('product_provider.show')->middleware('preventbackbutton','verified');
+    Route::get('/show_product/{id}','ProviderProductController@show')->name('product_provider.show')->middleware('preventbackbutton','verified','CheckSubscribe');
 
     // Delete Provider-Product Route
     Route::delete('/delete_product/{id}','ProviderProductController@destroy')->name('product_provider.destroy');
 
-    // Delete Provider Image Route
+    // Delete Product Image Route
     Route::delete('/delete_product_image/{id}','ProviderProductController@delete_image')->name('product_provider_image.delete');
 
     // Manage Provider-Related Route
-    Route::get('/manage_related','ProviderRelatedController@create')->name('related_provider.create')->middleware('preventbackbutton','verified');
+    Route::get('/manage_related','ProviderRelatedController@create')->name('related_provider.create')->middleware('preventbackbutton','verified','CheckSubscribe');
 
     // Store Related Route 
     Route::post('/related','ProviderRelatedController@store')->name('related_provider.store');
 
     // Edit Related Route 
-    Route::get('/related/{id}/edit','ProviderRelatedController@edit')->name('related_provider.edit')->middleware('preventbackbutton','verified');
+    Route::get('/related/{id}/edit','ProviderRelatedController@edit')->name('related_provider.edit')->middleware('preventbackbutton','verified','CheckSubscribe');
 
     // Update Related Route 
     Route::put('/related/{id}','ProviderRelatedController@update')->name('related_provider.update');
@@ -234,20 +242,20 @@ Route::group(['prefix' => 'provider'], function () {
     Route::delete('/related/{id}','ProviderRelatedController@destroy')->name('related_provider.destroy');
 
     // Show Feedbacks Routes
-    Route::get('/feedback','ProviderFeedbacksController@index')->name('provider_feedback.index')->middleware('preventbackbutton','verified');
-    Route::get('/show_feedback/{id}','ProviderFeedbacksController@show')->name('provider_feedback.show')->middleware('preventbackbutton','verified');
+    Route::get('/feedback','ProviderFeedbacksController@index')->name('provider_feedback.index')->middleware('preventbackbutton','verified','CheckSubscribe');
+    Route::get('/show_feedback/{id}','ProviderFeedbacksController@show')->name('provider_feedback.show')->middleware('preventbackbutton','verified','CheckSubscribe');
 
     // Profile Route
-    Route::get('/profile','ProviderController@profile')->name('provider.profile')->middleware('preventbackbutton','verified');
+    Route::get('/profile','ProviderController@profile')->name('provider.profile')->middleware('preventbackbutton','verified','CheckSubscribe');
 
     // Category Routes
     Route::get('/categories_show','ProviderCategoryShow@index')->name('provider_category.index');
     Route::get('/show_category/{id}','ProviderCategoryShow@show')->name('provider_category.show');
 
     // Order Routes
-    Route::get('/orders','OrderController@index')->name('order.index')->middleware('preventbackbutton','verified');
-    Route::get('/orders/{order_id}','OrderController@show')->name('order.show')->middleware('preventbackbutton','verified');
-    Route::get('/order_details/{order_id}','OrderController@show_details')->name('order.showDetails')->middleware('preventbackbutton','verified');
+    Route::get('/orders','OrderController@index')->name('order.index')->middleware('preventbackbutton','verified','CheckSubscribe');
+    Route::get('/orders/{order_id}','OrderController@show')->name('order.show')->middleware('preventbackbutton','verified','CheckSubscribe');
+    Route::get('/order_details/{order_id}','OrderController@show_details')->name('order.showDetails')->middleware('preventbackbutton','verified','CheckSubscribe');
     Route::get('/orders-filter/{status}','OrderController@order_filter')->name('order.filters');
     Route::delete('/delete_order/{id}','OrderController@destroy')->name('order.destroy');
     Route::get('/accept_order','OrderController@accept')->name('orders.accept');
@@ -258,14 +266,14 @@ Route::group(['prefix' => 'provider'], function () {
     
 
     // Notifications Route
-    Route::get('/notifications','ProviderController@all_notifications')->name('provider.allNotifications');
+    Route::get('/notifications','ProviderController@all_notifications')->name('provider.allNotifications')->middleware('preventbackbutton','verified','CheckSubscribe');
     Route::delete('/delete_notification/{id}','ProviderController@delete_notification')->name('notification.destroy');
 
     // Messages Routes 
 
-    Route::get('messages','ProviderController@chat')->name('messages.index');
-    Route::get('message/{id}','ProviderController@getMessage')->name('message');
-    Route::post('message','ProviderController@sendMessage');
+    Route::get('messages','ProviderController@chat')->name('messages.index')->middleware('preventbackbutton','verified','CheckSubscribe');;
+    Route::get('message/{id}','ProviderController@getMessage')->name('message')->middleware('preventbackbutton','verified','CheckSubscribe');;
+    Route::post('message','ProviderController@sendMessage')->middleware('preventbackbutton','verified','CheckSubscribe');;
 
 });
 

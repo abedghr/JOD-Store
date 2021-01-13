@@ -49,7 +49,7 @@ class AdminProviderController extends Controller
         $valid = $request->validate([
             'admin_name'=>'required',
             'email'=>'required|email|unique:admins',
-            'password'=>'required|min:8',
+            'password'=>'required|min:8|confirmed',
         ]);
 
         $admin = AdminsOfProvider::create([

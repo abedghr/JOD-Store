@@ -16,4 +16,8 @@ class Order extends Model
     public function Notify(){
         return $this->belongsTo(Notification::class);
     }
+    public function prodOfOrder(){
+        return $this->hasMany(ProductsOfOrders::class);
+    }
+
 }

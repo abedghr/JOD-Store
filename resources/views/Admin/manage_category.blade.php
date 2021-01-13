@@ -71,18 +71,18 @@
 
 <div class="col-md-12">
     <div class="card card-secondary">
-      <div class="card-header">
+      <div class="card-header mb-2">
         <h3 class="card-title">Categories List</h3>
 
         <div class="card-tools">
           <ul class="pagination pagination-sm float-right">
-            {!! $categories->links() !!}
+            
           </ul>
         </div>
       </div>
       <!-- /.card-header -->
       <div class="card-body p-0">
-        <table class="table text-center">
+        <table class="table text-center" id="table">
           <thead>
             <tr>
               <th>Image</th>
@@ -127,3 +127,9 @@
   <!-- /.col -->
 </div>
 @include('Admin.includes.admin_footer')
+<script>
+  $(document).ready(function () {
+$('#table').DataTable();
+$('.dataTables_length').addClass('bs-select');
+});
+</script>

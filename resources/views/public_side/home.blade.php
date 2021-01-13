@@ -23,7 +23,7 @@
 				<div style="width:100%; height:100%; background-color:rgba(0,0,0,0.6)">
 					<div class="container">
 						<div class="carousel-caption">
-							<h3>Find your best <span>Store</span></h3>
+							<h3>Find <span>your</span> best <span>Store</span></h3>
 							<p>Make shopping from your best store</p>
 							<a class="hvr-outline-out button2" href="{{route('provider.all2')}}">Stores </a>
 						</div>

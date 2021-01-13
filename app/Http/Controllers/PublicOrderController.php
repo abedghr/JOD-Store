@@ -397,9 +397,9 @@ class PublicOrderController extends Controller
     public function show_orders(Request $request){
         $orders = Order::where('phone',$request->user_phone)->select('id','created_at')->get();
         if(!empty($orders[0])){
-            $output = '<header class="card-header mb-4 bg-light" style="border:1px solid silver height:"><h4>Your Orders :<a href="" class=""> View all</a></h4></header>';
+            $output = '<header class="card-header mb-4 bg-light" style="border:1px solid silver height:"><h4>Your Orders :<a href="'.route('user.profile2').'" class=""> View all</a></h4></header>';
             foreach($orders as $order){
-                $output.='<li class="list-group-item">('.$order->created_at->format('Y-m-d').') &nbsp;Order ID : '.$order->id.'  &nbsp;<a href="">View Order</a></li>';
+                $output.='<li class="list-group-item">('.$order->created_at->format('Y-m-d').') &nbsp;Order ID : '.$order->id.'</li>';
             }
         }else{
             $output = "Not Exist!";

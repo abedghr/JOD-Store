@@ -8,8 +8,8 @@
 
 <div class="col-md-12 mt-3">
     <div class="card">
-      <div class="card-header bg-secondary text-light">
-        <h3 class="card-title mt-2"><strong>Orders</strong></h3>
+      <div class="card-header bg-secondary text-light mb-2">
+        <h3 class="card-title mt-2"><strong>All Notifications</strong></h3>
         <div class="card-tools">
             <ul class="float-right pagination pagination-sm float-right">
                 {{-- {{ $notifications->links() }} --}}
@@ -17,7 +17,7 @@
         </div>
       </div>
       <!-- /.card-header -->
-      <div class="card-body p-0 table-responsive mt-5">
+      <div class="card-body p-0 table-responsive">
         <table class="table text-center" id="table">
             <thead>
               <tr>

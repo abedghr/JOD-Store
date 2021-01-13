@@ -271,7 +271,7 @@ comments-box {
 <div class="header-bot">
 	<div class="header-bot_inner_wthreeinfo_header_mid">
 		<div class="col-md-4 header-middle">
-			<h3 style="margin-top:15px;">Multi-vendors Ecommerce</h3>
+			<h4 style="margin-top:15px;" class="text-center">Multi-vendors Ecommerce</h4>
 		</div>
 		<!-- header-bot -->
 			<div class="col-md-4 logo_agile">
@@ -343,7 +343,7 @@ comments-box {
                                             </div>
                                             @foreach ($providers as $provider)
                                             <div class="col-sm-4 text-center">
-                                            <li><a href="{{route('public_provider.profile2',['id'=>$provider->id])}}">{{$provider->name}}{{$provider->subscribe}}</a></li>
+                                            <li><a href="{{route('public_provider.profile2',['id'=>$provider->id])}}">{{$provider->name}}</a></li>
                                             </div>
                                             @endforeach						
 										</ul>
