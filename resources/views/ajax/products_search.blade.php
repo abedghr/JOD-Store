@@ -1,3 +1,4 @@
+@section('main')
 @foreach ($search_products as $product)
 <div class="col-md-4 product-men">
     <div class="men-pro-item simpleCart_shelfItem">
@@ -18,7 +19,7 @@
             <p>Gender: {{$product->gender}}</p>
             <div class="info-product-price">
                 <span class="item_price">{{number_format($product->new_price,2)}} JOD</span>
-                <del>{{number_format($product->old_price,2)}}JOD</del>
+                <del>{{number_format($product->old_price,2)}} JOD</del>
             </div>
             <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
                 <input type="submit" name="submit" value="Add to cart" class="button js-addcart-detail" onclick="addca($product->id)" />
@@ -27,3 +28,5 @@
     </div>
 </div>
 @endforeach
+
+@endsection
