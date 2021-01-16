@@ -275,7 +275,7 @@ comments-box {
 		</div>
 		<!-- header-bot -->
 			<div class="col-md-4 logo_agile">
-				<h1><a href="index.html"><span>J</span>ordan Stores</a></h1>
+				<h1><a href="{{route('home2')}}"><span>J</span>ordan Stores</a></h1>
 			</div>
         <!-- header-bot -->
 		<div class="col-md-4 agileits-social top_content">
