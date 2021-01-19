@@ -31,7 +31,7 @@ class ManageProviderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(){
-        $providers = Provider::select()->orderBy('id','desc')->paginate(5);
+        $providers = Provider::select()->orderBy('id','desc')->get();
         return view('Admin.manage_provider',[
             'providers'=>$providers
         ]);
@@ -64,6 +64,7 @@ class ManageProviderController extends Controller
             }else{
                 $coverImage='default_cover.jpg';
             }
+            
             $provider = Provider::create([
                 'name'=>$request->prov_name,
                 'email'=>$request->email,
@@ -155,26 +156,50 @@ class ManageProviderController extends Controller
                 $coverImage = time(). '.' . $request->file('cover_image')->getClientOriginalName();
                 /* $request->file('cover_image')->storeAs('public/Provider_coverImages',$coverImage); */
                 $request->file('cover_image')->move('img/Provider_coverImages',$coverImage);
-                $provider = Provider::where('id',$id)->update([
-                    'name'=>$request->prov_name,
-                    'email'=>$request->email,
-                    'password'=>Hash::make($request->password),
-                    'phone1'=>$request->phone1,
-                    'phone2'=>$request->phone2,
-                    'image'=>$fileImage,
-                    'cover_image'=>$coverImage,
-                    'description'=>$request->description
-                ]);
+                if(isset($request->password) || $request->password != ""){
+                    $provider = Provider::where('id',$id)->update([
+                        'name'=>$request->prov_name,
+                        'email'=>$request->email,
+                        'password'=>Hash::make($request->password),
+                        'phone1'=>$request->phone1,
+                        'phone2'=>$request->phone2,
+                        'image'=>$fileImage,
+                        'cover_image'=>$coverImage,
+                        'description'=>$request->description
+                    ]);
+                }else{
+                    $provider = Provider::where('id',$id)->update([
+                        'name'=>$request->prov_name,
+                        'email'=>$request->email,
+                        'phone1'=>$request->phone1,
+                        'phone2'=>$request->phone2,
+                        'image'=>$fileImage,
+                        'cover_image'=>$coverImage,
+                        'description'=>$request->description
+                    ]);
+                }
+                
             }else{
-                $provider = Provider::where('id',$id)->update([
-                    'name'=>$request->prov_name,
-                    'email'=>$request->email,
-                    'password'=>Hash::make($request->password),
-                    'phone1'=>$request->phone1,
-                    'phone2'=>$request->phone2,
-                    'image'=>$fileImage,
-                    'description'=>$request->description
-                ]);
+                if(isset($request->password) || $request->password != ""){
+                    $provider = Provider::where('id',$id)->update([
+                        'name'=>$request->prov_name,
+                        'email'=>$request->email,
+                        'password'=>Hash::make($request->password),
+                        'phone1'=>$request->phone1,
+                        'phone2'=>$request->phone2,
+                        'image'=>$fileImage,
+                        'description'=>$request->description
+                    ]);
+                }else{
+                    $provider = Provider::where('id',$id)->update([
+                        'name'=>$request->prov_name,
+                        'email'=>$request->email,
+                        'phone1'=>$request->phone1,
+                        'phone2'=>$request->phone2,
+                        'image'=>$fileImage,
+                        'description'=>$request->description
+                    ]);
+                }
             }
 
             return redirect()->route('manage_provider.create');
@@ -183,24 +208,46 @@ class ManageProviderController extends Controller
                 $coverImage = time(). '.' . $request->file('cover_image')->getClientOriginalName();
                 /* $request->file('cover_image')->storeAs('public/Provider_coverImages',$coverImage); */
                 $request->file('cover_image')->move('img/Provider_coverImages',$coverImage);
-                $provider = Provider::where('id',$id)->update([
-                    'name'=>$request->prov_name,
-                    'email'=>$request->email,
-                    'password'=>Hash::make($request->password),
-                    'phone1'=>$request->phone1,
-                    'phone2'=>$request->phone2,
-                    'cover_image'=>$coverImage,
-                    'description'=>$request->description
-                ]);
+                if(isset($request->password) || $request->password != ""){
+                    $provider = Provider::where('id',$id)->update([
+                        'name'=>$request->prov_name,
+                        'email'=>$request->email,
+                        'password'=>Hash::make($request->password),
+                        'phone1'=>$request->phone1,
+                        'phone2'=>$request->phone2,
+                        'cover_image'=>$coverImage,
+                        'description'=>$request->description
+                    ]);
+                }else{
+                    $provider = Provider::where('id',$id)->update([
+                        'name'=>$request->prov_name,
+                        'email'=>$request->email,
+                        'phone1'=>$request->phone1,
+                        'phone2'=>$request->phone2,
+                        'cover_image'=>$coverImage,
+                        'description'=>$request->description
+                    ]);
+                }
             }else{
-                $provider = Provider::where('id',$id)->update([
-                    'name'=>$request->prov_name,
-                    'email'=>$request->email,
-                    'password'=>Hash::make($request->password),
-                    'phone1'=>$request->phone1,
-                    'phone2'=>$request->phone2,
-                    'description'=>$request->description
-                ]);
+                if(isset($request->password) || $request->password != ""){
+                    $provider = Provider::where('id',$id)->update([
+                        'name'=>$request->prov_name,
+                        'email'=>$request->email,
+                        'password'=>Hash::make($request->password),
+                        'phone1'=>$request->phone1,
+                        'phone2'=>$request->phone2,
+                        'description'=>$request->description
+                    ]);
+                }else{
+                    $provider = Provider::where('id',$id)->update([
+                        'name'=>$request->prov_name,
+                        'email'=>$request->email,
+                        'phone1'=>$request->phone1,
+                        'phone2'=>$request->phone2,
+                        'description'=>$request->description
+                    ]);
+                }
+                
             }
             return redirect()->route('manage_provider.create');
         }

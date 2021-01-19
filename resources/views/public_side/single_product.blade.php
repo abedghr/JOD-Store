@@ -5,7 +5,7 @@
   <!-- banner-bootom-w3-agileits -->
 <div class="banner-bootom-w3-agileits">
 	<div class="container">
-	     <div class="col-md-6 single-right-left ">
+	     <div class="col-md-4 single-right-left ">
 			<div class="grid images_3_of_2">
 				<div class="flexslider">
 					
@@ -238,16 +238,16 @@
 				@foreach ($related_products as $Rproduct)	
 					<div class="col-md-3 product-men single">
 						<div class="men-pro-item simpleCart_shelfItem">
-							<div class="men-thumb-item">
-								<img src="../img/Product_images/{{$Rproduct->main_image}}" alt="" class="pro-image-front">
-								<img src="../img/Product_images/{{$Rproduct->main_image}}" alt="" class="pro-image-back">
-									<div class="men-cart-pro">
-										<div class="inner-men-cart-pro">
-											<a href="{{route('product.show2',['id'=>$Rproduct->id])}}" class="link-product-add-cart">Quick View</a>
-										</div>
+							<div class="men-thumb-item" style="height: 250px; background-image:url('../img/Product_images/{{$product->main_image}}'); background-size:100% 100%;">
+                        
+								<div class="men-cart-pro">
+									<div class="inner-men-cart-pro">
+										<a href="{{route('product.show2',['id'=>$product->id])}}" class="link-product-add-cart">Quick View</a>
 									</div>
-									
-							</div>
+								</div>
+								
+								
+						</div>
 							<div class="item-info-product ">
 								<h4><a href="" class="js-name-detail">{{$Rproduct->prod_name}}</a></h4>
 								<p><a href="">Store: {{$Rproduct->prov->name}}</a></p>

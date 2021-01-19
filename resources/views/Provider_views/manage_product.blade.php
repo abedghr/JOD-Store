@@ -89,7 +89,7 @@
                             <select name="gender" id="" class="form-control">
                                 <option value="men">Men</option>
                                 <option value="women">Women</option>
-                                <option value="multiGender">Multi-Gender</option>
+                                <option value="for both">For Both</option>
                             </select>
                             @error('phone2')
                                 <small class="text-danger"><strong>{{$message}}</strong></small>
@@ -135,8 +135,11 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Inventory <span class="text-danger"> Optional</span></label>
+                            <label for="exampleInputPassword1">Inventory <span class="text-danger">*</span></label>
                             <input type="number" name="inventory" class="form-control">
+                            @error('inventory')
+                                <small class="text-danger"><strong>{{$message}}</strong></small>
+                            @enderror
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -221,7 +224,7 @@
               <th>Category</th>
               <th>Gender</th>
               <th>Inventory</th>
-              <th style="width: 40px">Actions</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -238,7 +241,7 @@
                 <td>{{$product->cat->cat_name}}</td>
                 <td>{{$product->gender}}</td>
                 <td>{{$product->inventory}} Item</td>  
-                <td style="width:200px;">
+                <td>
                   <div class="fb-share-button" data-href="http://jordan-store.herokuapp.com/singleProduct/{{$product->id}}" data-layout="button" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div><br>
                   <div class="mt-2">
                     <a href="{{route('product_provider.show',['id'=> $product->id])}}" class="btn btn-warning"><i class="fa fa-eye"></i></a>
@@ -266,9 +269,10 @@
   <!-- /.col -->
 </div>
 @include('Provider_views.includes.provider_footer')
+
 <script>
 $(document).ready(function () {
 $('#table').DataTable();
-$('.dataTables_length').addClass('bs-select');
+
 });
 </script>

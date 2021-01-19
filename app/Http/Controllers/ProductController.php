@@ -32,7 +32,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $products = Product::select()->orderBy('id','desc')->paginate(10);
+        $products = Product::select()->orderBy('id','desc')->get();
         $categories = Category::all();
         $related = Related::all();
         $providers = Provider::all();

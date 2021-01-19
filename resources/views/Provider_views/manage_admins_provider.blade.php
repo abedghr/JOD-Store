@@ -114,7 +114,7 @@
             </tr>
           </thead>
           <tbody>
-              <?php $i=1;?>
+            <?php $i=1;?>
               
               @foreach ($admins as $admin)
               <tr>

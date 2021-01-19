@@ -11,7 +11,7 @@ class Category extends Model
     use Notifiable;
     
     protected $fillable=[
-        'cat_name','cat_image','providers_number'
+        'cat_name','cat_image'
     ];
 
     public function product()

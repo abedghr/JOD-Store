@@ -32,7 +32,7 @@ class ProviderProductController extends Controller
      */
     public function create()
     {
-        $products = Product::where('provider',Auth::user()->id)->select()->orderBy('id','desc')->paginate(10);
+        $products = Product::where('provider',Auth::user()->id)->select()->orderBy('id','desc')->get();
         $categories = Category::all();
         $related = Related::all();
         return view('Provider_views.manage_product',[
@@ -53,10 +53,10 @@ class ProviderProductController extends Controller
         $valid = $request->validate([
             'prod_name'=>'required',
             'description'=>'required',
-            'old_price'=>'numeric',
             'new_price'=>'required|numeric',
             'cat'=>'required',
-            'gender'=>'required'
+            'gender'=>'required',
+            'inventory'=>'required'
         ]);
         if($request->hasFile('main_image')){
             $Image = time().'.'.$request->file('main_image')->getClientOriginalName();
@@ -181,10 +181,10 @@ class ProviderProductController extends Controller
         $valid = $request->validate([
             'prod_name'=>'required',
             'description'=>'required',
-            'old_price'=>'numeric',
             'new_price'=>'required|numeric',
             'cat'=>'required',
-            'gender'=>'required'
+            'gender'=>'required',
+            'inventory'=>'required'
         ]);
         if($request->hasFile('main_image')){
             $Image = time().'.'.$request->file('main_image')->getClientOriginalName();

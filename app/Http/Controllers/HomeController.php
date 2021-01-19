@@ -31,9 +31,9 @@ class HomeController extends Controller
     public function index2(){
         $user = session()->get('user');
         $category = Category::all();
-        $newest_prod = Product::select()->orderBy('created_at','desc')->get();
+        $newest_prod = Product::select()->orderBy('created_at','desc')->limit(20)->get();
         $providers = Provider::where('email_verified_at','<>',null)->get();
-        $top_products = Product::select()->orderBy('number_of_bought','desc')->limit(12)->get();
+        $top_products = Product::select()->orderBy('number_of_bought','desc')->limit(16)->get();
         if(session()->has("user")){
             return view('public_side.home',[
             'categories' => $category,

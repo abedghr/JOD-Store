@@ -90,7 +90,7 @@
                             <select name="gender" id="" class="form-control">
                                 <option value="men"  @if ($product->gender == "men") selected @endif>Men</option>
                                 <option value="women" @if ($product->gender == "women") selected @endif>Women</option>
-                                <option value="multiGender" @if ($product->gender == "multiGender") selected @endif>Multi-Gender</option>
+                                <option value="for both" @if ($product->gender == "for both") selected @endif>For Both</option>
                             </select>
                             @error('gender')
                                 <small class="text-danger"><strong>{{$message}}</strong></small>
@@ -136,8 +136,11 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
-                          <label for="exampleInputPassword1">Inventory <span class="text-danger"> Optional</span></label>
+                          <label for="exampleInputPassword1">Inventory <span class="text-danger">*</span></label>
                           <input type="number" class="form-control" name="inventory" value="{{$product->inventory}}">
+                          @error('inventory')
+                                <small class="text-danger"><strong>{{$message}}</strong></small>
+                            @enderror
                         </div>
                     </div>
                     <div class="col-md-4">

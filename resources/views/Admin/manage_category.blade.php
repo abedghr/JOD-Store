@@ -87,7 +87,6 @@
             <tr>
               <th>Image</th>
               <th>Name</th>
-              <th>Providers Number</th>
               <th>Created At</th>
               <th style="width: 40px">Actions</th>
             </tr>
@@ -101,7 +100,6 @@
                 <img src="../img/Category_images/{{$cat->cat_image}}" width="60" height="60" class="rounded-circle" alt="">
                 </td>
                 <td>{{$cat->cat_name}}</td>
-                <td>{{$cat->providers_number}}</td>
                 <td>{{$cat->created_at->format('Y-m-d')}}</td>
                 <td style="width:200px;">
                 <a href="{{route('category.edit',['id'=> $cat->id])}}" class="btn btn-info">Update</a>
