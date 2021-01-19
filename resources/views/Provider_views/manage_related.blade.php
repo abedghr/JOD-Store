@@ -69,7 +69,7 @@
         </div>
       </div>
       <!-- /.card-header -->
-      <div class="card-body p-0">
+      <div class="card-body table-responsive p-0">
         <table class="table text-center" id="table">
           <thead>
             <tr>

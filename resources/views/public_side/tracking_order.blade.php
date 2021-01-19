@@ -73,7 +73,7 @@
             },
             success:function(data){
                 if(data != 'Not Exist!'){
-                    $('#tracking-box').html(data);
+                    $('#tracking-box').html(data.content);
                 }else{
                     $feed = "There Is No Order in this ID";
                     swal($feed, " ", "error");
@@ -93,7 +93,7 @@
             },
             success:function(data){
                 if(data != 'Not Exist!'){
-                $('#orders_view').html(data);
+                $('#orders_view').html(data.content);
                 }else{
                     $feed = "You Dont Have Orders";
                     swal($feed, " ", "error");

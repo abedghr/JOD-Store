@@ -1,6 +1,17 @@
 <?php $guard="admin_provider" ?>
 
 @include('provAdmin_views.includes.provAdmin_header')
+<style>
+    input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    display: inline-block;
+    border-radius: 4px;
+    box-sizing: border-box;
+    outline: none;
+    border: 1px solid #cccccc;
+}
+</style>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     

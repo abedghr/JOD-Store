@@ -52,7 +52,7 @@
 			<h5>All Products</h5>
 			<div class="sort-grid row">
 				<div class="col-md-6">
-					<input type="search" class="sorting form-control" id="search" onkeyup="search()" style="width:335px !important" placeholder="Search ..">
+					<input type="search" class="sorting form-control" id="search" onkeyup="search()" style="width:100% !important" placeholder="Search ..">
 					
 				</div>
 				<div class="col-md-6">
@@ -153,8 +153,8 @@
                  },
                  dataType : 'json',
                  success:function(data){
-                     if(data.row_result != ""){
-                     $('.prod_content').html(data.row_result);
+                     if(data.content != ""){
+                     $('.prod_content').html(data.content);
                      }else{
                          $('.prod_content').html(old_data);
                      }

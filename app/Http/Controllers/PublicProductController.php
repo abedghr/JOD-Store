@@ -176,152 +176,41 @@ class PublicProductController extends Controller
 
     public function search2(Request $request){
         $search_products = Product::where('prod_name','like', '%'.$request->data_search.'%')->paginate(12);
+        $view = view('ajax.products_search')->with(['search_products'=>$search_products])->renderSections();
+        return response()->json([
+            'status' => true,
+            'content'=>$view['main']
+        ]);
         
-        $output = '';
-        foreach($search_products as $product){
-            $output.='<div class="col-md-4 product-men">
-            <div class="men-pro-item simpleCart_shelfItem">
-                <div class="men-thumb-item">
-                    <img src="../img/Product_images/'.$product->main_image.'" alt="" class="pro-image-front">
-                    <img src="../img/Product_images/'.$product->main_image.'" alt="" class="pro-image-back">
-                        <div class="men-cart-pro">
-                            <div class="inner-men-cart-pro">
-                                <a href="'.route('product.show2',['id'=>$product->id]).'" class="link-product-add-cart">Quick View</a>
-                            </div>
-                        </div>
-                        
-                        
-                </div>
-                <div class="item-info-product ">
-                    <h4><a href="single.html" class="js-name-detail">'.$product->prod_name.'</a></h4>
-                    <p><a href="">Store: '.$product->prov->name.'</a></p>
-                    <p>Gender: '.$product->gender.'</p>
-                    <div class="info-product-price">
-                        <span class="item_price">'.number_format($product->new_price,2).'JOD</span>
-                        <del>'.number_format($product->old_price,2).'JOD</del>
-                    </div>
-                    <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-                        <input type="submit" name="submit" value="Add to cart" class="button js-addcart-detail" onclick="addca('.$product->id.')" />
-                    </div>
-                </div>
-            </div>
-        </div>';
-        }
-        return $data = array(
-            'row_result'=>$output,
-        );
     }
 
     public function search_vendors_products2(Request $request){
         $search_products = Product::where('prod_name','like', '%'.$request->data_search.'%')->where('provider',$request->prov_id)->paginate(12);
-        
-        $output = '';
-        foreach($search_products as $product){
-            $output.='<div class="col-md-4 product-men">
-            <div class="men-pro-item simpleCart_shelfItem">
-                <div class="men-thumb-item">
-                    <img src="../img/Product_images/'.$product->main_image.'" alt="" class="pro-image-front">
-                    <img src="../img/Product_images/'.$product->main_image.'" alt="" class="pro-image-back">
-                        <div class="men-cart-pro">
-                            <div class="inner-men-cart-pro">
-                                <a href="'.route('product.show2',['id'=>$product->id]).'" class="link-product-add-cart">Quick View</a>
-                            </div>
-                        </div>
-                        
-                        
-                </div>
-                <div class="item-info-product ">
-                    <h4><a href="single.html" class="js-name-detail">'.$product->prod_name.'</a></h4>
-                    <p><a href="">Store: '.$product->prov->name.'</a></p>
-                    <p>Gender: '.$product->gender.'</p>
-                    <div class="info-product-price">
-                        <span class="item_price">'.number_format($product->new_price,2).'JOD</span>
-                        <del>'.number_format($product->old_price,2).'JOD</del>
-                    </div>
-                    <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-                        <input type="submit" name="submit" value="Add to cart" class="button js-addcart-detail" onclick="addca('.$product->id.')" />
-                    </div>
-                </div>
-            </div>
-        </div>';
-        }
-        return $data = array(
-            'row_result'=>$output,
-        );
+        $view = view('ajax.products_search')->with(['search_products'=>$search_products])->renderSections();
+        return response()->json([
+            'status' => true,
+            'content'=>$view['main']
+        ]);
     }
 
     public function search_vendorsCategory_products2(Request $request){
         $search_products = Product::where('prod_name','like', '%'.$request->data_search.'%')->where('provider',$request->prov_id)->where('category',$request->cat_id)->paginate(12);
+        $view = view('ajax.products_search')->with(['search_products'=>$search_products])->renderSections();
+        return response()->json([
+            'status' => true,
+            'content'=>$view['main']
+        ]);
         
-        $output = '';
-        foreach($search_products as $product){
-            $output.='<div class="col-md-4 product-men">
-            <div class="men-pro-item simpleCart_shelfItem">
-                <div class="men-thumb-item">
-                    <img src="../../img/Product_images/'.$product->main_image.'" alt="" class="pro-image-front">
-                    <img src="../../img/Product_images/'.$product->main_image.'" alt="" class="pro-image-back">
-                        <div class="men-cart-pro">
-                            <div class="inner-men-cart-pro">
-                                <a href="'.route('product.show2',['id'=>$product->id]).'" class="link-product-add-cart">Quick View</a>
-                            </div>
-                        </div>
-                        
-                </div>
-                <div class="item-info-product ">
-                    <h4><a href="single.html" class="js-name-detail">'.$product->prod_name.'</a></h4>
-                    <p><a href="">Store: '.$product->prov->name.'</a></p>
-                    <p>Gender: '.$product->gender.'</p>
-                    <div class="info-product-price">
-                        <span class="item_price">'.number_format($product->new_price,2).'JOD</span>
-                        <del>'.number_format($product->old_price,2).'JOD</del>
-                    </div>
-                    <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-                        <input type="submit" name="submit" value="Add to cart" class="button js-addcart-detail" onclick="addca('.$product->id.')" />
-                    </div>
-                </div>
-            </div>
-        </div>';
-        }
-        return $data = array(
-            'row_result'=>$output,
-        );
     }
 
     public function search_vendorsGender_products2(Request $request){
         $search_products = Product::where('prod_name','like', '%'.$request->data_search.'%')->where('provider',$request->prov_id)->where('category',$request->cat_id)->where('gender',$request->gender)->paginate(12);
+        $view = view('ajax.products_gen_search')->with(['search_products'=>$search_products])->renderSections();
+        return response()->json([
+            'status' => true,
+            'content'=>$view['main']
+        ]);
         
-        $output = '';
-        foreach($search_products as $product){
-            $output.='<div class="col-md-4 product-men">
-            <div class="men-pro-item simpleCart_shelfItem">
-                <div class="men-thumb-item">
-                    <img src="../../../img/Product_images/'.$product->main_image.'" alt="" class="pro-image-front">
-                    <img src="../../../img/Product_images/'.$product->main_image.'" alt="" class="pro-image-back">
-                        <div class="men-cart-pro">
-                            <div class="inner-men-cart-pro">
-                                <a href="'.route('product.show2',['id'=>$product->id]).'" class="link-product-add-cart">Quick View</a>
-                            </div>
-                        </div>
-                        
-                </div>
-                <div class="item-info-product ">
-                    <h4><a href="single.html" class="js-name-detail">'.$product->prod_name.'</a></h4>
-                    <p><a href="">Store: '.$product->prov->name.'</a></p>
-                    <p>Gender: '.$product->gender.'</p>
-                    <div class="info-product-price">
-                        <span class="item_price">'.number_format($product->new_price,2).'JOD</span>
-                        <del>'.number_format($product->old_price,2).'JOD</del>
-                    </div>
-                    <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-                        <input type="submit" name="submit" value="Add to cart" class="button js-addcart-detail" onclick="addca('.$product->id.')" />
-                    </div>
-                </div>
-            </div>
-        </div>';
-        }
-        return $data = array(
-            'row_result'=>$output,
-        );
     }
 
     public function filter2(Request $request){
@@ -402,76 +291,15 @@ class PublicProductController extends Controller
             'filter'=>$filter
         ]);
         
-        /* $output = '';
-        foreach($filter as $product){
-            $output.='<div class="col-md-4 product-men">
-            <div class="men-pro-item simpleCart_shelfItem">
-                <div class="men-thumb-item">
-                    <img src="../../../img/Product_images/'.$product->main_image.'" alt="" class="pro-image-front">
-                    <img src="../../../img/Product_images/'.$product->main_image.'" alt="" class="pro-image-back">
-                        <div class="men-cart-pro">
-                            <div class="inner-men-cart-pro">
-                                <a href="'.route('product.show2',['id'=>$product->id]).'" class="link-product-add-cart">Quick View</a>
-                            </div>
-                        </div>
-                        
-                        
-                </div>
-                <div class="item-info-product ">
-                    <h4><a href="single.html" class="js-name-detail">'.$product->prod_name.'</a></h4>
-                    <p><a href="">Store: '.$product->prov->name.'</a></p>
-                    <p>Gender: '.$product->gender.'</p>
-                    <div class="info-product-price">
-                        <span class="item_price">'.number_format($product->new_price,2).'JOD</span>
-                        <del>'.number_format($product->old_price,2).'JOD</del>
-                    </div>
-                    <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-                        <input type="submit" name="submit" value="Add to cart" class="button js-addcart-detail" onclick="addca('.$product->id.')" />
-                    </div>
-                </div>
-            </div>
-        </div>';
-        }
-
-        return $data = array('arr'=>$output); */
     }
 
     public function search_in_singleCategory2(Request $request){
         $search_products = Product::where('prod_name','like', '%'.$request->data_search.'%')->where('category',$request->cat_id)->paginate(12);
-        
-        $output = '';
-        foreach($search_products as $product){
-            $output.='<div class="col-md-4 product-men">
-            <div class="men-pro-item simpleCart_shelfItem">
-                <div class="men-thumb-item">
-                    <img src="../img/Product_images/'.$product->main_image.'" alt="" class="pro-image-front">
-                    <img src="../img/Product_images/'.$product->main_image.'" alt="" class="pro-image-back">
-                        <div class="men-cart-pro">
-                            <div class="inner-men-cart-pro">
-                                <a href="'.route('product.show2',['id'=>$product->id]).'" class="link-product-add-cart">Quick View</a>
-                            </div>
-                        </div>
-                        
-                        
-                </div>
-                <div class="item-info-product ">
-                    <h4><a href="single.html" class="js-name-detail">'.$product->prod_name.'</a></h4>
-                    <p><a href="">Store: '.$product->prov->name.'</a></p>
-                    <p>Gender: '.$product->gender.'</p>
-                    <div class="info-product-price">
-                        <span class="item_price">'.number_format($product->new_price,2).'JOD</span>
-                        <del>'.number_format($product->old_price,2).'JOD</del>
-                    </div>
-                    <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-                        <input type="submit" name="submit" value="Add to cart" class="button js-addcart-detail" onclick="addca('.$product->id.')" />
-                    </div>
-                </div>
-            </div>
-        </div>';
-        }
-        return $data = array(
-            'row_result'=>$output,
-        );
+        $view = view('ajax.products_search')->with(['search_products'=>$search_products])->renderSections();
+        return response()->json([
+            'status' => true,
+            'content'=>$view['main']
+        ]);
     }
 
     public function filter_category2(Request $request){
@@ -496,40 +324,11 @@ class PublicProductController extends Controller
 
     public function search_in_singleGender2(Request $request){
         $search_products = Product::where('prod_name','like', '%'.$request->data_search.'%')->where('category',$request->cat_id)->where('gender',$request->gender)->paginate(12);
-        
-        $output = '';
-        foreach($search_products as $product){
-            $output.='<div class="col-md-4 product-men">
-            <div class="men-pro-item simpleCart_shelfItem">
-                <div class="men-thumb-item">
-                    <img src="../../img/Product_images/'.$product->main_image.'" alt="" class="pro-image-front">
-                    <img src="../../img/Product_images/'.$product->main_image.'" alt="" class="pro-image-back">
-                        <div class="men-cart-pro">
-                            <div class="inner-men-cart-pro">
-                                <a href="'.route('product.show2',['id'=>$product->id]).'" class="link-product-add-cart">Quick View</a>
-                            </div>
-                        </div>
-                        
-                        
-                </div>
-                <div class="item-info-product ">
-                    <h4><a href="single.html" class="js-name-detail">'.$product->prod_name.'</a></h4>
-                    <p><a href="">Store: '.$product->prov->name.'</a></p>
-                    <p>Gender: '.$product->gender.'</p>
-                    <div class="info-product-price">
-                        <span class="item_price">'.number_format($product->new_price,2).'JOD</span>
-                        <del>'.number_format($product->old_price,2).'JOD</del>
-                    </div>
-                    <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-                        <input type="submit" name="submit" value="Add to cart" class="button js-addcart-detail" onclick="addca('.$product->id.')" />
-                    </div>
-                </div>
-            </div>
-        </div>';
-        }
-        return $data = array(
-            'row_result'=>$output,
-        );
+        $view = view('ajax.products_gen_search')->with(['search_products'=>$search_products])->renderSections();
+        return response()->json([
+            'status' => true,
+            'content'=>$view['main']
+        ]);
     }
 
     public function filter_gender2(Request $request){

@@ -3,8 +3,8 @@
 <div class="col-md-4 product-men">
     <div class="men-pro-item simpleCart_shelfItem">
         <div class="men-thumb-item">
-            <img src="../img/Product_images/{{$product->main_image}}" alt="" class="pro-image-front">
-            <img src="../img/Product_images/{{$product->main_image}}" alt="" class="pro-image-back">
+            <img src="../../../img/Product_images/{{$product->main_image}}" alt="" class="pro-image-front">
+            <img src="../../../img/Product_images/{{$product->main_image}}" alt="" class="pro-image-back">
                 <div class="men-cart-pro">
                     <div class="inner-men-cart-pro">
                         <a href="'.route('product.show2',['id'=>$product->id]).'" class="link-product-add-cart">Quick View</a>

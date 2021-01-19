@@ -208,6 +208,7 @@ class OrderController extends Controller
         }
         return view('Provider_views.manage_orders',[
             'orders'=>$orders,
+            'status'=>$request->status,
             'count_products'=>$products_orders
         ]);
     }

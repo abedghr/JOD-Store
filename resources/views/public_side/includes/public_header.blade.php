@@ -318,11 +318,11 @@ comments-box {
 								<div class="agile_inner_drop_nav_info">
 									<div class="col-sm-12 multi-gd-img">
 										<ul class="multi-column-dropdown row">
-                                            <div class="col-sm-4 text-center">
-                                            <li><a href="{{route('product.all2')}}"><strong>All Categories</strong></a></li>
+                                            <div class="col-sm-4 text-left">
+                                            <li><a href="{{route('product.all2')}}"><strong>Shop all</strong></a></li>
                                             </div>
                                             @foreach ($categories as $category)
-                                            <div class="col-sm-4 text-center">
+                                            <div class="col-sm-4 text-left">
                                             <li><a href="{{route('category.show2',['id'=>$category->id])}}">{{$category->cat_name}}</a></li>
                                             </div>
                                             @endforeach
@@ -338,11 +338,11 @@ comments-box {
 								<div class="agile_inner_drop_nav_info">
 									<div class="col-sm-12 multi-gd-img">
 										<ul class="multi-column-dropdown row">
-                                            <div class="col-sm-4 text-center">
+                                            <div class="col-sm-4 text-left">
                                             <li><a href="{{route('provider.all2')}}"><strong>All Stores</strong></a></li>
                                             </div>
                                             @foreach ($providers as $provider)
-                                            <div class="col-sm-4 text-center">
+                                            <div class="col-sm-4 text-left">
                                             <li><a href="{{route('public_provider.profile2',['id'=>$provider->id])}}">{{$provider->name}}</a></li>
                                             </div>
                                             @endforeach						

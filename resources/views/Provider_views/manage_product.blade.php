@@ -204,16 +204,14 @@
     <div class="card card-secondary">
       <div class="card-header">
         <h3 class="card-title">Products List</h3>
-        
         <div class="card-tools">
-          <ul class="pagination pagination-sm float-right">
-            {!! $products->links() !!}
+          <ul class="pagination pagination-sm float-right">  
           </ul>
         </div>
       </div>
       <!-- /.card-header -->
-      <div class="card-body p-0">
-        <table class="table text-center">
+      <div class="card-body table-responsive p-0 mt-3">
+        <table class="table text-center" id="table">
           <thead>
             <tr>
               <th>Image</th>
@@ -268,3 +266,9 @@
   <!-- /.col -->
 </div>
 @include('Provider_views.includes.provider_footer')
+<script>
+$(document).ready(function () {
+$('#table').DataTable();
+$('.dataTables_length').addClass('bs-select');
+});
+</script>

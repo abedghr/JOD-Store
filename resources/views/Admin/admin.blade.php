@@ -20,7 +20,7 @@
               <div class="small-box bg-info">
                 <div class="inner">
                   <h3>{{$users_messages}}</h3>
-                  <p>Users Messages</p>
+                  <p>Users Feedbacks</p>
                 </div>
                 <div class="icon">
                   <i class="fa fa-envelope"></i>
@@ -115,7 +115,7 @@
                 <div class="icon">
                   <i class="ion fa fa-list-alt"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{route('category.create')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->

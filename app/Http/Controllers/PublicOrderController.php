@@ -315,78 +315,44 @@ class PublicOrderController extends Controller
 
     public function show_tracking(Request $request){
         $order = Order::where('id',$request->order_id)->get();
+        
         $output = '';
         if(!empty($order[0])){
             if($order[0]->order_status == 0){
-                $output = '<article class="card">
-                <header class="card-header bg-light"><h4>Order ID: '.$request->order_id.'</h4></header>
-                <div class="card-body">
-                    <div class="track">
-                        <div class="step active"> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text">Order Pending</span> </div>
-                        <div class="step"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text"> Order confirmed</span> </div>
-                        <div class="step"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text"> On Delivery</span> </div>
-                        <div class="step"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Order Done</span> </div>
-                    </div>
-                    <hr>
-                    <a href="#" class="hvr-outline-out button2 btn text-light" data-abc="true" style="border-radius: 0px !important;> <i class="fa fa-eye"></i> Show The order</a>
-                </div>
-            </article>';
+                $view = view('ajax.tracking_order_zero')->with(['order_id'=>$request->order_id])->renderSections();
+                return response()->json([
+                    'status' => true,
+                    'content'=>$view['main']
+                ]);
+                
             }elseif($order[0]->order_status == 1){
-                $output = '<article class="card">
-                <header class="card-header bg-light"><h4>Order ID: '.$request->order_id.'</h4></header>
-                <div class="card-body">
-                    <div class="track">
-                        <div class="step active"> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text">Order Pending</span> </div>
-                        <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text"> Order confirmed</span> </div>
-                        <div class="step active"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text"> On Delivery</span> </div>
-                        <div class="step"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Order Done</span> </div>
-                    </div>
-                    <hr>
-                    <a href="#" class="hvr-outline-out button2 btn text-light" data-abc="true" style="border-radius: 0px !important;> <i class="fa fa-eye"></i> Show The order</a>
-                </div>
-            </article>';
+                $view = view('ajax.tracking_order_one')->with(['order_id'=>$request->order_id])->renderSections();
+                return response()->json([
+                    'status' => true,
+                    'content'=>$view['main']
+                ]);
+                
             }elseif($order[0]->order_status == 3 || $order[0]->order_status == 2){
-                $output = '<article class="card">
-                <header class="card-header bg-light"><h4>Order ID: '.$request->order_id.'</h4></header>
-                <div class="card-body">
-                    <div class="track">
-                        <div class="step active"> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text">Order Pending</span> </div>
-                        <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text"> Order confirmed</span> </div>
-                        <div class="step active"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text"> On Delivery</span> </div>
-                        <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Order Done</span> </div>
-                    </div>
-                    <hr>
-                    <a href="#" class="hvr-outline-out button2 btn text-light" data-abc="true" style="border-radius: 0px !important;> <i class="fa fa-eye"></i> Show The order</a>
-                </div>
-            </article>';
+                $view = view('ajax.tracking_order_2and3')->with(['order_id'=>$request->order_id])->renderSections();
+                return response()->json([
+                    'status' => true,
+                    'content'=>$view['main']
+                ]);
+                
             }elseif($order[0]->order_status == -1 ){
-                $output = '<article class="card">
-                <header class="card-header bg-light"><h4>Order ID: '.$request->order_id.'</h4></header>
-                <div class="card-body">
-                    <div class="track">
-                        <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Order Pending</span> </div>
-                        <div class="step active-failed"> <span class="icon"> <i class="fa fa-times"></i> </span> <span class="text"> Order declined</span> </div>
-                        <div class="step "> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text"> On Delivery</span> </div>
-                        <div class="step "> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Order Done</span> </div>
-                    </div>
-                    <hr>
-                    <a href="#" class="hvr-outline-out button2 btn text-light" data-abc="true" style="border-radius: 0px !important;> <i class="fa fa-eye"></i> Show The order</a>
-                </div>
-            </article>';
+                $view = view('ajax.tracking_order_minusOne')->with(['order_id'=>$request->order_id])->renderSections();
+                return response()->json([
+                    'status' => true,
+                    'content'=>$view['main']
+                ]);
+                
             }elseif($order[0]->order_status == -2){
-                $output = '<article class="card">
-                <header class="card-header bg-light"><h4>Order ID: '.$request->order_id.'</h4></header>
-                <div class="card-body">
-                    <div class="track">
-                        <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Order Pending</span> </div>
-                        <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text"> Order Confirmed</span> </div>
-                        <div class="step active"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text"> On Delivery</span> </div>
-                        <div class="step active-failed"> <span class="icon"> <i class="fa fa-times"></i> </span> <span class="text">Un-received Order</span> </div>
-                    </div>
-                    <hr>
-                    <a href="#" class="hvr-outline-out button2 btn text-light" data-abc="true" style="border-radius: 0px !important;> <i class="fa fa-eye"></i> Show The order</a>
-                </div>
-            </article>';
+                $view = view('ajax.tracking_order_minusTwo')->with(['order_id'=>$request->order_id])->renderSections();
+                return response()->json([
+                    'status' => true,
+                    'content'=>$view['main']
+                ]);
+                
             }
         }else{
             $output = "Not Exist!";
@@ -397,6 +363,11 @@ class PublicOrderController extends Controller
     public function show_orders(Request $request){
         $orders = Order::where('phone',$request->user_phone)->select('id','created_at')->get();
         if(!empty($orders[0])){
+            $view = view('ajax.show_orders')->with(['orders'=>$orders])->renderSections();
+                return response()->json([
+                    'status' => true,
+                    'content'=>$view['main']
+                ]);
             $output = '<header class="card-header mb-4 bg-light" style="border:1px solid silver height:"><h4>Your Orders :<a href="'.route('user.profile2').'" class=""> View all</a></h4></header>';
             foreach($orders as $order){
                 $output.='<li class="list-group-item">('.$order->created_at->format('Y-m-d').') &nbsp;Order ID : '.$order->id.'</li>';

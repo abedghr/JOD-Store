@@ -50,6 +50,9 @@ class ProvAdminController extends Controller
         return redirect()->route('provAdmin.profile');
     }
 
+    public function expire(){
+        return view('provAdmin_views.expire_subscribe');
+    }
 
     public function index(){
         

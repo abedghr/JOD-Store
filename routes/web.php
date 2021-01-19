@@ -176,7 +176,7 @@ Route::group(['prefix' => 'provider'], function () {
     Route::get('/renewal_subscribe','ProviderController@renewal_subscirbe')->name('subscribe_renewal');
 
     // Get Checkout Route
-    Route::GET('/get-checkout-id','PaymentProviderController@getCheckoutId')->name('get.chec    kout');
+    Route::GET('/get-checkout-id','PaymentProviderController@getCheckoutId')->name('get.checkout');
 
 
     // Dashboard Route
@@ -286,25 +286,26 @@ Route::group(['prefix' => 'adminsOfProvider'], function () {
     // Logout Route 
     Route::post('/logout','Auth\ProvAdminLoginController@providerLogout')->name('provAdmin.logout');
 
+    Route::get('/expire_subscribe','ProvAdminController@expire')->name('provAdmin.expire')->middleware('preventbackbutton');
 
     // Dashboard Route
-    Route::get('/','ProvAdminController@index')->name('provAdmin.dashboard')->middleware('preventbackbutton');
+    Route::get('/','ProvAdminController@index')->name('provAdmin.dashboard')->middleware('preventbackbutton','expire');
     
     // Show Feedbacks Routes
-    Route::get('/feedback','ProvAdminFeedbackController@index')->name('provAdmin_feedback.index')->middleware('preventbackbutton','verified');
-    Route::get('/show_feedback/{id}','ProvAdminFeedbackController@show')->name('provAdmin_feedback.show')->middleware('preventbackbutton','verified');
+    Route::get('/feedback','ProvAdminFeedbackController@index')->name('provAdmin_feedback.index')->middleware('preventbackbutton','verified','expire');
+    Route::get('/show_feedback/{id}','ProvAdminFeedbackController@show')->name('provAdmin_feedback.show')->middleware('preventbackbutton','verified','expire');
 
     // Profile Route
-    Route::get('/profile','ProvAdminController@profile')->name('provAdmin.profile')->middleware('preventbackbutton','verified');
+    Route::get('/profile','ProvAdminController@profile')->name('provAdmin.profile')->middleware('preventbackbutton','verified','expire');
     Route::put('/update_provAdmin/{id}','ProvAdminController@update')->name('provAdmin.profile.update');
     // Category Routes
-    Route::get('/categories_show','ProvAdminCategoryController@index')->name('provAdmin_category.index');
-    Route::get('/show_category/{id}','ProvAdminCategoryController@show')->name('provAdmin_category.show');
+    Route::get('/categories_show','ProvAdminCategoryController@index')->name('provAdmin_category.index')->middleware('preventbackbutton','verified','expire');;
+    Route::get('/show_category/{id}','ProvAdminCategoryController@show')->name('provAdmin_category.show')->middleware('preventbackbutton','verified','expire');;
 
     // Order Routes
-    Route::get('/orders','ProvAdminOrderController@index')->name('provAdmin.order.index')->middleware('preventbackbutton','verified');
-    Route::get('/orders/{order_id}','ProvAdminOrderController@show')->name('provAdmin.order.show')->middleware('preventbackbutton','verified');
-    Route::get('/order_details/{order_id}','ProvAdminOrderController@show_details')->name('provAdmin.order.showDetails')->middleware('preventbackbutton','verified');
+    Route::get('/orders','ProvAdminOrderController@index')->name('provAdmin.order.index')->middleware('preventbackbutton','verified','expire');
+    Route::get('/orders/{order_id}','ProvAdminOrderController@show')->name('provAdmin.order.show')->middleware('preventbackbutton','verified','expire');
+    Route::get('/order_details/{order_id}','ProvAdminOrderController@show_details')->name('provAdmin.order.showDetails')->middleware('preventbackbutton','verified','expire');
     Route::get('/orders-filter/{status}','ProvAdminOrderController@order_filter')->name('provAdmin.order.filters');
     Route::delete('/delete_order/{id}','ProvAdminOrderController@destroy')->name('provAdmin.order.destroy');
     Route::get('/accept_order','ProvAdminOrderController@accept')->name('provAdmin.orders.accept');
@@ -321,7 +322,7 @@ Route::group(['prefix' => 'adminsOfProvider'], function () {
 
     // Messages Routes 
 
-    Route::get('messages','provAdminController@chat')->name('provAdmin.messages.index');
+    Route::get('messages','provAdminController@chat')->name('provAdmin.messages.index')->middleware('preventbackbutton','verified','expire');
     Route::get('message/{id}','provAdminController@getMessage')->name('provAdmin.message');
     Route::post('message','provAdminController@sendMessage');
 });
@@ -333,7 +334,8 @@ Route::get('/home','HomeController@index2')->name('home2')->middleware('preventb
 /* Route::get('/category2/{id}','PublicCategoryController@show2')->name('category.show2')->middleware('preventbackbutton'); */
 Route::get('/category-filter','PublicProductController@filter_category2')->name('filter_category2.price');
 Route::get('/search/singleCategory2','PublicProductController@search_in_singleCategory2')->name('single_category2.search');
-/* Route::get('/category2/{id}/{gender}','PublicCategoryController@gender_show2')->name('category_gender2.show')->middleware('preventbackbutton');*/Route::get('/search/singleGender2','PublicProductController@search_in_singleGender2')->name('single_gender.search2');
+/* Route::get('/category2/{id}/{gender}','PublicCategoryController@gender_show2')->name('category_gender2.show')->middleware('preventbackbutton');*/
+Route::get('/search/singleGender2','PublicProductController@search_in_singleGender2')->name('single_gender.search2');
 Route::get('/gender-filter2','PublicProductController@filter_gender2')->name('filter_gender.price2');
 Route::get('/stores','PublicProviderController@all2')->name('provider.all2')->middleware('preventbackbutton');
 Route::get('/search_vendor2','PublicProviderController@search_vendors2')->name('search.vendors2');

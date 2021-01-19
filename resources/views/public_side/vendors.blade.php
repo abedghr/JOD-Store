@@ -83,7 +83,7 @@
             dataType : 'json',
             success:function(data){
                 if(data != ""){
-                    $('.vendors_content').html(data.vendor_arr);
+                    $('.vendors_content').html(data.content);
                 }else{
                     $('.vendors_content').html(old_content);
                 }

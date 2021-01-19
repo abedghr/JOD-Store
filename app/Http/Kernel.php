@@ -63,6 +63,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'preventbackbutton' => \App\Http\Middleware\PreventBackButton::class, 
-        'CheckSubscribe' => \App\Http\Middleware\CheckSubscirbe::class, 
+        'CheckSubscribe' => \App\Http\Middleware\CheckSubscirbe::class,
+        'expire'=> \App\Http\Middleware\expire::class,
     ];
 }

@@ -232,46 +232,48 @@
 	<!--================End Product Description Area =================-->
 	
 	  	<!--/slider_owl-->
-	
+			@if (count($related_products) != 0)
 			<div class="w3_agile_latest_arrivals">
-			<h3 class="wthree_text_info">Related <span>Products</span></h3>
-					@foreach ($related_products as $Rproduct)	
-					  	<div class="col-md-3 product-men single">
-							<div class="men-pro-item simpleCart_shelfItem">
-								<div class="men-thumb-item">
-									<img src="../img/Product_images/{{$Rproduct->main_image}}" alt="" class="pro-image-front">
-									<img src="../img/Product_images/{{$Rproduct->main_image}}" alt="" class="pro-image-back">
-										<div class="men-cart-pro">
-											<div class="inner-men-cart-pro">
-												<a href="{{route('product.show2',['id'=>$Rproduct->id])}}" class="link-product-add-cart">Quick View</a>
-											</div>
+				<h3 class="wthree_text_info">Related <span>Products</span></h3>
+				@foreach ($related_products as $Rproduct)	
+					<div class="col-md-3 product-men single">
+						<div class="men-pro-item simpleCart_shelfItem">
+							<div class="men-thumb-item">
+								<img src="../img/Product_images/{{$Rproduct->main_image}}" alt="" class="pro-image-front">
+								<img src="../img/Product_images/{{$Rproduct->main_image}}" alt="" class="pro-image-back">
+									<div class="men-cart-pro">
+										<div class="inner-men-cart-pro">
+											<a href="{{route('product.show2',['id'=>$Rproduct->id])}}" class="link-product-add-cart">Quick View</a>
 										</div>
-										
-								</div>
-								<div class="item-info-product ">
-									<h4><a href="" class="js-name-detail">{{$Rproduct->prod_name}}</a></h4>
-									<p><a href="">Store: {{$Rproduct->prov->name}}</a></p>
-									<p>Gender: {{$Rproduct->gender}}</p>
-								@if ($Rproduct->old_price != null)
-								<div class="info-product-price">
-                                    <span class="item_price">{{number_format($Rproduct->new_price,2)}}JOD</span>
-                                    <del>{{number_format($Rproduct->old_price,2)}}JOD</del>
-								</div>
-								@else
-								<div class="info-product-price">
-                                    <span class="item_price">{{number_format($Rproduct->new_price,2)}}JOD</span>
-								</div>
-								@endif
-								<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-									<input type="submit" name="submit" value="Add to cart" class="button js-addcart-detail" onclick="addca({{$Rproduct->id}})" />
-								</div>
-								</div>
+									</div>
+									
+							</div>
+							<div class="item-info-product ">
+								<h4><a href="" class="js-name-detail">{{$Rproduct->prod_name}}</a></h4>
+								<p><a href="">Store: {{$Rproduct->prov->name}}</a></p>
+								<p>Gender: {{$Rproduct->gender}}</p>
+							@if ($Rproduct->old_price != null)
+							<div class="info-product-price">
+								<span class="item_price">{{number_format($Rproduct->new_price,2)}}JOD</span>
+								<del>{{number_format($Rproduct->old_price,2)}}JOD</del>
+							</div>
+							@else
+							<div class="info-product-price">
+								<span class="item_price">{{number_format($Rproduct->new_price,2)}}JOD</span>
+							</div>
+							@endif
+							<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
+								<input type="submit" name="submit" value="Add to cart" class="button js-addcart-detail" onclick="addca({{$Rproduct->id}})" />
+							</div>
 							</div>
 						</div>
-						@endforeach
-						<div class="clearfix"> </div>
-					<!--//slider_owl-->
-		         </div>
+					</div>
+					@endforeach
+					<div class="clearfix"> </div>
+				<!--//slider_owl-->
+			</div>
+			@endif
+			
 	        </div>
  </div>
  
@@ -510,6 +512,14 @@
 @else
 <script>
     $("document").ready(function(){
+		$('#review-tab').click(function(){
+                $(this).addClass('active');
+                $("#contact-tab").removeClass('active');
+            });
+            $('#contact-tab').click(function(){
+                $(this).addClass('active');
+                $("#review-tab").removeClass('active');
+            });
             $("#addCart").click(function(){
                 var quantity = $("#sst").val();
                 $.ajax({

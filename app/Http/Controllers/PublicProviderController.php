@@ -45,7 +45,7 @@ class PublicProviderController extends Controller
         $user = session()->get('user');
         $single_provider = Provider::findorFail($id);
         $providers = Provider::where('email_verified_at','<>',null)->get();
-        $products = Product::where('provider',$id)->select()->paginate(12);
+        $products = Product::where('provider',$id)->select()->with(['cat'])->paginate(12);
         event(new VendorProfileVisitor($single_provider));
         $categories = Category::all();
         $cat_arr = array();
@@ -122,16 +122,18 @@ class PublicProviderController extends Controller
         $user = session()->get('user');
         $single_provider = Provider::findorFail($prov_id);
         $providers = Provider::where('email_verified_at','<>',null)->get();
-        $products = Product::where('provider',$prov_id)->where('category',$cat_id)->where('gender',$gender)->select()->paginate(12);
+        $products = Product::where('provider',$prov_id)->where('category',$cat_id)->where('gender',$gender)->select()->with(['cat'])->paginate(12);
         $categories = Category::all();
         $cat_arr = array();
         foreach($categories as $category){
             $prod = Product::where('category',$category->id)->where('provider',$prov_id)->first();
-            
             if($prod['category'] != null){
                 $cat_arr[$category->id]['id']=$category->id;
                 $cat_arr[$category->id]['name']=$category->cat_name;
             }
+        }
+        if($gender != "men" && $gender != "women" && $gender != "both"){
+            return redirect()->route('public_provider.profile2',['id'=>$prov_id]);
         }
         if(session()->has('user')){
             return view('public_side.profile_category_gender',[
@@ -159,36 +161,11 @@ class PublicProviderController extends Controller
     
     public function search_vendors2(Request $request){
         $vendors = Provider::where('name', 'like' , '%'.$request->vendor.'%')->select()->paginate(12);
-        
-        $output = '';
-        foreach($vendors as $vendor){
-            $output.='<div class="col-md-3">
-            <div class="thumbnail team-w3agile">
-                <img src="./img/Provider_images/'.$vendor->image.'" class="img-responsive" alt="" style="height: 180px !important">
-                <div class="social-icons team-icons right-w3l fotw33">
-                <div class="caption">
-                    <h4>'.$vendor->name.'</h4>						
-                </div>
-                    <ul class="social-nav model-3d-0 footer-social w3_agile_social two" style="margin:0px !important">
-                        <li><a href="#" class="facebook">
-                            <div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
-                            <div class="back"><i class="fa fa-facebook" aria-hidden="true"></i></div></a>
-                        </li>
-                        <li><a href="#" class="instagram">
-                            <div class="front"><i class="fa fa-instagram" aria-hidden="true"></i></div>
-                            <div class="back"><i class="fa fa-instagram" aria-hidden="true"></i></div></a>
-                        </li>
-                    </ul><br>
-                    <a class="hvr-outline-out button2 btn btn-block text-light mt-1" href="single.html"><strong>Shopping</strong></a>
-                </div>
-            </div>
-        </div>';
-        }
-
-        return $data = array(
-            'vendor_arr'=>$output
-        );
-
+        $view = view('ajax.stores_search')->with(['vendors'=>$vendors])->renderSections();
+        return response()->json([
+            'status' => true,
+            'content'=>$view['main']
+        ]);
     }
 
     public function chat_show($provider_id){

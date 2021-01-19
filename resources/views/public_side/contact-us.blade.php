@@ -1,7 +1,7 @@
 <?php $pageTitle = "Contact Us" ?>
 @include('public_side.includes.public_header')
 <!-- /banner_bottom_agile_info -->
-<div class="page-head_agile_info_w3l">
+<div class="page-head_agile_info_w3l" style="background-image:url('{{asset('img/bg-banner-contact.jpg')}}') !important;">
 		<div class="container">
 			<h3>C<span>ontact Us </span></h3>
 	</div>

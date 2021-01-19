@@ -14,11 +14,11 @@
                 <h3 class="card-title mt-2"><strong>Orders</strong></h3>
             </div>
             <div class="col-sm-5">
-                <a class="btn btn-light" href="{{route('order.filters',['status'=>0])}}">All</a>
-                <a class="btn btn-light" href="{{route('order.filters',['status'=>1])}}"> In Delivery</a>
-                <a class="btn btn-light" href="{{route('order.filters',['status'=>3])}}"> Done</a>
-                <a class="btn btn-light" href="{{route('order.filters',['status'=>-1])}}"> Declined</a>
-                <a class="btn btn-light" href="{{route('order.filters',['status'=>-2])}}"> Failed</a>
+                <a class="btn btn-light @if (!isset($status))bg-primary @endif" href="{{route('order.filters',['status'=>0])}}">All</a>
+                <a class="btn btn-light @if (isset($status) && $status == 1) bg-primary @endif" href="{{route('order.filters',['status'=>1])}}"> In Delivery</a>
+                <a class="btn btn-light @if (isset($status) && $status == 3) bg-primary @endif" href="{{route('order.filters',['status'=>3])}}"> Done</a>
+                <a class="btn btn-light @if (isset($status) && $status == -1) bg-primary @endif" href="{{route('order.filters',['status'=>-1])}}"> Declined</a>
+                <a class="btn btn-light @if (isset($status) && $status == -2) bg-primary @endif" href="{{route('order.filters',['status'=>-2])}}"> Failed</a>
             </div>
             <div class="col-sm-6">
                 <div class="card-tools">
@@ -95,8 +95,8 @@
                       <a class="btn-danger text-light p-1 rounded" style="display: inline">Declined</a>
                   </td>
                   <td style="width: 250px; display:none;" id="third_state{{$order->id}}">
-                      <a class="btn btn-primary text-light" id="received_order" onclick="received_order({{$order->id}})" style="display: inline">Received</a>
-                  <a class="btn btn-danger text-light" id="unreceived_order" onclick="unreceived_order({{$order->id}})" style="display: inline">Un-received</a>
+                      <a class="btn btn-primary text-light" id="received_order" onclick="received_order({{$order->id}})">Received</a>
+                  <a class="btn btn-danger text-light mt-1" id="unreceived_order" onclick="unreceived_order({{$order->id}})">Un-received</a>
                   </td>
                   <td style="width: 250px; display:none;" id="fourth_state1{{$order->id}}">
                       <a class="btn-success text-light p-1 rounded" id="done_order" style="display: inline">Done</a>
@@ -113,8 +113,8 @@
                       <a class="btn-danger text-light p-1 rounded" style="display: inline">Declined</a>
                   </td>
                   <td style="width: 250px; display:none;" id="third_state{{$order->id}}">
-                      <a class="btn btn-primary text-light" id="received_order" onclick="received_order({{$order->id}})" style="display: inline">Received</a>
-                  <a class="btn btn-danger text-light" id="unreceived_order" onclick="unreceived_order({{$order->id}})" style="display: inline">Un-received</a>
+                      <a class="btn btn-primary text-light" id="received_order" onclick="received_order({{$order->id}})">Received</a><br>
+                  <a class="btn btn-danger text-light mt-1" id="unreceived_order" onclick="unreceived_order({{$order->id}})">Un-received</a>
                   </td>
                   <td style="width: 250px; display:none;" id="fourth_state1{{$order->id}}">
                       <a class="btn-success text-light p-1 rounded" id="done_order" style="display: inline">Done</a>
@@ -137,8 +137,8 @@
                   @endif
                   @if ($order->order_status == 2)
                   <td style="width: 250px;" id="third_state{{$order->id}}">
-                      <a class="btn btn-primary text-light" id="received_order" onclick="received_order({{$order->id}})" style="display: inline">Received</a>
-                  <a class="btn btn-danger text-light" id="unreceived_order" onclick="unreceived_order({{$order->id}})" style="display: inline">Un-received</a>
+                      <a class="btn btn-primary text-light" id="received_order" onclick="received_order({{$order->id}})">Received</a><br>
+                  <a class="btn btn-danger text-light mt-1" id="unreceived_order" onclick="unreceived_order({{$order->id}})">Un-received</a>
                   </td>
                   <td style="width: 250px; display:none;" id="fourth_state1{{$order->id}}">
                       <a class="btn-success text-light p-1 rounded" id="done_order" style="display: inline">Done</a>
@@ -288,4 +288,5 @@
                 }
             });
     }
+    
 </script>

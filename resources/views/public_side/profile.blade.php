@@ -3,16 +3,11 @@
 <!-- /banner_bottom_agile_info -->
 <div class="page-head_agile_info_w3l" style="background-image: url('../../img/Provider_coverImages/{{$provider->cover_image}}') !important; min-height:300px;">
     <div>
-        <div class=" mt-5">
-            <h3>Welcome To {{$provider->name}}</h3>
-            <h4 class="text-center" style="color:white; !important; font-weight:bold">{{$provider->store_type ? $provider->store_type : "Online store"}}</h4>
-        </div>
-           
     </div>
 </div>
 <div class="container">
         <div class="col-lg-4 text-center">
-            <img src="../../img/provider_images/{{$provider->image}}" height="260"  style="margin-top:-80px; padding:10px; border:1px solid silver" alt="">
+            <img src="../../img/provider_images/{{$provider->image}}" height="260"  style="width:280px; margin-top:-80px; padding:10px; border:1px solid silver" alt="">
         </div>
         <div class="col-lg-8 mt-2">
             
@@ -93,10 +88,10 @@
 			<div class="clearfix"></div>
 		</div>
 		<div class="col-md-8 products-right">
-			<h5>Product <span>Compare(0)</span></h5>
+			<h5>All <span>Products</span></h5>
 			<div class="sort-grid row">
 				<div class="col-md-6">
-					<input type="search" class="sorting form-control" id="search" onkeyup="search_vendors_products()" style="width:335px !important" placeholder="Search ..">
+					<input type="search" class="sorting form-control" id="search" onkeyup="search_vendors_products()" style="width:100% !important" placeholder="Search ..">
 					
 				</div>
 				<div class="col-md-6">
@@ -107,24 +102,6 @@
 				</div>
 				
 			</div>
-			{{-- <div class="men-wear-top">
-				
-				<div  id="top" class="callbacks_container">
-					<ul class="rslides" id="slider3">
-						<li>
-							<img class="img-responsive" src="../img/Category_images/{{$category->cat_image}}" height="100" alt=" "/>
-						</li>
-						<li>
-							<img class="img-responsive" src="images/banner5.jpg" alt=" "/>
-						</li>
-						<li>
-							<img class="img-responsive" src="images/banner2.jpg" alt=" "/>
-						</li>
-
-					</ul>
-				</div>
-				<div class="clearfix"></div>
-            </div> --}}
             <div class="prod_content">
             @foreach ($products as $product)
             <div class="col-md-4 product-men">
@@ -206,8 +183,8 @@ function search_vendors_products(){
             },
             dataType : 'json',
             success:function(data){
-                if(data.row_result != ""){
-                    $('.prod_content').html(data.row_result);
+                if(data != ""){
+                    $('.prod_content').empty().html(data.content);
                 }else{
                     $('.prod_content').html(old_data);
                 }
@@ -245,7 +222,11 @@ function vendor_filter_price (filter){
             'prov_id':"{{$provider->id}}"
         },
         success:function(data){
-        $('.prod_content').html(data);
+            if(data != ''){
+            $('.prod_content').html(data);
+            }else{
+                $('.prod_content').html('<small>No Items</small>').css('color','red');
+            }
         }
     });
 }

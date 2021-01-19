@@ -210,7 +210,7 @@
         </div>
       </div>
       <!-- /.card-header -->
-      <div class="card-body p-0">
+      <div class="card-body p-0 table-responsive">
         <table class="table text-center">
           <thead>
             <tr>

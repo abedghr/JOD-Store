@@ -9,4 +9,8 @@ class Rating extends Model
     protected $fillable = [
         'rating','user_id','prod_id'
     ];
+
+    public function product(){
+        return $this->belongsTo('App\Models\Product','prod_id','id');
+    }
 }

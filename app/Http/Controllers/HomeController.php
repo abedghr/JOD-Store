@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Message;
 use App\Models\Product;
 use App\Models\Provider;
+use App\Models\Rating;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -30,6 +31,7 @@ class HomeController extends Controller
     public function index2(){
         $user = session()->get('user');
         $category = Category::all();
+        $newest_prod = Product::select()->orderBy('created_at','desc')->get();
         $providers = Provider::where('email_verified_at','<>',null)->get();
         $top_products = Product::select()->orderBy('number_of_bought','desc')->limit(12)->get();
         if(session()->has("user")){
@@ -37,12 +39,14 @@ class HomeController extends Controller
             'categories' => $category,
             'providers'=>$providers,
             'top_products'=>$top_products,
+            'newest_prod'=>$newest_prod,
             'user'=>$user
             ]);
         }else{
             return view('public_side.home',[
                 'categories' => $category,
                 'providers'=>$providers,
+                'newest_prod'=>$newest_prod,
                 'top_products'=>$top_products
             ]);
         }

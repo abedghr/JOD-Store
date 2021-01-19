@@ -3,11 +3,6 @@
 <!-- /banner_bottom_agile_info -->
 <div class="page-head_agile_info_w3l" style="background-image: url('../../img/Provider_coverImages/{{$provider->cover_image}}') !important; min-height:300px;">
     <div>
-        <div class=" mt-5">
-            <h3>Welcome To {{$provider->name}}</h3>
-            <h4 class="text-center" style="color:white; !important; font-weight:bold">{{$provider->store_type ? $provider->store_type : "Online store"}}</h4>
-        </div>
-           
     </div>
 </div>
 <div class="container">
@@ -93,10 +88,10 @@
 			<div class="clearfix"></div>
 		</div>
 		<div class="col-md-8 products-right">
-			<h5>Product <span>Compare(0)</span></h5>
+			<h5>{{$products[0]->cat->cat_name}} <span>Products</span></h5>
 			<div class="sort-grid row">
 				<div class="col-md-6">
-					<input type="search" class="sorting form-control" id="search" onkeyup="search_vendorsCategory_products()" style="width:335px !important" placeholder="Search ..">
+					<input type="search" class="sorting form-control" id="search" onkeyup="search_vendorsCategory_products()" style="width:100% !important" placeholder="Search ..">
 					
 				</div>
 				<div class="col-md-6">
@@ -107,24 +102,6 @@
 				</div>
 				
 			</div>
-			{{-- <div class="men-wear-top">
-				
-				<div  id="top" class="callbacks_container">
-					<ul class="rslides" id="slider3">
-						<li>
-							<img class="img-responsive" src="../img/Category_images/{{$category->cat_image}}" height="100" alt=" "/>
-						</li>
-						<li>
-							<img class="img-responsive" src="images/banner5.jpg" alt=" "/>
-						</li>
-						<li>
-							<img class="img-responsive" src="images/banner2.jpg" alt=" "/>
-						</li>
-
-					</ul>
-				</div>
-				<div class="clearfix"></div>
-            </div> --}}
             <div class="prod_content">
             @foreach ($products as $product)
             <div class="col-md-4 product-men">
@@ -170,14 +147,17 @@
 </div>	
 <!-- //mens -->
 <!-- /we-offer -->
-<div class="sale-w3ls" style="margin-bottom: 50px;">
+<div class="sale-w3ls">
 	<div style="width: 100%; height:100%; background-color:rgba(0,0,0,0.6); min-height:380px">
 		<div class="container">
-			<h6 style="padding-top:1em !important">Write Your Feedback</h6>
-			<center><textarea name="" id="feedback" class="form-control" style="width:500px;" rows="7"></textarea></center>
+            <h6 style="padding-top:1em !important">Write Your Feedback</h6>
+            <div class="col-md-3"></div>
+            <div class="col-md-6 mb-3">
+                <center><textarea name="" id="feedback" class="form-control bg-light" rows="4"></textarea></center>
 
-			<a class="hvr-outline-out button2" onclick="sendfeedback()" style="cursor: pointer;">Send </a>
-		</div>
+                <a class="hvr-outline-out button2" onclick="sendfeedback()" style="cursor: pointer;">Send </a>
+            </div>
+        </div>
 	</div>
 </div>
 <!-- //we-offer -->
@@ -202,8 +182,8 @@
                 },
                 dataType : 'json',
                 success:function(data){
-                    if(data.row_result != ""){
-                    $('.prod_content').html(data.row_result);
+                    if(data.content != ""){
+                    $('.prod_content').html(data.content);
                     }else{
                         $('.prod_content').html(old_data);
                     }
