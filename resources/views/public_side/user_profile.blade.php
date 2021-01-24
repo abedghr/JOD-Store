@@ -41,13 +41,13 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="name">User Phone(1) :</label>
-                                    <input type="text" name="user_phone1" value="{{$userData->phone}}" class="form-control" placeholder="Enter Your Phone(1)">                        
+                                    <input type="tel" pattern="[079]{3}[0-9]{7}|[078]{3}[0-9]{7}|[077]{3}[0-9]{7}" name="user_phone1" value="{{$userData->phone}}" class="form-control" placeholder="Enter Your Phone(1)">                        
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="name">User Phone(2) :</label>
-                                    <input type="text" name="user_phone2" value="{{$userData->phone2}}" class="form-control" placeholder="Enter Your Phone(2)">                        
+                                    <input type="tel" pattern="[079]{3}[0-9]{7}|[078]{3}[0-9]{7}|[077]{3}[0-9]{7}" name="user_phone2" value="{{$userData->phone2}}" class="form-control" placeholder="Enter Your Phone(2)">                        
                                 </div>
                             </div>
                         </div>
@@ -122,9 +122,9 @@
           <div class="col-md-3 mt-3">
             <strong>
                 <p class="mb-3">Product Name : {{$prod->prod_name}}</p>
-                <p class="mb-3">Price : JD{{$prod->price}}</p>
-                <p class="mb-3">Quantity : {{$prod->quantity}}</p>
-                <p class="mb-3">Category : {{$prod->category}}</p>
+                <p class="mb-3">Price : JD{{$prod->new_price}}</p>
+                <p class="mb-3">Quantity : {{$prod->quantity}}X</p>
+                <p class="mb-3">Category : {{$prod->cat->cat_name}}</p>
                 <p class="mb-3">Store : {{$prod->provider}}</p>
             </strong>
             </div>

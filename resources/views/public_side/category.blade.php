@@ -24,7 +24,7 @@
                                 <li><a href="{{route('category.show2',['id'=>$cat->id])}}" @if ($cat->id == $category->id) style="color:#2fdab8;" @endif>All</a></li>
                                 <li><a href="{{route('category_gender2.show',['id'=>$cat->id , 'gender'=>'men'])}}">Men</a></li>
                                 <li><a href="{{route('category_gender2.show',['id'=>$cat->id , 'gender'=>'women'])}}">Women</a></li>
-                                <li><a href="{{route('category_gender2.show',['id'=>$cat->id , 'gender'=>'both'])}}">For Both</a></li>
+                                <li><a href="{{route('category_gender2.show',['id'=>$cat->id , 'gender'=>'for both'])}}">For Both</a></li>
                             </ul>
                         </li>
                         <?php $i++; ?>
@@ -47,7 +47,7 @@
 			<div class="clearfix"></div>
 		</div>
 		<div class="col-md-8 products-right">
-			<h5>Product <span>Compare(0)</span></h5>
+			<h5>Products<span></span></h5>
 			<div class="sort-grid row">
 				<div class="col-md-6">
 					<input type="search" class="sorting form-control" id="search" onkeyup="search()" style="width:335px !important" placeholder="Search ..">
@@ -179,7 +179,11 @@
                  'cat_id':"{{$category->id}}"
              },
              success:function(data){
-             $('.prod_content').html(data);
+                 if(data != ''){
+                    $('.prod_content').html(data);
+                 }else{
+                     $('.prod_content').html('<h4>There is no items</h4>').css('color','red');
+                 }
              }
          });
      }

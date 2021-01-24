@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Provider Dashboard</title>
+  <title>Store Dashboard</title>
   <script src="{{ asset('js/app.js') }}"></script>
   <link rel="stylesheet" href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css') }}">
   <link rel="stylesheet" href="{{ asset('https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css') }}">
@@ -142,7 +142,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{route('admin.dashboard')}}" class="brand-link">
-      <h5 class="ml-1">Provider Dashboard</h5>
+      <h5 class="ml-1">Store Dashboard</h5>
     </a>
 
     <!-- Sidebar -->

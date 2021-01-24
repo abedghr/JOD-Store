@@ -35,7 +35,7 @@
                                 <li><a href="{{route('category.show2',['id'=>$cat->id])}}">All</a></li>
                                 <li><a href="{{route('category_gender2.show',['id'=>$cat->id , 'gender'=>'men'])}}"@if ($gen == 'men' && $cat->id == $category->id) style="color:#2fdab8;" @endif>Men</a></li>
                                 <li><a href="{{route('category_gender2.show',['id'=>$cat->id , 'gender'=>'women'])}}"@if ($gen == 'women' && $cat->id == $category->id) style="color:#2fdab8;" @endif>Women</a></li>
-                                <li><a href="{{route('category_gender2.show',['id'=>$cat->id , 'gender'=>'multiGender'])}}"@if ($gen == 'both' && $cat->id == $category->id) style="color:#2fdab8;" @endif>For Both</a></li>
+                                <li><a href="{{route('category_gender2.show',['id'=>$cat->id , 'gender'=>'multiGender'])}}"@if ($gen == 'for both' && $cat->id == $category->id) style="color:#2fdab8;" @endif>For Both</a></li>
                             </ul>
                         </li>
                         <?php $i++; ?>
@@ -58,7 +58,7 @@
 			<div class="clearfix"></div>
 		</div>
 		<div class="col-md-8 products-right">
-			<h5>Product <span>Compare(0)</span></h5>
+			<h5>Products<span></span></h5>
 			<div class="sort-grid row">
 				<div class="col-md-6">
 					<input type="search" class="sorting form-control" id="search" onkeyup="search()" style="width:100% !important" placeholder="Search ..">
@@ -197,7 +197,11 @@
                  'gender':"{{$gen}}"
              },
              success:function(data){
-             $('.prod_content').html(data);
+                if(data != ''){
+                    $('.prod_content').html(data);
+                 }else{
+                     $('.prod_content').html('<h4>There is no items</h4>').css('color','red');
+                 }
              }
          });
      }

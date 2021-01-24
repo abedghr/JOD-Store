@@ -126,7 +126,7 @@
 
 @include('Admin.includes.admin_footer')
 <script>
-  $(document).ready(function () {
+$(document).ready(function () {
 $('#table').DataTable();
 $('.dataTables_length').addClass('bs-select');
 });

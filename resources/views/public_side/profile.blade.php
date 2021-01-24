@@ -65,7 +65,7 @@
                                 <li><a href="{{route('profile_category.show2',['prov_id'=>$provider->id ,'cat_id'=>$cat['id']])}}" @if ($cat['id'] == $category_active) style="color:#2fdab8 !important;" @endif>All</a></li>
                                 <li><a href="{{route('profile_gender.show2',['prov_id'=>$provider->id , 'cat_id'=>$cat['id'] ,  'gender'=>'men'])}}">Men</a></li>
                                 <li><a href="{{route('profile_gender.show2',['prov_id'=>$provider->id , 'cat_id'=>$cat['id'] , 'gender'=>'women'])}}">Women</a></li>
-                                <li><a href="{{route('profile_gender.show2',['prov_id'=>$provider->id , 'cat_id'=>$cat['id'] ,  'gender'=>'both'])}}">For Both</a></li>
+                                <li><a href="{{route('profile_gender.show2',['prov_id'=>$provider->id , 'cat_id'=>$cat['id'] ,  'gender'=>'for both'])}}">For Both</a></li>
                             </ul>
                         </li>
                         <?php $i++; ?>
@@ -224,7 +224,7 @@ function vendor_filter_price (filter){
             if(data != ''){
             $('.prod_content').html(data);
             }else{
-                $('.prod_content').html('<small>No Items</small>').css('color','red');
+                $('.prod_content').html('<small>There is no Items</small>').css('color','red');
             }
         }
     });

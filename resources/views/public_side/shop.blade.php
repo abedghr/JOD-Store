@@ -26,7 +26,7 @@
                                 <li><a href="{{route('category.show2',['id'=>$cat->id])}}">All</a></li>
                                 <li><a href="{{route('category_gender2.show',['id'=>$cat->id , 'gender'=>'men'])}}">Men</a></li>
                                 <li><a href="{{route('category_gender2.show',['id'=>$cat->id , 'gender'=>'women'])}}">Women</a></li>
-                                <li><a href="{{route('category_gender2.show',['id'=>$cat->id , 'gender'=>'both'])}}">For Both</a></li>
+                                <li><a href="{{route('category_gender2.show',['id'=>$cat->id , 'gender'=>'for both'])}}">For Both</a></li>
                             </ul>
                         </li>
                         <?php $i++; ?>
@@ -191,7 +191,11 @@
                  'filter':filter
              },
              success:function(data){
-             $('.prod_content').html(data.arr);
+                if(data != ''){
+                    $('.prod_content').html(data);
+                 }else{
+                     $('.prod_content').html('<h4>There is no items</h4>').css('color','red');
+                 }
              }
          });
      }

@@ -132,7 +132,7 @@ class PublicProviderController extends Controller
                 $cat_arr[$category->id]['name']=$category->cat_name;
             }
         }
-        if($gender != "men" && $gender != "women" && $gender != "both"){
+        if($gender != "men" && $gender != "women" && $gender != "for both"){
             return redirect()->route('public_provider.profile2',['id'=>$prov_id]);
         }
         if(session()->has('user')){

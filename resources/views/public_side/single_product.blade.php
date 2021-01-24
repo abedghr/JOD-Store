@@ -15,8 +15,8 @@
                         </li>
                         @foreach ($images as $image)
                         @if ($product->main_image != $image->image)
-                        <li data-thumb="../img/Product_images/{{$image->image}}">
-							<div class="thumb-image"> <img src="../img/Product_images/{{$image->image}}" data-imagezoom="true" class="img-responsive"> </div>
+                        <li data-thumb="../img/Product_images/{{$image->image}}" style="height: 95px !important;">
+							<div class="thumb-image"> <img src="../img/Product_images/{{$image->image}}"  data-imagezoom="true" class="img-responsive"> </div>
 						</li>    
                         @endif
 							
@@ -38,7 +38,7 @@
                         <span>Category</span> : <strong class="text-dark">{{$product->cat->cat_name}}</strong>
                     </a>
                     <a class="text-dark" href="{{route('public_provider.profile2',['id'=>$product->provider])}}"><br>
-                        <span>Provider</span> : <strong class="text-dark">{{$product->prov->name}}</strong>
+                        <span>Store</span> : <strong class="text-dark">{{$product->prov->name}}</strong>
                     </a><br>
                     <a class="text-dark" href="#">
                         <span>Availibility</span> : @if ($product->inventory != 0)
@@ -232,49 +232,48 @@
 	<!--================End Product Description Area =================-->
 	
 	  	<!--/slider_owl-->
-			@if (count($related_products) != 0)
-			<div class="w3_agile_latest_arrivals">
-				<h3 class="wthree_text_info">Related <span>Products</span></h3>
-				@foreach ($related_products as $Rproduct)	
-					<div class="col-md-3 product-men single">
-						<div class="men-pro-item simpleCart_shelfItem">
-							<div class="men-thumb-item" style="height: 250px; background-image:url('../img/Product_images/{{$product->main_image}}'); background-size:100% 100%;">
-                        
-								<div class="men-cart-pro">
-									<div class="inner-men-cart-pro">
-										<a href="{{route('product.show2',['id'=>$product->id])}}" class="link-product-add-cart">Quick View</a>
-									</div>
+		@if (count($related_products) != 0)
+		<div class="w3_agile_latest_arrivals">
+			<h3 class="wthree_text_info">Related <span>Products</span></h3>
+			@foreach ($related_products as $Rproduct)	
+				<div class="col-md-3 product-men single">
+					<div class="men-pro-item simpleCart_shelfItem">
+						<div class="men-thumb-item" style="height: 250px; background-image:url('../img/Product_images/{{$product->main_image}}'); background-size:100% 100%;">
+					
+							<div class="men-cart-pro">
+								<div class="inner-men-cart-pro">
+									<a href="{{route('product.show2',['id'=>$product->id])}}" class="link-product-add-cart">Quick View</a>
 								</div>
-								
-								
+							</div>
+							
+							
+					</div>
+						<div class="item-info-product ">
+							<h4><a href="" class="js-name-detail">{{$Rproduct->prod_name}}</a></h4>
+							<p><a href="">Store: {{$Rproduct->prov->name}}</a></p>
+							<p>Gender: {{$Rproduct->gender}}</p>
+						@if ($Rproduct->old_price != null)
+						<div class="info-product-price">
+							<span class="item_price">{{number_format($Rproduct->new_price,2)}}JOD</span>
+							<del>{{number_format($Rproduct->old_price,2)}}JOD</del>
 						</div>
-							<div class="item-info-product ">
-								<h4><a href="" class="js-name-detail">{{$Rproduct->prod_name}}</a></h4>
-								<p><a href="">Store: {{$Rproduct->prov->name}}</a></p>
-								<p>Gender: {{$Rproduct->gender}}</p>
-							@if ($Rproduct->old_price != null)
-							<div class="info-product-price">
-								<span class="item_price">{{number_format($Rproduct->new_price,2)}}JOD</span>
-								<del>{{number_format($Rproduct->old_price,2)}}JOD</del>
-							</div>
-							@else
-							<div class="info-product-price">
-								<span class="item_price">{{number_format($Rproduct->new_price,2)}}JOD</span>
-							</div>
-							@endif
-							<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-								<input type="submit" name="submit" value="Add to cart" class="button js-addcart-detail" onclick="addca({{$Rproduct->id}})" />
-							</div>
-							</div>
+						@else
+						<div class="info-product-price">
+							<span class="item_price">{{number_format($Rproduct->new_price,2)}}JOD</span>
+						</div>
+						@endif
+						<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
+							<input type="submit" name="submit" value="Add to cart" class="button js-addcart-detail" onclick="addca({{$Rproduct->id}})" />
+						</div>
 						</div>
 					</div>
-					@endforeach
-					<div class="clearfix"> </div>
-				<!--//slider_owl-->
-			</div>
-			@endif
-			
-	        </div>
+				</div>
+			@endforeach
+			<div class="clearfix"> </div>
+			<!--//slider_owl-->
+		</div>
+		@endif
+		</div>
  </div>
  
 <!--//single_page-->
@@ -327,16 +326,16 @@
 </script>
 <!-- FlexSlider -->
 <script src="{{asset('pub_libraries/js/jquery.flexslider.js')}}"></script>
-						<script>
-						// Can also be used with $(document).ready()
-							$(window).load(function() {
-								$('.flexslider').flexslider({
-								animation: "slide",
-								controlNav: "thumbnails"
-								});
-							});
-						</script>
-					<!-- //FlexSlider-->
+<script>
+// Can also be used with $(document).ready()
+	$(window).load(function() {
+		$('.flexslider').flexslider({
+		animation: "slide",
+		controlNav: "thumbnails"
+		});
+	});
+</script>
+<!-- //FlexSlider-->
 <!-- //script for responsive tabs -->		
 <!-- start-smoth-scrolling -->
 <script type="text/javascript" src="{{asset('pub_libraries/js/move-top.js')}}"></script>

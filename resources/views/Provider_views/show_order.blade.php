@@ -36,7 +36,9 @@
                 <div class="col-md-8">
                     <div class="card-body mt-1">
                         <div class="card-text mt-5">
+                            
                             <p><strong>Product Name :</strong> {{$product->prod_name}}</p>
+                            <p><strong>Quantity :</strong> {{$product->quantity}}X</p>
                             <p><strong>Product New Price :</strong> JD{{$product->new_price}}</p>
                             <p><strong> Category :</strong> {{$product->cat->cat_name}}</p>
                             <p><strong> Provider :</strong> {{$product->provid->name}}</p>

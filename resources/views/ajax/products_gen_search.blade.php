@@ -2,7 +2,7 @@
 @foreach ($search_products as $product)
 <div class="col-md-4 product-men">
     <div class="men-pro-item simpleCart_shelfItem">
-        <div class="men-thumb-item" style="height: 250px; background-image:url('../../img/Product_images/{{$product->main_image}}'); background-size:100% 100%;">
+        <div class="men-thumb-item" style="height: 250px; background-image:url('../../../img/Product_images/{{$product->main_image}}'); background-size:100% 100%;">
                         
             <div class="men-cart-pro">
                 <div class="inner-men-cart-pro">

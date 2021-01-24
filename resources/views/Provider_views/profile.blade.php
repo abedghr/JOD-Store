@@ -86,7 +86,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="exampleInputPassword1">Mobile Number (1)<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="exampleInputPassword1" value="{{Auth::user()->phone1}}" name="phone1" placeholder="Enter Mobile Number (1)">
+                        <input type="tel" pattern="[079]{3}[0-9]{7}|[078]{3}[0-9]{7}|[077]{3}[0-9]{7}" class="form-control" id="exampleInputPassword1" value="{{Auth::user()->phone1}}" name="phone1" placeholder="Enter Mobile Number (1)">
                         @error('phone1')
                             <small class="text-danger"><strong>{{$message}}</strong></small>
                         @enderror
@@ -95,7 +95,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="exampleInputPassword1">Mobile Number (2) <span class="text-danger"> Optional</span></label>
-                        <input type="text" class="form-control" id="exampleInputPassword1" value="{{Auth::user()->phone2}}" name="phone2" placeholder="Enter Mobile Number (2)">
+                        <input type="tel" pattern="[079]{3}[0-9]{7}|[078]{3}[0-9]{7}|[077]{3}[0-9]{7}" class="form-control" id="exampleInputPassword1" value="{{Auth::user()->phone2}}" name="phone2" placeholder="Enter Mobile Number (2)">
                         @error('phone2')
                             <small class="text-danger"><strong>{{$message}}</strong></small>
                         @enderror

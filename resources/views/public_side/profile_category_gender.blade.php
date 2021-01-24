@@ -65,7 +65,7 @@
                                 <li><a href="{{route('profile_category.show2',['prov_id'=>$provider->id ,'cat_id'=>$cat['id']])}}">All</a></li>
                                 <li><a href="{{route('profile_gender.show2',['prov_id'=>$provider->id , 'cat_id'=>$cat['id'] ,  'gender'=>'men'])}}"  @if ($cat['id'] == $category_active && $gen=='men') style="color:#2fdab8 !important;" @endif>Men</a></li>
                                 <li><a href="{{route('profile_gender.show2',['prov_id'=>$provider->id , 'cat_id'=>$cat['id'] ,  'gender'=>'women'])}}" @if ($cat['id'] == $category_active && $gen=='women') style="color:#2fdab8 !important;" @endif>Women</a></li>
-                                <li><a href="{{route('profile_gender.show2',['prov_id'=>$provider->id , 'cat_id'=>$cat['id'] ,  'gender'=>'both'])}}" @if ($cat['id'] == $category_active && $gen=='both') style="color:#2fdab8 !important;" @endif>For Both</a></li>
+                                <li><a href="{{route('profile_gender.show2',['prov_id'=>$provider->id , 'cat_id'=>$cat['id'] ,  'gender'=>'for both'])}}" @if ($cat['id'] == $category_active && $gen=='both') style="color:#2fdab8 !important;" @endif>For Both</a></li>
                             </ul>
                         </li>
                         <?php $i++; ?>
@@ -113,7 +113,7 @@
             @foreach ($products as $product)
             <div class="col-md-4 product-men">
                 <div class="men-pro-item simpleCart_shelfItem">
-                    <div class="men-thumb-item" style="height: 250px; background-image:url('../img/Product_images/{{$product->main_image}}'); background-size:100% 100%;">
+                    <div class="men-thumb-item" style="height: 250px; background-image:url('../../../img/Product_images/{{$product->main_image}}'); background-size:100% 100%;">
                         
                         <div class="men-cart-pro">
                             <div class="inner-men-cart-pro">
@@ -230,7 +230,11 @@
                  'gender':"{{$gen}}"
              },
              success:function(data){
-             $('.prod_content').html(data);
+                if(data != ''){
+                    $('.prod_content').html(data);
+                 }else{
+                     $('.prod_content').html('<h4>There is no items</h4>').css('color','red');
+                 }
              }
          });
      }

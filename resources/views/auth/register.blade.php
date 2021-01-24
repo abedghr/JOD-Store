@@ -64,7 +64,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="phone1" class="">Mobile Number <span class="text-danger">*</span></label>                 
-                                <input id="phone1" style="margin:0px;" name="phone1" type="text" class="form-control @error('phone1') is-invalid @enderror" required  placeholder="Enter your mobile number">
+                                <input id="phone1" style="margin:0px;" name="phone1" type="tel" pattern="[079]{3}[0-9]{7}|[078]{3}[0-9]{7}|[077]{3}[0-9]{7}" class="form-control @error('phone1') is-invalid @enderror" required  placeholder="Enter your mobile number">
                                 @error('phone1')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

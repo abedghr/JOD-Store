@@ -403,7 +403,7 @@ comments-box {
 		<div class="top_nav_right">
 			<div class="wthreecartaits wthreecartaits2 cart cart box_1">
                 <a href="{{route('cart.index2')}}"> 
-                    <button class="w3view-cart" type="submit" name="submit" value="" style="width:80px;"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i> <small id="cart_count"><strong>{{session('counter') ? session('counter') : 0}}</strong></small></button>
+                    <button class="w3view-cart" type="submit" name="submit" value="" style="width:65px;"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i> <small id="cart_count"><strong>{{session('counter') ? session('counter') : 0}}</strong></small></button>
                 </a>
             </div>
 		</div>

@@ -14,7 +14,7 @@ class PublicProductController extends Controller
 {
     public function all2(){
         $user = session()->get('user');
-        $products = Product::select()->orderBy('id','desc')->paginate(12);
+        $products = Product::select()->orderBy('id','desc')->paginate(21);
         $providers_logo = Provider::where('email_verified_at','<>',null)->get();
         $categories = Category::all();
         if(session()->has('user')){
@@ -40,7 +40,7 @@ class PublicProductController extends Controller
         $categories = Category::all();
         $providers = Provider::where('email_verified_at','<>',null)->get();
         $single_product = Product::findorfail($id);
-        $related_products = Product::where('prod_related',$single_product->prod_related)->where('id','<>',$single_product->id)->get();
+        $related_products = Product::where('prod_related','<>',null)->where('prod_related',$single_product->prod_related)->where('id','<>',$single_product->id)->get();
         $product_images = ProductsImages::where('product_id',$id)->get();
         $comments = Comment::where('prod_id',$id)->orderBy('created_at','desc')->get();
         if(session()->has('user')){
@@ -144,7 +144,7 @@ class PublicProductController extends Controller
     public function vendor_product_all($prov_id){
         $user = session()->get('user');
         $single_provider = Provider::findorFail($prov_id);
-        $products = Product::where('provider',$prov_id)->select()->paginate(12);
+        $products = Product::where('provider',$prov_id)->select()->paginate(21);
         $categories = Category::all();
         $cat_arr = array();
         foreach($categories as $category){
@@ -175,7 +175,7 @@ class PublicProductController extends Controller
     }
 
     public function search2(Request $request){
-        $search_products = Product::where('prod_name','like', '%'.$request->data_search.'%')->paginate(12);
+        $search_products = Product::where('prod_name','like', '%'.$request->data_search.'%')->paginate(21);
         $view = view('ajax.products_search')->with(['search_products'=>$search_products])->renderSections();
         return response()->json([
             'status' => true,
@@ -185,7 +185,7 @@ class PublicProductController extends Controller
     }
 
     public function search_vendors_products2(Request $request){
-        $search_products = Product::where('prod_name','like', '%'.$request->data_search.'%')->where('provider',$request->prov_id)->paginate(12);
+        $search_products = Product::where('prod_name','like', '%'.$request->data_search.'%')->where('provider',$request->prov_id)->paginate(21);
         $view = view('ajax.products_search')->with(['search_products'=>$search_products])->renderSections();
         return response()->json([
             'status' => true,
@@ -194,7 +194,7 @@ class PublicProductController extends Controller
     }
 
     public function search_vendorsCategory_products2(Request $request){
-        $search_products = Product::where('prod_name','like', '%'.$request->data_search.'%')->where('provider',$request->prov_id)->where('category',$request->cat_id)->paginate(12);
+        $search_products = Product::where('prod_name','like', '%'.$request->data_search.'%')->where('provider',$request->prov_id)->where('category',$request->cat_id)->paginate(21);
         $view = view('ajax.products_search')->with(['search_products'=>$search_products])->renderSections();
         return response()->json([
             'status' => true,
@@ -204,7 +204,7 @@ class PublicProductController extends Controller
     }
 
     public function search_vendorsGender_products2(Request $request){
-        $search_products = Product::where('prod_name','like', '%'.$request->data_search.'%')->where('provider',$request->prov_id)->where('category',$request->cat_id)->where('gender',$request->gender)->paginate(12);
+        $search_products = Product::where('prod_name','like', '%'.$request->data_search.'%')->where('provider',$request->prov_id)->where('category',$request->cat_id)->where('gender',$request->gender)->paginate(21);
         $view = view('ajax.products_gen_search')->with(['search_products'=>$search_products])->renderSections();
         return response()->json([
             'status' => true,
@@ -215,17 +215,17 @@ class PublicProductController extends Controller
 
     public function filter2(Request $request){
         if($request->filter == "low-to-high"){
-            $filter = Product::select()->orderBy('new_price','asc')->paginate(12);
+            $filter = Product::select()->orderBy('new_price','asc')->paginate(21);
         }else if($request->filter == "high-to-low"){
-            $filter = Product::select()->orderBy('new_price','desc')->paginate(12);
+            $filter = Product::select()->orderBy('new_price','desc')->paginate(21);
         }else if($request->filter == "less-10"){
-            $filter = Product::where('new_price', '<=' , 10)->select()->orderBy('new_price','desc')->paginate(12);
+            $filter = Product::where('new_price', '<=' , 10)->select()->orderBy('new_price','desc')->paginate(21);
         }else if($request->filter == "less-25"){
-            $filter = Product::where('new_price', '<=' , 25)->select()->orderBy('new_price','desc')->paginate(12);
+            $filter = Product::where('new_price', '<=' , 25)->select()->orderBy('new_price','desc')->paginate(21);
         }else if($request->filter == "less-35"){
-            $filter = Product::where('new_price', '<=' , 35)->select()->orderBy('new_price','desc')->paginate(12);
+            $filter = Product::where('new_price', '<=' , 35)->select()->orderBy('new_price','desc')->paginate(21);
         }else{
-            $filter = Product::where('new_price', '>' , 35)->select()->orderBy('new_price','desc')->paginate(12);
+            $filter = Product::where('new_price', '>' , 35)->select()->orderBy('new_price','desc')->paginate(21);
         }
 
         return view('ajax.products_filter_vendors',[
@@ -235,17 +235,17 @@ class PublicProductController extends Controller
 
     public function vendorFilter2(Request $request){
         if($request->filter == "low-to-high"){
-            $filter = Product::where('provider',$request->prov_id)->select()->orderBy('new_price','asc')->paginate(12);
+            $filter = Product::where('provider',$request->prov_id)->select()->orderBy('new_price','asc')->paginate(21);
         }else if($request->filter == "high-to-low"){
-            $filter = Product::where('provider',$request->prov_id)->select()->orderBy('new_price','desc')->paginate(12);
+            $filter = Product::where('provider',$request->prov_id)->select()->orderBy('new_price','desc')->paginate(21);
         }else if($request->filter == "less-10"){
-            $filter = Product::where('new_price', '<=' , 10)->where('provider',$request->prov_id)->select()->orderBy('new_price','desc')->paginate(12);
+            $filter = Product::where('new_price', '<=' , 10)->where('provider',$request->prov_id)->select()->orderBy('new_price','desc')->paginate(21);
         }else if($request->filter == "less-25"){
-            $filter = Product::where('new_price', '<=' , 25)->where('provider',$request->prov_id)->select()->orderBy('new_price','desc')->paginate(12);
+            $filter = Product::where('new_price', '<=' , 25)->where('provider',$request->prov_id)->select()->orderBy('new_price','desc')->paginate(21);
         }else if($request->filter == "less-35"){
-            $filter = Product::where('new_price', '<=' , 35)->where('provider',$request->prov_id)->select()->orderBy('new_price','desc')->paginate(12);
+            $filter = Product::where('new_price', '<=' , 35)->where('provider',$request->prov_id)->select()->orderBy('new_price','desc')->paginate(21);
         }else{
-            $filter = Product::where('new_price', '>' , 35)->where('provider',$request->prov_id)->select()->orderBy('new_price','desc')->paginate(12);
+            $filter = Product::where('new_price', '>' , 35)->where('provider',$request->prov_id)->select()->orderBy('new_price','desc')->paginate(21);
         }
 
         return view('ajax.products_filter_vendors',[
@@ -255,46 +255,46 @@ class PublicProductController extends Controller
 
     public function vendorCategoryFilter2(Request $request){
         if($request->filter == "low-to-high"){
-            $filter = Product::where('provider',$request->prov_id)->where('category',$request->cat_id)->select()->orderBy('new_price','asc')->paginate(12);
+            $filter = Product::where('provider',$request->prov_id)->where('category',$request->cat_id)->select()->orderBy('new_price','asc')->paginate(21);
         }else if($request->filter == "high-to-low"){
-            $filter = Product::where('provider',$request->prov_id)->where('category',$request->cat_id)->select()->orderBy('new_price','desc')->paginate(12);
+            $filter = Product::where('provider',$request->prov_id)->where('category',$request->cat_id)->select()->orderBy('new_price','desc')->paginate(21);
         }else if($request->filter == "less-10"){
-            $filter = Product::where('new_price', '<=' , 10)->where('provider',$request->prov_id)->where('category',$request->cat_id)->select()->orderBy('new_price','desc')->paginate(12);
+            $filter = Product::where('new_price', '<=' , 10)->where('provider',$request->prov_id)->where('category',$request->cat_id)->select()->orderBy('new_price','desc')->paginate(21);
         }else if($request->filter == "less-25"){
-            $filter = Product::where('new_price', '<=' , 25)->where('provider',$request->prov_id)->where('category',$request->cat_id)->select()->orderBy('new_price','desc')->paginate(12);
+            $filter = Product::where('new_price', '<=' , 25)->where('provider',$request->prov_id)->where('category',$request->cat_id)->select()->orderBy('new_price','desc')->paginate(21);
         }else if($request->filter == "less-35"){
-            $filter = Product::where('new_price', '<=' , 35)->where('provider',$request->prov_id)->where('category',$request->cat_id)->select()->orderBy('new_price','desc')->paginate(12);
+            $filter = Product::where('new_price', '<=' , 35)->where('provider',$request->prov_id)->where('category',$request->cat_id)->select()->orderBy('new_price','desc')->paginate(21);
         }else{
-            $filter = Product::where('new_price', '>' , 35)->where('provider',$request->prov_id)->where('category',$request->cat_id)->select()->orderBy('new_price','desc')->paginate(12);
+            $filter = Product::where('new_price', '>' , 35)->where('provider',$request->prov_id)->where('category',$request->cat_id)->select()->orderBy('new_price','desc')->paginate(21);
         }
 
-        return view('ajax.products_filter_vendors',[
+        return view('ajax.products_filter_Cat',[
             'filter'=>$filter
         ]);
     }
 
     public function vendorGenderFilter2(Request $request){
         if($request->filter == "low-to-high"){
-            $filter = Product::where('provider',$request->prov_id)->where('category',$request->cat_id)->where('gender',$request->gender)->select()->orderBy('new_price','asc')->paginate(12);
+            $filter = Product::where('provider',$request->prov_id)->where('category',$request->cat_id)->where('gender',$request->gender)->select()->orderBy('new_price','asc')->paginate(21);
         }else if($request->filter == "high-to-low"){
-            $filter = Product::where('provider',$request->prov_id)->where('category',$request->cat_id)->where('gender',$request->gender)->select()->orderBy('new_price','desc')->paginate(12);
+            $filter = Product::where('provider',$request->prov_id)->where('category',$request->cat_id)->where('gender',$request->gender)->select()->orderBy('new_price','desc')->paginate(21);
         }else if($request->filter == "less-10"){
-            $filter = Product::where('new_price', '<=' , 10)->where('provider',$request->prov_id)->where('category',$request->cat_id)->where('gender',$request->gender)->select()->orderBy('new_price','desc')->paginate(12);
+            $filter = Product::where('new_price', '<=' , 10)->where('provider',$request->prov_id)->where('category',$request->cat_id)->where('gender',$request->gender)->select()->orderBy('new_price','desc')->paginate(21);
         }else if($request->filter == "less-25"){
-            $filter = Product::where('new_price', '<=' , 25)->where('provider',$request->prov_id)->where('category',$request->cat_id)->where('gender',$request->gender)->select()->orderBy('new_price','desc')->paginate(12);
+            $filter = Product::where('new_price', '<=' , 25)->where('provider',$request->prov_id)->where('category',$request->cat_id)->where('gender',$request->gender)->select()->orderBy('new_price','desc')->paginate(21);
         }else if($request->filter == "less-35"){
-            $filter = Product::where('new_price', '<=' , 35)->where('provider',$request->prov_id)->where('category',$request->cat_id)->where('gender',$request->gender)->select()->orderBy('new_price','desc')->paginate(12);
+            $filter = Product::where('new_price', '<=' , 35)->where('provider',$request->prov_id)->where('category',$request->cat_id)->where('gender',$request->gender)->select()->orderBy('new_price','desc')->paginate(21);
         }else{
-            $filter = Product::where('new_price', '>' , 35)->where('provider',$request->prov_id)->where('category',$request->cat_id)->where('gender',$request->gender)->select()->orderBy('new_price','desc')->paginate(12);
+            $filter = Product::where('new_price', '>' , 35)->where('provider',$request->prov_id)->where('category',$request->cat_id)->where('gender',$request->gender)->select()->orderBy('new_price','desc')->paginate(21);
         }
-        return view('ajax.products_filter_vendors',[
+        return view('ajax.products_filter_Gen',[
             'filter'=>$filter
         ]);
         
     }
 
     public function search_in_singleCategory2(Request $request){
-        $search_products = Product::where('prod_name','like', '%'.$request->data_search.'%')->where('category',$request->cat_id)->paginate(12);
+        $search_products = Product::where('prod_name','like', '%'.$request->data_search.'%')->where('category',$request->cat_id)->paginate(21);
         $view = view('ajax.products_search')->with(['search_products'=>$search_products])->renderSections();
         return response()->json([
             'status' => true,
@@ -304,26 +304,26 @@ class PublicProductController extends Controller
 
     public function filter_category2(Request $request){
         if($request->filter == "low-to-high"){
-            $filter = Product::where('category',$request->cat_id)->select()->orderBy('new_price','asc')->paginate(12);
+            $filter = Product::where('category',$request->cat_id)->select()->orderBy('new_price','asc')->paginate(21);
         }else if($request->filter == "high-to-low"){
-            $filter = Product::where('category',$request->cat_id)->select()->orderBy('new_price','desc')->paginate(12);
+            $filter = Product::where('category',$request->cat_id)->select()->orderBy('new_price','desc')->paginate(21);
         }else if($request->filter == "less-10"){
-            $filter = Product::where('new_price', '<=' , 10)->where('category',$request->cat_id)->select()->orderBy('new_price','desc')->paginate(12);
+            $filter = Product::where('new_price', '<=' , 10)->where('category',$request->cat_id)->select()->orderBy('new_price','desc')->paginate(21);
         }else if($request->filter == "less-25"){
-            $filter = Product::where('new_price', '<=' , 25)->where('category',$request->cat_id)->select()->orderBy('new_price','desc')->paginate(12);
+            $filter = Product::where('new_price', '<=' , 25)->where('category',$request->cat_id)->select()->orderBy('new_price','desc')->paginate(21);
         }else if($request->filter == "less-35"){
-            $filter = Product::where('new_price', '<=' , 35)->where('category',$request->cat_id)->select()->orderBy('new_price','desc')->paginate(12);
+            $filter = Product::where('new_price', '<=' , 35)->where('category',$request->cat_id)->select()->orderBy('new_price','desc')->paginate(21);
         }else{
-            $filter = Product::where('new_price', '>' , 35)->where('category',$request->cat_id)->select()->orderBy('new_price','desc')->paginate(12);
+            $filter = Product::where('new_price', '>' , 35)->where('category',$request->cat_id)->select()->orderBy('new_price','desc')->paginate(21);
         }
 
-        return view('ajax.products_filter_vendors',[
+        return view('ajax.products_filter_Cat',[
             'filter'=>$filter
         ]);
     }
 
     public function search_in_singleGender2(Request $request){
-        $search_products = Product::where('prod_name','like', '%'.$request->data_search.'%')->where('category',$request->cat_id)->where('gender',$request->gender)->paginate(12);
+        $search_products = Product::where('prod_name','like', '%'.$request->data_search.'%')->where('category',$request->cat_id)->where('gender',$request->gender)->paginate(21);
         $view = view('ajax.products_gen_search')->with(['search_products'=>$search_products])->renderSections();
         return response()->json([
             'status' => true,
@@ -333,20 +333,20 @@ class PublicProductController extends Controller
 
     public function filter_gender2(Request $request){
         if($request->filter == "low-to-high"){
-            $filter = Product::where('category',$request->cat_id)->where('gender',$request->gender)->select()->orderBy('new_price','asc')->paginate(12);
+            $filter = Product::where('category',$request->cat_id)->where('gender',$request->gender)->select()->orderBy('new_price','asc')->paginate(21);
         }else if($request->filter == "high-to-low"){
-            $filter = Product::where('category',$request->cat_id)->where('gender',$request->gender)->select()->orderBy('new_price','desc')->paginate(12);
+            $filter = Product::where('category',$request->cat_id)->where('gender',$request->gender)->select()->orderBy('new_price','desc')->paginate(21);
         }else if($request->filter == "less-10"){
-            $filter = Product::where('new_price', '<=' , 10)->where('category',$request->cat_id)->where('gender',$request->gender)->select()->orderBy('new_price','desc')->paginate(12);
+            $filter = Product::where('new_price', '<=' , 10)->where('category',$request->cat_id)->where('gender',$request->gender)->select()->orderBy('new_price','desc')->paginate(21);
         }else if($request->filter == "less-25"){
-            $filter = Product::where('new_price', '<=' , 25)->where('category',$request->cat_id)->where('gender',$request->gender)->select()->orderBy('new_price','desc')->paginate(12);
+            $filter = Product::where('new_price', '<=' , 25)->where('category',$request->cat_id)->where('gender',$request->gender)->select()->orderBy('new_price','desc')->paginate(21);
         }else if($request->filter == "less-35"){
-            $filter = Product::where('new_price', '<=' , 35)->where('category',$request->cat_id)->where('gender',$request->gender)->select()->orderBy('new_price','desc')->paginate(12);
+            $filter = Product::where('new_price', '<=' , 35)->where('category',$request->cat_id)->where('gender',$request->gender)->select()->orderBy('new_price','desc')->paginate(21);
         }else{
-            $filter = Product::where('new_price', '>' , 35)->where('category',$request->cat_id)->where('gender',$request->gender)->select()->orderBy('new_price','desc')->paginate(12);
+            $filter = Product::where('new_price', '>' , 35)->where('category',$request->cat_id)->where('gender',$request->gender)->select()->orderBy('new_price','desc')->paginate(21);
         }
 
-        return view('ajax.products_filter_vendors',[
+        return view('ajax.products_filter_Gen',[
             'filter'=>$filter
         ]);
     }

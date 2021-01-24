@@ -204,10 +204,10 @@ class ProviderProductController extends Controller
                 'country_made'=>$request->country,
                 'prod_related'=>$request->prod_related
             ]);
-            $last = Product::orderBy('created_at', 'desc')->first();
+            
             ProductsImages::create([
                 'image'=>$Image,
-                'product_id'=>$last->id
+                'product_id'=>$id
             ]);
             if($request->hasFile('images')){
                 foreach($request->images as $image){
@@ -218,10 +218,9 @@ class ProviderProductController extends Controller
                     /* $image->storeAs('public/Product_images',$fileNameToStore); */
                     $image->move('img/Product_images',$fileNameToStore);
                     
-                    $last = Product::orderBy('created_at', 'desc')->first();  
                     ProductsImages::create([
                         'image'=>$fileNameToStore,
-                        'product_id'=>$last->id
+                        'product_id'=>$id
                     ]);
                 }
                 
@@ -253,10 +252,10 @@ class ProviderProductController extends Controller
                     /* $image->storeAs('public/Product_images',$fileNameToStore); */
                     $image->move('img/Product_images',$fileNameToStore);
                     
-                    $last = Product::orderBy('created_at', 'desc')->first();  
+                     
                     ProductsImages::create([
                         'image'=>$fileNameToStore,
-                        'product_id'=>$last->id
+                        'product_id'=>$id
                     ]);
                 }
                 
