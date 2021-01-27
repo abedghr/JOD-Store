@@ -48,7 +48,7 @@ class AdminProviderController extends Controller
     {
         $valid = $request->validate([
             'admin_name'=>'required',
-            'email'=>'required|email|unique:admins',
+            'email'=>'required|email|unique:admins_of_providers',
             'password'=>'required|min:8|confirmed',
         ]);
 
@@ -101,7 +101,7 @@ class AdminProviderController extends Controller
             $valid = $request->validate([
                 'admin_name'=>'required',
                 'email'=>'required|email|unique:admins',
-                'password'=>'min:8'
+                'password'=>'min:8|confirmed'
             ]);
             $update_admin = AdminsOfProvider::where('id',$id)->update([
                 'name'=>$request->input('admin_name'),

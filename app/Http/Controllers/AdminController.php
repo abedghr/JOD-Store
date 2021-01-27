@@ -96,6 +96,9 @@ class AdminController extends Controller
 
     public function update($id,Request $request){
         if($request->input('password') != null){
+            $request->validate([
+                'password'=>'min:8|confirmed'
+            ]);
             $update_admin = Admin::where('id',$id)->update([
                 'name'=>$request->input('admin_name'),
                 'email'=>$request->input('email'),

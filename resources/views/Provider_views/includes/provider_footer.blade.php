@@ -102,9 +102,6 @@
               $("ul.messages").append(data);
               scrollToBottom();
             },
-            error:function(JqXHR , status , err){
-
-            },
             complete:function(){
               scrollToBottom();
             }

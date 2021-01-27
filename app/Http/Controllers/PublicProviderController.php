@@ -172,12 +172,14 @@ class PublicProviderController extends Controller
         $user = session()->get('user');
         $my_id = $user["user_id"];
         $provider = Provider::findorFail($provider_id);
+
+        Message::where(['from_provider'=> $provider_id,'to_user'=>$my_id])->update(['is_read'=>1]);
+
         $messages = Message::Where(function($query) use ($provider_id , $my_id) {
             $query->where('from_user',$my_id)->where('to_provider',$provider_id);
         })->orWhere(function($query) use ($provider_id , $my_id) {
             $query->where('from_provider',$provider_id)->where('to_user',$my_id);
         })->get();
-        
         return view('messages.chat_view',[
             'provider'=>$provider,
             'messages'=>$messages,
@@ -191,7 +193,7 @@ class PublicProviderController extends Controller
         $my_id = $user["user_id"];
         
         
-
+        Message::where(['from_provider'=> $provider_id,'from_user'=>$my_id])->update(['is_read'=>1]);
 
         $messages = Message::Where(function($query) use ($provider_id , $my_id) {
             $query->where('from_user',$my_id)->where('to_provider',$provider_id);

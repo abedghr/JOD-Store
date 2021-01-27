@@ -120,13 +120,7 @@ class PublicOrderController extends Controller
         if(session()->has('user')){
         $user = session()->get('user');
         $user_data = User::where('id',$user['user_id'])->get();
-        }/* else{ */
-           /* $the_user = session(['user'=>['user_id'=>'','userName'=>'']]);
-           $user = $the_user;
-           session()->forget('user');
-           $user_data[0] = []; */
-        /* } */
-        /* $user_data = $user['user_id'] ?  User::where('id',$user['user_id'])->get() : []; */
+        }
         $cities = City::all();
         if(session()->has('cart')){
             $providers0 = session()->get('providers');

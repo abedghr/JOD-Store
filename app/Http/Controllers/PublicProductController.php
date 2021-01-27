@@ -41,15 +41,21 @@ class PublicProductController extends Controller
         $providers = Provider::where('email_verified_at','<>',null)->get();
         $single_product = Product::findorfail($id);
         $related_products = Product::where('prod_related','<>',null)->where('prod_related',$single_product->prod_related)->where('id','<>',$single_product->id)->get();
+        
         $product_images = ProductsImages::where('product_id',$id)->get();
         $comments = Comment::where('prod_id',$id)->orderBy('created_at','desc')->get();
         if(session()->has('user')){
         $rate = Rating::where('user_id',$user["user_id"])->where('prod_id',$id)->get();
+        
+        $reviewed = "false";
         if(isset($rate[0])){
             $reviewed = "true";
+            $your_rate = $rate[0]->rating;
         }else{
             $reviewed = "false";
+            $your_rate = null;
         }
+        
         }
         $test = Rating::where('prod_id',$id)->select('rating',Rating::raw('COUNT(rating) as count'))->groupByRaw('rating')->get();
         $star1=0;
@@ -99,7 +105,8 @@ class PublicProductController extends Controller
                     'rating'=>$rate,
                     'product_rate'=>3,
                     'related_products'=>$related_products,
-                    'reviewed'=>$reviewed
+                    'reviewed'=>$reviewed,
+                    'your_rate'=>$your_rate
                 ]);
             }else{
                 return view('public_side.single_product',[
@@ -110,7 +117,8 @@ class PublicProductController extends Controller
                     'comments'=>$comments,
                     'product_rate'=>3,
                     'related_products'=>$related_products,
-                    'reviewed'=>$reviewed
+                    'reviewed'=>$reviewed,
+                    
                 ]);
             }
         }
@@ -125,7 +133,8 @@ class PublicProductController extends Controller
                 'rating'=>$rate,
                 'product_rate'=>$maxR,
                 'related_products'=>$related_products,
-                'reviewed'=>$reviewed
+                'reviewed'=>$reviewed,
+                'your_rate'=>$your_rate
             ]);
         }else{
             return view('public_side.single_product',[
@@ -353,8 +362,9 @@ class PublicProductController extends Controller
 
     public function rating_store(Request $request){
         
-        $userRate = Rating::where('user_id',$request->user_id)->where('prod_id',$request->prod_id)->get();
-        if(isset($userRate[0])){
+        $userRate = Rating::where('user_id',$request->user_id)->where('prod_id',$request->prod_id)->count();
+        
+        if($userRate != 0 ){
             Rating::where('user_id',$request->user_id)->where('prod_id',$request->prod_id)->update([
                 'rating'=>$request->rating,
                 'user_id'=>$request->user_id,
@@ -371,13 +381,14 @@ class PublicProductController extends Controller
         $rate = Rating::where("user_id",$request->user_id)->where("prod_id",$request->prod_id)->get();
         $output = "";
             if (isset($rate)){
-                $output.='<div class="rating_list">
-                        <h3>Your Rate:</h3>
+                $output.='
+                <h3>Your Rate:</h3>
+                <div class="list" style="color:#2fdab8">
                         <ul class="list" style="color:#fbd600">
                             <li>	
-                                <a href="#">'.$rate[0]->rating.' STAR.';
+                                <a href="#" class="text-dark">'.$rate[0]->rating.' STAR.';
                         for ($i = 0; $i < $rate[0]->rating; $i++){
-                        $output.='<i class="fa fa-star"></i>';
+                        $output.='<i class="fa fa-star"  style="color:#2fdab8"></i>';
                         }	
                         $output.='</a>	
                             </li>

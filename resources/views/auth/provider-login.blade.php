@@ -6,17 +6,12 @@
         <div class="col-md-10">
             <div class="card bg-light" style="height: 100%">
             <div class="row">
-                <div class="col-lg-7">
+                <div class="col-lg-6">
                     <div style="background-image: url(../img/providerBackgroundLogin.jpg); background-size: 100% 100%; height: 500px; background-repeat: no-repeat;">
-                        <div style="background-color:rgba(0,0,0,0.3); height:100%">
-                            <a href="/adminsOfProvider/login" class="btn btn-dark btn-block pt-3 pb-3" style="background-color: #111; border-radius:0px;">Store Employees Login</a>
-                        </div>
-                        
-                        
                     </div>
                 </div>
             <div class="col-lg-5" style="height: 100%"> 
-                <div class="card-body mt-5">
+                <div class="card-body mt-4">
                     <h4>Store Login</h4>
                     <form method="POST" action="{{ route('provider.login.submit') }}">
                         @csrf
@@ -64,6 +59,7 @@
                         </div>
                         <div class="form-group pl-4 pr-4">
                             <a href="{{route('provider.register')}}" class="btn btn-info btn-block" style="background-color: #17c3a2">Create Your Store</a>
+                            <a href="/adminsOfProvider/login" class="btn btn-dark btn-block" style="background-color: #111; border-radius:0px;">Store Employees Login</a>
                         </div>
                     </form>
                 </div> 

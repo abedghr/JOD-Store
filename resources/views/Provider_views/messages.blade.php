@@ -5,7 +5,7 @@
                 {{--if message from id is equal to auth id then it is sent by logged in user --}}
                 <div class="{{ ($message->from_provider == Auth::id()) ? 'sent' : 'received' }}">
                     <p>{{ $message->message }}</p>
-                    <p class="date">{{ date('d M y, h:i a', strtotime($message->created_at)) }}</p>
+                    <p class="date">{{ date('d M Y, h:i a', strtotime($message->created_at)) }}</p>
                 </div>
             </li>
         @endforeach

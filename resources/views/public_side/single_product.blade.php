@@ -53,12 +53,20 @@
 					<div class="color-quality">
 						<div class="color-quality-right">
 							<h5>Quantity :</h5>
-							<input type="number" name="qty" id="sst" class="form-control qty" style="width: 80px;" min="1" max="30" value="1">
+							<input type="number" name="qty" id="sst" class="form-control qty" style="width: 80px;" min="1" max="{{$product->inventory}}" value="1">
 						</div>
 					</div><br>
+					@if ($product->inventory != 0)
 					<div class="occasion-cart">
 						<button class="hvr-outline-out button2 btn text-light js-addcart-detail" id="addCart" style="border-radius: 0px !important;">ADD TO CART</button>												
 					</div>
+					@else
+					<div class="occasion-cart">
+						<button class="{{-- button2 --}} btn text-light bg-danger" style="border-radius: 0px !important; cursor:not-allowed">Not Available</button>												
+					</div>
+					@endif
+					
+					
 		      </div>
 	 			<div class="clearfix"> </div>
 	<!--================Product Description Area =================-->
@@ -139,20 +147,26 @@
 											<i class="fa fa-star fa-4x"></i>
 											<h4 class="text-dark">{{number_format($product_rate,1)}} STAR</h4>
 										</a>
-										@if (isset($rating[0]))
+										@if (isset($your_rate))
+										@if ($your_rate !=null)
+										
 										<div class="rating_list text-left mt-2 ml-4" id="yourRateBox">
 											<h3>Your Rate:</h3>
 											<ul class="list" style="color:#2fdab8">
 												<li>	
-													<a href="#" class="text-dark">{{$rating[0]->rating}} STAR
-													@for ($i = 0; $i < $rating[0]->rating; $i++)
+													<a href="#" class="text-dark">{{$your_rate}} STAR
+													@for ($i = 0; $i < $your_rate; $i++)
 														<i class="fa fa-star" style="color:#2fdab8"></i>
 													@endfor	
 													</a>	
 												</li>
 											</ul>
 										</div>
-									@endif
+										@else
+										<div class="rating_list text-left mt-2 ml-4" id="yourRateBox">
+										</div>
+										@endif
+										@endif
 									</div>
 								</div>
 								<div class="col-12" >
@@ -238,11 +252,11 @@
 			@foreach ($related_products as $Rproduct)	
 				<div class="col-md-3 product-men single">
 					<div class="men-pro-item simpleCart_shelfItem">
-						<div class="men-thumb-item" style="height: 250px; background-image:url('../img/Product_images/{{$product->main_image}}'); background-size:100% 100%;">
+						<div class="men-thumb-item" style="height: 250px; background-image:url('../img/Product_images/{{$Rproduct->main_image}}'); background-size:100% 100%;">
 					
 							<div class="men-cart-pro">
 								<div class="inner-men-cart-pro">
-									<a href="{{route('product.show2',['id'=>$product->id])}}" class="link-product-add-cart">Quick View</a>
+									<a href="{{route('product.show2',['id'=>$Rproduct->id])}}" class="link-product-add-cart">Quick View</a>
 								</div>
 							</div>
 							
@@ -262,9 +276,19 @@
 							<span class="item_price">{{number_format($Rproduct->new_price,2)}}JOD</span>
 						</div>
 						@endif
-						<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
+
+						@if ($Rproduct->inventory == 0)
+							<div class="snipcart-details top_brand_home_details item_add single-item button2">
+							<input type="submit" name="submit" value="Not Available" class="button bg-danger" style="margin-bottom: 8px; top:8px;" />
+							</div>
+							@else
+							<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
+							<input type="submit" name="submit" value="Add to cart" class="button js-addcart-detail" onclick="addca({{$product->id}})" />
+							</div>
+							@endif
+						{{-- <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
 							<input type="submit" name="submit" value="Add to cart" class="button js-addcart-detail" onclick="addca({{$Rproduct->id}})" />
-						</div>
+						</div> --}}
 						</div>
 					</div>
 				</div>
@@ -424,7 +448,7 @@
                     },success:function(data){
                         $feed = "Your Rate is "+data.rating+" Star";
                         swal($feed, " ", "success");
-                        $("#yourRateBox").html(data.yourRate);
+						$("#yourRateBox").html(data.yourRate);
                     }
                 });
             });

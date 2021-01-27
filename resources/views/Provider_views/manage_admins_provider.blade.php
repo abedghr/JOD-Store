@@ -37,28 +37,28 @@
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Employee Name<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" name="admin_name" placeholder="Enter Admin name">
+                    <input type="text" class="form-control" id="exampleInputEmail1" name="admin_name" placeholder="Enter Admin name" required>
                     @error('admin_name')
                         <small class="text-danger"><strong>{{$message}}</strong></small>
                     @enderror
                 </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Employee Email<span class="text-danger">*</span></label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="Enter Admin email">
+                    <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="Enter Admin email" required>
                     @error('email')
                         <small class="text-danger"><strong>{{$message}}</strong></small>
                     @enderror
                 </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Employee Password<span class="text-danger">*</span></label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Enter Admin Password">
+                    <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Enter Admin Password" required>
                     @error('password')
                         <small class="text-danger"><strong>{{$message}}</strong></small>
                     @enderror
                 </div>
                 <div class="form-group">
                   <label for="password-confirm" class="">{{ __('Confirm Password') }}<span class="text-danger">*</span></label>
-                  <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="new-password" placeholder="Confirm password">
+                  <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="new-password" placeholder="Confirm password" required>
                   @error('password')
                         <small class="text-danger"><strong>{{$message}}</strong></small>
                     @enderror

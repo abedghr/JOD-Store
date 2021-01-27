@@ -33,7 +33,7 @@
                 <th>Name</th>
                 <th>phone</th>
                 <th>City</th>
-                <th>address</th>
+                <th>Store</th>
                 <th>Total Price</th>
                 <th>Delivery Price</th>
                 <th>Created At</th>
@@ -48,7 +48,7 @@
                   <td>{{$order->fname.' '.$order->lname}}</td>
                   <td>{{$order->phone}}</td>
                   <td>{{$order->city}}</td>
-                  <td>{{$order->Address}}</td>
+                  <td><strong>{{$order->prov->name}}</strong></td>
                   <td>JD-{{$order->total_price}}</td>
                   <td>JD-{{$del}}</td>
                   <td>{{$order->created_at->format('Y-m-d')}}</td>

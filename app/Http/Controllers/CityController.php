@@ -100,7 +100,7 @@ class CityController extends Controller
             'delivery_price'=>$request->delivery_price
         ]);
 
-        return redirect()->route('delivery.edit',['id'=>$id]);
+        return redirect()->route('delivery.price');
     }
 
     /**

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center" style="height: 500px !important;">
+    <div class="row justify-content-center" style="height: 400px !important;">
         <div class="col-md-10">
             <div class="card bg-light" style="height: 100%">
                 {{-- <div class="card-header bg-primary text-light">
@@ -10,7 +10,7 @@
                 </div> --}}
             <div class="row">
                 <div class="col-lg-7">
-                    <div style="background-image: url(../img/AdminLogin.jpg); background-size: 100% 100%; height: 500px; background-repeat: no-repeat;">
+                    <div style="background-image: url(../img/AdminLogin.jpg); background-size: 100% 100%; height: 450px; background-repeat: no-repeat;">
                         <div style="background-color:rgba(0,0,0,0.3); height:100%">
                             <h1 class="text-light" style="font-family:Arial, Helvetica, sans-serif; position: relative; top: 38%; margin-left:15px;">JOD-Store</h1>
                             <small class="text-light" style="font-family:Arial, Helvetica, sans-serif; position: relative; top: 36%; margin-left:15px;">Admin Dashboard</small>
@@ -57,12 +57,6 @@
                                 <button type="submit" class="btn btn-dark btn-block" style="background-color: #111;">
                                     {{ __('Login') }}
                                 </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
                             </div>
                         </div>
                     </form>

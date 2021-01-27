@@ -141,14 +141,14 @@
               <!-- small box -->
               <div class="small-box bg-primary">
                 <div class="inner">
-                  <h3>{{$newOrders}}</h3>
+                  <h3>All notifications</h3>
   
-                  <p>New Orders</p>
+                  <p>&nbsp;</p>
                 </div>
                 <div class="icon">
-                  <i class="fa fa-shopping-bag"></i>
+                  <i class="far fa-bell"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{route('provAdmin.allNotifications')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -156,7 +156,7 @@
               <!-- small box -->
               <div class="small-box bg-success">
                 <div class="inner">
-                  <h3>150</h3>
+                  <h3>{{$feedbacks}}</h3>
   
                   <p>Feedbacks</p>
                 </div>

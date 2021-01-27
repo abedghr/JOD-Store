@@ -146,7 +146,7 @@
               <th>Name</th>
               <th>Email</th>
               <th>Mobile</th>
-              <th>Created At</th>
+              <th>Subscribe</th>
               <th style="width: 40px">Actions</th>
             </tr>
           </thead>
@@ -161,7 +161,12 @@
                 <td>{{$provider->name}}</td>
                 <td>{{$provider->email}}</td>
                 <td>{{$provider->phone1}}</td>
-                <td>{{$provider->created_at->format('Y-m-d')}}</td>
+                @if ($provider->subscribe >0)
+                <td class="text-success"><strong>Active</strong></td>
+                @else
+                <td class="text-danger"><strong>Disabled</strong></td>
+                @endif
+                
                 <td style="width:200px;">
                 <a href="{{route('manage_provider.show',['id'=> $provider->id])}}" class="btn btn-warning"><i class="fa fa-eye"></i></a>
                 <a href="{{route('manage_provider.edit',['id'=> $provider->id])}}" class="btn btn-info"><i class="fa fa-edit"></i></a>

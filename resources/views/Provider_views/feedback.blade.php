@@ -31,13 +31,12 @@
                 <h3 class="card-title">Feedbacks List</h3>
                     <div class="card-tools">
                     <ul class="pagination pagination-sm float-right">
-                        {!! $feedbacks->links() !!}
                     </ul>
                     </div>
                 </div>
                 <!-- /.card-header -->
-                <div class="card-body table-responsive p-0">
-                    <table class="table text-center">
+                <div class="card-body table-responsive mt-2 p-0">
+                    <table class="table text-center" id="table">
                     <thead>
                         <tr>
                           <th>View</th>
@@ -76,3 +75,9 @@
 </div>
 
 @include('Provider_views.includes.provider_footer')
+<script>
+  $(document).ready(function () {
+    $('#table').DataTable();
+    $('.dataTables_length').addClass('bs-select');
+  });
+  </script>

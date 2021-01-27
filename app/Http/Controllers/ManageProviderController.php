@@ -157,6 +157,9 @@ class ManageProviderController extends Controller
                 /* $request->file('cover_image')->storeAs('public/Provider_coverImages',$coverImage); */
                 $request->file('cover_image')->move('img/Provider_coverImages',$coverImage);
                 if(isset($request->password) || $request->password != ""){
+                    $request->validate([
+                        'password'=>"min:8|confirmed"
+                    ]);
                     $provider = Provider::where('id',$id)->update([
                         'name'=>$request->prov_name,
                         'email'=>$request->email,
@@ -181,6 +184,9 @@ class ManageProviderController extends Controller
                 
             }else{
                 if(isset($request->password) || $request->password != ""){
+                    $request->validate([
+                        'password'=>"min:8|confirmed"
+                    ]);
                     $provider = Provider::where('id',$id)->update([
                         'name'=>$request->prov_name,
                         'email'=>$request->email,
@@ -209,6 +215,9 @@ class ManageProviderController extends Controller
                 /* $request->file('cover_image')->storeAs('public/Provider_coverImages',$coverImage); */
                 $request->file('cover_image')->move('img/Provider_coverImages',$coverImage);
                 if(isset($request->password) || $request->password != ""){
+                    $request->validate([
+                        'password'=>"min:8|confirmed"
+                    ]);
                     $provider = Provider::where('id',$id)->update([
                         'name'=>$request->prov_name,
                         'email'=>$request->email,
@@ -230,6 +239,9 @@ class ManageProviderController extends Controller
                 }
             }else{
                 if(isset($request->password) || $request->password != ""){
+                    $request->validate([
+                        'password'=>"min:8|confirmed"
+                    ]);
                     $provider = Provider::where('id',$id)->update([
                         'name'=>$request->prov_name,
                         'email'=>$request->email,

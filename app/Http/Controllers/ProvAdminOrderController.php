@@ -19,7 +19,7 @@ class ProvAdminOrderController extends Controller
 
     public function index()
     {
-       $orders = Order::where('provider',Auth::user()->provider)->select()->paginate(10);
+       $orders = Order::where('provider',Auth::user()->provider)->select()->get();
        $products_orders= array();
        foreach($orders as $order){
         $products_orders[$order->id]= ProductsOfOrders::where('order_id',$order->id)->count();
@@ -106,7 +106,7 @@ class ProvAdminOrderController extends Controller
         if($request->status == 0){
             return redirect()->route('provAdmin.order.index');
         }else{
-        $orders = Order::where('order_status',$request->status)->where('provider',Auth::user()->provider)->select()->paginate(10);
+        $orders = Order::where('order_status',$request->status)->where('provider',Auth::user()->provider)->select()->get();
         }
         $products_orders= array();
         foreach($orders as $order){
@@ -114,6 +114,7 @@ class ProvAdminOrderController extends Controller
         }
         return view('provAdmin_views.manage_orders',[
             'orders'=>$orders,
+            'status'=>$request->status,
             'count_products'=>$products_orders
         ]);
     }

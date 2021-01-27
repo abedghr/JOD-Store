@@ -75,9 +75,8 @@ class ProviderController extends Controller
         $ordersOnDelivery = Order::where('provider',Auth::user()->id)->where('order_status','1')->count();
         $ordersDeclined = Order::where('provider',Auth::user()->id)->where('order_status','-1')->count();
         $ordersFailed = Order::where('provider',Auth::user()->id)->where('order_status','-2')->count();
-        $newOrders = Order::where('provider',Auth::user()->id)->where('order_status','0')->count();
         $orders = Order::where('provider',Auth::user()->id)->count();
-        $feedbacks = Feedback::count();
+        $feedbacks = Feedback::where('provider_id',Auth::user()->id)->count();
         return view('Provider_views.provider',[
             'products_number'=>$products_number,
             'orders_number'=>$orders,
@@ -86,7 +85,6 @@ class ProviderController extends Controller
             'ordersOnDelivery'=>$ordersOnDelivery,
             'ordersDeclined'=>$ordersDeclined,
             'ordersFailed'=>$ordersFailed,
-            'newOrders'=>$newOrders,
             'visitors'=>$visitors,
             'feedbacks'=>$feedbacks
         ]);
@@ -114,20 +112,23 @@ class ProviderController extends Controller
                 $request->file('cover_image')->move('img/Provider_coverImages',$coverImage);
                 
                 if(isset($request->password) || !empty($request->password)){
-                $provider = Provider::where('id',$id)->update([
-                    'name'=>$request->prov_name,
-                    'email'=>$request->email,
-                    'password'=>Hash::make($request->password),
-                    'phone1'=>$request->phone1,
-                    'phone2'=>$request->phone2,
-                    'store_type'=>$request->store_type,
-                    'address'=>$request->address,
-                    'image'=>$fileImage,
-                    'cover_image'=>$coverImage,
-                    'description'=>$request->description,
-                    'facebook'=>$request->facebook,
-                    'instagram'=>$request->instagram
-                ]);
+                    $request->validate([
+                        'password'=>'min:8|confirmed'
+                    ]);
+                    $provider = Provider::where('id',$id)->update([
+                        'name'=>$request->prov_name,
+                        'email'=>$request->email,
+                        'password'=>Hash::make($request->password),
+                        'phone1'=>$request->phone1,
+                        'phone2'=>$request->phone2,
+                        'store_type'=>$request->store_type,
+                        'address'=>$request->address,
+                        'image'=>$fileImage,
+                        'cover_image'=>$coverImage,
+                        'description'=>$request->description,
+                        'facebook'=>$request->facebook,
+                        'instagram'=>$request->instagram
+                    ]);
                 }else{
                     $provider = Provider::where('id',$id)->update([
                         'name'=>$request->prov_name,
@@ -146,6 +147,9 @@ class ProviderController extends Controller
                 return redirect()->route('provider.profile');
             }else{
                 if(isset($request->password) || !empty($request->password)){
+                    $request->validate([
+                        'password'=>'min:8|confirmed'
+                    ]);
                     $provider = Provider::where('id',$id)->update([
                         'name'=>$request->prov_name,
                         'email'=>$request->email,
@@ -183,6 +187,9 @@ class ProviderController extends Controller
                 $request->file('cover_image')->move('img/Provider_coverImages',$coverImage);
                 
                 if(isset($request->password) || !empty($request->password)){
+                    $request->validate([
+                        'password'=>'min:8|confirmed'
+                    ]);
                     $provider = Provider::where('id',$id)->update([
                         'name'=>$request->prov_name,
                         'email'=>$request->email,
@@ -213,6 +220,9 @@ class ProviderController extends Controller
                 return redirect()->route('provider.profile');
             }else{
                 if(isset($request->password) || !empty($request->password)){
+                    $request->validate([
+                        'password'=>'min:8|confirmed'
+                    ]);
                     $provider = Provider::where('id',$id)->update([
                         'name'=>$request->prov_name,
                         'email'=>$request->email,

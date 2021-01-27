@@ -37,7 +37,7 @@
 				<h4>Filters</h4>
 				<div class="swit form">	
 					<form>
-					<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio" onchange="filter_price('low-to-high')" checked=""><i></i>Low to High</label> </div></div>
+					<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio" onchange="filter_price('low-to-high')"><i></i>Low to High</label> </div></div>
 					<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio" onchange="filter_price('high-to-low')"><i></i>High to Low</label> </div></div>
 					<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio" onchange="filter_price('less-10')"><i></i>Less Than 10.99JD</label> </div></div>
 					<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio" onchange="filter_price('less-25')"><i></i>Less Than 25.99JD</label> </div></div>
@@ -110,9 +110,15 @@
                             <span class="item_price">{{number_format($product->new_price,2)}}JOD</span>
                         </div>
                         @endif
-                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-                            <input type="submit" name="submit" value="Add to cart" class="button js-addcart-detail" onclick="addca({{$product->id}})" />
+                        @if ($product->inventory == 0)
+                        <div class="snipcart-details top_brand_home_details item_add single-item button2">
+                        <input type="submit" name="submit" value="Not Available" class="button bg-danger" style="margin-bottom: 8px; top:8px;" />
                         </div>
+                        @else
+                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
+                        <input type="submit" name="submit" value="Add to cart" class="button js-addcart-detail" onclick="addca({{$product->id}})" />
+                        </div>
+                        @endif
                     </div>
                 </div>
             </div>

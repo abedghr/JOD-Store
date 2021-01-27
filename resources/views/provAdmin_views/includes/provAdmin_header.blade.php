@@ -142,7 +142,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{route('admin.dashboard')}}" class="brand-link">
-      <h5 class="ml-1">Provider Dashboard</h5>
+      <h5 class="ml-1">{{Auth::user()->MainProvider->name}} Store</h5>
     </a>
 
     <!-- Sidebar -->

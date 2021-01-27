@@ -33,12 +33,13 @@
                         <div class="card-text mt-5">
                             <p><strong>Product Name :</strong> {{$product->prod_name}}</p>
                             <p><strong>Description :</strong> {{$product->description}}</p>
-                            <p><strong>Product Old Price :</strong> JD{{$product->old_price ? $product->old_price : 00}}</p>
-                            <p><strong>Product New Price :</strong> JD{{$product->new_price}}</p>
+                            <p><strong>Product Old Price :</strong> {{$product->old_price ? $product->old_price : 00}} JOD</p>
+                            <p><strong>Product New Price :</strong> {{$product->new_price}} JOD</p>
                             <p><strong> Category :</strong> {{$product->cat->cat_name}}</p>
                             <p><strong> Gender :</strong> {{$product->gender}}</p>
                             <p><strong> Provider :</strong> {{$product->prov->name}}</p>
                             <p><strong> Availability :</strong> {{$product->availability == 1 ? 'Available' : 'Un-available'}}</p>
+                            <p><strong> Inventory :</strong> {{$product->inventory}} Item</p>
                             <p><strong> Status :</strong> {{$product->prod_status ? $product->prod_status : "none"}}</p>
                             <p><strong> Related :</strong> {{$product->related ? $product->related->name : "....."}}</p>
                         </div>

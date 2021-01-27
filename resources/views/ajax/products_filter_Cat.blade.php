@@ -19,9 +19,18 @@
                 <span class="item_price">{{number_format($product->new_price,2)}} JOD</span>
                 <del>{{number_format($product->old_price,2)}}JOD</del>
             </div>
-            <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-                <input type="submit" name="submit" value="Add to cart" class="button js-addcart-detail" onclick="addca('.$product->id.')" />
+            @if ($product->inventory == 0)
+            <div class="snipcart-details top_brand_home_details item_add single-item button2">
+            <input type="submit" name="submit" value="Not Available" class="button bg-danger" style="margin-bottom: 8px; top:8px;" />
             </div>
+            @else
+            <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
+            <input type="submit" name="submit" value="Add to cart" class="button js-addcart-detail" onclick="addca({{$product->id}})" />
+            </div>
+            @endif
+            {{-- <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
+                <input type="submit" name="submit" value="Add to cart" class="button js-addcart-detail" onclick="addca('.$product->id.')" />
+            </div> --}}
         </div>
     </div>
 </div>

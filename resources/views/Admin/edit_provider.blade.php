@@ -57,6 +57,13 @@
                         <small class="text-danger"><strong>{{$message}}</strong></small>
                     @enderror
                 </div>
+                <div class="form-group">
+                  <label for="password-confirm" class="">{{ __('Confirm Password') }}<span class="text-danger">*</span></label>
+                  <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm password">
+                  @error('password')
+                        <small class="text-danger"><strong>{{$message}}</strong></small>
+                  @enderror
+                </div>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">

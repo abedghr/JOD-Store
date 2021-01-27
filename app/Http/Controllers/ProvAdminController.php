@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\NewMessage;
 use App\Models\AdminsOfProvider;
+use App\Models\Feedback;
 use App\Models\Message;
 use App\Models\Order;
 use App\Models\Product;
@@ -70,6 +71,7 @@ class ProvAdminController extends Controller
         $ordersFailed = Order::where('provider',Auth::user()->provider)->where('order_status','-2')->count();
         $newOrders = Order::where('provider',Auth::user()->provider)->where('order_status','0')->count();
         $orders = Order::where('provider',Auth::user()->provider)->count();
+        $feedbacks = Feedback::where('provider_id',Auth::user()->provider)->count();
         return view('provAdmin_views.provAdmin',[
             'products_number'=>$products_number,
             'orders_number'=>$orders,
@@ -79,7 +81,8 @@ class ProvAdminController extends Controller
             'ordersDeclined'=>$ordersDeclined,
             'ordersFailed'=>$ordersFailed,
             'newOrders'=>$newOrders,
-            'visitors'=>$visitors
+            'visitors'=>$visitors,
+            'feedbacks'=>$feedbacks
         ]);
     }
 

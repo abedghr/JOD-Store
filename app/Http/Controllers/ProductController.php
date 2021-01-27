@@ -52,14 +52,29 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $valid = $request->validate([
-            'prod_name'=>'required',
-            'description'=>'required',
-            'new_price'=>'required',
-            'cat'=>'required',
-            'gender'=>'required',
-            'provider'=>'required',
-        ]);
+        if(!isset($request->old_price) || $request->old_price == ""){
+            $valid = $request->validate([
+                'prod_name'=>'required',
+                'description'=>'required',
+                'new_price'=>'required|numeric',
+                'cat'=>'required',
+                'gender'=>'required',
+                'provider'=>'required',
+                'inventory'=>'required'
+            ]);
+        }else{
+            $valid = $request->validate([
+                'prod_name'=>'required',
+                'description'=>'required',
+                'old_price'=>'numeric',
+                'new_price'=>'required|numeric',
+                'cat'=>'required',
+                'gender'=>'required',
+                'provider'=>'required',
+                'inventory'=>'required'
+            ]);
+        }
+        
         if($request->hasFile('main_image')){
             $Image = time().'.'.$request->file('main_image')->getClientOriginalName();
             /* $request->file('main_image')->storeAs('public/Product_images',$Image); */
@@ -186,14 +201,29 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $valid = $request->validate([
-            'prod_name'=>'required',
-            'description'=>'required',
-            'new_price'=>'required',
-            'cat'=>'required',
-            'gender'=>'required',
-            'provider'=>'required',
-        ]);
+        if(!isset($request->old_price) || $request->old_price == ""){
+            $valid = $request->validate([
+                'prod_name'=>'required',
+                'description'=>'required',
+                'new_price'=>'required|numeric',
+                'cat'=>'required',
+                'gender'=>'required',
+                'provider'=>'required',
+                'inventory'=>'required'
+            ]);
+        }else{
+            $valid = $request->validate([
+                'prod_name'=>'required',
+                'description'=>'required',
+                'old_price'=>'numeric',
+                'new_price'=>'required|numeric',
+                'cat'=>'required',
+                'gender'=>'required',
+                'provider'=>'required',
+                'inventory'=>'required'
+            ]);
+        }
+        
         if($request->hasFile('main_image')){
             $Image = time().'.'.$request->file('main_image')->getClientOriginalName();
             /* $request->file('main_image')->storeAs('public/Product_images',$Image); */

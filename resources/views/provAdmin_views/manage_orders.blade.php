@@ -14,16 +14,15 @@
                 <h3 class="card-title mt-2"><strong>Orders</strong></h3>
             </div>
             <div class="col-sm-5">
-                <a class="btn btn-light" href="{{route('provAdmin.order.filters',['status'=>0])}}">All</a>
-                <a class="btn btn-light" href="{{route('provAdmin.order.filters',['status'=>1])}}"> In Delivery</a>
-                <a class="btn btn-light" href="{{route('provAdmin.order.filters',['status'=>3])}}"> Done</a>
-                <a class="btn btn-light" href="{{route('provAdmin.order.filters',['status'=>-1])}}"> Declined</a>
-                <a class="btn btn-light" href="{{route('provAdmin.order.filters',['status'=>-2])}}"> Failed</a>
+                <a class="btn btn-light @if (!isset($status)) bg-primary @endif" href="{{route('provAdmin.order.filters',['status'=>0])}}">All</a>
+                <a class="btn btn-light @if (isset($status) && $status == 1) bg-primary @endif" href="{{route('provAdmin.order.filters',['status'=>1])}}"> In Delivery</a>
+                <a class="btn btn-light @if (isset($status) && $status == 3) bg-primary @endif" href="{{route('provAdmin.order.filters',['status'=>3])}}"> Done</a>
+                <a class="btn btn-light @if (isset($status) && $status == -1) bg-primary @endif" href="{{route('provAdmin.order.filters',['status'=>-1])}}"> Declined</a>
+                <a class="btn btn-light @if (isset($status) && $status == -2) bg-primary @endif" href="{{route('provAdmin.order.filters',['status'=>-2])}}"> Failed</a>
             </div>
             <div class="col-sm-6">
                 <div class="card-tools">
                     <ul class="pagination pagination-sm float-right">
-                        {!! $orders->links() !!}
                     </ul>
                   </div>
             </div>

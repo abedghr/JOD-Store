@@ -6,7 +6,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Edit Admin</h1>
+            <h1>Manage Employees</h1>
           </div>
           {{-- <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -25,9 +25,9 @@
           <!-- left column -->
           <div class="col-md-12">
             <!-- general form elements -->
-            <div class="card card-primary">
+            <div class="card card-secondary">
               <div class="card-header">
-                <h3 class="card-title">Edit Admin</h3>
+                <h3 class="card-title">Edit Employee</h3>
               </div>
               
               <!-- /.card-header -->
@@ -37,26 +37,35 @@
                 @method("put")
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Admin Name<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" value="{{$admin->name}}" id="exampleInputEmail1" name="admin_name" placeholder="Enter Admin name">
+                        <label for="exampleInputEmail1">Employee Name<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" value="{{$admin->name}}" id="exampleInputEmail1" name="admin_name" placeholder="Enter Admin name" required>
                         @error('admin_name')
                             <small class="text-danger"><strong>{{$message}}</strong></small>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Admin Email<span class="text-danger">*</span></label>
-                        <input type="email" class="form-control" value="{{$admin->email}}" id="exampleInputEmail1" name="email" placeholder="Enter Admin email">
+                        <label for="exampleInputEmail1">Employee Email<span class="text-danger">*</span></label>
+                        <input type="email" class="form-control" value="{{$admin->email}}" id="exampleInputEmail1" name="email" placeholder="Enter Admin email" required>
                         @error('email')
                             <small class="text-danger"><strong>{{$message}}</strong></small>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Admin Password</label>
-                        <input type="password" class="form-control"  id="exampleInputPassword1" name="password" placeholder="Enter a new admin password if you want to change it">
+                        <label for="exampleInputPassword1">Employee Password</label>
+                        <input type="password" class="form-control"  id="exampleInputPassword1" name="password" placeholder="Enter a new password if you want to change it">
                         @error('password')
                             <small class="text-danger"><strong>{{$message}}</strong></small>
                         @enderror
                     </div>
+                    <div class="form-group">
+                      <label for="password-confirm" class="">{{ __('Confirm Password') }}</label>
+                      <input id="password-confirm" type="password" class="form-control @error('password') is-invalid @enderror" name="password_confirmation" autocomplete="new-password" placeholder="Confirm password">
+                      @error('password')
+                          <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                          </span>
+                      @enderror
+                  </div>
                 </div>
                 <!-- /.card-body -->
 

@@ -39,14 +39,14 @@
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Related Name<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" value="{{$related->name}}" id="exampleInputEmail1" name="name" placeholder="Enter Admin name">
+                    <input type="text" class="form-control" value="{{$related->name}}" id="exampleInputEmail1" name="name" placeholder="Enter Admin name" required>
                     @error('name')
                         <small class="text-danger"><strong>{{$message}}</strong></small>
                     @enderror
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Related Name<span class="text-danger">*</span></label>
-                    <select name="provider" id="" class="form-control">
+                    <select name="provider" id="" class="form-control" required>
                       <option value=""></option>
                       @foreach ($providers as $provider)
                           <option value="{{$provider->id}}" @if ($provider->id == $related->provider_id) selected @endif>{{$provider->name}}</option>

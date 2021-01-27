@@ -66,7 +66,7 @@
                 <?php $del = $order->total_With_Delivery - $order->total_price; ?>
                 <tr>
                   <td>
-                      <a href="{{route('order.showDetails',['order_id'=> $order->id])}}" class="btn btn-warning mb-1"><i class="fa fa-eye"></i></a>
+                      <a href="{{route('order.showDetails',['order_id'=> $order->id])}}" target="_blank"  class="btn btn-warning mb-1"><i class="fa fa-eye"></i></a>
                       <form method="post" action="{{route('order.destroy',['id'=>$order->id])}}" style="display: inline">
                           @csrf
                           @method('delete')
@@ -79,9 +79,9 @@
                   <td>{{$order->phone}}</td>
                   <td>{{$order->city}}</td>
                   <td>{{$order->Address}}</td>
-                  <td><a href="{{route('order.show',['order_id'=>$order->id])}}" class="badge badge-secondary text-light">({{count($order->prodOfOrder)}}) View Orders</a></td>
-                  <td>JD-{{$order->total_price}}</td>
-                  <td>JD-{{$del}}</td>
+                  <td><a href="{{route('order.show',['order_id'=>$order->id])}}" target="_blank" class="badge badge-secondary text-light">({{count($order->prodOfOrder)}}) View Orders</a></td>
+                  <td>{{$order->total_price}} JOD</td>
+                  <td>{{$del}} JOD</td>
                   <td>{{$order->created_at->format('Y-m-d')}}</td>
                   @if ($order->order_status == 0)
                   <td style="width:250px;" id="first_state{{$order->id}}">

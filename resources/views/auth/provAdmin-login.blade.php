@@ -12,10 +12,7 @@
                 <div class="col-lg-7">
                     <div style="background-image: url({{asset('../img/providerBackgroundLogin.jpg')}}); background-size: 100% 100%; height: 450px; background-repeat: no-repeat;">
                         <div style="background-color:rgba(0,0,0,0.3); height:100%">
-                            <a href="/provider/login" class="btn btn-dark btn-block pt-3 pb-3" style="background-color: #111; border-radius:0px;">Store Login</a>
                         </div>
-                        
-                        
                     </div>
                 </div>
             <div class="col-lg-5" style="height: 100%"> 
@@ -51,19 +48,16 @@
                                 @enderror
                             </div>
                         </div>
-                         <div class="form-group mt-4">
+                        <div class="form-group mt-4">
                             <div>
                                 <button type="submit" class="btn btn-dark btn-block" style="background-color: #111">
                                     {{ __('Login') }}
                                 </button>
-                        {{--
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('provider.password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
                             </div>
-                        </div> --}}
+                        </div>
+                        <div class="form-group pl-4 pr-4">
+                            <a href="/provider/login" class="btn btn-dark btn-block" style="background-color:#17c3a2; color:black; border-radius:0px;"><strong>Store Login</strong></a>
+                        </div>
                         
                     </form>
                 </div> 

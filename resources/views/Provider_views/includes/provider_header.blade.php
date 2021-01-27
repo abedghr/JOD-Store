@@ -120,7 +120,7 @@
                 <a class="dropdown-item" href="{{ route('provider.logout') }}"
                     onclick="event.preventDefault();
                                     document.getElementById('provider-logout-form').submit();">
-                    {{ __('Logout Provider') }}
+                    Logout Store
                 </a>
                 <form id="provider-logout-form" action="{{ route('provider.logout') }}" method="POST" class="d-none">
                     @csrf

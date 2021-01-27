@@ -38,14 +38,14 @@
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Related Name<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" name="name" placeholder="Enter Related name">
+                    <input type="text" class="form-control" id="exampleInputEmail1" name="name" placeholder="Enter Related name" required>
                     @error('name')
                         <small class="text-danger"><strong>{{$message}}</strong></small>
                     @enderror
                  </div>
                  <div class="form-group">
                     <label for="exampleInputEmail1">Provider<span class="text-danger">*</span>  </label>
-                    <select name="provider" id="" class="form-control">
+                    <select name="provider" id="" class="form-control" required>
                       <option value=""></option>
                       @foreach ($providers as $provider)
                           <option value="{{$provider->id}}">{{$provider->name}}</option>

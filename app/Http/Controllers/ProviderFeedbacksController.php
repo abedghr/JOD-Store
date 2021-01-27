@@ -16,7 +16,7 @@ class ProviderFeedbacksController extends Controller
     }
     
     public function index(){
-        $feedbacks = Feedback::where('provider_id',Auth::user()->id)->select()->paginate(10);
+        $feedbacks = Feedback::where('provider_id',Auth::user()->id)->select()->get();
         return view('Provider_views.feedback',[
             'feedbacks'=>$feedbacks
         ]);

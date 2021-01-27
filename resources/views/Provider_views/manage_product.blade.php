@@ -37,14 +37,14 @@
                 <div class="card-body">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Product Name<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" name="prod_name" placeholder="Enter Product name">
+                    <input type="text" class="form-control" id="exampleInputEmail1" name="prod_name" placeholder="Enter Product name" required>
                     @error('prod_name')
                         <small class="text-danger"><strong>{{$message}}</strong></small>
                     @enderror
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Description<span class="text-danger">*</span></label>
-                    <textarea name="description" id="" class="form-control"></textarea>
+                    <textarea name="description" id="" class="form-control" required></textarea>
                     @error('description')
                         <small class="text-danger"><strong>{{$message}}</strong></small>
                     @enderror
@@ -62,7 +62,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="exampleInputPassword1">New Price<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="exampleInputPassword1" name="new_price" placeholder="Enter new price">
+                            <input type="text" class="form-control" id="exampleInputPassword1" name="new_price" placeholder="Enter new price" required>
                             @error('new_price')
                                 <small class="text-danger"><strong>{{$message}}</strong></small>
                             @enderror
@@ -86,7 +86,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="exampleInputPassword1">Gender<span class="text-danger">*</span></label>
-                            <select name="gender" id="" class="form-control">
+                            <select name="gender" id="" class="form-control" required>
                                 <option value="men">Men</option>
                                 <option value="women">Women</option>
                                 <option value="for both">For Both</option>
@@ -136,7 +136,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="exampleInputPassword1">Inventory <span class="text-danger">*</span></label>
-                            <input type="number" name="inventory" class="form-control">
+                            <input type="number" name="inventory" class="form-control" required>
                             @error('inventory')
                                 <small class="text-danger"><strong>{{$message}}</strong></small>
                             @enderror
@@ -236,8 +236,8 @@
                 <img src="../../img/Product_images/{{$product->main_image}}" width="60" height="60" class="rounded-circle" alt="">
                 </td>
                 <td>{{$product->prod_name}}</td>
-                <td class="text-danger"><del><strong>JD{{$product->old_price ? $product->old_price : 00}}</strong></del></td>
-                <td class="text-success"><strong>JD{{$product->new_price}}</strong></td>
+                <td class="text-danger"><del><strong>{{$product->old_price ? $product->old_price : 00}} JOD</strong></del></td>
+                <td class="text-success"><strong>{{$product->new_price}} JOD</strong></td>
                 <td>{{$product->cat->cat_name}}</td>
                 <td>{{$product->gender}}</td>
                 <td>{{$product->inventory}} Item</td>  

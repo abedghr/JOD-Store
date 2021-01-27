@@ -38,14 +38,14 @@
                 <div class="card-body">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Product Name<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" value="{{$product->prod_name}}" id="exampleInputEmail1" name="prod_name" placeholder="Enter Product name">
+                    <input type="text" class="form-control" value="{{$product->prod_name}}" id="exampleInputEmail1" name="prod_name" placeholder="Enter Product name" required>
                     @error('prod_name')
                         <small class="text-danger"><strong>{{$message}}</strong></small>
                     @enderror
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Description<span class="text-danger">*</span></label>
-                    <textarea name="description" id="" class="form-control">{{$product->description}}</textarea>
+                    <textarea name="description" id="" class="form-control" required>{{$product->description}}</textarea>
                     @error('description')
                         <small class="text-danger"><strong>{{$message}}</strong></small>
                     @enderror
@@ -63,7 +63,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="exampleInputPassword1">New Price<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" value='{{$product->new_price}}' id="exampleInputPassword1" name="new_price" placeholder="Enter new price">
+                            <input type="text" class="form-control" value='{{$product->new_price}}' id="exampleInputPassword1" name="new_price" placeholder="Enter new price" required>
                             @error('new_price')
                                 <small class="text-danger"><strong>{{$message}}</strong></small>
                             @enderror
@@ -74,7 +74,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="exampleInputPassword1">Category<span class="text-danger">*</span></label>
-                            <select name="cat" id="" class="form-control">
+                            <select name="cat" id="" class="form-control" required>
                                 @foreach ($categories as $category)
                                     <option value="{{$category->id}}" @if ($product->category == $category->id) selected @endif>{{$category->cat_name}}</option>
                                 @endforeach
@@ -87,7 +87,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="exampleInputPassword1">Gender<span class="text-danger">*</span></label>
-                            <select name="gender" id="" class="form-control">
+                            <select name="gender" id="" class="form-control" required>
                                 <option value="men"  @if ($product->gender == "men") selected @endif>Men</option>
                                 <option value="women" @if ($product->gender == "women") selected @endif>Women</option>
                                 <option value="multiGender" @if ($product->gender == "multiGender") selected @endif>Multi-Gender</option>
@@ -100,7 +100,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="exampleInputPassword1">Provider<span class="text-danger">*</span></label>
-                            <select name="provider" id="" class="form-control">
+                            <select name="provider" id="" class="form-control" required>
                                 @foreach ($providers as $provider)
                                     <option value="{{$provider->id}}" @if ($product->provider == $provider->id) selected @endif>{{$provider->name}}</option>
                                 @endforeach
@@ -149,8 +149,11 @@
                   <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Inventory <span class="text-danger"> Optional</span></label>
-                            <input type="number" class="form-control" name="inventory" value="{{$product->inventory}}">
+                            <label for="exampleInputPassword1">Inventory <span class="text-danger">*</span></label>
+                            <input type="number" class="form-control" name="inventory" value="{{$product->inventory}}" required>
+                            @error('inventory')
+                            <small class="text-danger"><strong>{{$message}}</strong></small>
+                            @enderror
                         </div>
                     </div>
                     <div class="col-md-4">

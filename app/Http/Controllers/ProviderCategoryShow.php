@@ -13,7 +13,7 @@ class ProviderCategoryShow extends Controller
         $this->middleware('auth:provider');
     }
     public function index(){
-        $categories = Category::select()->paginate(7);
+        $categories = Category::select()->get();
         return view('Provider_views.categories',[
             'categories'=>$categories
         ]);

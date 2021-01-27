@@ -37,14 +37,14 @@
                 <div class="card-body">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Product Name<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" name="prod_name" placeholder="Enter Product name">
+                    <input type="text" class="form-control" id="exampleInputEmail1" name="prod_name" placeholder="Enter Product name" required>
                     @error('prod_name')
                         <small class="text-danger"><strong>{{$message}}</strong></small>
                     @enderror
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Description<span class="text-danger">*</span></label>
-                    <textarea name="description" id="" class="form-control"></textarea>
+                    <textarea name="description" id="" class="form-control" required></textarea>
                     @error('description')
                         <small class="text-danger"><strong>{{$message}}</strong></small>
                     @enderror
@@ -62,7 +62,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="exampleInputPassword1">New Price<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="exampleInputPassword1" name="new_price" placeholder="Enter new price">
+                            <input type="text" class="form-control" id="exampleInputPassword1" name="new_price" placeholder="Enter new price" required>
                             @error('new_price')
                                 <small class="text-danger"><strong>{{$message}}</strong></small>
                             @enderror
@@ -73,7 +73,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="exampleInputPassword1">Category<span class="text-danger">*</span></label>
-                            <select name="cat" id="" class="form-control">
+                            <select name="cat" id="" class="form-control" required>
                                 @foreach ($categories as $category)
                                     <option value="{{$category->id}}">{{$category->cat_name}}</option>
                                 @endforeach
@@ -86,7 +86,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="exampleInputPassword1">Gender<span class="text-danger">*</span></label>
-                            <select name="gender" id="" class="form-control">
+                            <select name="gender" id="" class="form-control" required>
                                 <option value="men">Men</option>
                                 <option value="women">Women</option>
                                 <option value="multiGender">Multi-Gender</option>
@@ -99,7 +99,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="exampleInputPassword1">Provider<span class="text-danger">*</span></label>
-                            <select name="provider" id="" class="form-control">
+                            <select name="provider" id="" class="form-control" required>
                                 @foreach ($providers as $provider)
                                     <option value="{{$provider->id}}">{{$provider->name}}</option>
                                 @endforeach
@@ -153,8 +153,11 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Inventory <span class="text-danger"> Optional</span></label>
-                            <input type="number" name="inventory" id="" class="form-control">
+                            <label for="exampleInputPassword1">Inventory <span class="text-danger">*</span></label>
+                            <input type="number" name="inventory" id="" class="form-control" required>
+                            @error('inventory')
+                            <small class="text-danger"><strong>{{$message}}</strong></small>
+                          @enderror
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -239,7 +242,7 @@
               <th>New Price</th>
               <th>Category</th>
               <th>Gender</th>
-              <th>Provider</th>
+              <th>Store</th>
               <th>Inventory</th>
               <th style="width: 40px">Actions</th>
             </tr>
@@ -253,8 +256,8 @@
                 <img src="../../img/Product_images/{{$product->main_image}}" width="60" height="60" class="rounded-circle" alt="">
                 </td>
                 <td>{{$product->prod_name}}</td>
-                <td class="text-danger"><del><strong>JD{{$product->old_price ? $product->old_price : 00}}</strong></del></td>
-                <td class="text-success"><strong>JD{{$product->new_price}}</strong></td>
+                <td class="text-danger"><del><strong>{{$product->old_price ? $product->old_price : 00}} JOD</strong></del></td>
+                <td class="text-success"><strong>{{$product->new_price}} JOD</strong></td>
                 <td>{{$product->cat->cat_name}}</td>
                 <td>{{$product->gender}}</td>
                 <td>{{$product->prov->name}}</td>

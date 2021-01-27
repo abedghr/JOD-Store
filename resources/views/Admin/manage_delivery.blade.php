@@ -38,7 +38,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">City Name<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="exampleInputEmail1" name="city_name" placeholder="Enter Category name">
+                                <input type="text" class="form-control" id="exampleInputEmail1" name="city_name" placeholder="Enter Category name" required>
                                 @error('city_name')
                                     <small class="text-danger"><strong>{{$message}}</strong></small>
                                 @enderror
@@ -47,7 +47,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="exampleInputFile">City Price<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="delivery_price" placeholder="Enter City Price">
+                                <input type="text" class="form-control" name="delivery_price" placeholder="Enter City Price" required>
                                 @error('delivery_price')
                                     <small class="text-danger"><strong>{{$message}}</strong></small>
                                 @enderror
@@ -95,7 +95,7 @@
               @foreach ($cities as $city)
               <tr>
                 <td>{{$city->city}}</td>
-                <td>JD-{{number_format($city->delivery_price,2)}}</td>
+                <td>{{number_format($city->delivery_price,2)}} JOD</td>
                 <td>{{$city->created_at->format('Y-m-d')}}</td>
                 <td style="width:200px;">
                     <a href="{{route('delivery.edit',['id'=> $city->id])}}" class="btn btn-info">Update</a>

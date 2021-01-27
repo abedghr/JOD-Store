@@ -76,12 +76,21 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword1">Provider Password<span class="text-danger">*</span></label>
+                <label for="exampleInputPassword1">Provider Password</label>
                 <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Enter a new password if you want to change it">
                 @error('password')
                     <small class="text-danger"><strong>{{$message}}</strong></small>
                 @enderror
             </div>
+            <div class="form-group">
+              <label for="password-confirm" class="">{{ __('Confirm Password') }}</label>
+              <input id="password-confirm" type="password" class="form-control @error('password') is-invalid @enderror" name="password_confirmation" autocomplete="new-password" placeholder="Confirm password">
+              @error('password')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+              @enderror
+          </div>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
