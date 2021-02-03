@@ -262,7 +262,7 @@
 							
 							
 					</div>
-						<div class="item-info-product ">
+						<div class="item-info-product " style="height: 156px;">
 							<h4><a href="" class="js-name-detail">{{$Rproduct->prod_name}}</a></h4>
 							<p><a href="">Store: {{$Rproduct->prov->name}}</a></p>
 							<p>Gender: {{$Rproduct->gender}}</p>

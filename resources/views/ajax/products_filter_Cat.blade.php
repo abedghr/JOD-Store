@@ -11,7 +11,7 @@
             
             
     </div>
-        <div class="item-info-product ">
+        <div class="item-info-product " style="height: 156px;">
             <h4><a href="single.html" class="js-name-detail">{{$product->prod_name}}</a></h4>
             <p><a href="">Store: {{$product->prov->name}}</a></p>
             <p>Gender: {{$product->gender}}</p>

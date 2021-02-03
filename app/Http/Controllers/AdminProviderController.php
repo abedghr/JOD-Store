@@ -32,7 +32,7 @@ class AdminProviderController extends Controller
      */
     public function create()
     {
-        $admins = AdminsOfProvider::select()->orderBy('id','desc')->paginate(5);
+        $admins = AdminsOfProvider::where('provider',Auth::user()->id)->select()->orderBy('id','desc')->paginate(5);
         return view('Provider_views.manage_admins_provider',[
             'admins'=>$admins
         ]);    

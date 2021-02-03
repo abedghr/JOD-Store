@@ -89,7 +89,7 @@
                             <select name="gender" id="" class="form-control" required>
                                 <option value="men">Men</option>
                                 <option value="women">Women</option>
-                                <option value="multiGender">Multi-Gender</option>
+                                <option value="for both">For Both</option>
                             </select>
                             @error('phone2')
                                 <small class="text-danger"><strong>{{$message}}</strong></small>

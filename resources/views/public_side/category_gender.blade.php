@@ -109,7 +109,7 @@
                         
                         
                 </div>
-                    <div class="item-info-product ">
+                    <div class="item-info-product " style="height: 156px;">
                         <h4><a href="single.html" class="js-name-detail">{{$product->prod_name}}</a></h4>
                         <p><a href="">Store: {{$product->prov->name}}</a></p>
                         <p>Gender: {{$product->gender}}</p>
@@ -121,6 +121,15 @@
                         @else
                         <div class="info-product-price">
                             <span class="item_price">{{number_format($product->new_price,2)}}JOD</span>
+                        </div>
+                        @endif
+                        @if ($product->inventory == 0)
+                        <div class="snipcart-details top_brand_home_details item_add single-item button2">
+                        <input type="submit" name="submit" value="Not Available" class="button bg-danger" style="margin-bottom: 8px; top:8px;" />
+                        </div>
+                        @else
+                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
+                        <input type="submit" name="submit" value="Add to cart" class="button js-addcart-detail" onclick="addca({{$product->id}})" />
                         </div>
                         @endif
                         {{-- <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
