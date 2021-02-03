@@ -7,7 +7,7 @@
 </div>
 <div class="container">
         <div class="col-lg-4 text-center">
-            <img src="../../img/provider_images/{{$provider->image}}" height="260"  style="width:280px; margin-top:-80px; padding:10px; border:1px solid silver" alt="">
+            <img src="{{asset('img/provider_images/'.$provider->image)}}" height="260"  style="width:280px; margin-top:-80px; padding:10px; border:1px solid silver" alt="">
         </div>
         <div class="col-lg-8 mt-2">
             
