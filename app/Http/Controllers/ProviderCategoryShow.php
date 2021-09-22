@@ -14,7 +14,7 @@ class ProviderCategoryShow extends Controller
     }
     public function index(){
         $categories = Category::select()->get();
-        return view('Provider_views.categories',[
+        return view('provider_views.categories',[
             'categories'=>$categories
         ]);
     }
@@ -22,7 +22,7 @@ class ProviderCategoryShow extends Controller
     public function show($id){
         $category = Category::find($id);
         Notification::where('type','App\Notifications\CategoryNotification')->where('data->id',$id)->update(['read_at'=>Carbon::now()]);
-        return view('Provider_views.show_category',[
+        return view('provider_views.show_category',[
             'category'=>$category
         ]);
     }

@@ -2,17 +2,17 @@
 @include('public_side.includes.public_header')
 <!-- /banner_bottom_agile_info -->
 <div class="page-head_agile_info_w3l" style="background-image: url('../../../img/Provider_coverImages/{{$provider->cover_image}}') !important; min-height:300px;">
-    <div>  
+    <div>
     </div>
 </div>
 <div class="container">
         <div class="col-lg-4 text-center">
-            <img src="../../../img/provider_images/{{$provider->image}}" height="260"  style="margin-top:-80px; padding:10px; border:1px solid silver" alt="">
+            <img src="../../../img/Provider_images/{{$provider->image}}" height="260"  style="margin-top:-80px; padding:10px; border:1px solid silver" alt="">
         </div>
         <div class="col-lg-8 mt-2">
-            
+
             <h1 class="mt-2">{{$provider->name}} Store</h1>
-            
+
             <hr>
             <p class="mb-3"><strong>{{$provider->description ? $provider->description : "No Description"}}</strong></p>
             @if (isset($user))
@@ -53,7 +53,7 @@
 	<div class="container">
          <!-- mens -->
 		<div class="col-md-4 products-left">
-			
+
 			<div class="css-treeview">
 				<h4>Categories</h4>
                     <ul>
@@ -65,7 +65,7 @@
                                 <li><a href="{{route('profile_category.show2',['prov_id'=>$provider->id ,'cat_id'=>$cat['id']])}}">All</a></li>
                                 <li><a href="{{route('profile_gender.show2',['prov_id'=>$provider->id , 'cat_id'=>$cat['id'] ,  'gender'=>'men'])}}"  @if ($cat['id'] == $category_active && $gen=='men') style="color:#2fdab8 !important;" @endif>Men</a></li>
                                 <li><a href="{{route('profile_gender.show2',['prov_id'=>$provider->id , 'cat_id'=>$cat['id'] ,  'gender'=>'women'])}}" @if ($cat['id'] == $category_active && $gen=='women') style="color:#2fdab8 !important;" @endif>Women</a></li>
-                                <li><a href="{{route('profile_gender.show2',['prov_id'=>$provider->id , 'cat_id'=>$cat['id'] ,  'gender'=>'for both'])}}" @if ($cat['id'] == $category_active && $gen=='both') style="color:#2fdab8 !important;" @endif>For Both</a></li>
+                                <li><a href="{{route('profile_gender.show2',['prov_id'=>$provider->id , 'cat_id'=>$cat['id'] ,  'gender'=>'for both'])}}" @if ($cat['id'] == $category_active && $gen=='for both') style="color:#2fdab8 !important;" @endif>For Both</a></li>
                             </ul>
                         </li>
                         <?php $i++; ?>
@@ -74,13 +74,13 @@
 			</div>
 			<div class="community-poll">
 				<h4>Filters</h4>
-				<div class="swit form">	
+				<div class="swit form">
 					<form>
 					<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio" onchange="vendor_filter_price('low-to-high')"><i></i>Low to High</label> </div></div>
 					<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio" onchange="vendor_filter_price('high-to-low')"><i></i>High to Low</label> </div></div>
 					<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio" onchange="vendor_filter_price('less-10')"><i></i>Less Than 10.99JD</label> </div></div>
 					<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio" onchange="vendor_filter_price('less-25')"><i></i>Less Than 25.99JD</label> </div></div>
-					<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio" onchange="vendor_filter_price('less-35')"><i></i>Less Than 35.99JD</label> </div></div>	
+					<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio" onchange="vendor_filter_price('less-35')"><i></i>Less Than 35.99JD</label> </div></div>
 					<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio" onchange="vendor_filter_price('more-35')"><i></i>More Than 35.99JD</label> </div></div>
 					</form>
 				</div>
@@ -96,15 +96,15 @@
 			<div class="sort-grid row">
 				<div class="col-md-6">
 					<input type="search" class="sorting form-control" id="search" onkeyup="search_vendorsCategory_products()" style="width:100% !important" placeholder="Search ..">
-					
+
 				</div>
 				<div class="col-md-6">
 					<div class="frm-field required sect">
                         <span class="text-right">{!! $products->links() !!}</span>
                     </div>
-					
+
 				</div>
-				
+
 			</div>
             <div class="prod_content">
             @if (count($products) == 0)
@@ -114,14 +114,14 @@
             <div class="col-md-4 product-men">
                 <div class="men-pro-item simpleCart_shelfItem">
                     <div class="men-thumb-item" style="height: 250px; background-image:url('../../../img/Product_images/{{$product->main_image}}'); background-size:100% 100%;">
-                        
+
                         <div class="men-cart-pro">
                             <div class="inner-men-cart-pro">
                                 <a href="{{route('product.show2',['id'=>$product->id])}}" class="link-product-add-cart">Quick View</a>
                             </div>
                         </div>
-                        
-                        
+
+
                     </div>
                     <div class="item-info-product " style="height: 156px;">
                         <h4><a href="single.html" class="js-name-detail">{{$product->prod_name}}</a></h4>
@@ -158,9 +158,9 @@
 				<div class="clearfix"></div>
 		</div>
 		<div class="clearfix"></div>
-		
+
 	</div>
-</div>	
+</div>
 <!-- //mens -->
 <!-- /we-offer -->
 <div class="sale-w3ls">
@@ -204,14 +204,14 @@
                     }else{
                         $('.prod_content').html(old_data);
                     }
-                } 
+                }
             });
         }else{
             $('.prod_content').html(old_data);
         }
     }
 
-     
+
      function addca(id){
          var nameProduct = $('.js-addcart-detail').parent().parent().parent().parent().find('.js-name-detail').html();
          swal(nameProduct, "is added to cart !", "success");
@@ -228,7 +228,7 @@
              }
          });
      }
- 
+
      function vendor_filter_price (filter){
          $.ajax({
              type: "get",
@@ -260,9 +260,9 @@
             $feed = "Your feed has been sent";
             swal($feed, " ", "success");
             $('#feedback').val(data.text);
-            
+
         },error: function(){
-            
+
             $feed = "You must fill the feedback box";
             swal($feed, " ", "error");
             $('.swal-button').css('background-color','red');

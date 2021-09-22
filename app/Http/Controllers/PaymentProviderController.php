@@ -27,7 +27,7 @@ class PaymentProviderController extends Controller
 	}
 	curl_close($ch);
     $res = json_decode($responseData,true);
-    $view = view('Provider_views.checkout_form')->with(['res'=>$res])->renderSections();
+    $view = view('provider_views.checkout_form')->with(['res'=>$res])->renderSections();
     return response()->json([
         'status' => true,
         'content'=>$view['main']

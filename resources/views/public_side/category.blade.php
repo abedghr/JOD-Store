@@ -12,7 +12,7 @@
 	<div class="container">
          <!-- mens -->
 		<div class="col-md-4 products-left">
-			
+
 			<div class="css-treeview">
 				<h4>Categories</h4>
                     <ul>
@@ -33,13 +33,13 @@
 			</div>
 			<div class="community-poll">
 				<h4>Filters</h4>
-				<div class="swit form">	
+				<div class="swit form">
 					<form>
 					<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio" onchange="filter_price('low-to-high')"><i></i>Low to High</label> </div></div>
 					<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio" onchange="filter_price('high-to-low')"><i></i>High to Low</label> </div></div>
 					<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio" onchange="filter_price('less-10')"><i></i>Less Than 10.99JD</label> </div></div>
 					<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio" onchange="filter_price('less-25')"><i></i>Less Than 25.99JD</label> </div></div>
-					<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio" onchange="filter_price('less-35')"><i></i>Less Than 35.99JD</label> </div></div>	
+					<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio" onchange="filter_price('less-35')"><i></i>Less Than 35.99JD</label> </div></div>
 					<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio" onchange="filter_price('more-35')"><i></i>More Than 35.99JD</label> </div></div>
 					</form>
 				</div>
@@ -51,18 +51,18 @@
 			<div class="sort-grid row">
 				<div class="col-md-6">
 					<input type="search" class="sorting form-control" id="search" onkeyup="search()" style="width:335px !important" placeholder="Search ..">
-					
+
 				</div>
 				<div class="col-md-6">
 					<div class="frm-field required sect">
                         <span class="text-right">{!! $products->links() !!}</span>
                     </div>
-					
+
 				</div>
-				
+
 			</div>
 			{{-- <div class="men-wear-top">
-				
+
 				<div  id="top" class="callbacks_container">
 					<ul class="rslides" id="slider3">
 						<li>
@@ -80,18 +80,21 @@
 				<div class="clearfix"></div>
             </div> --}}
             <div class="prod_content">
+                @if ($products[0] == null)
+                <h3 class="text-danger">There is no products</h3>
+                @endif
             @foreach ($products as $product)
             <div class="col-md-4 product-men">
                 <div class="men-pro-item simpleCart_shelfItem">
                     <div class="men-thumb-item" style="height: 250px; background-image:url('../img/Product_images/{{$product->main_image}}'); background-size:100% 100%;">
-                        
+
                             <div class="men-cart-pro">
                                 <div class="inner-men-cart-pro">
                                     <a href="{{route('product.show2',['id'=>$product->id])}}" class="link-product-add-cart">Quick View</a>
                                 </div>
                             </div>
-                            
-                            
+
+
                     </div>
                     <div class="item-info-product " style="height: 156px;">
                         <h4><a href="single.html" class="js-name-detail">{{$product->prod_name}}</a></h4>
@@ -127,16 +130,16 @@
 				<div class="clearfix"></div>
 		</div>
 		<div class="clearfix"></div>
-		
+
 	</div>
-</div>	
+</div>
 <!-- //mens -->
 
 @include('public_side.includes.public_footer')
 <script>
-    
 
-        
+
+
     let old_data = $('.prod_content').html();
      function search(){
          var data = $('#search').val();
@@ -155,7 +158,7 @@
                      }else{
                          $('.prod_content').html(old_data);
                      }
-                 } 
+                 }
              });
          }else{
              $('.prod_content').html(old_data);
@@ -178,7 +181,7 @@
              }
          });
      }
- 
+
      function filter_price (filter){
          $.ajax({
              type: "get",

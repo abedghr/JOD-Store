@@ -47,7 +47,7 @@ li {
     overflow-y: auto;
 }
 .user-wrapper {
-    height: 500px;
+    height: 100vh;
 }
 .user {
     cursor: pointer;
@@ -86,7 +86,7 @@ li {
 }
 .message-wrapper {
     padding: 10px;
-    height: 500px;
+    height: 65vh;
     background: #eeeeee;
 }
 .messages .message {
@@ -117,7 +117,7 @@ li {
 }
 .active {
     background: #eeeeee;
-} 
+}
 /*input[type=text] {
     width: 100%;
     padding: 12px 20px;

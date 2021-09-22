@@ -19,81 +19,6 @@ use Illuminate\Support\Facades\Session as FacadesSession;
 
 class PublicOrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 
     public function tracking2(){
         $user = session()->get('user');
@@ -111,7 +36,7 @@ class PublicOrderController extends Controller
                 'providers'=>$providers
             ]);
         }
-        
+
     }
 
     public function checkout2(){
@@ -147,7 +72,7 @@ class PublicOrderController extends Controller
                     'count_provider'=>$count_provider,
                 ]);
             }
-            
+
         }else{
             return redirect()->route('cart.index2',[
                 'categories' => $categories,
@@ -167,7 +92,7 @@ class PublicOrderController extends Controller
         ]);
 
 
-        
+
         $products = "";
         $cart= session()->has('cart') ? session()->get('cart') : [];
         $providers= session()->has('providers') ? session()->get('providers') : [];
@@ -177,7 +102,7 @@ class PublicOrderController extends Controller
         foreach($providers as $provider){
             $prov_total = session()->get('providers_total_'.$provider['provider_id']);
             $del_price = City::where('city',$request->city)->select('delivery_price')->get();
-            
+
             Order::create([
                 'fname'=>$request->input('fname'),
                 'lname'=>$request->input('lname'),
@@ -211,15 +136,15 @@ class PublicOrderController extends Controller
                 'order_id'=> $new_order->id,
                 'provider_id'=>$provider['provider_id']
             ]);
-            
-           
+
+
             event(new NewNotification($data));
 
-            $last = Order::orderBy('created_at','desc')->first();  
+            $last = Order::orderBy('created_at','desc')->first();
             foreach($cart as $ca){
                 foreach($ca as $car){
                     if($car['provider_id']== $provider['provider_id']){
-                        
+
                         ProductsOfOrders::create([
                         'prod_name'=>$car['title'],
                         'new_price'=>$car['unit_price'],
@@ -229,9 +154,9 @@ class PublicOrderController extends Controller
                         'main_image'=>$car['image'],
                         'order_id'=>$last->id
                         ]);
-                        
+
                         $the_prod = Product::where('id',$car['id'])->get();
-                        
+
                         Product::where('id',$car['id'])->update([
                             'inventory' => $the_prod[0]->inventory - $car['quantity'],
                             'number_of_bought' => $the_prod[0]->number_of_bought + 1
@@ -240,12 +165,12 @@ class PublicOrderController extends Controller
                 }
             }
 
-            
+
         }
 
 
         $delivery = City::where('city',$request->input('city'))->get();
-        
+
         $your_total_price = session()->get('total_price');
 
 
@@ -267,11 +192,11 @@ class PublicOrderController extends Controller
 
         return redirect()->route('orders.done2')->with(['your_orders'=>$your_orders , 'email'=>$request->email , 'city'=>$request->city , 'address'=>$request->address , 'total_price' => $your_total_price]);
         /* return view('public_views.order_done',[
-            
+
             'your_orders'=>$your_orders
-            
+
         ]); */
-        
+
     }
 
     public function orderDone2 (Request $request){
@@ -309,7 +234,7 @@ class PublicOrderController extends Controller
 
     public function show_tracking(Request $request){
         $order = Order::where('id',$request->order_id)->get();
-        
+
         $output = '';
         if(!empty($order[0])){
             if($order[0]->order_status == 0){
@@ -318,35 +243,35 @@ class PublicOrderController extends Controller
                     'status' => true,
                     'content'=>$view['main']
                 ]);
-                
+
             }elseif($order[0]->order_status == 1){
                 $view = view('ajax.tracking_order_one')->with(['order_id'=>$request->order_id])->renderSections();
                 return response()->json([
                     'status' => true,
                     'content'=>$view['main']
                 ]);
-                
+
             }elseif($order[0]->order_status == 3 || $order[0]->order_status == 2){
                 $view = view('ajax.tracking_order_2and3')->with(['order_id'=>$request->order_id])->renderSections();
                 return response()->json([
                     'status' => true,
                     'content'=>$view['main']
                 ]);
-                
+
             }elseif($order[0]->order_status == -1 ){
                 $view = view('ajax.tracking_order_minusOne')->with(['order_id'=>$request->order_id])->renderSections();
                 return response()->json([
                     'status' => true,
                     'content'=>$view['main']
                 ]);
-                
+
             }elseif($order[0]->order_status == -2){
                 $view = view('ajax.tracking_order_minusTwo')->with(['order_id'=>$request->order_id])->renderSections();
                 return response()->json([
                     'status' => true,
                     'content'=>$view['main']
                 ]);
-                
+
             }
         }else{
             $output = "Not Exist!";

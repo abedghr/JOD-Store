@@ -32,12 +32,12 @@ Auth::routes(['verify'=>true]);
 
 
 Route::group(['prefix' => 'admin'], function () {
-    
+
     // Login Routes
     Route::get('/login','Auth\AdminLoginController@showLoginFrom')->name('admin.login');
     Route::post('/login','Auth\AdminLoginController@login')->name('admin.login.submit');
 
-    // Logout Route 
+    // Logout Route
     Route::post('/logout','Auth\AdminLoginController@adminLogout')->name('admin.logout');
 
     // Dashboard Route
@@ -109,7 +109,7 @@ Route::group(['prefix' => 'admin'], function () {
     // Update Product Route
     Route::put('/product/{id}','ProductController@update')->name('product.update');
 
-    //Show Product Route 
+    //Show Product Route
     Route::get('/show_product/{id}','ProductController@show')->name('admin_product.show');
 
     // Orders Route
@@ -118,7 +118,7 @@ Route::group(['prefix' => 'admin'], function () {
     // Manage City Delivery Price Route
     Route::get('/manage_delivery','CityController@create')->name('delivery.price');
 
-    
+
     // Store City Delivery Price
     Route::post('/city','CityController@store')->name('city.store');
 
@@ -134,16 +134,16 @@ Route::group(['prefix' => 'admin'], function () {
     // Manage Related Route
     Route::get('/related/create','RelatedController@create')->name('related.create');
 
-    // Store Related Route 
+    // Store Related Route
     Route::post('/related','RelatedController@store')->name('related.store');
 
-    // Edit Related Route 
+    // Edit Related Route
     Route::get('/related/{id}/edit','RelatedController@edit')->name('related.edit');
 
-    // Update Related Route 
+    // Update Related Route
     Route::put('/related/{id}','RelatedController@update')->name('related.update');
 
-    // Delete Related Route 
+    // Delete Related Route
     Route::delete('/related/{id}','RelatedController@destroy')->name('related.destroy');
 
     Route::get('/Messages','AdminMessagesController@index')->name('message.index');
@@ -151,7 +151,7 @@ Route::group(['prefix' => 'admin'], function () {
     // Profile Route
     Route::get('/profile','AdminController@profile')->name('admin.profile');
 
-    // Notification Route 
+    // Notification Route
     Route::get('/notifications','AdminController@all_notifications')->name('admin.allNotifications');
     Route::delete('/delete_notification/{id}','AdminController@delete_notification')->name('admin.notification.destroy');
 
@@ -163,7 +163,7 @@ Route::group(['prefix' => 'provider'], function () {
     Route::get('/login','Auth\ProviderLoginController@showLoginFrom')->name('provider.login');
     Route::post('/login','Auth\ProviderLoginController@login')->name('provider.login.submit');
 
-    // Logout Route 
+    // Logout Route
     Route::post('/logout','Auth\ProviderLoginController@providerLogout')->name('provider.logout');
 
     // Reset password
@@ -181,8 +181,8 @@ Route::group(['prefix' => 'provider'], function () {
 
     // Dashboard Route
     Route::get('/','ProviderController@index')->name('provider.dashboard')->middleware('preventbackbutton','verified','CheckSubscribe');
-    
-    
+
+
     // Register Route
     Route::get('/register','Auth\ProviderRegisterController@showRegisterForm')->name('provider.register');
     Route::post('/register','Auth\ProviderRegisterController@register')->name('provider.register.submit');
@@ -190,7 +190,7 @@ Route::group(['prefix' => 'provider'], function () {
     // Provider Profile Routes
     Route::put('/update_provider/{id}','ProviderController@update')->name('provider_profile.update');
 
-    // Manage Admins of Providers Route 
+    // Manage Admins of Providers Route
     Route::get('/manage_admin','AdminProviderController@create')->name('admin_provider.create')->middleware('preventbackbutton','verified','CheckSubscribe');
 
     // Store Admin-Provider Route
@@ -229,16 +229,16 @@ Route::group(['prefix' => 'provider'], function () {
     // Manage Provider-Related Route
     Route::get('/manage_related','ProviderRelatedController@create')->name('related_provider.create')->middleware('preventbackbutton','verified','CheckSubscribe');
 
-    // Store Related Route 
+    // Store Related Route
     Route::post('/related','ProviderRelatedController@store')->name('related_provider.store');
 
-    // Edit Related Route 
+    // Edit Related Route
     Route::get('/related/{id}/edit','ProviderRelatedController@edit')->name('related_provider.edit')->middleware('preventbackbutton','verified','CheckSubscribe');
 
-    // Update Related Route 
+    // Update Related Route
     Route::put('/related/{id}','ProviderRelatedController@update')->name('related_provider.update');
 
-    // Delete Related Route 
+    // Delete Related Route
     Route::delete('/related/{id}','ProviderRelatedController@destroy')->name('related_provider.destroy');
 
     // Show Feedbacks Routes
@@ -263,13 +263,13 @@ Route::group(['prefix' => 'provider'], function () {
     Route::get('/delivery_process_order','OrderController@delivery_process')->name('orders.delivery_process');
     Route::get('/received_order','OrderController@received_order')->name('orders.received');
     Route::get('/unreceived_order','OrderController@unreceived_order')->name('orders.unreceived');
-    
+
 
     // Notifications Route
     Route::get('/notifications','ProviderController@all_notifications')->name('provider.allNotifications')->middleware('preventbackbutton','verified','CheckSubscribe');
     Route::delete('/delete_notification/{id}','ProviderController@delete_notification')->name('notification.destroy');
 
-    // Messages Routes 
+    // Messages Routes
 
     Route::get('messages','ProviderController@chat')->name('messages.index')->middleware('preventbackbutton','verified','CheckSubscribe');;
     Route::get('message/{id}','ProviderController@getMessage')->name('message')->middleware('preventbackbutton','verified','CheckSubscribe');;
@@ -278,19 +278,19 @@ Route::group(['prefix' => 'provider'], function () {
 });
 
 
-Route::group(['prefix' => 'adminsOfProvider'], function () {
+Route::group(['prefix' => 'employees'], function () {
     // Login Routes
     Route::get('/login','Auth\ProvAdminLoginController@showLoginFrom')->name('provAdmin.login')->middleware('preventbackbutton');
     Route::post('/login','Auth\ProvAdminLoginController@login')->name('provAdmin.login.submit');
 
-    // Logout Route 
+    // Logout Route
     Route::post('/logout','Auth\ProvAdminLoginController@providerLogout')->name('provAdmin.logout');
 
     Route::get('/expire_subscribe','ProvAdminController@expire')->name('provAdmin.expire')->middleware('preventbackbutton');
 
     // Dashboard Route
     Route::get('/','ProvAdminController@index')->name('provAdmin.dashboard')->middleware('preventbackbutton','expire');
-    
+
     // Show Feedbacks Routes
     Route::get('/feedback','ProvAdminFeedbackController@index')->name('provAdmin_feedback.index')->middleware('preventbackbutton','verified','expire');
     Route::get('/show_feedback/{id}','ProvAdminFeedbackController@show')->name('provAdmin_feedback.show')->middleware('preventbackbutton','verified','expire');
@@ -313,14 +313,14 @@ Route::group(['prefix' => 'adminsOfProvider'], function () {
     Route::get('/delivery_process_order','ProvAdminOrderController@delivery_process')->name('provAdmin.orders.delivery_process');
     Route::get('/received_order','ProvAdminOrderController@received_order')->name('provAdmin.orders.received');
     Route::get('/unreceived_order','ProvAdminOrderController@unreceived_order')->name('provAdmin.orders.unreceived');
-    
+
 
     // Notifications Route
     Route::get('/notifications','ProvAdminController@all_notifications')->name('provAdmin.allNotifications');
     Route::delete('/delete_notification/{id}','ProvAdminController@delete_notification')->name('notification.destroy');
 
 
-    // Messages Routes 
+    // Messages Routes
 
     Route::get('messages','provAdminController@chat')->name('provAdmin.messages.index')->middleware('preventbackbutton','verified','expire');
     Route::get('message/{id}','provAdminController@getMessage')->name('provAdmin.message');
@@ -328,7 +328,7 @@ Route::group(['prefix' => 'adminsOfProvider'], function () {
 });
 
 
-// Public Routes 
+// Public Routes
 
 Route::get('/home','HomeController@index2')->name('home2')->middleware('preventbackbutton');
 /* Route::get('/category2/{id}','PublicCategoryController@show2')->name('category.show2')->middleware('preventbackbutton'); */
@@ -364,7 +364,7 @@ Route::get('/userProfile','Auth\UserLoginController@profile2')->name('user.profi
 
 /* Route::post('/user/logout', 'Auth\LoginController@userLogout')->name('user.logout'); */
 Route::get('/addtocart','CartController@addtocart')->name('addtocart');
-Route::get('/products','PublicProductController@all')->name('product.all')->middleware('preventbackbutton');
+Route::get('/products','PublicProductController@all2')->name('product.all')->middleware('preventbackbutton');
 Route::get('/profile/{provider_id}','PublicProductController@vendor_product_all')->name('vendor_product.all')->middleware('preventbackbutton');
 Route::get('/category/{id}','PublicCategoryController@show2')->name('category.show2')->middleware('preventbackbutton');
 
@@ -394,7 +394,7 @@ Route::post('user-register','Auth\UserLoginController@user_register')->name('use
 Route::get('/user_profile','Auth\UserLoginController@profile')->name('user.profile');
 Route::put('/user_update/{id}','Auth\UserLoginController@update')->name('user.update');
 
-// Messages Routes 
+// Messages Routes
 
 Route::get('/user_message','PublicProviderController@getMessage')->name('message.user');
 Route::post('message_user','PublicProviderController@sendMessage')->name('message_user.send');

@@ -50,19 +50,19 @@ class ProviderController extends Controller
                 Provider::where('id',Auth::user()->id)->update([
                     'subscribe'=>30
                 ]);
-                return view('Provider_views.renewal_subscribe')->with(['success'=>$success]);
+                return view('provider_views.renewal_subscribe')->with(['success'=>$success]);
             }else{
                 $failed = true;
-                return view('Provider_views.renewal_subscribe')->with(['failed'=>$failed]);
+                return view('provider_views.renewal_subscribe')->with(['failed'=>$failed]);
             }
         }
-        return view('Provider_views.renewal_subscribe');
+        return view('provider_views.renewal_subscribe');
     }
 
 
     public function index()
     {
-        
+
         $products_number = Product::where('provider',Auth::user()->id)->count();
         $orders_data = Order::where('provider',Auth::user()->id)->where('order_status',3)->select()->get();
         $total = 0;
@@ -77,7 +77,7 @@ class ProviderController extends Controller
         $ordersFailed = Order::where('provider',Auth::user()->id)->where('order_status','-2')->count();
         $orders = Order::where('provider',Auth::user()->id)->count();
         $feedbacks = Feedback::where('provider_id',Auth::user()->id)->count();
-        return view('Provider_views.provider',[
+        return view('provider_views.provider',[
             'products_number'=>$products_number,
             'orders_number'=>$orders,
             'total_price'=>$total,
@@ -91,7 +91,7 @@ class ProviderController extends Controller
     }
 
     public function profile(){
-        return view('Provider_views.profile');
+        return view('provider_views.profile');
     }
 
     public function update($id,Request $request){
@@ -105,12 +105,12 @@ class ProviderController extends Controller
             $fileImage = time() . '.' . $request->file('image')->getClientOriginalName();
             /* $request->file('image')->storeAs('public/Provider_images',$fileImage); */
             $request->file('image')->move('img/Provider_images',$fileImage);
-            
+
             if($request->hasFile('cover_image')){
                 $coverImage = time(). '.' . $request->file('cover_image')->getClientOriginalName();
                 /* $request->file('cover_image')->storeAs('public/Provider_coverImages',$coverImage); */
                 $request->file('cover_image')->move('img/Provider_coverImages',$coverImage);
-                
+
                 if(isset($request->password) || !empty($request->password)){
                     $request->validate([
                         'password'=>'min:8|confirmed'
@@ -185,7 +185,7 @@ class ProviderController extends Controller
                 $coverImage = time(). '.' . $request->file('cover_image')->getClientOriginalName();
                 /* $request->file('cover_image')->storeAs('public/Provider_coverImages',$coverImage); */
                 $request->file('cover_image')->move('img/Provider_coverImages',$coverImage);
-                
+
                 if(isset($request->password) || !empty($request->password)){
                     $request->validate([
                         'password'=>'min:8|confirmed'
@@ -250,16 +250,16 @@ class ProviderController extends Controller
                 }
                 return redirect()->route('provider.profile');
             }
-            
+
         }
     }
 
     public function chat(){
-        
-        $users = DB::select("select users.id, users.name, users.email, count(is_read) as unread 
+
+        $users = DB::select("select users.id, users.name, users.email, count(is_read) as unread
         from users LEFT JOIN messages ON users.id = messages.from_user and is_read = 0 and messages.to_provider = ".Auth::id()." group by users.id,users.name,users.email ORDER BY messages.is_read desc");
 
-        return view('Provider_views.chat_view',[
+        return view('provider_views.chat_view',[
             'users'=>$users
         ]);
     }
@@ -276,13 +276,13 @@ class ProviderController extends Controller
             $query->where('from_user',$user_id)->where('to_provider',$my_id);
         })->get();
 
-        return view('Provider_views.messages',[
+        return view('provider_views.messages',[
             'messages'=>$messages
         ]);
     }
 
     public function sendMessage(Request $request){
-        
+
         $from = Auth::id();
         $to = $request->receiver_id;
         $message = $request->message;
@@ -299,7 +299,7 @@ class ProviderController extends Controller
             'to_provider'=>$to,
         ];
         event(new NewMessage($data));
-        
+
     }
 
     public function all_notifications(){

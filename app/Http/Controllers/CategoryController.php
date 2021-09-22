@@ -55,14 +55,14 @@ class CategoryController extends Controller
             $fileImage = time() . '.' . $request->file('cat_image')->getClientOriginalName();
             /* $request->file('cat_image')->storeAs('public/Category_images',$fileImage); */
             $request->file('cat_image')->move('img/Category_images',$fileImage);
-            
+
             Category::create([
                 'cat_name'=>$request->input('cat_name'),
                 'cat_image'=>$fileImage
             ]);
 
             $new_category = Category::latest()->first();
-            
+
             $providers = Provider::get();
             Notification::send($providers, new CategoryNotification($new_category));
             $data = [
@@ -76,7 +76,7 @@ class CategoryController extends Controller
                 'cat_name'=>$request->input('cat_name')
             ]);
             $new_category = Category::latest()->first();
-            
+
             $providers = Provider::get();
             Notification::send($providers, new CategoryNotification($new_category));
             $data = [
@@ -136,7 +136,7 @@ class CategoryController extends Controller
                 'cat_image'=>$fileImage
             ]);
             return redirect()->route('category.create');
-        
+
         }else{
             Category::where('id',$id)->update([
                 'cat_name'=> $request->cat_name

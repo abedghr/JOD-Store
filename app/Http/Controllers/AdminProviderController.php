@@ -33,9 +33,9 @@ class AdminProviderController extends Controller
     public function create()
     {
         $admins = AdminsOfProvider::where('provider',Auth::user()->id)->select()->orderBy('id','desc')->paginate(5);
-        return view('Provider_views.manage_admins_provider',[
+        return view('provider_views.manage_admins_provider',[
             'admins'=>$admins
-        ]);    
+        ]);
     }
 
     /**
@@ -58,7 +58,7 @@ class AdminProviderController extends Controller
             'password'=> Hash::make($request->input('password')),
             'provider'=>Auth::user()->id
         ]);
-        
+
         return redirect(url()->previous());
     }
 
@@ -82,7 +82,7 @@ class AdminProviderController extends Controller
     public function edit($id)
     {
         $admin = AdminsOfProvider::find($id);
-        return view("Provider_views.edit_admin_provider",[
+        return view("provider_views.edit_admin_provider",[
             'admin'=>$admin
         ]);
     }
@@ -96,7 +96,7 @@ class AdminProviderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         if($request->input('password') != null){
             $valid = $request->validate([
                 'admin_name'=>'required',

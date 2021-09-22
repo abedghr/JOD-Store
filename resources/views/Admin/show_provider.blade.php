@@ -24,7 +24,7 @@
                     <p class="text-center mt-3">Store Image</p>
                     <img src="../../img/Provider_images/{{$provider->image}}" style="height:275px; width:100%;" class="rounded" alt="...">
                 </div>
-                
+
                 <div class="col-md-4">
                     <div class="card-body mt-1">
                         <div class="card-text text-center mt-5">
@@ -32,7 +32,7 @@
                             <p><strong>Store Email :</strong> {{$provider->email}}</p>
                             <p><strong>Store Phone 1 :</strong> {{$provider->phone1}}</p>
                             <p><strong>Store Phone 2 :</strong> {{$provider->phone2 ? $provider->phone2 : "000-000-0000"}}</p>
-                            <p><strong>Verified  :</strong> 
+                            <p><strong>Verified  :</strong>
                               @if ($provider->email_verified_at != null)
                                 <span class="text-success"><strong>Verified at : {{$provider->email_verified_at}}</strong></span>
                               @else
@@ -45,7 +45,7 @@
                 </div>
                 <div class="col-md-4">
                     <p class="text-center mt-3">Provider Cover Image</p>
-                    <img src="../../img/Provider_coverimages/{{$provider->cover_image}}" style="height:275px; width:100%;" class="rounded" alt="...">
+                    <img src="../../img/Provider_coverImages/{{$provider->cover_image}}" style="height:275px; width:100%;" class="rounded" alt="...">
                 </div>
             </div>
             <hr>

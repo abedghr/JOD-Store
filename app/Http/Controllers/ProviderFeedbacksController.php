@@ -14,10 +14,10 @@ class ProviderFeedbacksController extends Controller
     {
         $this->middleware('auth:provider');
     }
-    
+
     public function index(){
         $feedbacks = Feedback::where('provider_id',Auth::user()->id)->select()->get();
-        return view('Provider_views.feedback',[
+        return view('provider_views.feedback',[
             'feedbacks'=>$feedbacks
         ]);
     }
@@ -25,7 +25,7 @@ class ProviderFeedbacksController extends Controller
     public function show($id){
         $single_feedback = Feedback::find($id);
         Notification::where('type','App\Notifications\ProviderFeedbackNotification')->where('data->id',$id)->update(['read_at'=>Carbon::now()]);
-        return view('Provider_views.show_feedback',[
+        return view('provider_views.show_feedback',[
             'feedback'=>$single_feedback
         ]);
     }

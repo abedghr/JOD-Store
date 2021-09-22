@@ -38,7 +38,7 @@ class PublicProviderController extends Controller
                 'all_providers'=>$providers
             ]);
         }
-        
+
     }
 
     public function profile2($id){
@@ -49,7 +49,7 @@ class PublicProviderController extends Controller
         event(new VendorProfileVisitor($single_provider));
         $categories = Category::all();
         $cat_arr = array();
-        
+
         foreach($categories as $category){
             $prod = Product::where('category',$category->id)->where('provider',$id)->first();
             if(isset($prod['category'])){
@@ -77,7 +77,7 @@ class PublicProviderController extends Controller
                 'category_active'=>'all'
             ]);
         }
-        
+
     }
 
     public function profile_categories2($prov_id , $cat_id){
@@ -89,7 +89,7 @@ class PublicProviderController extends Controller
         $cat_arr = array();
         foreach($categories as $category){
             $prod = Product::where('category',$category->id)->where('provider',$prov_id)->first();
-            
+
             if(isset($prod['category'])){
                 $cat_arr[$category->id]['id']=$category->id;
                 $cat_arr[$category->id]['name']=$category->cat_name;
@@ -115,9 +115,9 @@ class PublicProviderController extends Controller
                 'category_active'=>$cat_id
             ]);
         }
-        
+
     }
-    
+
     public function profile_gender2($prov_id , $cat_id,$gender){
         $user = session()->get('user');
         $single_provider = Provider::findorFail($prov_id);
@@ -158,7 +158,7 @@ class PublicProviderController extends Controller
             ]);
         }
     }
-    
+
     public function search_vendors2(Request $request){
         $vendors = Provider::where('name', 'like' , '%'.$request->vendor.'%')->select()->paginate(12);
         $view = view('ajax.stores_search')->with(['vendors'=>$vendors])->renderSections();
@@ -191,8 +191,8 @@ class PublicProviderController extends Controller
         $provider_id =  $request->receiver_id;
         $user = session()->get('user');
         $my_id = $user["user_id"];
-        
-        
+
+
         Message::where(['from_provider'=> $provider_id,'from_user'=>$my_id])->update(['is_read'=>1]);
 
         $messages = Message::Where(function($query) use ($provider_id , $my_id) {
@@ -200,13 +200,13 @@ class PublicProviderController extends Controller
         })->orWhere(function($query) use ($provider_id , $my_id) {
             $query->where('from_provider',$provider_id)->where('to_user',$my_id);
         })->get();
-        
+
         return view('messages.messages',[
             'messages'=>$messages,
             'user'=>$user
         ]);
     }
-    
+
 
     public function sendMessage(Request $request){
         $user = session()->get('user');
@@ -220,7 +220,7 @@ class PublicProviderController extends Controller
             'message'=>$message,
             'is_read'=>0
         ]);
-        
+
         $data = [
             'from_user' => $from,
             'to_provider'=>$to,
@@ -228,5 +228,5 @@ class PublicProviderController extends Controller
         event(new NewMessage($data));
 
     }
-    
+
 }

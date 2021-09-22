@@ -10,7 +10,7 @@
                     <div style="background-image: url(../img/providerBackgroundLogin.jpg); background-size: 100% 100%; height: 500px; background-repeat: no-repeat;">
                     </div>
                 </div>
-            <div class="col-lg-5" style="height: 100%"> 
+            <div class="col-lg-5" style="height: 100%">
                 <div class="card-body mt-4">
                     <h4>Store Login</h4>
                     <form method="POST" action="{{ route('provider.login.submit') }}">
@@ -59,15 +59,15 @@
                         </div>
                         <div class="form-group pl-4 pr-4">
                             <a href="{{route('provider.register')}}" class="btn btn-info btn-block" style="background-color: #17c3a2">Create Your Store</a>
-                            <a href="/adminsOfProvider/login" class="btn btn-dark btn-block" style="background-color: #111; border-radius:0px;">Store Employees Login</a>
+                            <a href="/employees/login" class="btn btn-dark btn-block" style="background-color: #111; border-radius:0px;">Store Employees Login</a>
                         </div>
                     </form>
-                </div> 
+                </div>
             </div>
-            
-                
+
+
             </div>
-            </div> 
+            </div>
         </div>
     </div>
 </div>

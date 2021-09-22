@@ -20,7 +20,7 @@ class CreateOrdersTable extends Migration
             $table->string('email')->nullable();
             $table->string('phone',15);
             $table->string('phone2',15)->nullable();
-            $table->string('city');
+            $table->bigInteger('city')->unsigned();
             $table->string('Address');
             $table->text('notes')->nullable();
             $table->bigInteger('provider')->unsigned();
@@ -29,6 +29,7 @@ class CreateOrdersTable extends Migration
             $table->smallInteger('order_status')->default(0);
             $table->string('payment_method')->default('Cash on delivery');
             $table->foreign('provider')->references('id')->on('providers')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('city')->references('id')->on('cities')->onDelete('null')->onUpdate('null');
             $table->timestamps();
         });
     }

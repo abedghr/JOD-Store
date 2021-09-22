@@ -12,14 +12,14 @@
                 <div class="col-lg-7">
                     <div style="background-image: url(../img/AdminLogin.jpg); background-size: 100% 100%; height: 450px; background-repeat: no-repeat;">
                         <div style="background-color:rgba(0,0,0,0.3); height:100%">
-                            <h1 class="text-light" style="font-family:Arial, Helvetica, sans-serif; position: relative; top: 38%; margin-left:15px;">JOD-Store</h1>
+                            <h2 class="text-light" style="font-family:Arial, Helvetica, sans-serif; position: relative; top: 38%; margin-left:15px;">Jordan-Stores</h2>
                             <small class="text-light" style="font-family:Arial, Helvetica, sans-serif; position: relative; top: 36%; margin-left:15px;">Admin Dashboard</small>
                         </div>
-                        
-                        
+
+
                     </div>
                 </div>
-            <div class="col-lg-5" style="height: 100%"> 
+            <div class="col-lg-5" style="height: 100%">
                 <div class="card-body mt-5">
                     <h4>Admin Login</h4>
                     <form method="POST" action="{{ route('admin.login.submit') }}">
@@ -60,12 +60,12 @@
                             </div>
                         </div>
                     </form>
-                </div> 
+                </div>
             </div>
-            
-                
+
+
             </div>
-            </div> 
+            </div>
         </div>
     </div>
 </div>

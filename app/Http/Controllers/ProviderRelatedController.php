@@ -30,7 +30,7 @@ class ProviderRelatedController extends Controller
     public function create()
     {
         $all_related = Related::where('provider_id',Auth::user()->id)->select()->paginate(10);
-        return view("Provider_views.manage_related",[
+        return view("provider_views.manage_related",[
             'all_related' =>$all_related
         ]);
     }
@@ -51,7 +51,7 @@ class ProviderRelatedController extends Controller
             'name'=>$request->input('name'),
             'provider_id'=>Auth::user()->id
         ]);
-        
+
         return redirect()->route('related_provider.create');
     }
 
@@ -75,7 +75,7 @@ class ProviderRelatedController extends Controller
     public function edit($id)
     {
         $single_related = Related::find($id);
-        return view('Provider_views.edit_related',[
+        return view('provider_views.edit_related',[
             'related'=>$single_related
         ]);
     }
@@ -97,7 +97,7 @@ class ProviderRelatedController extends Controller
             'name'=>$request->input('name'),
             'provider_id'=>Auth::user()->id
         ]);
-        
+
         return redirect()->route('related_provider.create');
     }
 

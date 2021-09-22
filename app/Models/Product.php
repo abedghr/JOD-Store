@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 class Product extends Model
 {
     use Notifiable;
-    
+
 
     protected $fillable=[
         'prod_name','description','old_price','new_price','category','gender','provider','main_image','availability','prod_status','country_made','prod_related','number_of_bought','inventory'
@@ -26,7 +26,7 @@ class Product extends Model
 
     public function prov()
     {
-        return $this->belongsTo('App\Models\Provider','provider','id');    
+        return $this->belongsTo('App\Models\Provider','provider','id');
     }
 
     public function comment(){
@@ -39,5 +39,9 @@ class Product extends Model
 
     public function rate(){
         return $this->hasMany(Rating::class);
+    }
+
+    public static function getRelatedProducts($related, $vehicle_id) {
+        return Product::where('prod_related','<>',null)->where('prod_related',$related)->where('id','<>',$vehicle_id)->get();
     }
 }

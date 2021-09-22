@@ -134,16 +134,16 @@
     </style>
 </head>
 <body>
-   
+
     <h3 class="text-center"><a href="{{route('home2')}}" class="btn btn-block" style="border-radius:0px;"><strong>Visite Jordan Stores</strong></a></h3>
         <main class="py-4">
             @yield('content')
-        </main>{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+        </main>{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
 
 <script>
     var receiver_id = '';
-    
+
     var my_id = "{{session('user')['user_id']}}";
     $(document).ready(function () {
 
@@ -156,7 +156,7 @@
         $(".user").click(function(){
         $('.user').removeClass('active');
         $(this).addClass('active');
-        
+
 
         $(this).find('.pending').remove();
         receiver_id = $(this).attr('id');
@@ -199,14 +199,14 @@
             $(this).val('');
 
             var datastr = "receiver_id=" + receiver_id + "&message=" + message;
-            
+
             $.ajax({
                 type : "post",
                 url : "{{route('message_user.send')}}",
                 data : datastr,
                 cache: false,
                 success:function(data){
-                    
+
                 },
                 error:function(JqXHR , status , err){
 
@@ -230,17 +230,17 @@
 <script>
     // Enable pusher logging - don't include this in production
     Pusher.logToConsole = true;
-  
+
     var pusher = new Pusher('e9e4a073342959254078', {
       cluster: 'mt1'
     });
-    
+
     var notifyCount = parseInt($("#notifyCount").attr('data-count'));
     var old_content = $('.notify-box').html();
-  
+
     var channel = pusher.subscribe('new-notification');
     channel.bind('App\\Events\\NewMessage', function(data) {
-        
+
     if(my_id == data.from){
         $('#'+ data.to).click();
     }else if(my_id == data.to){

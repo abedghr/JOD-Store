@@ -35,7 +35,7 @@ class ProviderProductController extends Controller
         $products = Product::where('provider',Auth::user()->id)->select()->orderBy('id','desc')->get();
         $categories = Category::all();
         $related = Related::all();
-        return view('Provider_views.manage_product',[
+        return view('provider_views.manage_product',[
             'products'=>$products,
             'categories'=>$categories,
             'related'=>$related
@@ -70,7 +70,7 @@ class ProviderProductController extends Controller
                 'inventory'=>'required'
             ]);
         }
-        
+
         if($request->hasFile('main_image')){
             $Image = time().'.'.$request->file('main_image')->getClientOriginalName();
             /* $request->file('main_image')->storeAs('public/Product_images',$Image); */
@@ -89,7 +89,7 @@ class ProviderProductController extends Controller
                 'country_made'=>$request->country,
                 'prod_related'=>$request->prod_related
             ]);
-            $last = Product::orderBy('created_at', 'desc')->first();  
+            $last = Product::orderBy('created_at', 'desc')->first();
                     ProductsImages::create([
                         'image'=>$Image,
                         'product_id'=>$last->id
@@ -102,8 +102,8 @@ class ProviderProductController extends Controller
                     $fileNameToStore = $filename.'_'.time().','.$extention;
                     /* $image->storeAs('public/Product_images',$fileNameToStore); */
                     $image->move('img/Product_images',$fileNameToStore);
-                    
-                    $last = Product::orderBy('created_at', 'desc')->first();  
+
+                    $last = Product::orderBy('created_at', 'desc')->first();
                     ProductsImages::create([
                         'image'=>$fileNameToStore,
                         'product_id'=>$last->id
@@ -133,8 +133,8 @@ class ProviderProductController extends Controller
                     $fileNameToStore = $filename.'_'.time().','.$extention;
                     /* $image->storeAs('public/Product_images',$fileNameToStore); */
                     $image->move('img/Product_images',$fileNameToStore);
-                    
-                    $last = Product::orderBy('created_at', 'desc')->first();  
+
+                    $last = Product::orderBy('created_at', 'desc')->first();
                     ProductsImages::create([
                         'image'=>$fileNameToStore,
                         'product_id'=>$last->id
@@ -174,7 +174,7 @@ class ProviderProductController extends Controller
         $categories = Category::all();
         $related = Related::all();
         $prod_images = ProductsImages::where('product_id',$id)->orderBy('created_at','desc')->get();
-        return view('Provider_views.edit_product',[
+        return view('provider_views.edit_product',[
             'product'=>$product,
             'categories'=>$categories,
             'related'=>$related,
@@ -229,7 +229,7 @@ class ProviderProductController extends Controller
                 'country_made'=>$request->country,
                 'prod_related'=>$request->prod_related
             ]);
-            
+
             ProductsImages::create([
                 'image'=>$Image,
                 'product_id'=>$id
@@ -242,15 +242,15 @@ class ProviderProductController extends Controller
                     $fileNameToStore = $filename.'_'.time().','.$extention;
                     /* $image->storeAs('public/Product_images',$fileNameToStore); */
                     $image->move('img/Product_images',$fileNameToStore);
-                    
+
                     ProductsImages::create([
                         'image'=>$fileNameToStore,
                         'product_id'=>$id
                     ]);
                 }
-                
 
-                
+
+
             }
             return redirect(url()->previous());
         }else{
@@ -267,7 +267,7 @@ class ProviderProductController extends Controller
                 'country_made'=>$request->country,
                 'prod_related'=>$request->prod_related
             ]);
-            
+
             if($request->hasFile('images')){
                 foreach($request->images as $image){
                     $imageName = time() . '.' . $image->getClientOriginalName();
@@ -276,16 +276,16 @@ class ProviderProductController extends Controller
                     $fileNameToStore = $filename.'_'.time().','.$extention;
                     /* $image->storeAs('public/Product_images',$fileNameToStore); */
                     $image->move('img/Product_images',$fileNameToStore);
-                    
-                     
+
+
                     ProductsImages::create([
                         'image'=>$fileNameToStore,
                         'product_id'=>$id
                     ]);
                 }
-                
 
-                
+
+
             }
             return redirect(url()->previous());
         }

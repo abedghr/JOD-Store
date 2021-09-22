@@ -27,9 +27,9 @@ class OrderController extends Controller
     public function index()
     {
        $orders = Order::where('provider',Auth::user()->id)->with('prodOfOrder')->select()->get();
-       
-       
-       return view("Provider_views.manage_orders",[
+
+
+       return view("provider_views.manage_orders",[
            'orders'=>$orders
        ]);
     }
@@ -48,7 +48,7 @@ class OrderController extends Controller
             'city' => 'required',
             'address'=> 'required'
         ]);
-        
+
         $products = "";
         $cart = session()->get('cart');
         $total =0;
@@ -57,9 +57,9 @@ class OrderController extends Controller
             $total += $cart['unit_price'];
         }
         $products = substr($products,0,strlen($products)-1);
-        
+
         $total_price = $total + $request->input('city');
-        
+
         $order = Order::create([
             'fname'=>$request->input('fname'),
             'lname'=>$request->input('lname'),
@@ -84,7 +84,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        
+
     }
 
     /**
@@ -99,9 +99,9 @@ class OrderController extends Controller
         $products_order = ProductsOfOrders::where('order_id',$id)->get();
         $count_products = count($products_order);
 
-        
 
-        return view('Provider_views.orders_view',[
+
+        return view('provider_views.orders_view',[
             'orders'=>$products_order,
             'count_products'=>$count_products
         ]);
@@ -111,7 +111,7 @@ class OrderController extends Controller
         $the_order = Order::findorfail($id);
         $products_of_order = ProductsOfOrders::where('order_id',$id)->where('provider',Auth::user()->id)->get();
         Notification::where('type','App\Notifications\OrderNotification')->where('data->id',$id)->update(['read_at'=>Carbon::now()]);
-        return view('Provider_views.show_order',[
+        return view('provider_views.show_order',[
             'order'=>$the_order,
             'products'=>$products_of_order
         ]);
@@ -124,7 +124,7 @@ class OrderController extends Controller
         $order = Order::find($request->id);
         return response()->json(['order_state'=>$order->order_done]);
     }
-    
+
     public function decline(Request $request){
         Order::where('id',$request->id)->update([
             'order_status'=>-1
@@ -139,7 +139,7 @@ class OrderController extends Controller
         $order = Order::find($request->id);
         return response()->json(['order_state'=>$order->order_done]);
     }
-    
+
     public function received_order(Request $request){
         Order::where('id',$request->id)->update([
             'order_status'=>3
@@ -147,7 +147,7 @@ class OrderController extends Controller
         $order = Order::find($request->id);
         return response()->json(['order_state'=>$order->order_done]);
     }
-    
+
     public function unreceived_order(Request $request){
         Order::where('id',$request->id)->update([
             'order_status'=>-2
@@ -155,7 +155,7 @@ class OrderController extends Controller
         $order = Order::find($request->id);
         return response()->json(['order_state'=>$order->order_done]);
     }
-    
+
 
     /**
      * Show the form for editing the specified resource.
@@ -191,8 +191,8 @@ class OrderController extends Controller
         $provider = Provider::find($id);
         Notification::where('type','App\Notifications\OrderNotification')->where('data->id',$id)->delete();
         Order::where('id',$id)->delete();
-        
-        
+
+
         return redirect()->route('order.index');
     }
 
@@ -206,7 +206,7 @@ class OrderController extends Controller
         foreach($orders as $order){
         $products_orders[$order->id]= ProductsOfOrders::where('order_id',$order->id)->count();
         }
-        return view('Provider_views.manage_orders',[
+        return view('provider_views.manage_orders',[
             'orders'=>$orders,
             'status'=>$request->status,
             'count_products'=>$products_orders

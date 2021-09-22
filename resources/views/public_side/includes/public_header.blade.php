@@ -5,7 +5,7 @@
 <!--/tags -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Elite Shoppy Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+<meta name="keywords" content="Elite Shoppy Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -14,7 +14,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link rel="stylesheet" href="{{asset('/pub_libraries/css/flexslider.css')}}" type="text/css" media="screen" />
 <link href="{{asset('/pub_libraries/css/bootstrap.css')}}" rel="stylesheet" type="text/css" media="all" />
 <link href="{{asset('/pub_libraries/css/style.css')}}" rel="stylesheet" type="text/css" media="all" />
-<link href="{{asset('/pub_libraries/css/font-awesome.css')}}" rel="stylesheet"> 
+<link href="{{asset('/pub_libraries/css/font-awesome.css')}}" rel="stylesheet">
 <link href="{{asset('/pub_libraries/css/easy-responsive-tabs.css')}}" rel='stylesheet' type='text/css'/>
 <!-- //for bootstrap working -->
 <link href="fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
@@ -262,7 +262,7 @@ comments-box {
             <li> <a href="/login"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Sign In </a></li>
 			<li> <a href="{{route('view.register')}}"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign Up </a></li>
             @endif
-           
+
 		</ul>
 	</div>
 </div>
@@ -345,7 +345,7 @@ comments-box {
                                             <div class="col-sm-4 text-left">
                                             <li><a href="{{route('public_provider.profile2',['id'=>$provider->id])}}">{{$provider->name}}</a></li>
                                             </div>
-                                            @endforeach						
+                                            @endforeach
 										</ul>
 									</div>
 									<div class="clearfix"></div>
@@ -398,11 +398,11 @@ comments-box {
 				  </ul>
 				</div>
 			  </div>
-			</nav>	
+			</nav>
 		</div>
 		<div class="top_nav_right">
 			<div class="wthreecartaits wthreecartaits2 cart cart box_1">
-                <a href="{{route('cart.index2')}}"> 
+                <a href="{{route('cart.index2')}}">
                     <button class="w3view-cart" type="submit" name="submit" value="" style="width:65px;"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i> <small id="cart_count"><strong>{{session('counter') ? session('counter') : 0}}</strong></small></button>
                 </a>
             </div>

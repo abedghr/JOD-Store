@@ -29,7 +29,7 @@
               <div class="card-header">
                 <h3 class="card-title">Add New Admin</h3>
               </div>
-              
+
               <!-- /.card-header -->
               <!-- form start -->
               <form method="post" action="{{route('admin.store')}}"  enctype="multipart/form-data" >
@@ -37,21 +37,21 @@
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Admin Name<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" name="admin_name" placeholder="Enter Admin name">
+                    <input type="text" class="form-control" id="exampleInputEmail1" required name="admin_name" placeholder="Enter Admin name">
                     @error('admin_name')
                         <small class="text-danger"><strong>{{$message}}</strong></small>
                     @enderror
                 </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Admin Email<span class="text-danger">*</span></label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="Enter Admin email">
+                    <input type="email" class="form-control" id="exampleInputEmail1" required name="email" placeholder="Enter Admin email">
                     @error('email')
                         <small class="text-danger"><strong>{{$message}}</strong></small>
                     @enderror
                 </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Admin Password<span class="text-danger">*</span></label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Enter Admin Password">
+                    <input type="password" class="form-control" id="exampleInputPassword1" required name="password" placeholder="Enter Admin Password">
                     @error('password')
                         <small class="text-danger"><strong>{{$message}}</strong></small>
                     @enderror
@@ -99,7 +99,7 @@
 
         <div class="card-tools">
           <ul class="pagination pagination-sm float-right">
-           
+
           </ul>
         </div>
       </div>
@@ -117,7 +117,7 @@
           </thead>
           <tbody>
               <?php $i=1;?>
-              
+
               @foreach ($admins as $admin)
               <tr>
                 <td>
@@ -143,9 +143,9 @@
               </tr>
               <?php $i++; ?>
               @endforeach
-              
-              
-              
+
+
+
             </tbody>
         </table>
       </div>

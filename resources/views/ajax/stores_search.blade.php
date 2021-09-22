@@ -5,7 +5,7 @@
             <img src="./img/Provider_images/{{$vendor->image}}" class="img-responsive" alt="" style="height: 180px !important">
             <div class="social-icons team-icons right-w3l fotw33">
             <div class="caption">
-                <h4>{{$vendor->name}}</h4>						
+                <h4>{{$vendor->name}}</h4>
             </div>
                 <ul class="social-nav model-3d-0 footer-social w3_agile_social two" style="margin:0px !important">
                     <li><a href="#" class="facebook">
